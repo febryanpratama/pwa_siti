@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -30,9 +31,7 @@ Route::get('/logout', [LoginController::class, 'logout']);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::group(['prefix'=>'admin','middleware' => ['role:Admin']], function () {
-    Route::get('/', function(){
-        return "admin";
-    });
+    Route::get('/', [HomeController::class, 'index']);
 });
 Route::group(['prefix'=>'bendahara','middleware' => ['role:Bendahara']], function () {
     Route::get('/', function(){
