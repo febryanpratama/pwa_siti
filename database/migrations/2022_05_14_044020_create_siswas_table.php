@@ -28,7 +28,7 @@ class CreateSiswasTable extends Migration
             $table->string('angkatan')->nullable();
             $table->string('nama_ortu');
             $table->string('telpon_ortu_siswa');
-            $table->string('nama_siswa');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
