@@ -3,18 +3,18 @@
     <div class="brand-logo">
     <a href="index.html">
     <img src="{{ asset('') }}assets/images/logo-icon.png" class="logo-icon" alt="logo icon">
-    <h5 class="logo-text">Rukada Admin</h5>
+    <h5 class="logo-text">Admin Template</h5>
     </a>
 </div>
 <ul class="sidebar-menu do-nicescrol">
     <li class="sidebar-header">MAIN NAVIGATION</li>
     <li>
         <a href="index.html" class="waves-effect">
-        <i class="zmdi zmdi-view-dashboard"></i> <span>Dashboard</span> <i class="fa fa-angle-left pull-right"></i>
+        <i class="zmdi zmdi-view-dashboard"></i> <span>Master Data</span> <i class="fa fa-angle-left pull-right"></i>
         </a>
         <ul class="sidebar-submenu">
-        <li><a href="index.html"><i class="zmdi zmdi-star-outline"></i> Dashboard v1</a></li>
-        <li><a href="index2.html"><i class="zmdi zmdi-star-outline"></i> Dashboard v2</a></li>
+        <li><a href="index.html"><i class="zmdi zmdi-star-outline"></i> Data Siswa</a></li>
+        <li><a href="index2.html"><i class="zmdi zmdi-star-outline"></i> Data Tahun Ajaran</a></li>
         <li><a href="index3.html"><i class="zmdi zmdi-star-outline"></i> Dashboard v3</a></li>
         <li><a href="index4.html"><i class="zmdi zmdi-star-outline"></i> Dashboard v4</a></li>
         </ul>
