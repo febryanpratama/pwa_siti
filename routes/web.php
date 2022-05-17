@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\Admin\SiswaController;
+use App\Http\Controllers\Admin\SppController;
 use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -32,6 +34,15 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::group(['prefix'=>'admin','middleware' => ['role:Admin']], function () {
     Route::get('/', [HomeController::class, 'index']);
+
+    Route::prefix('/siswa')->group(function(){
+        Route::get('/', [SiswaController::class,'index']);
+        Route::post('/', [SiswaController::class,'tambah']);
+    });
+
+    Route::prefix('/spp')->group(function(){
+        Route::get('/', [SppController::class, 'index']);
+    });
 });
 Route::group(['prefix'=>'bendahara','middleware' => ['role:Bendahara']], function () {
     Route::get('/', function(){

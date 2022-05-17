@@ -23,14 +23,17 @@
     <link href="{{ asset('') }}assets/css/app-style.css" rel="stylesheet"/>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <link rel="stylesheet" href="{{ asset('assets/css/sweetalert.css') }}">
+
+    <script src="{{ asset('') }}assets/js/app.js" defer></script>
+    
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('') }}assets/css/app.css" rel="stylesheet">
 
     @PWA
 </head>
@@ -79,6 +82,22 @@
     <script src="{{ asset('') }}assets/js/sidebar-menu.js"></script>
     <!-- Custom scripts -->
     <script src="{{ asset('') }}assets/js/app-script.js"></script>
+
+    <script src="{{ asset('assets/js/sweetalert.min.js') }}"></script>
+        @if (\Session::has('success'))
+            <script>
+                swal("Success!", "{!! \Session::get('success') !!}", "success");
+            </script>
+        @elseif(\Session::has('error'))
+            <script>
+                swal("Error !", "{!! \Session::get('error') !!}", "error");
+            </script>
+        @endif
+        @if ($errors->any())
+            <script>
+                swal("Error !", "{!! \Session::get('error') !!}", "error");
+            </script>
+        @endif
     <!-- Chart js -->
     <script src="{{ asset('') }}assets/plugins/Chart.js/Chart.min.js"></script>
     <!--Peity Chart -->

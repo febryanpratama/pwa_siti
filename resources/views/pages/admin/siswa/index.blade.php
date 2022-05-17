@@ -1,0 +1,216 @@
+@extends('layouts.app')
+@section('content')
+<div class="container-fluid">
+    <!-- Breadcrumb-->
+   <div class="row pt-2 pb-2">
+      <div class="col-sm-9">
+          <h4 class="page-title">Stiped Color Tables</h4>
+          <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="javaScript:void();">Rukada</a></li>
+          <li class="breadcrumb-item"><a href="javaScript:void();">Tables</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Stiped Color Tables</li>
+       </ol>
+     </div>
+     <div class="col-sm-3">
+     <div class="btn-group float-sm-right">
+      <button type="button" class="btn btn-outline-primary waves-effect waves-light"><i class="fa fa-cog mr-1"></i> Setting</button>
+      <button type="button" class="btn btn-outline-primary dropdown-toggle dropdown-toggle-split waves-effect waves-light" data-toggle="dropdown">
+      <span class="caret"></span>
+      </button>
+      <div class="dropdown-menu">
+        <a href="javaScript:void();" class="dropdown-item">Action</a>
+        <a href="javaScript:void();" class="dropdown-item">Another action</a>
+        <a href="javaScript:void();" class="dropdown-item">Something else here</a>
+        <div class="dropdown-divider"></div>
+        <a href="javaScript:void();" class="dropdown-item">Separated link</a>
+      </div>
+    </div>
+   </div>
+   </div>
+  <!-- End Breadcrumb-->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <h6 class="text-uppercase mt-3">Light Striped Table</h6>
+                        </div>
+                        <div class="col-lg-6">
+                            {{-- <button class="btn btn-info float-right btn-block m-1" data-toggle="modal" data-target="#formemodal">Modal with form</button> --}}
+                            <button class="btn btn-info float-right m-1" data-toggle="modal" data-target="#formemodal">+ Data Siswa</button>
+                            {{-- <button class="btn btn-primary float-right">+ Data Siswa</button> --}}
+                        </div>
+                    </div>
+                    <hr>
+                    <table class="table table-light table-striped shadow-light">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Nama Siswa</th>
+                                <th scope="col">Telpon Siswa</th>
+                                <th scope="col">Jenis Kelamin</th>
+                                <th scope="col">Alamat</th>
+                                <th scope="col">Nama Ortu</th>
+                                <th scope="col">Telpon Ortu</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($data as $item=>$key)
+                            <tr>
+                                <td>{{ $item+1 }}</td>
+                                <td>{{ $key->nama_siswa }}</td>
+                                <td>{{ $key->telpon_siswa }}</td>
+                                <td>{{ $key->jenis_kelamin }}</td>
+                                <td>{{ $key->alamat }}</td>
+                                <td>{{ $key->nama_ortu }}</td>
+                                <td>{{ $key->telpon_ortu_siswa }}</td>
+                            </tr>
+                            @endforeach
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div><!--End Row-->
+
+  </div>
+
+  <div class="modal fade" id="formemodal">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Your modal title here</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form method="POST" action="{{ url('admin/siswa') }}" enctype="multipart/form-data">
+                @csrf
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="input-1">Name</label>
+                          <input type="text" class="form-control @error('nama_siswa') is-invalid @enderror" name="nama_siswa" placeholder="Masukkan Nama Siswa">
+                        </div>
+                        @error('nama_siswa')
+                            <div class="text-muted text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="input-1">Jenis Kelamin</label>
+                          <select name="jenis_kelamin" id="" class="form-control @error('jenis_kelamin') is-invalid @enderror">
+                              <option value="Laki-Laki">Laki-Laki</option>
+                              <option value="Perempuan">Perempuan</option>
+                          </select>
+                        </div>
+                        @error('jenis_kelamin')
+                            <div class="text-muted text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="input-1">Tempat Lahir</label>
+                          <input type="text" class="form-control @error('tempat_lahir') is-invalid @enderror" name="tempat_lahir" placeholder="Masukkan Tempat Lahir">
+                        </div>
+                        @error('tempat_lahir')
+                            <div class="text-muted text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="input-1">Tanggal Lahir</label>
+                          <input type="date" class="form-control @error('tanggal_lahir') is-invalid @enderror" name="tanggal_lahir">
+                        </div>
+                        @error('tanggal_lahir')
+                            <div class="text-muted text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="input-1">Agama</label>
+                            <select name="agama" id="" class="form-control @error('agama') is-invalid @enderror">
+                                <option value="Islam">Islam</option>
+                                <option value="Kristen">Kristen</option>
+                                <option value="Protestan">Protestan</option>
+                                <option value="Budha">Budha</option>
+                                <option value="Hindu">Hindu</option>
+                            </select>
+                        </div>
+                        @error('agama')
+                            <div class="text-muted text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="input-1">Telpon Siswa</label>
+                          <input type="number" class="form-control @error('telpon_siswa') is-invalid @enderror" name="telpon_siswa">
+                        </div>
+                        @error('telpon_siswa')
+                            <div class="text-muted text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                          <label for="input-1">Angkatan</label>
+                          <select name="angkatan" class="form-control @error('angkatan') is-invalid @enderror">
+                              @for ($i = 1990; $i <= date('Y'); $i++)
+                                <option value="{{ $i }}">{{ $i }}</option>
+                              @endfor
+                          </select>
+                        </div>
+                        @error('angkatan')
+                            <div class="text-muted text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                          <label for="input-1">Nama Orang Tua Siswa</label>
+                          <input type="text" class="form-control @error('nama_ortu') is-invalid @enderror" name="nama_ortu">
+                        </div>
+                        @error('nama_ortu')
+                            <div class="text-muted text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                          <label for="input-1">Nomor Telpon Orang Tua</label>
+                          <input type="number" class="form-control @error('telpon_ortu_siswa') is-invalid @enderror" name="telpon_ortu_siswa">
+                        </div>
+                        @error('telpon_ortu_siswa')
+                            <div class="text-muted text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                          <label for="input-1">Alamat</label>
+                          <textarea name="alamat" class="form-control @error('alamat') is-invalid @enderror" cols="30" rows="5"></textarea>
+                        </div>
+                        @error('alamat')
+                            <div class="text-muted text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-info shadow-info px-5 form-control" ><i class="icon-lock"></i> Tambah Data</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>
+@endsection
