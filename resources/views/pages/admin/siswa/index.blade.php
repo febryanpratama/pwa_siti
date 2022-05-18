@@ -53,6 +53,7 @@
                                 <th scope="col">Alamat</th>
                                 <th scope="col">Nama Ortu</th>
                                 <th scope="col">Telpon Ortu</th>
+                                <th scope="col">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -65,6 +66,11 @@
                                 <td>{{ $key->alamat }}</td>
                                 <td>{{ $key->nama_ortu }}</td>
                                 <td>{{ $key->telpon_ortu_siswa }}</td>
+                                <td>
+                                    <button class="btn btn-danger">
+                                        <a>Hapus</a>
+                                    </button>
+                                </td>
                             </tr>
                             @endforeach
                     </table>

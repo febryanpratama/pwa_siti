@@ -43,7 +43,6 @@ class SiswaController extends Controller
         ]);
 
         if ($validator->fails()) {
-            # code...
             // dd($validator->errors());
             // dd('false');
             return back()->withErrors($validator->errors())->with('error','Gagal Menambahkan Data');
