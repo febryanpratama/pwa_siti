@@ -36,14 +36,19 @@ Route::group(['prefix'=>'admin','middleware' => ['role:Admin']], function () {
     Route::get('/', [HomeController::class, 'index']);
 
     Route::prefix('/siswa')->group(function(){
-        Route::get('/', [SiswaController::class,'index']);
+        Route::get('/', [SiswaController::class, 'index']);
+        Route::get('/form-siswa', [SiswaController::class, 'FormSiswa']);        
         Route::post('/', [SiswaController::class,'tambah']);
     });
 
     Route::prefix('/spp')->group(function(){
         Route::get('/', [SppController::class, 'index']);
     });
+
 });
+
+
+
 Route::group(['prefix'=>'bendahara','middleware' => ['role:Bendahara']], function () {
     Route::get('/', function(){
         return "Bendahara";

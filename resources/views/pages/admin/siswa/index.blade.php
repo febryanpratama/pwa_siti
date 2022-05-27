@@ -38,7 +38,8 @@
                         </div>
                         <div class="col-lg-6">
                             {{-- <button class="btn btn-info float-right btn-block m-1" data-toggle="modal" data-target="#formemodal">Modal with form</button> --}}
-                            <button class="btn btn-info float-right m-1" data-toggle="modal" data-target="#formemodal">+ Data Siswa</button>
+                            {{-- <button class="btn btn-info float-right m-1" data-toggle="modal" data-target="#formemodal">+ Data Siswa</button> --}}
+                            <a href="{{ url('admin/siswa/form-siswa') }}" class="btn btn-info float-right">+ Tambah Siswa</a>
                             {{-- <button class="btn btn-primary float-right">+ Data Siswa</button> --}}
                         </div>
                     </div>

@@ -15,6 +15,10 @@ class SiswaController extends Controller
         return view('pages.admin.siswa.index', compact(['data']));
     }
 
+    public function FormSiswa(){
+        return view('pages.admin.siswa.form');
+    }
+
     public function tambah(Request $request){
         $validator = Validator::make($request->all(), [
             // 'user_id' => 'required',
@@ -50,6 +54,7 @@ class SiswaController extends Controller
         // dd($request->all());
 
         $data = $request->all();
+        dd($data);
         siswa::create($data);
 
         return back()->with('success', 'Berhasil Menambahkan Data Siswa');
