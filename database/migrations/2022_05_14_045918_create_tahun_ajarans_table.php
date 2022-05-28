@@ -11,6 +11,7 @@ class CreateTahunAjaransTable extends Migration
      *
      * @return void
      */
+    // 
     public function up()
     {
         Schema::create('tahun_ajarans', function (Blueprint $table) {

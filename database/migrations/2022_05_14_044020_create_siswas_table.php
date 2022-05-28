@@ -41,6 +41,7 @@ class CreateSiswasTable extends Migration
             $table->string('telpon_siswa');
             $table->string('nama_ortu');
             $table->string('telpon_ortu_siswa');
+            $table->enum('status', ['Gratis', 'Tidak Gratis'])->default('Tidak Gratis');
             $table->softDeletes();
             $table->timestamps();
         });
