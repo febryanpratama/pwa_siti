@@ -54,7 +54,7 @@ class SiswaController extends Controller
         // dd($request->all());
 
         $data = $request->all();
-        dd($data);
+        // dd($data);
         siswa::create($data);
 
         return back()->with('success', 'Berhasil Menambahkan Data Siswa');
