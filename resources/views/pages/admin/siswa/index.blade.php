@@ -2,59 +2,55 @@
 @section('content')
 <div class="container-fluid">
     <!-- Breadcrumb-->
-   <div class="row pt-2 pb-2">
-      <div class="col-sm-9">
-          <h4 class="page-title">Stiped Color Tables</h4>
-          <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="javaScript:void();">Rukada</a></li>
-          <li class="breadcrumb-item"><a href="javaScript:void();">Tables</a></li>
-          <li class="breadcrumb-item active" aria-current="page">Stiped Color Tables</li>
-       </ol>
-     </div>
-     <div class="col-sm-3">
-     <div class="btn-group float-sm-right">
-      <button type="button" class="btn btn-outline-primary waves-effect waves-light"><i class="fa fa-cog mr-1"></i> Setting</button>
-      <button type="button" class="btn btn-outline-primary dropdown-toggle dropdown-toggle-split waves-effect waves-light" data-toggle="dropdown">
-      <span class="caret"></span>
-      </button>
-      <div class="dropdown-menu">
-        <a href="javaScript:void();" class="dropdown-item">Action</a>
-        <a href="javaScript:void();" class="dropdown-item">Another action</a>
-        <a href="javaScript:void();" class="dropdown-item">Something else here</a>
-        <div class="dropdown-divider"></div>
-        <a href="javaScript:void();" class="dropdown-item">Separated link</a>
-      </div>
+    <div class="row pt-2 pb-2">
+        <div class="col-sm-9">
+            <h4 class="page-title">Stiped Color Tables</h4>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="javaScript:void();">Rukada</a></li>
+                <li class="breadcrumb-item"><a href="javaScript:void();">Tables</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Stiped Color Tables</li>
+            </ol>
+        </div>
+        <div class="col-sm-3">
+            <div class="btn-group float-sm-right">
+                <a href="{{ url('admin/siswa/form-siswa') }}" class="btn btn-info float-right">+ Tambah Siswa</a>
+            </div>
+        </div>
     </div>
-   </div>
-   </div>
   <!-- End Breadcrumb-->
     <div class="row">
         <div class="col-lg-12">
             <div class="card">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <h6 class="text-uppercase mt-3">Light Striped Table</h6>
-                        </div>
-                        <div class="col-lg-6">
-                            {{-- <button class="btn btn-info float-right btn-block m-1" data-toggle="modal" data-target="#formemodal">Modal with form</button> --}}
-                            {{-- <button class="btn btn-info float-right m-1" data-toggle="modal" data-target="#formemodal">+ Data Siswa</button> --}}
-                            <a href="{{ url('admin/siswa/form-siswa') }}" class="btn btn-info float-right">+ Tambah Siswa</a>
-                            {{-- <button class="btn btn-primary float-right">+ Data Siswa</button> --}}
+                <div class="card-header border-0">
+                    Recent Orders Table
+                    <div class="card-action">
+                        <div class="dropdown">
+                            <a href="javascript:void();" class="dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown">
+                                <i class="icon-options"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right">
+                                <a class="dropdown-item" href="javascript:void();">Action</a>
+                                <a class="dropdown-item" href="javascript:void();">Another action</a>
+                                <a class="dropdown-item" href="javascript:void();">Something else here</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="javascript:void();">Separated link</a>
+                            </div>
                         </div>
                     </div>
-                    <hr>
-                    <table class="table table-light table-striped shadow-light">
+                </div>
+                <div class="table-responsive">
+
+                    <table class="table align-items-center table-flush">
                         <thead>
                             <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Nama Siswa</th>
-                                <th scope="col">Telpon Siswa</th>
-                                <th scope="col">Jenis Kelamin</th>
-                                <th scope="col">Alamat</th>
-                                <th scope="col">Nama Ortu</th>
-                                <th scope="col">Telpon Ortu</th>
-                                <th scope="col">Aksi</th>
+                                <th>#</th>
+                                <th>Nama Siswa</th>
+                                <th>Telpon Siswa</th>
+                                <th>Jenis Kelamin</th>
+                                <th>Alamat</th>
+                                <th>Nama Ortu</th>
+                                <th>Telpon Ortu</th>
+                                <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -74,12 +70,12 @@
                                 </td>
                             </tr>
                             @endforeach
+                        </tbody>
                     </table>
                 </div>
             </div>
         </div>
-    </div><!--End Row-->
-
+    </div>
   </div>
 
   <div class="modal fade" id="formemodal">
