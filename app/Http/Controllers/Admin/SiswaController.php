@@ -57,6 +57,6 @@ class SiswaController extends Controller
         // dd($data);
         siswa::create($data);
 
-        return back()->with('success', 'Berhasil Menambahkan Data Siswa');
+        return redirect('admin/siswa')->with('success', 'Berhasil Menambahkan Data Siswa');
     }
 }

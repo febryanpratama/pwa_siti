@@ -18,6 +18,7 @@ class CreateBendaharasTable extends Migration
             $table->integer('user_id');
             $table->string('nama_bendahara');
             $table->string('telpon_bendahara');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

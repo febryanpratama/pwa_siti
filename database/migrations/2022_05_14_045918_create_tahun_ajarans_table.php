@@ -18,6 +18,7 @@ class CreateTahunAjaransTable extends Migration
             $table->id();
             $table->string('tahun_ajaran');
             $table->enum('semester', ['Genap', 'Ganjil']);
+            $table->softDeletes();
             $table->timestamps();
         });
     }
