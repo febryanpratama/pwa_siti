@@ -91,6 +91,19 @@
                         </div>
 
                         <div class="form-group row">
+                            <label for="input-23" class="col-sm-2 col-form-label">Status Siswa</label>
+                            <div class="col-sm-10">
+                                <select name="status" id="" class="form-control @error('status') is-invalid @enderror">
+                                    <option value="Gratis">Gratis</option>
+                                    <option value="Tidak Gratis">Tidak Gratis</option>
+                                </select>
+                            </div>
+                            @error('status')
+                            <div class="text-muted text-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="form-group row">
                             <label for="input-23" class="col-sm-2 col-form-label">Tempat Lahir</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control @error('tempat_lahir') is-invalid @enderror" required name="tempat_lahir" placeholder="Masukkan Tempat Lahir">
@@ -125,6 +138,8 @@
                             <div class="text-muted text-danger">{{ $message }}</div>
                             @enderror
                         </div>
+
+                        <hr>
 
                         <div class="form-group row">
                                 <label for="input-23" class="col-sm-2 col-form-label">Anak Ke</label>
@@ -211,6 +226,8 @@
                                 <div class="text-muted text-danger">{{ $message }}</div>
                             @enderror
                         </div>
+
+                        <hr>
 
                         <div class="form-group row">
                             <label for="input-21" class="col-sm-2 col-form-label">Nilai Ujian Bahasa Indonesia</label>
