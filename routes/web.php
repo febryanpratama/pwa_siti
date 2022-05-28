@@ -37,7 +37,7 @@ Route::group(['prefix'=>'admin','middleware' => ['role:Admin']], function () {
 
     Route::prefix('/siswa')->group(function(){
         Route::get('/', [SiswaController::class, 'index']);
-        Route::get('/form-siswa', [SiswaController::class, 'FormSiswa']);        
+        Route::get('/form-siswa', [SiswaController::class, 'FormSiswa']);
         Route::post('/', [SiswaController::class,'tambah']);
     });
 
