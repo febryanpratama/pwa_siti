@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class tahun_ajaran extends Model
 {
     use HasFactory;
+    
 }

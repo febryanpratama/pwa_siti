@@ -35,12 +35,14 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::group(['prefix'=>'admin','middleware' => ['role:Admin']], function () {
     Route::get('/', [HomeController::class, 'index']);
 
+    // Siswa
     Route::prefix('/siswa')->group(function(){
         Route::get('/', [SiswaController::class, 'index']);
         Route::get('/form-siswa', [SiswaController::class, 'FormSiswa']);
         Route::post('/', [SiswaController::class,'tambah']);
     });
 
+    // Spp
     Route::prefix('/spp')->group(function(){
         Route::get('/', [SppController::class, 'index']);
     });
