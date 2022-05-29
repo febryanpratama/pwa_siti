@@ -23,6 +23,7 @@ class siswa extends Model
         'agama',
         'anak_ke',
         'alamat',
+        'status',
         'asal_sekolah',
         'nomor_ujian_smp',
         'nomor_ijazah',

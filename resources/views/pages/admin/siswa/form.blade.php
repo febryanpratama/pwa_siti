@@ -94,6 +94,7 @@
                             <label for="input-23" class="col-sm-2 col-form-label">Status Siswa</label>
                             <div class="col-sm-10">
                                 <select name="status" id="" class="form-control @error('status') is-invalid @enderror">
+                                    <option value="" selected="" disabled=""> == PILIH == </option>
                                     <option value="Gratis">Gratis</option>
                                     <option value="Tidak Gratis">Tidak Gratis</option>
                                 </select>
