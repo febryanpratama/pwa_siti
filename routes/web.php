@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\SiswaController;
 use App\Http\Controllers\Admin\SppController;
+use App\Http\Controllers\Admin\Tahun_AjaranController;
 use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -47,6 +48,13 @@ Route::group(['prefix'=>'admin','middleware' => ['role:Admin']], function () {
         Route::get('/', [SppController::class, 'index']);
     });
 
+    Route::prefix('/tahun-ajaran')->group(function(){
+        Route::get('/', [Tahun_AjaranController::class, 'index'])->name('tahunajaran.index');
+        Route::post('/', [Tahun_AjaranController::class, 'tambah'])->name('tahunajaran.tambah');
+    });
+
+
+
 });
 
 
@@ -67,4 +75,5 @@ Route::group(['prefix'=>'user','middleware' => ['role:User']], function () {
     });
 });
 \PWA::routes();
+
 

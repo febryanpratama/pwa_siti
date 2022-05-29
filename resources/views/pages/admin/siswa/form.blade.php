@@ -8,11 +8,11 @@
                 <h4 class="page-title">Form Input Data Siswa</h4>
 
             </div>
-            {{-- <div class="col-sm-3">
+            <div class="col-sm-3">
                 <div class="btn-group float-sm-right">
                     <a href="{{ url('admin/siswa/form-siswa') }}" class="btn btn-info float-right">+ Tambah Siswa</a>
                 </div>
-            </div> --}}
+            </div>
         </div>
         <!-- End Breadcrumb-->
 

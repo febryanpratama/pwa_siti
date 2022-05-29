@@ -21,7 +21,7 @@
         </a>
         <ul class="sidebar-submenu">
         <li><a href="{{ url('admin/siswa') }}"><i class="zmdi zmdi-star-outline"></i> Data Siswa</a></li>
-        <li><a href="{{ url('admin/tahun-ajaran') }}"><i class="zmdi zmdi-star-outline"></i> Data Tahun Ajaran</a></li>
+        <li><a href="{{ route('tahunajaran.index') }}"><i class="zmdi zmdi-star-outline"></i> Data Tahun Ajaran</a></li>
         <li><a href="{{ url('admin/spp') }}"><i class="zmdi zmdi-star-outline"></i> Data Pembayaran SPP</a></li>
         {{-- <li><a href="index3.html"><i class="zmdi zmdi-star-outline"></i> Dashboard v3</a></li> --}}
         {{-- <li><a href="index4.html"><i class="zmdi zmdi-star-outline"></i> Dashboard v4</a></li> --}}
@@ -40,7 +40,7 @@
         </ul>
     </li>
 
-    
+
 
 </div>
 <!--End sidebar-wrapper-->
