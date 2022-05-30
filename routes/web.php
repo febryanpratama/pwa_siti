@@ -51,6 +51,8 @@ Route::group(['prefix'=>'admin','middleware' => ['role:Admin']], function () {
     Route::prefix('/tahun-ajaran')->group(function(){
         Route::get('/', [Tahun_AjaranController::class, 'index'])->name('tahunajaran.index');
         Route::post('/', [Tahun_AjaranController::class, 'tambah'])->name('tahunajaran.tambah');
+        Route::post('/update', [Tahun_AjaranController::class, 'update'])->name('tahunajaran.update');
+        Route::post('/delete', [Tahun_AjaranController::class, 'delete'])->name('tahunajaran.delete');
     });
 
 
