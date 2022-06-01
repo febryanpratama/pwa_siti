@@ -35,5 +35,6 @@ class siswa extends Model
         'bahasa_inggris',
         'matematika',
         'ipa',
+
     ];
 }

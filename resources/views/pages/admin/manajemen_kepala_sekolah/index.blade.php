@@ -13,7 +13,7 @@
         </div>
         <div class="col-sm-3">
             <div class="btn-group float-sm-right">
-                <a href="{{ url('admin/siswa/form-siswa') }}" class="btn btn-info float-right">+ Tambah Siswa</a>
+                <a href="{{ url('admin/siswa/form-siswa') }}" class="btn btn-info float-right">+ Tambah User</a>
             </div>
         </div>
     </div>
@@ -40,7 +40,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($data as $item=>$key)
+                    {{-- @foreach ($data as $item=>$key)
                         <tr>
                             <td>{{ $item+1 }}</td>
                             <td>{{ $key->nama_siswa }}</td>
@@ -113,7 +113,7 @@
 
                             </td>
                         </tr>
-                    @endforeach
+                    @endforeach --}}
                 </tbody>
                 <tfoot>
                     <tr>
