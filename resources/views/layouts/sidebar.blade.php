@@ -15,6 +15,7 @@
         </a>
     </li>
     <li class="sidebar-header">MAIN NAVIGATION</li>
+
     <li>
         <a href="index.html" class="waves-effect">
         <i class="zmdi zmdi-view-dashboard"></i> <span>Master Data</span> <i class="fa fa-angle-left pull-right"></i>
@@ -29,14 +30,13 @@
     </li>
     <li>
         <a href="javaScript:void();" class="waves-effect">
-        <i class="zmdi zmdi-lock"></i> <span>Master Pengguna</span>
+        <i class="zmdi zmdi-lock"></i> <span>Manajemen User</span>
         <i class="fa fa-angle-left float-right"></i>
         </a>
         <ul class="sidebar-submenu">
-        <li><a href="authentication-signin.html"><i class="zmdi zmdi-star-outline"></i> SignIn 1</a></li>
-        <li><a href="authentication-signup.html"><i class="zmdi zmdi-star-outline"></i> SignUp 1</a></li>
-        <li><a href="authentication-lock-screen.html"><i class="zmdi zmdi-star-outline"></i> Lock Screen</a></li>
-        <li><a href="authentication-reset-password.html"><i class="zmdi zmdi-star-outline"></i> Reset Password 1</a></li>
+        <li><a href="{{ route('manajemen_siswa.index') }}"><i class="zmdi zmdi-star-outline"></i>Manajemen Siswa </a></li>
+        <li><a href="{{ route('manajemen_bendahara.index') }}"><i class="zmdi zmdi-star-outline"></i>Manajemen Bendahara</a></li>
+        <li><a href="{{ route('manajemen_kepala_sekolah.index') }}"><i class="zmdi zmdi-star-outline"></i>Manajemen Kepala Sekolah</a></li>
         </ul>
     </li>
 
