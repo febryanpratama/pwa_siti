@@ -28,7 +28,7 @@
     <!-- Scripts -->
     <link rel="stylesheet" href="{{ asset('assets/css/sweetalert.css') }}">
 
-    <script src="{{ asset('') }}assets/js/app.js" defer></script>
+    {{-- <script src="{{ asset('') }}assets/js/app.js" defer></script> --}}
     
 
     <!-- Fonts -->
@@ -43,6 +43,8 @@
 <body>
 
 <!-- Start wrapper-->
+<div id="app2">
+
     <div id="wrapper">
     
     @include('layouts.sidebar')
@@ -73,6 +75,8 @@
     </div><!--End wrapper-->
 
     <!-- Bootstrap core JavaScript-->
+    <script src="{{ asset('js/app.js') }}"></script>
+
     <script src="{{ asset('') }}assets/js/jquery.min.js"></script>
     <script src="{{ asset('') }}assets/js/popper.min.js"></script>
     <script src="{{ asset('') }}assets/js/bootstrap.min.js"></script>
@@ -136,7 +140,7 @@
     <script src="{{ asset('') }}assets/plugins/peity/jquery.peity.min.js"></script>
     <!-- Index js -->
     <script src="{{ asset('') }}assets/js/index.js"></script>
-    
+</div>
 </body>
     
     <!-- Mirrored from codervent.com/rukada/light-admin/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 27 Nov 2020 12:14:37 GMT -->
