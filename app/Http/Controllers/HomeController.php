@@ -27,17 +27,14 @@ class HomeController extends Controller
         $user = Auth::user();
 
         if ($user->hasRole('Admin')) {
-            return redirect('admin');
-        }
-        elseif($user->hasRole('Bendahara')){
+            return redirect('admin/dashboard');
+        } elseif ($user->hasRole('Bendahara')) {
             return redirect('bendahara');
-        }
-        elseif($user->hasRole('Kepsek')){
+        } elseif ($user->hasRole('Kepsek')) {
             return redirect('kepsek');
-        }
-        elseif($user->hasRole('User')){
+        } elseif ($user->hasRole('User')) {
             return redirect('user');
-        }else{
+        } else {
             abort(403);
         }
     }

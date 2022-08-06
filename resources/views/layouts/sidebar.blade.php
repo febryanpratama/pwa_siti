@@ -9,7 +9,7 @@
 <ul class="sidebar-menu do-nicescrol">
     <li class="sidebar-header">DASHBOARD</li>
     <li>
-        <a href="widgets.html" class="waves-effect">
+        <a href="{{ url('admin/dashboard') }}" class="waves-effect">
         <i class="zmdi zmdi-widgets"></i> <span>Dashboard</span>
         {{-- <small class="badge float-right badge-danger">10</small> --}}
         </a>

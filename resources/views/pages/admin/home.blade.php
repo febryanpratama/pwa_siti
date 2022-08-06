@@ -1,7 +1,7 @@
-@extends('layouts.app')
+@extends('layouts.base.app')
 
 @section('content')
-<div class="container-fluid">
+{{-- <div class="container-fluid">
 
     <!--Start Dashboard Content-->
     
@@ -467,5 +467,5 @@
 
     <!--End Dashboard Content-->
 
-</div>
+</div> --}}
 @endsection

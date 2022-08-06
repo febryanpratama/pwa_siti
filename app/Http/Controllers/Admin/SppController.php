@@ -8,7 +8,8 @@ use Illuminate\Http\Request;
 class SppController extends Controller
 {
     //
-    public function index(){
+    public function index()
+    {
         return view('pages.admin.spp.index');
     }
 }
