@@ -39,18 +39,23 @@
 
     <!-- BEGIN: Page CSS-->
     <link rel="stylesheet" type="text/css"
-        href="{{ asset('') }}admin/app-assets/css/core/menu/menu-types/vertical-menu.css">
+    href="{{ asset('') }}admin/app-assets/css/core/menu/menu-types/vertical-menu.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('') }}admin/app-assets/css/core/colors/palette-gradient.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('') }}admin/app-assets/css/core/colors/palette-gradient.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('') }}admin/app-assets/css/pages/chat-application.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('') }}admin/app-assets/css/pages/dashboard-analytics.css">
-
+    
     <link rel="stylesheet" type="text/css" href="https://jeremyfagis.github.io/dropify/dist/css/dropify.min.css">
     <!-- END: Page CSS-->
-
+    
     <!-- BEGIN: Custom CSS-->
     <link rel="stylesheet" type="text/css" href="{{ asset('') }}admin/assets/css/style.css">
     <!-- END: Custom CSS-->
+    
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.10/select2-bootstrap.min.css" integrity="sha512-kq3FES+RuuGoBW3a9R2ELYKRywUEQv0wvPTItv3DSGqjpbNtGWVdvT8qwdKkqvPzT93jp8tSF4+oN4IeTEIlQA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.10/select2-bootstrap.css" integrity="sha512-CbQfNVBSMAYmnzP3IC+mZZmYMP2HUnVkV4+PwuhpiMUmITtSpS7Prr3fNncV1RBOnWxzz4pYQ5EAGG4ck46Oig==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
 
 </head>
 <!-- END: Head-->
@@ -113,10 +118,16 @@
     {{-- Dropify --}}
     <script type="text/javascript" src="https://jeremyfagis.github.io/dropify/dist/js/dropify.min.js"></script>
     {{-- End Dropify --}}
+
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
         $(document).ready(function(){
             $('.dropify').dropify();
 
+            $('.select2').select2({
+                theme: 'bootstrap'
+                // dropdownParent: $('#large')
+            });
             @if (session('success'))
             swal("Great !", "{{ session('success') }}", "success");
             @endif ()

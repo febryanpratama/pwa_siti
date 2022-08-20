@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\SiswaController;
 use App\Http\Controllers\Admin\SppController;
 use App\Http\Controllers\Admin\Tahun_AjaranController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\BendaharaController;
 use App\Http\Controllers\GuruController;
 use App\Http\Controllers\KelasController;
 use Illuminate\Support\Facades\Auth;
@@ -24,7 +25,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('layouts.base.app');
+    return redirect('/login');
 });
 
 
@@ -38,9 +39,9 @@ Route::get('/logout', [LoginController::class, 'logout']);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/', [HomeController::class, 'index']);
+// Route::get('/', [HomeController::class, 'index']);
 
-Route::group(['prefix' => 'admin', 'middleware' => ['role:Admin']], function () {
+Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:Admin']], function () {
 
     Route::get('/dashboard', [AdminControlller::class, 'index']);
     // Siswa
@@ -54,8 +55,11 @@ Route::group(['prefix' => 'admin', 'middleware' => ['role:Admin']], function () 
     });
 
     // Spp
-    Route::prefix('/spp')->group(function () {
+    Route::group([
+        'prefix' => 'spp'
+    ], function () {
         Route::get('/', [SppController::class, 'index']);
+        Route::post('/', [SppController::class, 'store']);
     });
 
     Route::prefix('/tahun-ajaran')->group(function () {
@@ -77,9 +81,11 @@ Route::group(['prefix' => 'admin', 'middleware' => ['role:Admin']], function () 
         'prefix' => 'kelas',
     ], function () {
         Route::get('/', [KelasController::class, 'index']);
+        Route::get('/{kelas_id}/detail', [KelasController::class, 'detail']);
         Route::post('/', [KelasController::class, 'store']);
         Route::post('/update', [KelasController::class, 'update']);
         Route::post('/destroy', [KelasController::class, 'destroy']);
+        Route::post('siswa-store', [KelasController::class, 'siswaStore']);
     });
     // manajemen user
     Route::prefix('/manajemen_siswa')->group(function () {
@@ -87,8 +93,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['role:Admin']], function () 
     });
 
     // manajemen Bendahara
-    Route::prefix('/manajemen_bendahara')->group(function () {
-        Route::get('/', [ManajemenUserController::class, 'index_bendahara'])->name('manajemen_bendahara.index');
+    Route::group([
+        'prefix' => 'bendahara',
+    ], function () {
+        Route::get('/', [BendaharaController::class, 'index']);
     });
 
     // manajemen Kepala Sekolah

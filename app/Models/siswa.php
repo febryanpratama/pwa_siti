@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class siswa extends Model
 {
-    use HasFactory,SoftDeletes;
+    use HasFactory, SoftDeletes;
 
     protected $fillable = [
         'user_id',
@@ -37,4 +37,14 @@ class siswa extends Model
         'ipa',
 
     ];
+
+    public function detail()
+    {
+        return $this->belongsTo(detail_siswa::class, 'siswa_id');
+    }
+
+    public function detailKelas()
+    {
+        return $this->belongsTo(DetailKelas::class, 'siswa_id');
+    }
 }

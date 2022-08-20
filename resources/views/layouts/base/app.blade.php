@@ -52,6 +52,9 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('') }}admin/assets/css/style.css">
     <!-- END: Custom CSS-->
 
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
 </head>
 <!-- END: Head-->
 
@@ -116,6 +119,8 @@
     <script>
         $(document).ready(function(){
             $('.dropify').dropify();
+
+            $('.select2').select2();
 
             @if (session('success'))
             swal("Great !", "{{ session('success') }}", "success");

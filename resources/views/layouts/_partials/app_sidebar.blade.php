@@ -24,6 +24,12 @@
                     <span class="menu-title" data-i18n="">Data Guru</span>
                 </a>
             </li>
+            <li class=" nav-item {{ request()->is('admin/bendahara') ? 'open' : '' }}">
+                <a href="{{ url('admin/bendahara') }}">
+                    <i class="ft-align-center"></i>
+                    <span class="menu-title" data-i18n="">Data Bendahara</span>
+                </a>
+            </li>
             <li class=" nav-item {{ request()->is('admin/siswa') ? 'open' : '' }}">
                 <a href="{{ url('admin/siswa') }}">
                     <i class="ft-align-center"></i>
@@ -45,27 +51,9 @@
             <li class=" nav-item {{ request()->is('admin/spp') ? 'open' : '' }}">
                 <a href="{{ url('admin/spp') }}">
                     <i class="ft-file-text"></i>
-                    <span class="menu-title" data-i18n="">Data Pembayaran SPP</span>
+                    <span class="menu-title" data-i18n="">Data SPP</span>
                 </a>
             </li>
-            {{-- <li class=" nav-item {{ request()->is('pricing') ? 'open' : '' }}">
-                <a href="{{ url('pricing') }}">
-                    <i class="ft-bar-chart-2"></i>
-                    <span class="menu-title" data-i18n="">Pricing</span>
-                </a>
-            </li>
-            <li class=" nav-item {{ request()->is('client') ? 'open' : '' }}">
-                <a href="{{ url('client') }}">
-                    <i class="ft-user-check"></i>
-                    <span class="menu-title" data-i18n="">Client</span>
-                </a>
-            </li>
-            <li class=" nav-item">
-                <a href="https://themeselection.com/support">
-                    <i class="ft-settings"></i>
-                    <span class="menu-title" data-i18n="">Setting</span>
-                </a>
-            </li> --}}
         </ul>
     </div>
 </div>

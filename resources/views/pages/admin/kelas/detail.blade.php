@@ -46,25 +46,17 @@
                                                 <thead>
                                                     <tr>
                                                         <th>#</th>
-                                                        <th>Nama Wali Kelas</th>
-                                                        <th>Kelas</th>
-                                                        <th>Nominal Spp</th>
+                                                        <th>Nama Siswa</th>
                                                         <th>Aksi</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    @foreach ($data as $item)
+                                                    
+                                                    @foreach ($data->detail as $x=>$item)
                                                     <tr>
-                                                        <td></td>
-                                                        <td>{{ $item->guru->nama_guru }}</td>
-                                                        <td>{{ $item->kelas }}</td>
-                                                        <td>{{ number_format($item->nominal) }}</td>
+                                                        <td>{{ $x+1 }}</td>
+                                                        <td>{{ $item->siswa->nama_siswa }}</td>
                                                         <td>
-                                                            <a href="{{ url('admin/kelas/'.$item->id.'/detail') }}" class="btn btn-sm btn-primary">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" style="width: 20px;height: 20px" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 10h16M4 14h16M4 18h16" />
-                                                                </svg>
-                                                            </a>
                                                             <button type="button" class="btn btn-sm btn-info " data-toggle="modal"
                                                                 data-target="#edit{{ $item->id }}">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" style="width: 20px;height: 20px" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -79,44 +71,10 @@
                                                             </button>
                                                         </td>
                                                     </tr>
-                                                    <div class="modal fade text-left" id="destroy{{ $item->id }}" tabindex="-1"
-                                                        role="dialog" aria-labelledby="myModalLabel17"
-                                                        aria-hidden="true">
-                                                        <div class="modal-dialog" role="document">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <h4 class="modal-title" id="myModalLabel17">
-                                                                        Add {{ $title }}
-                                                                    </h4>
-                                                                    <button type="button" class="close"
-                                                                        data-dismiss="modal" aria-label="Close">
-                                                                        <span aria-hidden="true">&times;</span>
-                                                                    </button>
-                                                                </div>
-                                                                <form action="{{ url('admin/kelas/destroy') }}" method="POST">
-                                                                    @csrf
-                                                                    <input type="hidden" name="kelas_id" value="{{ $item->id }}" id="">
-                                                                    <div class="modal-body">
-                                                                        <div class="row">
-                                                                            <div class="col-md-12">
-                                                                                <p> Apakah Anda yakin akan menghapus data {{ $item->kelas }}/{{ $item->nama_kelas }}</p>
-                                                                            </div>
-                                                                        </div>  
-                                                                    </div>
-                                                                    <div class="modal-footer">
-                                                                        <button type="button" class="btn grey btn-secondary"
-                                                                        data-dismiss="modal">Close</button>
-                                                                        <button type="submit"
-                                                                        class="btn btn-danger">Hapus</button>
-                                                                    </div>
-                                                                </form>
-                                                            </div>
-                                                        </div>
-                                                    </div>
                                                     <div class="modal fade text-left" id="edit{{ $item->id }}" tabindex="-1"
                                                         role="dialog" aria-labelledby="myModalLabel17"
                                                         aria-hidden="true">
-                                                        <div class="modal-dialog" role="document">
+                                                        <div class="modal-dialog modal-lg" role="document">
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
                                                                     <h4 class="modal-title" id="myModalLabel17">
@@ -127,40 +85,32 @@
                                                                         <span aria-hidden="true">&times;</span>
                                                                     </button>
                                                                 </div>
-                                                                <form action="{{ url('admin/kelas/update') }}" method="POST">
+                                                                <form action="{{ url('admin/guru') }}" method="POST">
                                                                     @csrf
-                                                                    <input type="hidden" name="kelas_id" value="{{ $item->id }}" id="">
                                                                     <div class="modal-body">
                                                                         <div class="row">
-                                                                            <div class="col-md-6">
+                                                                            <div class="col-md-4">
                                                                                 <div class="form-group">
-                                                                                    <label for="" class="label-control">Wali Kelas</label>
-                                                                                    <select name="guru_id" class="form-control">
-                                                                                        <option value="" selected disabled> == Pilih == </option>
-                                                                                        @foreach ($guru as $item)
-                                                                                            <option value="{{ $item->id }}" {{ $item->guru_id ? 'selected' : ''}}>{{ $item->nama_guru }}</option>
-                                                                                        @endforeach
-                                                                                    </select>
+                                                                                    <label for="" class="label-control">Nama Guru</label>
+                                                                                    <input type="text" class="form-control" name="nama_guru" value="{{ $item->nama_guru }}" placeholder="Febryan Pratama" required>
                                                                                 </div>
                                                                             </div>
-                                                                            <div class="col-md-6">
+                                                                            <div class="col-md-4">
                                                                                 <div class="form-group">
-                                                                                    <label for="" class="label-control">Nominal SPP</label>
-                                                                                    <input type="number" name="nominal" value="{{ $item->nominal }}" class="form-control" required>
+                                                                                    <label for="" class="label-control">NIP</label>
+                                                                                    <input type="number" class="form-control" name="nip" value="{{ $item->nip }}" placeholder="ex: 12767126" required>
                                                                                 </div>
                                                                             </div>
-                                                                        </div>  
-                                                                        <div class="row">
-                                                                            <div class="col-md-6">
+                                                                            <div class="col-md-4">
                                                                                 <div class="form-group">
-                                                                                    <label for="" class="label-control">Kelas</label>
-                                                                                    <input type="text" class="form-control" name="kelas" placeholder="ex: X, XI, XII" value="{{ $item->kelas }}" required>
+                                                                                    <label for="" class="label-control">Nomor HP</label>
+                                                                                    <input type="number" class="form-control" name="no_hp" value="{{ $item->no_hp }}" placeholder="ex: 62871288827" required>
                                                                                 </div>
                                                                             </div>
-                                                                            <div class="col-md-6">
+                                                                            <div class="col-md-12">
                                                                                 <div class="form-group">
-                                                                                    <label for="" class="label-control">Nama Kelas</label>
-                                                                                    <input type="text" class="form-control" name="nama_kelas" value="{{ $item->nama_kelas }}" placeholder="ex: A, B, C, - Z" required>
+                                                                                    <label for="" class="label-control">Alamat</label>
+                                                                                    <textarea name="alamat" class="form-control" cols="30" rows="5">{{ $item->alamat }}</textarea>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -169,7 +119,7 @@
                                                                         <button type="button" class="btn grey btn-secondary"
                                                                         data-dismiss="modal">Close</button>
                                                                         <button type="submit"
-                                                                        class="btn btn-danger">Edit</button>
+                                                                        class="btn btn-danger">Tambah</button>
                                                                     </div>
                                                                 </form>
                                                             </div>
@@ -180,9 +130,7 @@
                                                 <tfoot>
                                                     <tr>
                                                         <th>#</th>
-                                                        <th>Nama Wali Kelas</th>
-                                                        <th>Kelas</th>
-                                                        <th>Nominal Spp</th>
+                                                        <th>Nama Siswa</th>
                                                         <th>Aksi</th>
                                                     </tr>
                                                 </tfoot>
@@ -200,7 +148,7 @@
     </div>
 
     <!-- Modal -->
-    <div class="modal fade text-left" id="large" tabindex="-1"
+    <div class="modal fade text-left" id="large"
         role="dialog" aria-labelledby="myModalLabel17"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -214,39 +162,21 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ url('admin/kelas') }}" method="POST">
+                <form action="{{ url('admin/kelas/siswa-store') }}" method="POST">
                     @csrf
+                    <input type="hidden" name="kelas_id" value="{{ $data->id }}">
                     <div class="modal-body">
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="" class="label-control">Wali Kelas</label>
-                                    <select name="guru_id" class="form-control">
-                                        <option value="" selected disabled> == Pilih == </option>
-                                        @foreach ($guru as $item)
-                                            <option value="{{ $item->id }}">{{ $item->nama_guru }}</option>
+                                    <label for="" class="label-control">Nama Siswa</label>
+                                    <select name="siswa_id" class="form-control select2">
+                                        <option value="" selected disabled> == PILIH == </option>
+
+                                        @foreach ($siswa as $item)
+                                            <option value="{{ $item->id }}">{{ $item->nama_siswa }}</option>
                                         @endforeach
                                     </select>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="" class="label-control">Nominal SPP</label>
-                                    <input type="number" name="nominal" class="form-control" required>
-                                </div>
-                            </div>
-                        </div>  
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="" class="label-control">Kelas</label>
-                                    <input type="text" class="form-control" name="kelas" placeholder="ex: X, XI, XII" required>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="" class="label-control">Nama Kelas</label>
-                                    <input type="text" class="form-control" name="nama_kelas" placeholder="ex: A, B, C, - Z" required>
                                 </div>
                             </div>
                         </div>
@@ -261,4 +191,12 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('script')
+    <script>
+        $(document).ready(function() {
+            $('.select2').select2();
+        } );
+    </script>
 @endsection

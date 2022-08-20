@@ -47,4 +47,42 @@ class KelasController extends Controller
 
         return back()->withSuccess($result['message']);
     }
+
+    // Detail Kelas
+    public function detail(Request $request, $id)
+    {
+        // dd($id);
+        $result = $this->kelasService->getDetail($request->all(), $id);
+
+        return view('pages.admin.kelas.detail', [
+            'data' => $result['data'],
+            'title' => $result['title'],
+            'data' => $result['data'],
+            'siswa' => $result['siswa']
+        ]);
+    }
+
+    public function siswaStore(Request $request)
+    {
+        // dd($request->all());
+        $result = $this->kelasService->siswaStore($request->all());
+
+        return back()->withSuccess($result['message']);
+    }
+
+    // API DATA
+
+    public function apiKelas(Request $request)
+    {
+        $result = $this->kelasService->GetdataSiswa($request->all());
+
+        // dd($result);
+        return response()->json($result);
+    }
+
+    public function apiSiswa(Request $request)
+    {
+        $result = $this->kelasService->GetdataSiswaSpp($request->all());
+        return response()->json($result);
+    }
 }

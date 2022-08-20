@@ -46,19 +46,26 @@
                                                 <thead>
                                                     <tr>
                                                         <th>#</th>
-                                                        <th>Nama Wali Kelas</th>
-                                                        <th>Kelas</th>
+                                                        <th>Nama Siswa</th>
+                                                        <th>Bendahara</th>
                                                         <th>Nominal Spp</th>
+                                                        <th>Nominal Bayar</th>
+                                                        <th>Sisa Bayar</th>
+                                                        <th>Status Pembayaran</th>
                                                         <th>Aksi</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     @foreach ($data as $item)
+                                                    {{-- {{ dd($item) }} --}}
                                                     <tr>
                                                         <td></td>
-                                                        <td>{{ $item->guru->nama_guru }}</td>
-                                                        <td>{{ $item->kelas }}</td>
-                                                        <td>{{ number_format($item->nominal) }}</td>
+                                                        <td>{{ $item->siswa->nama_siswa }}</td>
+                                                        <td>{{ $item->bendahara_id }}</td>
+                                                        <td>{{ number_format($item->total_pembayaran) }}</td>
+                                                        <td>{{ number_format($item->nominal_bayar) }}</td>
+                                                        <td>{{ number_format($item->sisa_bayar) }}</td>
+                                                        <td>{{ $item->status_pembayaran }}</td>
                                                         <td>
                                                             <a href="{{ url('admin/kelas/'.$item->id.'/detail') }}" class="btn btn-sm btn-primary">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" style="width: 20px;height: 20px" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -203,7 +210,7 @@
     <div class="modal fade text-left" id="large" tabindex="-1"
         role="dialog" aria-labelledby="myModalLabel17"
         aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title" id="myModalLabel17">
@@ -214,14 +221,14 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ url('admin/kelas') }}" method="POST">
+                <form action="{{ url('admin/spp') }}" method="POST">
                     @csrf
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="" class="label-control">Wali Kelas</label>
-                                    <select name="guru_id" class="form-control">
+                                    <label for="" class="label-control">Guru Penerima</label>
+                                    <select name="guru_penerima_id" class="form-control select2" required>
                                         <option value="" selected disabled> == Pilih == </option>
                                         @foreach ($guru as $item)
                                             <option value="{{ $item->id }}">{{ $item->nama_guru }}</option>
@@ -231,22 +238,48 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
+                                    <label for="" class="label-control">Guru Piket</label>
+                                    <select name="guru_piket_id" class="form-control select2" required>
+                                        <option value="" selected disabled> == Pilih == </option>
+                                        @foreach ($guru as $item)
+                                            <option value="{{ $item->id }}">{{ $item->nama_guru }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="" class="label-control">Siswa</label>
+                                    <select name="siswa_id" class="form-control select2" id="select_siswa" required>
+                                        <option value="" selected disabled> == Pilih == </option>
+                                        @foreach ($siswa as $sis)
+                                            <option value="{{ $sis->id }}">{{ $sis->nama_siswa }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
                                     <label for="" class="label-control">Nominal SPP</label>
-                                    <input type="number" name="nominal" class="form-control" required>
-                                </div>
-                            </div>
-                        </div>  
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="" class="label-control">Kelas</label>
-                                    <input type="text" class="form-control" name="kelas" placeholder="ex: X, XI, XII" required>
+                                    <input type="number" name="nominal_spp" class="form-control" id="nominal_spp" readonly required>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="" class="label-control">Nama Kelas</label>
-                                    <input type="text" class="form-control" name="nama_kelas" placeholder="ex: A, B, C, - Z" required>
+                                    <label for="" class="label-control">Nominal yang Dibayar</label>
+                                    <input type="number" name="nominal_dibayar" class="form-control" id="nominal_pembayaran" disabled required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="" class="label-control">Sisa SPP</label>
+                                    <input type="number" name="nominal" class="form-control" id="sisa_spp" disabled required>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="" class="label-control">Keterangan</label>
+                                    <textarea name="keterangan" class="form-control" id="" cols="30" rows="5"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -262,3 +295,4 @@
         </div>
     </div>
 @endsection
+
