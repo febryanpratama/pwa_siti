@@ -62,6 +62,7 @@ class KelasController extends Controller
         ]);
     }
 
+
     public function siswaStore(Request $request)
     {
         // dd($request->all());
@@ -69,6 +70,7 @@ class KelasController extends Controller
 
         return back()->withSuccess($result['message']);
     }
+
 
     // API DATA
 

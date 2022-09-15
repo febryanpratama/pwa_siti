@@ -106,7 +106,7 @@
     <!-- BEGIN: Page Vendor JS-->
     <script src="{{ asset('') }}admin/app-assets/vendors/js/tables/datatable/datatables.min.js" type="text/javascript"></script>
     <!-- END: Page Vendor JS-->
-    
+
     <!-- BEGIN: Page JS-->
     <script src="{{ asset('') }}admin/app-assets/js/scripts/tables/datatables/datatable-styling.js" type="text/javascript"></script>
     <!-- END: Page JS-->
@@ -125,8 +125,9 @@
             @if (session('success'))
             swal("Great !", "{{ session('success') }}", "success");
             @endif ()
-            @if (session('error'))
-            swal("Oh No !", "{{ session('error') }}", "error");
+
+            @if (session('errors'))
+            swal("Oh No !", "{{ session('errors') }}", "errors");
             @endif ()
         });
     </script>

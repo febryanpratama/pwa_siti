@@ -59,6 +59,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:Admin']], func
         'prefix' => 'spp'
     ], function () {
         Route::get('/', [SppController::class, 'index']);
+        Route::get('/kelas/{kelas_id}', [SppController::class, 'detailKelas']);
+        Route::get('/kelas/{kelas_id}/siswa/{siswa_id}', [SppController::class, 'detailSiswa']);
+        Route::get('generate/{kelas_id}', [SppController::class, 'generate']);
         Route::post('/', [SppController::class, 'store']);
     });
 
@@ -97,6 +100,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:Admin']], func
         'prefix' => 'bendahara',
     ], function () {
         Route::get('/', [BendaharaController::class, 'index']);
+        Route::post('/', [BendaharaController::class, 'store']);
+        Route::post('/update', [BendaharaController::class, 'update']);
     });
 
     // manajemen Kepala Sekolah
@@ -108,9 +113,24 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:Admin']], func
 
 
 Route::group(['prefix' => 'bendahara', 'middleware' => ['role:Bendahara']], function () {
-    Route::get('/', function () {
-        return "Bendahara";
+    //
+    Route::get('/', [BendaharaController::class, 'singleIndex']);
+
+    Route::group([
+        'prefix' => 'spp',
+    ], function () {
+        Route::get('/', [SppController::class, 'index']);
+        Route::post('/', [SppController::class, 'store']);
+        Route::post('/update', [SppController::class, 'update']);
+        Route::post('/delete', [SppController::class, 'delete']);
     });
+
+    Route::group([
+        'prefix' => 'laporan-spp'
+    ], function () {
+        Route::get('/', [\App\Http\Controllers\LaporanController::class, 'index']);
+    });
+    //
 });
 Route::group(['prefix' => 'kepsek', 'middleware' => ['role:Kepsek']], function () {
     Route::get('/', function () {
@@ -122,4 +142,5 @@ Route::group(['prefix' => 'user', 'middleware' => ['role:User']], function () {
         return "User";
     });
 });
+
 \PWA::routes();

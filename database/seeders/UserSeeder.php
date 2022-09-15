@@ -28,7 +28,7 @@ class UserSeeder extends Seeder
             'email' => 'bendahara@bendahara.com',
             'password' => bcrypt('123456'),
         ]);
-        
+
         $user->assignRole('Bendahara');
 
         $user = User::create([

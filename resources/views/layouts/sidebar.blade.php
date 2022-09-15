@@ -16,6 +16,7 @@
     </li>
     <li class="sidebar-header">MAIN NAVIGATION</li>
 
+    @role('Admin')
     <li>
         <a href="index.html" class="waves-effect">
         <i class="zmdi zmdi-view-dashboard"></i> <span>Master Data</span> <i class="fa fa-angle-left pull-right"></i>
@@ -40,6 +41,7 @@
         </ul>
     </li>
 
+    @endrole
 
 
 </div>

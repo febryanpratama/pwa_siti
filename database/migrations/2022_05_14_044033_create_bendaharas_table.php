@@ -18,7 +18,7 @@ class CreateBendaharasTable extends Migration
             $table->integer('user_id');
             // $table->string('nama_bendahara');
             $table->string('nip')->nullable();
-            $table->string('telpon_bendahara');
+            $table->string('telpon_bendahara')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

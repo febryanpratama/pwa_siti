@@ -57,7 +57,7 @@
                                                     <tr>
                                                         <td></td>
                                                         <td>{{ $item->guru->nama_guru }}</td>
-                                                        <td>{{ $item->kelas }}</td>
+                                                        <td>{{ $item->kelas }} {{ $item->nama_kelas }}</td>
                                                         <td>{{ number_format($item->nominal) }}</td>
                                                         <td>
                                                             <a href="{{ url('admin/kelas/'.$item->id.'/detail') }}" class="btn btn-sm btn-primary">

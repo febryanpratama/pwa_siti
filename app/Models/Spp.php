@@ -20,4 +20,9 @@ class Spp extends Model
     {
         return $this->belongsTo(Guru::class, 'guru_id');
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'bendahara_id');
+    }
 }

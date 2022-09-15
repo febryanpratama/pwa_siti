@@ -12,48 +12,72 @@
     <div class="navigation-background"></div>
     <div class="main-menu-content">
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-            <li class=" nav-item {{ request()->is('admin/dashboard') ? 'open' : '' }}">
-                <a href="{{ url('admin/dashboard') }}">
-                    <i class="ft-home"></i>
-                    <span class="menu-title" data-i18n="">Dashboard</span>
-                </a>
-            </li>
-            <li class=" nav-item {{ request()->is('admin/guru') ? 'open' : '' }}">
-                <a href="{{ url('admin/guru') }}">
-                    <i class="ft-align-center"></i>
-                    <span class="menu-title" data-i18n="">Data Guru</span>
-                </a>
-            </li>
-            <li class=" nav-item {{ request()->is('admin/bendahara') ? 'open' : '' }}">
-                <a href="{{ url('admin/bendahara') }}">
-                    <i class="ft-align-center"></i>
-                    <span class="menu-title" data-i18n="">Data Bendahara</span>
-                </a>
-            </li>
-            <li class=" nav-item {{ request()->is('admin/siswa') ? 'open' : '' }}">
-                <a href="{{ url('admin/siswa') }}">
-                    <i class="ft-align-center"></i>
-                    <span class="menu-title" data-i18n="">Data Siswa</span>
-                </a>
-            </li>
-            <li class=" nav-item {{ request()->is('admin/kelas') ? 'open' : '' }}">
-                <a href="{{ url('admin/kelas') }}">
-                    <i class="ft-home"></i>
-                    <span class="menu-title" data-i18n="">Data Kelas</span>
-                </a>
-            </li>
-            <li class=" nav-item {{ request()->is('admin/tahun-ajaran') ? 'open' : '' }}">
-                <a href="{{ url('admin/tahun-ajaran') }}">
-                    <i class="ft-briefcase"></i>
-                    <span class="menu-title" data-i18n="">Data Tahun Ajaran</span>
-                </a>
-            </li>
-            <li class=" nav-item {{ request()->is('admin/spp') ? 'open' : '' }}">
-                <a href="{{ url('admin/spp') }}">
-                    <i class="ft-file-text"></i>
-                    <span class="menu-title" data-i18n="">Data SPP</span>
-                </a>
-            </li>
+
+            @role('Admin')
+                <li class=" nav-item {{ request()->is('admin/dashboard') ? 'open' : '' }}">
+                    <a href="{{ url('admin/dashboard') }}">
+                        <i class="ft-home"></i>
+                        <span class="menu-title" data-i18n="">Dashboard</span>
+                    </a>
+                </li>
+                <li class=" nav-item {{ request()->is('admin/guru') ? 'open' : '' }}">
+                    <a href="{{ url('admin/guru') }}">
+                        <i class="ft-align-center"></i>
+                        <span class="menu-title" data-i18n="">Data Guru</span>
+                    </a>
+                </li>
+                <li class=" nav-item {{ request()->is('admin/bendahara') ? 'open' : '' }}">
+                    <a href="{{ url('admin/bendahara') }}">
+                        <i class="ft-align-center"></i>
+                        <span class="menu-title" data-i18n="">Data Bendahara</span>
+                    </a>
+                </li>
+                <li class=" nav-item {{ request()->is('admin/siswa') ? 'open' : '' }}">
+                    <a href="{{ url('admin/siswa') }}">
+                        <i class="ft-align-center"></i>
+                        <span class="menu-title" data-i18n="">Data Siswa</span>
+                    </a>
+                </li>
+                <li class=" nav-item {{ request()->is('admin/kelas') ? 'open' : '' }}">
+                    <a href="{{ url('admin/kelas') }}">
+                        <i class="ft-home"></i>
+                        <span class="menu-title" data-i18n="">Data Kelas</span>
+                    </a>
+                </li>
+                <li class=" nav-item {{ request()->is('admin/tahun-ajaran') ? 'open' : '' }}">
+                    <a href="{{ url('admin/tahun-ajaran') }}">
+                        <i class="ft-briefcase"></i>
+                        <span class="menu-title" data-i18n="">Data Tahun Ajaran</span>
+                    </a>
+                </li>
+                <li class=" nav-item {{ request()->is('admin/spp') ? 'open' : '' }}">
+                    <a href="{{ url('admin/spp') }}">
+                        <i class="ft-file-text"></i>
+                        <span class="menu-title" data-i18n="">Data SPP</span>
+                    </a>
+                </li>
+            @endrole
+
+            @role('Bendahara')
+                <li class=" nav-item {{ request()->is('bendahara') ? 'open' : '' }}">
+                    <a href="{{ url('bendahara') }}">
+                        <i class="ft-home"></i>
+                        <span class="menu-title" data-i18n="">Dashboard</span>
+                    </a>
+                </li>
+                <li class=" nav-item {{ request()->is('bendahara/spp') ? 'open' : '' }}">
+                    <a href="{{ url('bendahara/spp') }}">
+                        <i class="ft-file-text"></i>
+                        <span class="menu-title" data-i18n="">Data SPP</span>
+                    </a>
+                </li>
+                <li class=" nav-item {{ request()->is('bendahara/laporan-spp') ? 'open' : '' }}">
+                    <a href="{{ url('bendahara/laporan-spp') }}">
+                        <i class="ft-file-text"></i>
+                        <span class="menu-title" data-i18n="">Laporan SPP</span>
+                    </a>
+                </li>
+            @endrole
         </ul>
     </div>
 </div>

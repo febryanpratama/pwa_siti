@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\SiswaController;
+use App\Http\Controllers\Admin\SppController;
 use App\Http\Controllers\KelasController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -22,4 +23,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::post('data-siswa', [KelasController::class, 'apiKelas']);
+Route::post('data-spp', [SppController::class, 'apiSpp']);
 // Route::post('data-siswa', [KelasController::class, 'apiSiswa']);
