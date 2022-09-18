@@ -17,7 +17,7 @@ class DetailKelas extends Model
     }
     public function siswa()
     {
-        return $this->belongsTo(Siswa::class, 'siswa_id', 'id');
+        return $this->belongsTo(siswa::class, 'siswa_id', 'id');
     }
 
     public function spp()
