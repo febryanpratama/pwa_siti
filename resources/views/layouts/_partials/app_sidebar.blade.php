@@ -56,6 +56,12 @@
                         <span class="menu-title" data-i18n="">Data SPP</span>
                     </a>
                 </li>
+                <li class=" nav-item {{ request()->is('admin/laporan-spp') ? 'open' : '' }}">
+                    <a href="{{ url('admin/laporan-spp') }}">
+                        <i class="ft-file-text"></i>
+                        <span class="menu-title" data-i18n="">Laporan SPP</span>
+                    </a>
+                </li>
             @endrole
 
             @role('Bendahara')

@@ -61,11 +61,22 @@
                                                         <td>{{ $item->nama_siswa }}</td>
                                                         <td>12 bulan</td>
                                                         <td>
+
+                                                            @role('Admin')
                                                             <a href="{{ url('admin/spp/kelas/'.$item->kelasDetail->kelas_id.'/siswa/'. $item->id) }}" class="btn btn-sm btn-primary">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" style="width: 20px;height: 20px" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                                                     <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 10h16M4 14h16M4 18h16" />
                                                                 </svg>
                                                             </a>
+                                                            @endrole
+                                                            @role('Bendahara')
+                                                            <a href="{{ url('bendahara/spp/kelas/'.$item->kelasDetail->kelas_id.'/siswa/'. $item->id) }}" class="btn btn-sm btn-primary">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" style="width: 20px;height: 20px" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 10h16M4 14h16M4 18h16" />
+                                                                </svg>
+                                                            </a>
+
+                                                            @endrole
                                                             {{-- @if($item->status_pembayaran == 'Belum Bayar')
                                                             <button type="button" class="btn btn-sm btn-info edit" data-toggle="modal"
                                                                 data-target="#edit{{ $item->id }}">

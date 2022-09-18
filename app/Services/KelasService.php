@@ -140,6 +140,7 @@ class KelasService
     {
         $data = siswa::with('detailKelas')->where('id', $data['siswa_id'])->first();
 
+        // dd($data);
         if ($data == null) {
             # code...
             $status = false;

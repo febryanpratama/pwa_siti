@@ -16,8 +16,8 @@ class CreateSppsTable extends Migration
         Schema::create('spps', function (Blueprint $table) {
             $table->id();
             $table->integer('siswa_id');
-            $table->integer('guru_id')->nullable();
-            $table->integer('bendahara_id')->nullable();
+            // $table->integer('guru_id')->nullable();
+            $table->integer('user_bayar_id')->nullable();
             $table->date('tanggal');
             $table->integer('nominal_bayar');
             $table->integer('sisa_bayar')->default(0);

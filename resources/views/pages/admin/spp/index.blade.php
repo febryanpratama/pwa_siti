@@ -39,7 +39,12 @@
                                         <div class="row">
                                             @foreach ($kelas as $item=>$class)
                                             <div class="col-md-12 col-lg-4">
-                                                <a href="{{ url('admin/spp/kelas/'.$class->id) }}">
+                                                @role('Admin')
+                                                    <a href="{{ url('admin/spp/kelas/'.$class->id) }}">
+                                                @endrole
+                                                @role('Bendahara')
+                                                    <a href="{{ url('bendahara/spp/kelas/'.$class->id) }}">
+                                                @endrole
                                                     <div class="card pull-up border-top-info border-top-3 rounded-0">
                                                         <div class="card-header">
                                                             <h4 class="card-title">Kelas <span class="badge badge-pill badge-info float-right m-0">{{ $class->kelas }} {{ $class->nama_kelas }}</span></h4>

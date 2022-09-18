@@ -21,13 +21,18 @@ class Kelas extends Model
         return $this->hasMany(DetailKelas::class);
     }
 
-    // public function siswa()
-    // {
-    //     return $this->hasMany(Siswa::class);
-    // }
+    public function siswa()
+    {
+        return $this->hasMany(Siswa::class);
+    }
 
     public function detailKelas()
     {
         return $this->hasMany(DetailKelas::class);
+    }
+
+    public function spp()
+    {
+        return $this->hasMany(Spp::class);
     }
 }

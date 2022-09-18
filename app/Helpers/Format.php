@@ -2,6 +2,8 @@
 
 namespace App\Helpers;
 
+use App\Models\Spp;
+
 class Format
 {
     static function formatBulan($data)
@@ -44,6 +46,41 @@ class Format
             case 12:
                 return 'Desember';
                 break;
+        }
+    }
+
+    static function getTanggal($siswa_id, $kelas_id, $bulan)
+    {
+        // $data = Spp::where('id', $spp_id)->()
+        $data = Spp::where('siswa_id', $siswa_id)->where('kelas_id', $kelas_id)->whereMonth('tanggal', $bulan)->first();
+
+        // dd($data);
+
+        if ($data != NULL) {
+            // dd($data->total_pembayaran);
+            if ($data->total_pembayaran == 0) {
+                # code...
+                // dd("gaok");
+                return NULL;
+            } else {
+
+                // dd("ok");
+                return $data->updated_at;
+            }
+        } else {
+            return 0;
+        }
+    }
+    static function getDataSpp($siswa_id, $kelas_id, $bulan)
+    {
+        // $data = Spp::()
+        $data = Spp::where('siswa_id', $siswa_id)->where('kelas_id', $kelas_id)->whereMonth('tanggal', $bulan)->first();
+
+        // dd($data);
+        if ($data != NULL) {
+            return @$data->total_pembayaran;
+        } else {
+            return 0;
         }
     }
 }

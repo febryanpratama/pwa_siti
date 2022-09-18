@@ -15,10 +15,10 @@ class AddPenerimaToTableSpps extends Migration
     {
         Schema::table('spps', function (Blueprint $table) {
             //
-            $table->integer('guru_penerima_id')->nullable()->after('guru_id');
+            $table->integer('guru_penerima_id')->nullable()->after('user_bayar_id');
             $table->integer('guru_piket_id')->nullable();
             $table->integer('total_pembayaran')->default(0)->after('sisa_bayar');
-            $table->enum('status_pembayaran', ['Belum Bayar', 'Lunas', 'Cicilan'])->default('Belum Bayar')->after('keterangan');
+            $table->enum('status_pembayaran', ['Belum Lunas', 'Lunas', 'Cicilan'])->default('Belum Lunas')->after('keterangan');
         });
     }
 

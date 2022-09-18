@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\Validator;
 
 class SppService
 {
@@ -278,8 +279,9 @@ class SppService
 
     public function apiSpp($spp_id)
     {
-        $spp = Spp::with('siswa', 'guru')->where('id', $spp_id)->first();
+        $spp = Spp::with('siswa', 'guru', 'kelas')->where('id', $spp_id)->first();
 
+        // dd($spp);
         if ($spp != null) {
             $status = true;
             $message = 'Data spp ditemukan';
@@ -298,6 +300,60 @@ class SppService
                 'message' => $message,
                 'data' => null,
             ];
+        }
+    }
+
+    public function addSpp($data)
+    {
+        // dd($data);
+        $validator = Validator::make($data, [
+            'spp_id' => 'required',
+            'guru_penerima_id' => 'required',
+            'guru_piket_id' => 'required',
+            'siswa_id' => 'required',
+            'nominal_spp' => 'required',
+            'nominal_dibayar' => 'required',
+            'nominal_sisa' => 'required',
+            'keterangan' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return [
+                'status' => false,
+                'message' => $validator->errors()->first(),
+            ];
+        }
+
+        DB::beginTransaction();
+
+        try {
+            //code...
+            Spp::where('id', $data['spp_id'])->update([
+                'siswa_id' => $data['siswa_id'],
+                'guru_penerima_id' => $data['guru_penerima_id'],
+                'bendahara_id' => Auth::user()->id,
+                'guru_piket_id' => $data['guru_piket_id'],
+                'total_pembayaran' => $data['nominal_dibayar'],
+                'sisa_bayar' => $data['nominal_sisa'],
+                'keterangan' => $data['keterangan'],
+                'status_pembayaran' => $data['nominal_sisa'] == 0 ? 'Lunas' : 'Cicilan',
+            ]);
+
+            $siswa = siswa::where('id', $data['siswa_id'])->first();
+
+            $this->smsService->sendSms(
+                'Kepada b4p4k/1bu siswa ' . $siswa->nama_siswa . ', p3mbyr44n SPP pada bulan Aug telah kami terima pada t4ngg4l ' . Carbon::now()->format('d') . '' . Format::formatBulan(Carbon::now()->format('m')) . '' . Carbon::now()->format('Y') . ', Terima kasih',
+                $siswa->telpon_ortu_siswa
+            );
+
+            DB::commit();
+
+            return [
+                'status' => true,
+                'message' => 'Data spp berhasil ditambahkan',
+            ];
+        } catch (\Throwable $th) {
+            //throw $th;
         }
     }
 }
