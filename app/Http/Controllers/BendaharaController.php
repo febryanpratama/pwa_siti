@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\bendaharaService;
+use App\Services\BendaharaService;
 use Illuminate\Http\Request;
 
 class BendaharaController extends Controller
@@ -10,7 +10,7 @@ class BendaharaController extends Controller
     //
     protected $bendaharaService;
 
-    public function __construct(bendaharaService $bendaharaService)
+    public function __construct(BendaharaService $bendaharaService)
     {
         $this->bendaharaService = $bendaharaService;
     }
