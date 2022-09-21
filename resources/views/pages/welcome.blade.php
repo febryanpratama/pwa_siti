@@ -10,7 +10,7 @@
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- Title  -->
-    <title>sApp - App Landing Page | Contact</title>
+    <title>sApp | SMA - TUNAS MULYA</title>
 
     <!-- Favicon  -->
     <link rel="icon" href="https://theme-land.com/sapp/demo/assets/img/favicon.png">
