@@ -73,8 +73,9 @@ class SiswaController extends Controller
         //  $data= siswa::find($siswa_id);
         // dd($data);
         $data = siswa::where('id', $siswa_id)->first();
+        $title = "Edit Data Siswa";
         // dd($data);
-        return view('pages.admin.siswa.edit', compact(['data']));
+        return view('pages.admin.siswa.form', compact(['data', 'title']));
     }
 
     public function update(Request $request)
