@@ -32,6 +32,12 @@
                         <span class="menu-title" data-i18n="">Data Bendahara</span>
                     </a>
                 </li>
+                <li class=" nav-item {{ request()->is('admin/bendahara') ? 'open' : '' }}">
+                    <a href="{{ url('admin/bendahara') }}">
+                        <i class="ft-align-center"></i>
+                        <span class="menu-title" data-i18n="">Data KepSek</span>
+                    </a>
+                </li>
                 <li class=" nav-item {{ request()->is('admin/siswa') ? 'open' : '' }}">
                     <a href="{{ url('admin/siswa') }}">
                         <i class="ft-align-center"></i>
@@ -79,6 +85,26 @@
                 </li>
                 <li class=" nav-item {{ request()->is('bendahara/laporan-spp') ? 'open' : '' }}">
                     <a href="{{ url('bendahara/laporan-spp') }}">
+                        <i class="ft-file-text"></i>
+                        <span class="menu-title" data-i18n="">Laporan SPP</span>
+                    </a>
+                </li>
+            @endrole
+            @role('Kepsek')
+                <li class=" nav-item {{ request()->is('kepsek') ? 'open' : '' }}">
+                    <a href="{{ url('kepsek') }}">
+                        <i class="ft-home"></i>
+                        <span class="menu-title" data-i18n="">Dashboard</span>
+                    </a>
+                </li>
+                {{-- <li class=" nav-item {{ request()->is('bendahara/spp') ? 'open' : '' }}">
+                    <a href="{{ url('bendahara/spp') }}">
+                        <i class="ft-file-text"></i>
+                        <span class="menu-title" data-i18n="">Data SPP</span>
+                    </a>
+                </li> --}}
+                <li class=" nav-item {{ request()->is('kepsek/laporan-spp') ? 'open' : '' }}">
+                    <a href="{{ url('kepsek/laporan-spp') }}">
                         <i class="ft-file-text"></i>
                         <span class="menu-title" data-i18n="">Laporan SPP</span>
                     </a>

@@ -10,6 +10,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\BendaharaController;
 use App\Http\Controllers\GuruController;
 use App\Http\Controllers\KelasController;
+use App\Http\Controllers\KepsekController;
 use App\Http\Controllers\LaporanSppController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -26,8 +27,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return redirect('/login');
+    return view('pages.welcome', [
+        'spp' => NULL,
+        'siswa' => NULL,
+        'kelas' => NULL,
+        'status' => NULL,
+    ]);
+    // return redirect('/login');
 });
+
+Route::post('siswa-spp', [SppController::class, 'dataSiswa']);
 
 
 Auth::routes([
@@ -147,8 +156,14 @@ Route::group(['prefix' => 'bendahara', 'middleware' => ['role:Bendahara']], func
     //
 });
 Route::group(['prefix' => 'kepsek', 'middleware' => ['role:Kepsek']], function () {
-    Route::get('/', function () {
-        return "Kepsek";
+
+    Route::get('/', [KepsekController::class, 'index']);
+    Route::group([
+        'prefix' => 'laporan-spp',
+    ], function () {
+        // 
+        Route::get('/', [LaporanSppController::class, 'index']);
+        Route::post('/excel', [LaporanSppController::class, 'exportExcel']);
     });
 });
 Route::group(['prefix' => 'user', 'middleware' => ['role:User']], function () {

@@ -356,4 +356,48 @@ class SppService
             //throw $th;
         }
     }
+
+    static function dataSiswa($data)
+    {
+        // dd($data);
+
+
+        $siswa = Siswa::whereDate('tanggal_lahir', $data['tanggal_lahir'])->where('nisn', $data['nisn'])->first();
+        // dd($siswa);
+        if ($siswa == null) {
+            # code...
+            // dd("false");
+            $status = false;
+            $message = 'Data siswa tidak ditemukan';
+            return [
+                'status' => $status,
+                'message' => $message,
+                'data' => null,
+            ];
+        }
+
+        $spp = Spp::with('siswa', 'guru', 'kelas')->where('siswa_id', $siswa->id)->get();
+
+        if ($spp == null) {
+            # code...
+            $status = false;
+            $message = 'Data spp tidak ditemukan';
+            return [
+                'status' => $status,
+                'message' => $message,
+                'data' => null,
+            ];
+        }
+
+        // dd($spp);
+        $status = true;
+        $message = 'Data siswa dan Spp ditemukan';
+
+        return [
+            'status' => $status,
+            'message' => $message,
+            'spp' => $spp,
+            'siswa' => $siswa,
+        ];
+    }
 }

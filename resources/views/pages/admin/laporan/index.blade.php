@@ -31,7 +31,12 @@
                                             <h2 class="">List Data</h2>
                                         </div>
                                         <div class="col-md-6">
+                                            @role('Admin')
                                                 <form action="{{ url('admin/laporan-spp/excel') }}" method="POST">
+                                                    @endrole
+                                            @role('Kepsek')
+                                                <form action="{{ url('kepsek/laporan-spp/excel') }}" method="POST">
+                                                    @endrole
                                                     @csrf
                                                 <div class="row">
                                                     <div class="col-md-3 col-sm-12">

@@ -23,6 +23,8 @@ class SppController extends Controller
         return view('pages.admin.spp.index', [
             'kelas' => $result['kelas'],
             'title' => 'Data Kelas',
+            // 'spp' => NULL,
+            // 'siswa' => NULL,
             // 'guru' => $result['guru'],
             // 'siswa' => $result['siswa'],
         ]);
@@ -107,5 +109,28 @@ class SppController extends Controller
 
         // $result = "test";
         return response()->json($result);
+    }
+
+    public function dataSiswa(Request $request)
+    {
+        $result = $this->sppService->dataSiswa($request->all());
+
+        if ($result['status'] == true) {
+            return view('pages.welcome', [
+                'spp' => $result['spp'],
+                'siswa' => $result['siswa'],
+                'message' => $result['message'],
+                'status' => true,
+            ]);
+        } else {
+            // dd("false");
+            return view('pages.welcome', [
+                'status' => $result['status'],
+                'message' => $result['message'],
+                'spp' => null,
+                'siswa' => null,
+            ])->with('success', $result['message']);
+        }
+        // dd($result);
     }
 }
