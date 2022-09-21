@@ -32,6 +32,7 @@
       <link id="color" rel="stylesheet" href="https://alamandadevelopment.com/assets/css/color-1.css" media="screen">
       <!-- Responsive css-->
       <link rel="stylesheet" type="text/css" href="https://alamandadevelopment.com/assets/css/responsive.css">
+      @PWA
    </head>
    <body>
       <!-- login page start-->

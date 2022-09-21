@@ -22,6 +22,8 @@
     <!-- Style css -->
     <link rel="stylesheet" href="https://theme-land.com/sapp/demo/assets/css/style.css">
 
+    {{-- {{ pwa_meta() }} --}}
+    @PWA
 </head>
 
 <body class="contact-page">
