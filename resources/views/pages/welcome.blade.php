@@ -341,6 +341,7 @@
     <!-- Active js -->
     <script src="https://theme-land.com/sapp/demo/assets/js/active.js"></script>
 
+    @PWA
     <script>
         @if (@$status == true)
         swal("Horee !", "Data Anda Berhasil Kami Temukan", "success");
