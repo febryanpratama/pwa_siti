@@ -44,6 +44,12 @@
                         <span class="menu-title" data-i18n="">Data Siswa</span>
                     </a>
                 </li>
+                <li class=" nav-item {{ request()->is('admin/alumni') ? 'open' : '' }}">
+                    <a href="{{ url('admin/alumni') }}">
+                        <i class="ft-align-center"></i>
+                        <span class="menu-title" data-i18n="">Data Alumni</span>
+                    </a>
+                </li>
                 <li class=" nav-item {{ request()->is('admin/kelas') ? 'open' : '' }}">
                     <a href="{{ url('admin/kelas') }}">
                         <i class="ft-home"></i>

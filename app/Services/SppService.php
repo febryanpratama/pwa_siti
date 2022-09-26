@@ -105,14 +105,18 @@ class SppService
     {
         // dd($kelas_id);
         $month = Carbon::now()->format('m');
+        // $month = 3;
         $siswa = Siswa::with('kelasDetail', 'kelasDetail.kelas')->whereRelation('kelasDetail', 'kelas_id', $kelas_id)->get();
         // dd($siswa);
         DB::beginTransaction();
         try {
 
             $spp = Spp::where('siswa_id', $siswa[0]->id)->where('kelas_id', $kelas_id)->whereMonth('tanggal', $month)->get();
+            $count = Spp::where('siswa_id', $siswa[0]->id)->where('kelas_id', $kelas_id)->whereMonth('tanggal', $month)->orderBy('created_at', 'DESC')->first();
 
-            // dd($spp);
+            // dd($count);
+
+            // dd($count == null ? 1 : $count->semester + 1);
 
             if ($spp->isEmpty()) {
                 # code...
@@ -125,9 +129,8 @@ class SppService
                             Spp::create([
                                 'kelas_id'          => $kelas_id,
                                 'siswa_id'          => $value->id,
-                                // 'guru_id'           => Auth::user()->id,
-                                // 'bendahara_id'      => Auth::user()->id, // Bendahara ID
                                 'tanggal'           => $date,
+                                'semester'          => $count == null ? 1 : ($count->semester + 1),
                                 'nominal_bayar'     => $value->kelasDetail->kelas->nominal,
                             ]);
                         }
@@ -155,6 +158,7 @@ class SppService
                                     'kelas_id'          => $kelas_id,
                                     'siswa_id'          => $value->id,
                                     'tanggal'           => $date,
+                                    'semester'          => $count == null ? 1 : ($count->semester + 1),
                                     'nominal_bayar'     => $value->kelasDetail->kelas->nominal,
                                 ]);
                             }
@@ -167,6 +171,7 @@ class SppService
                                     'kelas_id'          => $kelas_id,
                                     'siswa_id'          => $value->id,
                                     'tanggal'           => $date,
+                                    'semester'          => $count == null ? 1 : ($count->semester + 1),
                                     'nominal_bayar'     => $value->kelasDetail->kelas->nominal,
                                 ]);
                             }
@@ -201,6 +206,8 @@ class SppService
             DB::rollback();
             $status = false;
             $message = 'Data spp gagal ditambahkan';
+
+            dd($th);
             return [
                 'status' => $status,
                 'message' => $message,

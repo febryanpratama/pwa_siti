@@ -342,11 +342,11 @@
     <script src="https://theme-land.com/sapp/demo/assets/js/active.js"></script>
 
     <script>
-        @if ($status == true)
+        @if (@$status == true)
         swal("Horee !", "Data Anda Berhasil Kami Temukan", "success");
         @endif
 
-        @if ($status == false)
+        @if (@$status == false)
         swal("Oopss", "Data Anda Tidak Kami Temukan", "error");
             
         @endif

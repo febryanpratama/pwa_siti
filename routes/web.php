@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\ManajemenUserController;
 use App\Http\Controllers\Admin\SiswaController;
 use App\Http\Controllers\Admin\SppController;
 use App\Http\Controllers\Admin\Tahun_AjaranController;
+use App\Http\Controllers\AlumniController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\BendaharaController;
 use App\Http\Controllers\GuruController;
@@ -31,7 +32,7 @@ Route::get('/', function () {
         'spp' => NULL,
         'siswa' => NULL,
         'kelas' => NULL,
-        'status' => NULL,
+        // 'status' => NULL,
     ]);
     // return redirect('/login');
 });
@@ -62,6 +63,14 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:Admin']], func
         Route::post('/', [SiswaController::class, 'tambah']);
         Route::post('/update', [SiswaController::class, 'update'])->name('FormSiswa.update');
         Route::post('/delete', [SiswaController::class, 'delete'])->name('Formsiswa.delete');
+    });
+
+    // Alumni
+    Route::group([
+        'prefix' => 'alumni'
+    ], function () {
+        // 
+        Route::get('/', [AlumniController::class, 'index']);
     });
 
     // Spp
