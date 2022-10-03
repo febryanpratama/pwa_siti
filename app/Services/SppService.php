@@ -105,21 +105,40 @@ class SppService
     {
         // dd($kelas_id);
         $month = Carbon::now()->format('m');
+        $year = Carbon::now()->format('Y');
         // $month = 3;
         $siswa = Siswa::with('kelasDetail', 'kelasDetail.kelas')->whereRelation('kelasDetail', 'kelas_id', $kelas_id)->get();
         // dd($siswa);
         DB::beginTransaction();
         try {
 
-            $spp = Spp::where('siswa_id', $siswa[0]->id)->where('kelas_id', $kelas_id)->whereMonth('tanggal', $month)->get();
-            $count = Spp::where('siswa_id', $siswa[0]->id)->where('kelas_id', $kelas_id)->whereMonth('tanggal', $month)->orderBy('created_at', 'DESC')->first();
+            $spp = Spp::where('siswa_id', $siswa[0]->id)->where('kelas_id', $kelas_id)->whereMonth('tanggal', $month)->whereYear('tanggal', $year)->get();
+            $count = Spp::where('siswa_id', $siswa[0]->id)->where('kelas_id', $kelas_id)->orderBy('created_at', 'DESC')->first();
 
             // dd($count);
 
             // dd($count == null ? 1 : $count->semester + 1);
+            // $count == null ? dd("satu") : dd($count->semester + 1);
+
+            // dd($count->semester);
+            if ($count->semester >= 1) {
+                siswa::where('id', $siswa[0]->id)->update([
+                    'status_siswa' => 'Alumni',
+                ]);
+                DB::commit();
+                $status = true;
+                $message = 'Status siswa telah diubah menjadi Alumni';
+
+                $result = [
+                    'status' => $status,
+                    'message' => $message,
+                ];
+                return $result;
+            }
 
             if ($spp->isEmpty()) {
-                # code...
+
+
                 if ($month >= 2 && $month <= 7) {
                     for ($i = 2; $i <= 7; $i++) {
                         # code...
@@ -142,7 +161,7 @@ class SppService
                     $message = 'Data spp berhasil ditambahkan';
 
                     $result = [
-                    'status' => $status,
+                        'status' => $status,
                         'message' => $message,
                     ];
                     return $result;
@@ -178,6 +197,8 @@ class SppService
                         }
                     }
                 }
+
+
                 DB::commit();
 
                 $status = true;

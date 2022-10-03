@@ -53,9 +53,9 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    @foreach ($data as $item)
+                                                    @foreach ($data as $key=>$item)
                                                     <tr>
-                                                        <td></td>
+                                                        <td>{{ $key+1 }}</td>
                                                         <td>{{ $item->guru->nama_guru }}</td>
                                                         <td>{{ $item->kelas }} {{ $item->nama_kelas }}</td>
                                                         <td>{{ number_format($item->nominal) }}</td>

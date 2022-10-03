@@ -13,7 +13,7 @@ class SiswaController extends Controller
     public function index()
     {
         $title = "Data Siswa";
-        $data = siswa::get();
+        $data = siswa::where('status_siswa', 'Aktif')->get();
         return view('pages.admin.siswa.index', compact(['data', 'title']));
     }
 

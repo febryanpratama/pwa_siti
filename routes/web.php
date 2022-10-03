@@ -32,7 +32,7 @@ Route::get('/', function () {
         'spp' => NULL,
         'siswa' => NULL,
         'kelas' => NULL,
-        // 'status' => NULL,
+        'status' => "",
     ]);
     // return redirect('/login');
 });

@@ -70,10 +70,10 @@
                     <div class="col-12">
                         <!-- Breamcrumb Content -->
                         <div class="breadcrumb-content text-center">
-                            <h2 class="text-white text-capitalize">Check Data SPP</h2>
+                            <h2 class="text-white text-capitalize">Informasi Pembayaran SPP SMA Taman Mulia Kubu Raya</h2>
                             <ol class="breadcrumb d-flex justify-content-center">
-                                <li class="breadcrumb-item"><a class="text-uppercase text-white" href="index.html">Data SPP</a></li>
-                                <li class="breadcrumb-item text-white active">Check Data SPP</li>
+                                <li class="breadcrumb-item"><a class="text-uppercase text-white" href="index.html">Informasi SPP</a></li>
+                                <li class="breadcrumb-item text-white active">Data SPP</li>
                             </ol>
                         </div>
                     </div>
@@ -105,7 +105,7 @@
                         <!-- Contact Us -->
                         <div class="contact-us">
                             <p class="mb-3">
-                                Jika anda mengalami kesulitan dalam melakukan pengecekan data spp anda, anda dapat menghubungi kami melalui kontak dibawah ini.
+                                Jika anda mengalami kesulitan dalam melakukan pengecekan data spp anda, anda dapat menghubungi kontak dibawah ini.
                             </p>
                             <ul>
                                 <li class="py-2">
@@ -329,7 +329,7 @@
 
     <!-- Bootstrap js -->
     <script src="https://theme-land.com/sapp/demo/assets/js/bootstrap/popper.min.js"></script>
-    <script src="https://theme-land.com/sapp/demo/assets/js/bootstrap/bootstrap.min.js"></script>
+    <script src="https://theme-land.com/sapp/demo/assets/js/bootstrap/bootstrap.min.js"></script> 
 
     <!-- Plugins js -->
     <script src="https://theme-land.com/sapp/demo/assets/js/plugins/plugins.min.js"></script>
@@ -347,10 +347,10 @@
         swal("Horee !", "Data Anda Berhasil Kami Temukan", "success");
         @endif
 
-        @if (@$status == false)
-        swal("Oopss", "Data Anda Tidak Kami Temukan", "error");
+        // @if (@$status != true)
+        // swal("Oopss", "Data Anda Tidak Kami Temukan", "error");
             
-        @endif
+        // @endif
 
     </script>
 </body>
