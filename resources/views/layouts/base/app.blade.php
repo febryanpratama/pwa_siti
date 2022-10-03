@@ -75,7 +75,6 @@
 
     <!-- BEGIN: Content-->
     @yield('content')
-
     <!-- END: Content-->
 
 

@@ -142,7 +142,7 @@ class SppService
                     $message = 'Data spp berhasil ditambahkan';
 
                     $result = [
-                        'status' => $status,
+                    'status' => $status,
                         'message' => $message,
                     ];
                     return $result;
