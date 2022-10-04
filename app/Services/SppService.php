@@ -120,8 +120,8 @@ class SppService
             // dd($count == null ? 1 : $count->semester + 1);
             // $count == null ? dd("satu") : dd($count->semester + 1);
 
-            // dd($count->semester);
-            if ($count->semester != null && $count->semester >= 8) {
+            // dd($count);
+            if ($count != NULL && $count->semester >= 8) {
                 siswa::where('id', $siswa[0]->id)->update([
                     'status_siswa' => 'Alumni',
                 ]);
