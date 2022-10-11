@@ -330,8 +330,7 @@
                                 <div class="arrow_box_right"><a class="dropdown-item" href="#"><span
                                             class="avatar avatar-online"><img
                                                 src="{{ asset('') }}admin/app-assets/images/portrait/small/avatar-s-19.png"
-                                                alt="avatar"><span class="user-name text-bold-700 ml-1">John
-                                                Doe</span></span></a>
+                                                alt="avatar"><span class="user-name text-bold-700 ml-1">{{ auth()->user()->name }}</span></span></a>
                                     <div class="dropdown-divider"></div><a class="dropdown-item"
                                         href="user-profile.html"><i class="ft-user"></i> Edit Profile</a><a
                                         class="dropdown-item" href="email-application.html"><i class="ft-mail"></i> My

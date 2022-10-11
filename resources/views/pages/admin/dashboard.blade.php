@@ -12,7 +12,7 @@
                         <div class="col-lg-8 col-md-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title">Grafik Data SPP</h4>
+                                    <h4 class="card-title">Grafik Pembayaran SPP</h4>
                                     <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
                                     <div class="heading-elements">
                                         <ul class="list-inline mb-0">
