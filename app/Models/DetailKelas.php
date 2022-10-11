@@ -20,8 +20,8 @@ class DetailKelas extends Model
         return $this->belongsTo(siswa::class, 'siswa_id', 'id');
     }
 
-    public function spp()
-    {
-        // return $this->hasMany(Spp::class);
-    }
+    // public function spp()
+    // {
+    //     return $this->hasMany(Spp::class, );
+    // }
 }

@@ -29,6 +29,19 @@
                                     <h4 class="card-title">List Data</h4>
                                     <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
                                     <div class="heading-elements">
+
+                                        <a href="" class="">
+                                            <button class="btn btn-success"> Lunas </button>
+                                        </a>
+                                        <a href="" class="">
+                                            <button class="btn btn-danger"> Belum Lunas </button>
+                                        </a>
+                                        
+                                        <button type="button" class="btn btn-primary " data-toggle="modal"
+                                            data-target="#pindah">
+                                            Pindah Kelas
+                                        </button>
+                                        
                                         <button type="button" class="btn btn-info " data-toggle="modal"
                                             data-target="#large">
                                             Add {{ $title }}
@@ -57,6 +70,12 @@
                                                         <td>{{ $x+1 }}</td>
                                                         <td>{{ $item->siswa->nama_siswa }}</td>
                                                         <td>
+                                                            <button type="button" class="btn btn-sm btn-primary " data-toggle="modal"
+                                                                data-target="#pindah{{ $item->id }}">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" style="width: 20px;height: 20px" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
+                                                                </svg>
+                                                            </button>
                                                             <button type="button" class="btn btn-sm btn-info " data-toggle="modal"
                                                                 data-target="#edit{{ $item->id }}">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" style="width: 20px;height: 20px" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -71,6 +90,50 @@
                                                             </button>
                                                         </td>
                                                     </tr>
+                                                    <div class="modal fade text-left" id="pindah{{ $item->id }}"
+                                                        role="dialog" aria-labelledby="myModalLabel17"
+                                                        aria-hidden="true">
+                                                        <div class="modal-dialog" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h4 class="modal-title" >
+                                                                        Pindah Kelas Siswa {{ $item->siswa->nama_siswa }}
+                                                                    </h4>
+                                                                    <button type="button" class="close"
+                                                                        data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <form action="{{ url('admin/kelas/pindah') }}" method="POST">
+                                                                    @csrf
+                                                                    <input type="hidden" name="before_kelas_id" value="{{ $data->id }}">
+                                                                    <input type="hidden" name="siswa_id" value="{{ $item->siswa_id }}">
+                                                                    <div class="modal-body">
+                                                                        <div class="row">
+                                                                            <div class="col-md-12">
+                                                                                <div class="form-group">
+                                                                                    <label for="" class="label-control">Kelas</label>
+                                                                                    <select name="kelas_id" class="form-control select2">
+                                                                                        <option value="" selected disabled> == PILIH == </option>
+
+                                                                                        @foreach ($kelas as $item)
+                                                                                            <option value="{{ $item->id }}">{{ $item->kelas }} {{ $item->nama_kelas }}</option>
+                                                                                        @endforeach
+                                                                                    </select>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn grey btn-secondary"
+                                                                        data-dismiss="modal">Close</button>
+                                                                        <button type="submit"
+                                                                        class="btn btn-danger">Tambah</button>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                     <div class="modal fade text-left" id="edit{{ $item->id }}" tabindex="-1"
                                                         role="dialog" aria-labelledby="myModalLabel17"
                                                         aria-hidden="true">
@@ -143,6 +206,51 @@
                     </div>
                 </section>
                 <!--/ Base style table -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade text-left" id="pindah"
+        role="dialog" aria-labelledby="myModalLabel17"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" >
+                        Pindah Kelas
+                    </h4>
+                    <button type="button" class="close"
+                        data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="{{ url('admin/kelas/siswa-pindah') }}" method="POST">
+                    @csrf
+                    <input type="hidden" name="before_kelas_id" value="{{ $data->id }}">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="" class="label-control">Kelas</label>
+                                    <select name="kelas_id" class="form-control select2">
+                                        <option value="" selected disabled> == PILIH == </option>
+
+                                        @foreach ($kelas as $item)
+                                            <option value="{{ $item->id }}">{{ $item->kelas }} {{ $item->nama_kelas }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn grey btn-secondary"
+                        data-dismiss="modal">Close</button>
+                        <button type="submit"
+                        class="btn btn-danger">Tambah</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

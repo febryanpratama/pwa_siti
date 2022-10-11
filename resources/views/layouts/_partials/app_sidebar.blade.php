@@ -3,8 +3,8 @@
     <div class="navbar-header">
         <ul class="nav navbar-nav flex-row">
             <li class="nav-item mr-auto"><a class="navbar-brand" href="index.html"><img class="brand-logo"
-                        alt="Chameleon admin logo" src="{{ asset('') }}admin/app-assets/images/logo/logo.png" />
-                    <h3 class="brand-text">StarLabSys</h3>
+                        alt="Chameleon admin logo" src="{{ asset('') }}assets/tunasmulya.png" />
+                    <h3 class="brand-text">SMA Tunas Mulya</h3>
                 </a></li>
             <li class="nav-item d-md-none"><a class="nav-link close-navbar"><i class="ft-x"></i></a></li>
         </ul>
@@ -21,7 +21,7 @@
                         <span class="menu-title" data-i18n="">Dashboard</span>
                     </a>
                 </li>
-                <li class="nav-item has-sub"><a href="#"><i class="ft-layout"></i><span class="menu-title" data-i18n="">Master Data</span><span class="badge badge badge-pill badge-danger float-right mr-2">6</span></a>
+                <li class="nav-item has-sub"><a href="#"><i class="ft-layout"></i><span class="menu-title" data-i18n="">Management Data</span></a>
                     <ul class="menu-content" style="">
                         <li class="navigation-divider is-shown"></li>
                         <li class="is-shown {{ request()->is('admin/guru') ? 'open active' : '' }}">

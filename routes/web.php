@@ -71,6 +71,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:Admin']], func
     ], function () {
         // 
         Route::get('/', [AlumniController::class, 'index']);
+        Route::post('/store-ijazah', [AlumniController::class, 'storeIjazah']);
     });
 
     // Spp
@@ -79,6 +80,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:Admin']], func
     ], function () {
         Route::get('/', [SppController::class, 'index']);
         Route::get('/kelas/{kelas_id}', [SppController::class, 'detailKelas']);
+        Route::get('/kelas/{kelas_id}/lunas', [SppController::class, 'detailKelasLunas']);
+        Route::get('/kelas/{kelas_id}/belum-lunas', [SppController::class, 'detailKelasBelumLunas']);
         Route::get('/kelas/{kelas_id}/siswa/{siswa_id}', [SppController::class, 'detailSiswa']);
         Route::get('generate/{kelas_id}', [SppController::class, 'generate']);
         Route::post('/', [SppController::class, 'store']);
@@ -109,6 +112,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:Admin']], func
         Route::post('/update', [KelasController::class, 'update']);
         Route::post('/destroy', [KelasController::class, 'destroy']);
         Route::post('siswa-store', [KelasController::class, 'siswaStore']);
+        Route::post('/pindah', [KelasController::class, 'siswaPindahorang']);
+        Route::post('/siswa-pindah', [KelasController::class, 'siswaPindah']);
     });
     // manajemen user
     Route::prefix('/manajemen_siswa')->group(function () {

@@ -2,6 +2,8 @@
 
 namespace App\Helpers;
 
+use App\Models\DetailKelas;
+use App\Models\Ijazah;
 use App\Models\Spp;
 
 class Format
@@ -82,5 +84,36 @@ class Format
         } else {
             return 0;
         }
+    }
+
+    static function getCountSiswaKelas($kelas_id)
+    {
+        $data = DetailKelas::where('kelas_id', $kelas_id)->count();
+
+        return $data;
+    }
+
+    static function countSiswa($siswa_id, $kelas_id)
+    {
+        // 
+        $data = Spp::where('siswa_id', $siswa_id)->where('kelas_id', $kelas_id)->whereNotIn('status_pembayaran', ['Belum Lunas', 'Cicilan'])->count();
+
+        return $data;
+    }
+
+    static function checkIjazah($siswa_id)
+    {
+        // 
+        $data = Ijazah::where('siswa_id', $siswa_id)->count();
+
+        return $data;
+    }
+
+    static function checkSpp($siswa_id)
+    {
+        // 
+        $data = Spp::where('siswa_id', $siswa_id)->whereIn('status_pembayaran', ['Belum Lunas', 'Cicilan'])->count();
+
+        return $data;
     }
 }

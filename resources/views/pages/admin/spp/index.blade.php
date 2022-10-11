@@ -51,10 +51,11 @@
                                                         </div>
                                                         <div class="card-content collapse show">
                                                             <div class="card-body p-1">
-                                                                <h4 class="font-large-1 text-bold-400">83 x <i class="ft-users float-right"></i></h4>
+                                                                <h4 class="font-large-1 text-bold-400">{{ App\Helpers\Format::getCountSiswaKelas($class->id) }} Siswa <i class="ft-users float-right"></i></h4>
                                                             </div>
-                                                            <div class="card-footer p-1">
+                                                            <div class="card-footer p-1 justify-content-end">
                                                                 <span class="text-muted"><i class="la la-user info"></i> {{ $class->guru->nama_guru }}</span>
+                                                                {{-- <span class="text-muted"><i class="la la-user info"></i> {{ $class->guru->nama_guru }}</span> --}}
                                                             </div>
                                                         </div>
                                                     </div>

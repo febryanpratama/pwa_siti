@@ -12,7 +12,7 @@
                         <div class="col-lg-8 col-md-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title">Project Revenue</h4>
+                                    <h4 class="card-title">Grafik Data SPP</h4>
                                     <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
                                     <div class="heading-elements">
                                         <ul class="list-inline mb-0">
@@ -36,7 +36,7 @@
                                 <div class="col-12">
                                     <div class="card pull-up bg-gradient-directional-danger">
                                         <div class="card-header bg-hexagons-danger">
-                                            <h4 class="card-title white">Counter Siswa</h4>
+                                            <h4 class="card-title white">Jumlah Siswa</h4>
                                             <a class="heading-elements-toggle"><i
                                                     class="la la-ellipsis-v font-medium-3"></i></a>
                                             <div class="heading-elements">
@@ -73,12 +73,12 @@
                                 <div class="col-12">
                                     <div class="card pull-up border-top-info border-top-3 rounded-0">
                                         <div class="card-header">
-                                            <h4 class="card-title">New Clients <span
+                                            <h4 class="card-title">Total Guru <span
                                                     class="badge badge-pill badge-info float-right m-0">5+</span></h4>
                                         </div>
                                         <div class="card-content collapse show">
                                             <div class="card-body p-1">
-                                                <h4 class="font-large-1 text-bold-400">{{ $countguru }} <i class="ft-users float-right"></i>
+                                                <h4 class="font-large-1 text-bold-400">{{ $countguru }} Guru<i class="ft-users float-right"></i>
                                                 </h4>
                                             </div>
                                             <div class="card-footer p-1">

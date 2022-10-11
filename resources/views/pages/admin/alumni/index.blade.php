@@ -50,9 +50,10 @@
                                                         <th>Telpon Siswa</th>
                                                         <th>Jenis Kelamin</th>
                                                         <th>Alamat</th>
-                                                        <th>Status Siswa</th>
-                                                        <th>Nama Ortu</th>
-                                                        <th>Telpon Ortu</th>
+                                                        {{-- <th>Status Siswa</th> --}}
+                                                        {{-- <th>Nama Ortu</th>
+                                                        <th>Telpon Ortu</th> --}}
+                                                        <th>Kekurangan Pembayaran <br> Spp x Bulan</th>
                                                         <th>Aksi</th>
                                                     </tr>
                                                 </thead>
@@ -64,7 +65,7 @@
                                                             <td>{{ $key->telpon_siswa }}</td>
                                                             <td>{{ $key->jenis_kelamin }}</td>
                                                             <td>{{ $key->alamat }}</td>
-                                                            <td>
+                                                            {{-- <td>
                                                                 @switch($key->status)
                                                                     @case('Gratis')
                                                                         <div class="badge badge-warning">
@@ -82,8 +83,17 @@
                                                                 @endswitch
                                                             </td>
                                                             <td>{{ $key->nama_ortu }}</td>
-                                                            <td>{{ $key->telpon_ortu_siswa }}</td>
+                                                            <td>{{ $key->telpon_ortu_siswa }}</td> --}}
+                                                            <td>{{ App\Helpers\Format::checkSpp($key->id) }}</td>
                                                             <td class="d-flex"> 
+
+                                                                @if (App\Helpers\Format::checkIjazah($key->id) == 0)
+                                                                    <button class="btn btn-sm btn-outline-primary mr-1" data-toggle="modal" data-target="#tambahIjazah{{ $key->id }}">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" style="width: 20px;height: 20px" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                                            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m3.75 9v6m3-3H9m1.5-12H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+                                                                        </svg>
+                                                                    </button>
+                                                                @endif
 
                                                                 <a href="/admin/siswa/form-edit/{{ $key->id }}" class="btn btn-sm btn-outline-info mr-1">
                                                                     <svg xmlns="http://www.w3.org/2000/svg" style="width: 20px;height: 20px" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -91,6 +101,62 @@
                                                                     </svg>
                                                                 </a>
 
+                                                                <div class="modal fade" id="tambahIjazah{{ $key->id }}">
+                                                                    <div class="modal-dialog ">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                        <h5 class="modal-title">Ambil Ijazah</h5>
+                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                            <span aria-hidden="true">×</span>
+                                                                        </button>
+                                                                        </div>
+                                                                        <div class="modal-body text-left">
+                                                                            <form method="POST" action="{{ url("admin/alumni/store-ijazah") }}" enctype="multipart/form-data">
+                                                                                <input type="hidden" value="{{ $key->id }}" name="siswa_id">
+                                                                                @csrf
+                                                                                <div class="row">
+                                                                                    <div class="col-md-12">
+                                                                                        <div class="form-group">
+                                                                                            <label for="" class="control-label">Add Nomor Ijazah</label>
+                                                                                            <input type="text" name="nomor_ijazah" class="form-control" placeholder="Masukkan Nomor Ijazah">
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-md-12">
+                                                                                        <div class="form-group">
+                                                                                            <label for="" class="control-label">Add Nomor SKHUN</label>
+                                                                                            <input type="text" name="nomor_skhun" class="form-control" placeholder="Masukkan Nomor SKHUN">
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-md-12">
+                                                                                        <div class="form-group">
+                                                                                            <label for="" class="control-label">Guru Yang Menyerahkan</label>
+                                                                                            <select name="guru_id" id="" class="form-control">
+                                                                                                <option value="" selected disabled> == Pilih == </option>
+                                                                                                @foreach ($guru as $item=>$key)
+                                                                                                    <option value="{{ $key->id }}">{{ $key->nama_guru }}</option>
+                                                                                                @endforeach
+                                                                                            </select>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-md-12">
+                                                                                        <div class="form-group">
+                                                                                            <label for="" class="control-label">Tanggal Penyerahan</label>
+                                                                                            <input type="date" name="tanggal_penyerahan" class="form-control">
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                </div>
+                                                                                <div class="form-group row">
+                                                                                    <label class="col-sm-2 col-form-label"></label>
+                                                                                    <div class="col-sm-10">
+                                                                                        <button type="submit" class="btn btn-success  px-5 float-right "><i class="icon"></i>+ Tambah Data</button>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </form>
+                                                                        </div>
+                                                                    </div>
+                                                                    </div>
+                                                                </div>
                                                                 <button class="btn btn-sm btn-outline-danger mr-1" data-toggle="modal" data-target="#hapusmodal{{ $key->id }}">
                                                                     <svg xmlns="http://www.w3.org/2000/svg" style="width: 20px; height: 20px;" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                                                         <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
@@ -139,9 +205,6 @@
                                                         <th>Telpon Siswa</th>
                                                         <th>Jenis Kelamin</th>
                                                         <th>Alamat</th>
-                                                        <th>Status Siswa</th>
-                                                        <th>Nama Ortu</th>
-                                                        <th>Telpon Ortu</th>
                                                         <th>Aksi</th>
                                                     </tr>
                                                 </tfoot>

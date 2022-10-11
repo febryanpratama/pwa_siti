@@ -62,10 +62,10 @@
                                                         <td>{{ $item->nama_guru }}</td>
                                                         <td>{{ $item->nip }}</td>
                                                         <td>
-                                                            <ul>
+                                                            <ul> 
                                                             @foreach ($item->kelas as $key)
                                                                 {{-- {{ dd($key) }} --}}
-                                                                <li>{{ $key->kelas }}/{{ $key->nama_kelas }}}</li>
+                                                                <li>{{ $key->kelas }}/{{ $key->nama_kelas }}</li>
                                                             @endforeach
                                                             </ul>
                                                         </td>

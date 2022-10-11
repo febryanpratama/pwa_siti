@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Guru;
+use App\Models\Ijazah;
 use App\Models\siswa;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class AlumniController extends Controller
 {
@@ -13,12 +16,41 @@ class AlumniController extends Controller
     {
         //
         $alumni = siswa::where('status_siswa', 'Alumni')->get();
+        $guru = Guru::get();
 
         // dd($alumni);
 
         return view('pages.admin.alumni.index', [
             'title' => 'Data Alumni',
-            'alumni' => $alumni
+            'alumni' => $alumni,
+            'guru' => $guru
         ]);
+    }
+
+    public function storeIjazah(Request $request)
+    {
+        // dd($request->all());
+        $validator = Validator::make($request->all(), [
+            'nomor_ijazah' => 'required',
+            'nomor_skhun' => 'required',
+            'siswa_id' => 'required',
+            'guru_id' => 'required',
+            'tanggal_penyerahan' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            # code...
+            return back()->with('error', 'Data tidak boleh kosong');
+        }
+
+        Ijazah::create([
+            'no_ijazah' => $request->nomor_ijazah,
+            'no_skhun' => $request->nomor_skhun,
+            'siswa_id' => $request->siswa_id,
+            'guru_id' => $request->guru_id,
+            'tanggal_penyerahan' => $request->tanggal_penyerahan,
+        ]);
+
+        return back()->with('success', 'Data berhasil disimpan');
     }
 }

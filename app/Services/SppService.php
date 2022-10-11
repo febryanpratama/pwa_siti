@@ -6,6 +6,7 @@ use App\Helpers\Format;
 use App\Models\DetailKelas;
 use App\Models\Guru;
 use App\Models\Kelas;
+use App\Models\KelasDetail;
 use App\Models\siswa;
 use App\Models\Spp;
 use Carbon\Carbon;
@@ -426,6 +427,85 @@ class SppService
             'message' => $message,
             'spp' => $spp,
             'siswa' => $siswa,
+        ];
+    }
+
+    static function detailKelasLunas($kelas_id)
+    {
+        // dd($kelas_id);
+        // $spp = Spp::with('siswa', 'guru', 'kelas')->where('kelas_id', decrypt($kelas_id))->where('status_pembayaran', 'Lunas')->get()->groupBy('siswa_id');
+
+        $kelas = DetailKelas::with('siswa')->where('kelas_id', decrypt($kelas_id))->get();
+
+        // dd($kelas);
+        $spp = [];
+        foreach ($kelas as $k) {
+            $data = Spp::with('siswa', 'guru', 'kelas')->where('siswa_id', $k->siswa_id)->where('kelas_id', $k->kelas_id)->where('status_pembayaran', 'Lunas')->get();
+
+            // dd(count($data));
+            if (count($data) >= 6) {
+                $spp[] = $data;
+            }
+        }
+
+        // dd($spp);
+        if ($kelas->isEmpty()) {
+            # code...
+            $status = false;
+            $message = 'Data spp tidak ditemukan';
+            return [
+                'status' => $status,
+                'message' => $message,
+                'data' => null,
+            ];
+        }
+
+        // dd($spp);
+        $status = true;
+        $message = 'Data spp ditemukan';
+
+        return [
+            'status' => $status,
+            'message' => $message,
+            'data' => $spp,
+        ];
+    }
+
+    static function detailKelasBelumLunas($kelas_id)
+    {
+        $kelas = DetailKelas::with('siswa')->where('kelas_id', decrypt($kelas_id))->get();
+
+        // dd($kelas);
+        $spp = [];
+        foreach ($kelas as $k) {
+            $data = Spp::with('siswa', 'guru', 'kelas')->where('siswa_id', $k->siswa_id)->where('kelas_id', $k->kelas_id)->where('status_pembayaran', 'Lunas')->get();
+
+            // dd(count($data));
+            if (count($data) < 6) {
+                $spp[] = $data;
+            }
+        }
+
+        // dd($spp);
+        if ($kelas->isEmpty()) {
+            # code...
+            $status = false;
+            $message = 'Data spp tidak ditemukan';
+            return [
+                'status' => $status,
+                'message' => $message,
+                'data' => null,
+            ];
+        }
+
+        // dd($spp);
+        $status = true;
+        $message = 'Data spp ditemukan';
+
+        return [
+            'status' => $status,
+            'message' => $message,
+            'data' => $spp,
         ];
     }
 }

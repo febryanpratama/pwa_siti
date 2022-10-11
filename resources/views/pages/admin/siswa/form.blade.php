@@ -104,7 +104,7 @@
                                                 </select>
                                             </div>
 
-                                            <div class="form-group">
+                                            {{-- <div class="form-group">
                                                 <label for="contactinput5">NIK Siswa</label>
                                                 <input type="number" class="form-control @error('nik_siswa') is-invalid @enderror" required name="nik_siswa" placeholder="Masukkan No NIK Siswa">
                                             </div>
@@ -112,7 +112,7 @@
                                             <div class="form-group">
                                                 <label for="contactinput5">KK Siswa</label>
                                                 <input type="number" class="form-control @error('nokk_siswa') is-invalid @enderror" required name="nokk_siswa" placeholder="Masukkan No KK Siswa" />
-                                            </div>
+                                            </div> --}}
                                             
                                             <div class="form-group">
                                                 <label for="contactinput5">Status Siswa</label>
@@ -141,30 +141,30 @@
                                                     <option value="Hindu">Hindu</option>
                                                 </select>
                                             </div>
-                                            <div class="form-group">
+                                            {{-- <div class="form-group">
                                                 <label for="contactinput5">Anak Ke ?</label>
                                                 <select name="anak_ke" class="form-control @error('anak_ke') is-invalid @enderror">
                                                     @for ($i = 1; $i <= 10; $i++)
                                                         <option value="{{ $i }}">{{ $i }}</option>
                                                     @endfor
                                                 </select>
-                                            </div>
+                                            </div> --}}
                                             <div class="form-group">
                                                 <label for="contactinput5">Asal Sekolah</label>
                                                 <input type="text" class="form-control @error('asal_sekolah') is-invalid @enderror" required name="asal_sekolah" placeholder="Masukkan Asal Sekolah">
                                             </div>
-                                            <div class="form-group">
+                                            {{-- <div class="form-group">
                                                 <label for="contactinput5">Nomor Ujian SMP</label>
                                                 <input type="number" class="form-control @error('nomor_ujian_smp') is-invalid @enderror" required name="nomor_ujian_smp" placeholder="Masukkan Nomor Ujian SMP">
-                                            </div>
+                                            </div> --}}
                                             <div class="form-group">
                                                 <label for="contactinput5">Nomor Ijazah</label>
                                                 <input type="number" class="form-control @error('nomor_ijazah') is-invalid @enderror" required name="nomor_ijazah" placeholder="Masukkan Nomor Ijazah">
                                             </div>
-                                            <div class="form-group">
+                                            {{-- <div class="form-group">
                                                 <label for="contactinput5">Nomor SKHUN</label>
                                                 <input type="number" class="form-control @error('nomor_skhun') is-invalid @enderror" required name="nomor_skhun" placeholder="Masukkan Nomor SKHUN">
-                                            </div>
+                                            </div> --}}
                                             <div class="form-group">
                                                 <label for="contactinput5">Telpon Siswa</label>
                                                 <input type="number" class="form-control @error('telpon_siswa') is-invalid @enderror" required name="telpon_siswa" placeholder="Masukkan Nomor Telpon Siswa">
@@ -177,7 +177,7 @@
                                                 <label for="contactinput5">Nomor Telpon Orang Tua Siswa</label>
                                                 <input type="number" class="form-control @error('telpon_ortu_siswa') is-invalid @enderror" required name="telpon_ortu_siswa" placeholder="Masukkan Nomor Telpon Orang Tua Siswa">
                                             </div>
-                                            <div class="form-group">
+                                            {{-- <div class="form-group">
                                                 <label for="contactinput5">Nilai Ujian Bahasa Indonesia</label>
                                                 <input type="number" class="form-control @error('bahasa_indonesia') is-invalid @enderror" required name="bahasa_indonesia" placeholder="Contoh: 78.90">
                                             </div>
@@ -192,7 +192,7 @@
                                             <div class="form-group">
                                                 <label for="contactinput5">Nilai Ujian IPA</label>
                                                 <input type="number" class="form-control @error('ipa') is-invalid @enderror" required name="ipa" placeholder="Contoh: 78.90">
-                                            </div>
+                                            </div> --}}
                                             <div class="form-group">
                                                 <label for="contactinput5">Alamat Siswa</label>
                                                 <textarea name="alamat" class="form-control @error('alamat') is-invalid @enderror" required cols="30" rows="5"></textarea>

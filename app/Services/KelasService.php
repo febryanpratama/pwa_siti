@@ -6,6 +6,7 @@ use App\Models\DetailKelas;
 use App\Models\Guru;
 use App\Models\Kelas;
 use App\Models\siswa;
+use Illuminate\Support\Facades\Validator;
 
 class KelasService
 {
@@ -80,6 +81,8 @@ class KelasService
         $data = Kelas::with('detail', 'detail.siswa')->where('id', $id)->firstOrFail();
         $siswa = siswa::get();
 
+        $kelas = Kelas::get();
+
         $status = true;
         $message = "Success Ambil Data Detail Kelas";
         $result = [
@@ -87,7 +90,8 @@ class KelasService
             'message' => $message,
             'data' => $data,
             'siswa' => $siswa,
-            'title' => $title
+            'title' => $title,
+            'kelas' => $kelas,
         ];
 
         return $result;
@@ -96,6 +100,22 @@ class KelasService
     public function siswaStore($data)
     {
         // dd($data);
+        $validator = Validator::make($data, [
+            'siswa_id' => 'required|numeric|unique:detail_kelas,siswa_id',
+            // 'kelas_id' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            # code...
+            $status = false;
+            $message = $validator->errors()->first();
+
+            return [
+                'status' => $status,
+                'message' => $message
+            ];
+        }
+
         DetailKelas::create($data);
         $status = true;
         $message = "Success Tambah Data Siswa";

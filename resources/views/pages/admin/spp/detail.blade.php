@@ -33,6 +33,14 @@
                                             data-target="#large">
                                             Add {{ $title }}
                                         </button> --}}
+
+                                        {{-- {{ $kelas_id }} --}}
+                                        <a href="{{ url("admin/spp/kelas/".$kelas_id."/lunas") }}" class="">
+                                            <button class="btn btn-success"> Lunas </button>
+                                        </a>
+                                        <a href="{{ url("admin/spp/kelas/".$kelas_id."/belum-lunas") }}" class="">
+                                            <button class="btn btn-danger"> Belum Lunas </button>
+                                        </a>
                                         <a href="{{ url('admin/spp/generate/'.$kelas_id) }}">
                                             <button class="btn btn-info">Generate SPP</button>
                                         </a>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DetailKelas;
 use App\Services\KelasService;
 use Illuminate\Http\Request;
 use phpDocumentor\Reflection\Types\This;
@@ -58,7 +59,8 @@ class KelasController extends Controller
             'data' => $result['data'],
             'title' => $result['title'],
             'data' => $result['data'],
-            'siswa' => $result['siswa']
+            'siswa' => $result['siswa'],
+            'kelas' => $result['kelas'],
         ]);
     }
 
@@ -68,7 +70,46 @@ class KelasController extends Controller
         // dd($request->all());
         $result = $this->kelasService->siswaStore($request->all());
 
-        return back()->withSuccess($result['message']);
+        if ($result['status']) {
+            return back()->withSuccess($result['message']);
+        } else {
+            return back()->withError($result['message']);
+        }
+    }
+
+    public function siswaPindah(Request $request)
+    {
+        // dd($request->all());
+        $detail_kelas = DetailKelas::where('kelas_id', $request->before_kelas_id)->get();
+
+        // dd($detail_kelas);
+        $siswa_array = [];
+
+        foreach ($detail_kelas as $key => $value) {
+            # code...
+            $siswa_array[] = $value->siswa_id;
+        }
+
+        // dd($siswa_array);
+
+        foreach ($siswa_array as $k => $v) {
+            // dd($v);
+            DetailKelas::where('siswa_id', $v)->update([
+                'kelas_id' => $request->kelas_id
+            ]);
+        }
+
+        return back()->withSuccess('Berhasil pindah siswa');
+    }
+
+    public function siswaPindahorang(Request $request)
+    {
+        // dd($request->all());
+        $detail_kelas = DetailKelas::where('siswa_id', $request->siswa_id)->update([
+            'kelas_id' => $request->kelas_id
+        ]);
+
+        return back()->withSuccess('Berhasil pindah siswa');
     }
 
 

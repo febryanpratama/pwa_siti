@@ -133,4 +133,29 @@ class SppController extends Controller
         }
         // dd($result);
     }
+
+    public function detailKelasLunas(Request $request, $kelas_id)
+    {
+        // 
+        $result = $this->sppService->detailKelasLunas($kelas_id);
+
+        // dd($result);
+        return view('pages.admin.spp.detailLunas', [
+            'data' => $result['data'],
+            'title' => 'Data Siswa',
+            'kelas_id' => encrypt($kelas_id),
+        ]);
+    }
+
+    public function detailKelasBelumLunas($kelas_id)
+    {
+        $result = $this->sppService->detailKelasBelumLunas($kelas_id);
+
+        // dd($result['data']);
+        return view('pages.admin.spp.detailBelumLunas', [
+            'data' => $result['data'],
+            'title' => 'Data Siswa',
+            'kelas_id' => encrypt($kelas_id),
+        ]);
+    }
 }
