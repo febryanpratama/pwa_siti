@@ -10,7 +10,7 @@
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- Title  -->
-    <title>sApp | SMA - TUNAS MULYA</title>
+    <title>sApp | SMA - TUNAS MULIA</title>
 
     <!-- Favicon  -->
     <link rel="icon" href="https://theme-land.com/sapp/demo/assets/img/favicon.png">
@@ -24,6 +24,31 @@
 
     {{-- {{ pwa_meta() }} --}}
     @PWA
+
+    <style>
+        .breadcrumb-area-x {
+        height: 450px;
+        z-index: 1;
+        }
+
+        .breadcrumb-area-x .breadcrumb-content .breadcrumb {
+        background-color: transparent;
+        margin: 0;
+        }
+
+        .breadcrumb-area-x .breadcrumb-content .breadcrumb .breadcrumb-item + .breadcrumb-item::before {
+        content: ">";
+        color: var(--white-color);
+        }
+        .breadcrumb-area-x {
+        background: rgba(0, 0, 0, 0) url("../assets/landing.jpg") no-repeat scroll center center/cover;
+        }
+
+        .blog .breadcrumb-area-x {
+        background: rgba(0, 0, 0, 0) url("../assets/landing.jpg") no-repeat scroll center center/cover;
+        }
+
+    </style>
 </head>
 
 <body class="contact-page">
@@ -64,7 +89,7 @@
         <!-- ***** Header End ***** -->
 
         <!-- ***** Breadcrumb Area Start ***** -->
-        <section class="section breadcrumb-area bg-overlay d-flex align-items-center">
+        <section class="section breadcrumb-area-x bg-overlay d-flex align-items-center">
             <div class="container">
                 <div class="row">
                     <div class="col-12">
@@ -220,7 +245,7 @@
         <!--====== Map Area End ======-->
 
         <!--====== Footer Area Start ======-->
-        <footer class="footer-area">
+        {{-- <footer class="footer-area">
             <!-- Footer Top -->
             <div class="footer-top ptb_100">
                 <div class="container">
@@ -317,7 +342,7 @@
                     </div>
                 </div>
             </div>
-        </footer>
+        </footer> --}}
         <!--====== Footer Area End ======-->
     </div>
 

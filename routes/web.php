@@ -32,6 +32,7 @@ Route::get('/', function () {
         'spp' => NULL,
         'siswa' => NULL,
         'kelas' => NULL,
+        'title' => "SMA - TUNAS MULIA",
         'status' => "",
     ]);
     // return redirect('/login');
@@ -165,7 +166,8 @@ Route::group(['prefix' => 'bendahara', 'middleware' => ['role:Bendahara']], func
     Route::group([
         'prefix' => 'laporan-spp'
     ], function () {
-        Route::get('/', [\App\Http\Controllers\LaporanController::class, 'index']);
+        Route::get('/', [\App\Http\Controllers\LaporanSppController::class, 'index']);
+        Route::post('/excel', [LaporanSppController::class, 'exportExcel']);
     });
     //
 });

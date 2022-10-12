@@ -27,23 +27,26 @@
                             <div class="card">
                                 <div class="card-header">
                                     <div class="row">
-                                        <div class="col-md-6">
+                                        <div class="col-sm-4 col-md-4">
                                             <h2 class="">List Data</h2>
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-sm-8 col-md-8">
                                             @role('Admin')
                                                 <form action="{{ url('admin/laporan-spp/excel') }}" method="POST">
                                                     @endrole
                                             @role('Kepsek')
                                                 <form action="{{ url('kepsek/laporan-spp/excel') }}" method="POST">
                                                     @endrole
+                                            @role('Bendahara')
+                                                <form action="{{ url('bendahara/laporan-spp/excel') }}" method="POST">
+                                                    @endrole
                                                     @csrf
                                                 <div class="row">
-                                                    <div class="col-md-3 col-sm-12">
+                                                    <div class="col-sm-4 col-md-3 col-sm-12">
                                                         <label for="" class="control-label">Tanggal Mulai</label>
                                                         <input type="date" class="form-control" name="tanggal_mulai" required>
                                                     </div>
-                                                    <div class="col-md-3 col-sm-12">
+                                                    <div class="col-sm-4 col-md-3 col-sm-12">
                                                         <label for="" class="control-label">Tanggal Selesai</label>
                                                         <input type="date" class="form-control" name="tanggal_selesai" required>
                                                     </div>

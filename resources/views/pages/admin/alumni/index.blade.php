@@ -29,10 +29,10 @@
                                     <h4 class="card-title">List Data</h4>
                                     <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
                                     <div class="heading-elements">
-                                        <button type="button" class="btn btn-info " data-toggle="modal"
+                                        {{-- <button type="button" class="btn btn-info " data-toggle="modal"
                                             data-target="#large">
                                             Add {{ $title }}
-                                        </button>
+                                        </button> --}}
                                         {{-- <a href="{{ url('admin/siswa/form-siswa') }}">
                                             <button class="btn btn-info">Add {{ $title }}</button>
                                         </a> --}}
@@ -47,7 +47,7 @@
                                                     <tr>
                                                         <th>#</th>
                                                         <th>Nama Siswa</th>
-                                                        <th>Telpon Siswa</th>
+                                                        <th>Telpon Sis wa</th>
                                                         <th>Jenis Kelamin</th>
                                                         <th>Alamat</th>
                                                         {{-- <th>Status Siswa</th> --}}

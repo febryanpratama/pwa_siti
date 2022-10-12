@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Guru;
+use App\Models\siswa;
+use App\Models\Spp;
 use App\Services\BendaharaService;
 use Illuminate\Http\Request;
 
@@ -19,11 +22,28 @@ class BendaharaController extends Controller
     {
         $result = $this->bendaharaService->getBendahara();
 
+        $sppLunas = Spp::where('status_pembayaran', 'Lunas')->sum('total_pembayaran');
+        $sppBelumLunas = Spp::where('status_pembayaran', 'Belum Lunas')->sum('total_pembayaran');
+        $sppCicilan = Spp::where('status_pembayaran', 'Cicilan')->sum('total_pembayaran');
+
+        $listSpp = Spp::with('siswa', 'kelas', 'guru')
+            ->whereIn('status_pembayaran', ['Lunas', 'Cicilan'])
+            ->orderBy('updated_at', 'DESC')->limit(5)->get();
+
+        $countSiswa = siswa::count('id');
+        $countGuru = Guru::count('id');
+
         return view('pages.admin.bendahara.index', [
             'data' => $result['data'],
             'title' => $result['title'],
             'status' => $result['status'],
-            'message' => $result['message']
+            'message' => $result['message'],
+            'spplunas' => $sppLunas,
+            'sppbelumlunas' => $sppBelumLunas,
+            'sppcicilan' => $sppCicilan,
+            'listspp' => $listSpp,
+            'countsiswa' => $countSiswa,
+            'countguru' => $countGuru,
         ]);
     }
 
@@ -48,6 +68,25 @@ class BendaharaController extends Controller
 
     public function singleIndex(Request $request)
     {
-        return view('pages.bendahara.index');
+
+        $sppLunas = Spp::where('status_pembayaran', 'Lunas')->sum('total_pembayaran');
+        $sppBelumLunas = Spp::where('status_pembayaran', 'Belum Lunas')->sum('total_pembayaran');
+        $sppCicilan = Spp::where('status_pembayaran', 'Cicilan')->sum('total_pembayaran');
+
+        $listSpp = Spp::with('siswa', 'kelas', 'guru')
+            ->whereIn('status_pembayaran', ['Lunas', 'Cicilan'])
+            ->orderBy('updated_at', 'DESC')->limit(5)->get();
+
+        $countSiswa = siswa::count('id');
+        $countGuru = Guru::count('id');
+
+        return view('pages.bendahara.index', [
+            'spplunas' => $sppLunas,
+            'sppbelumlunas' => $sppBelumLunas,
+            'sppcicilan' => $sppCicilan,
+            'listspp' => $listSpp,
+            'countsiswa' => $countSiswa,
+            'countguru' => $countGuru,
+        ]);
     }
 }
