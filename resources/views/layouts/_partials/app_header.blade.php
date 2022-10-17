@@ -11,7 +11,7 @@
                                 href="#"><i class="ft-menu"></i></a></li>
                         <li class="nav-item d-none d-md-block"><a class="nav-link nav-link-expand" href="#"><i
                                     class="ficon ft-maximize"></i></a></li>
-                        <li class="dropdown nav-item mega-dropdown d-none d-md-block"><a
+                        {{-- <li class="dropdown nav-item mega-dropdown d-none d-md-block"><a
                                 class="dropdown-toggle nav-link" href="#" data-toggle="dropdown">Mega</a>
                             <ul class="mega-dropdown-menu dropdown-menu row">
                                 <li class="col-md-2">
@@ -140,7 +140,7 @@
                                         Project Summary </a><a class="dropdown-item" href="full-calender.html"><i
                                             class="ft-calendar"></i> Calendar </a></div>
                             </div>
-                        </li>
+                        </li> --}}
                         <li class="nav-item dropdown navbar-search"><a class="nav-link dropdown-toggle hide"
                                 data-toggle="dropdown" href="#"><i class="ficon ft-search"></i></a>
                             <ul class="dropdown-menu">
@@ -160,7 +160,7 @@
                         </li>
                     </ul>
                     <ul class="nav navbar-nav float-right">
-                        <li class="dropdown dropdown-language nav-item"><a class="dropdown-toggle nav-link"
+                        {{-- <li class="dropdown dropdown-language nav-item"><a class="dropdown-toggle nav-link"
                                 id="dropdown-flag" href="#" data-toggle="dropdown" aria-haspopup="true"
                                 aria-expanded="false"><i class="flag-icon flag-icon-us"></i><span
                                     class="selected-language"></span></a>
@@ -173,8 +173,8 @@
                                             class="flag-icon flag-icon-fr"></i> French</a><a class="dropdown-item"
                                         href="#"><i class="flag-icon flag-icon-es"></i> Spanish</a></div>
                             </div>
-                        </li>
-                        <li class="dropdown dropdown-notification nav-item"><a class="nav-link nav-link-label" href="#"
+                        </li> --}}
+                        {{-- <li class="dropdown dropdown-notification nav-item"><a class="nav-link nav-link-label" href="#"
                                 data-toggle="dropdown"><i class="ficon ft-bell bell-shake"
                                     id="notification-navbar-link"></i><span
                                     class="badge badge-pill badge-sm badge-danger badge-up badge-glow">5</span></a>
@@ -320,7 +320,7 @@
                                             href="javascript:void(0)">Read all</a></li>
                                 </div>
                             </ul>
-                        </li>
+                        </li> --}}
                         <li class="dropdown dropdown-user nav-item"><a
                                 class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown">
                                 <span class="avatar avatar-online"><img
@@ -331,12 +331,12 @@
                                             class="avatar avatar-online"><img
                                                 src="{{ asset('') }}admin/app-assets/images/portrait/small/avatar-s-19.png"
                                                 alt="avatar"><span class="user-name text-bold-700 ml-1">{{ auth()->user()->name }}</span></span></a>
-                                    <div class="dropdown-divider"></div><a class="dropdown-item"
+                                    {{-- <div class="dropdown-divider"></div><a class="dropdown-item"
                                         href="user-profile.html"><i class="ft-user"></i> Edit Profile</a><a
                                         class="dropdown-item" href="email-application.html"><i class="ft-mail"></i> My
                                         Inbox</a><a class="dropdown-item" href="project-summary.html"><i
                                             class="ft-check-square"></i> Task</a><a class="dropdown-item"
-                                        href="chat-application.html"><i class="ft-message-square"></i> Chats</a>
+                                        href="chat-application.html"><i class="ft-message-square"></i> Chats</a> --}}
                                     <div class="dropdown-divider"></div><a class="dropdown-item" href="{{ url('logout') }}"><i
                                             class="ft-power"></i> Logout</a>
                                 </div>

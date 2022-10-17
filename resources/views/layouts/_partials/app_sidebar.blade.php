@@ -111,7 +111,7 @@
                 <li class=" nav-item {{ request()->is('bendahara/spp') ? 'open' : '' }}">
                     <a href="{{ url('bendahara/spp') }}">
                         <i class="ft-file-text"></i>
-                        <span class="menu-title" data-i18n="">Data SPP</span>
+                        <span class="menu-title" data-i18n="">Pembayaran SPP</span>
                     </a>
                 </li>
                 <li class=" nav-item {{ request()->is('bendahara/laporan-spp') ? 'open' : '' }}">

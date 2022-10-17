@@ -478,10 +478,10 @@ class SppService
         // dd($kelas);
         $spp = [];
         foreach ($kelas as $k) {
-            $data = Spp::with('siswa', 'guru', 'kelas')->where('siswa_id', $k->siswa_id)->where('kelas_id', $k->kelas_id)->where('status_pembayaran', 'Lunas')->get();
+            $data = Spp::with('siswa', 'guru', 'kelas')->where('siswa_id', $k->siswa_id)->where('kelas_id', $k->kelas_id)->where('status_pembayaran', 'Belum Lunas')->get();
 
             // dd(count($data));
-            if (count($data) < 6) {
+            if (count($data) <= 6) {
                 $spp[] = $data;
             }
         }

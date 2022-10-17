@@ -63,8 +63,8 @@
         <header class="navbar navbar-sticky navbar-expand-lg navbar-dark">
             <div class="container position-relative">
                 <a class="navbar-brand" href="index.html">
-                    <img class="navbar-brand-regular" src="https://theme-land.com/sapp/demo/assets/img/logo/logo-white.png" alt="brand-logo">
-                    <img class="navbar-brand-sticky" src="https://theme-land.com/sapp/demo/assets/img/logo/logo.png" alt="sticky brand-logo">
+                    {{-- <img class="navbar-brand-regular" src="https://theme-land.com/sapp/demo/assets/img/logo/logo-white.png" alt="brand-logo"> --}}
+                    {{-- <img class="navbar-brand-sticky" src="https://theme-land.com/sapp/demo/assets/img/logo/logo.png" alt="sticky brand-logo"> --}}
                 </a>
                 <button class="navbar-toggler d-lg-none" type="button" data-toggle="navbarToggler" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -226,7 +226,7 @@
                                                         @endswitch
                                                     </td>
                                                 </tr>
-                                            @endforeach
+                            -                @endforeach
                                         @endif
                                     </tbody>
                                 </table>
