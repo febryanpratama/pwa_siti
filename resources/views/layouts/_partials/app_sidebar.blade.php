@@ -21,7 +21,7 @@
                         <span class="menu-title" data-i18n="">Dashboard</span>
                     </a>
                 </li>
-                <li class="nav-item has-sub"><a href="#"><i class="ft-layout"></i><span class="menu-title" data-i18n="">Management Data</span></a>
+                <li class="nav-item has-sub"><a href="#"><i class="ft-layout"></i><span class="menu-title" data-i18n="">Manajemen Data</span></a>
                     <ul class="menu-content" style="">
                         <li class="navigation-divider is-shown"></li>
                         <li class="is-shown {{ request()->is('admin/guru') ? 'open active' : '' }}">
