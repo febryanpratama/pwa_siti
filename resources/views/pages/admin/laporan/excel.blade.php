@@ -51,14 +51,14 @@
             </tr>
             <tr></tr>
             <tr>
-                <th colspan="2">KELAS : XI IIS </th>
+                <th colspan="2">KELAS : {{ $data[0]->kelas->kelas }} {{ $data[0]->kelas->nama_kelas }}/th>
             </tr>
             <tr>
                 <th rowspan="2" style="text-align: center;font-family: Arial;border: 2px solid black;border-collapse: collapse">NO</th>
                 <th rowspan="2" style="text-align: center;font-family: Arial;border: 2px solid black;border-collapse: collapse; width: 300px">NAMA SISWA</th>
                 <th rowspan="2" style="text-align: center;font-family: Arial;border: 2px solid black;border-collapse: collapse; width: 100px">L/P</th>
                 <th rowspan="2" style="text-align: center;font-family: Arial;border: 2px solid black;border-collapse: collapse; width: 250px">TUNG KLS SBLMNYA</th>
-                <th rowspan="2" style="text-align: center;font-family: Arial;border: 2px solid black;border-collapse: collapse; width: 250px">DAF ULANG / PINDAHAN</th>
+                {{-- <th rowspan="2" style="text-align: center;font-family: Arial;border: 2px solid black;border-collapse: collapse; width: 250px">DAF ULANG / PINDAHAN</th> --}}
                 <th colspan="12" style="text-align: center;font-family: Arial;border: 2px solid black;border-collapse: collapse">BULAN</th>
             </tr>
             <tr>
@@ -90,7 +90,7 @@
                         @endswitch
                     </td>
                     <td style="text-align: right;border: 2px solid black;border-collapse: collapse">{{ $value->sisa_bayar }}</td>
-                    <td style="border: 2px solid black;border-collapse: collapse">0</td>
+                    {{-- <td style="border: 2px solid black;border-collapse: collapse">0</td> --}}
                     {{-- {{ dd(@App\Helpers\Format::getTanggal($value->siswa_id,$value->kelas_id,7)) }} --}}
                     <td style="border: 2px solid black;border-collapse: collapse;text-align:center">{{  @App\Helpers\Format::getTanggal($value->siswa_id,$value->kelas_id,7) == null ? '' : \Carbon\Carbon::parse(@App\Helpers\Format::getTanggal($value->siswa_id,$value->kelas_id,7))->format('d/m/y') }}</td>
                     <td style="border: 2px solid black;border-collapse: collapse;width: 100px;text-align:center">{{ @App\Helpers\Format::getDataSpp($value->siswa_id,$value->kelas_id,7) }}</td>
@@ -107,6 +107,23 @@
                 </tr>
             @endforeach
         </tbody>
+        <tfoot>
+            <tr>
+                <th style="border: 2px solid black;border-collapse:collapse;text-align:center" colspan="4">Total</th>
+                <th style="border: 2px solid black;border-collapse:collapse;text-align:center"></th>
+                <th style="border: 2px solid black;border-collapse:collapse;text-align:center">Nan</th>
+                <th style="border: 2px solid black;border-collapse:collapse;text-align:center"></th>
+                <th style="border: 2px solid black;border-collapse:collapse;text-align:center">Nan</th>
+                <th style="border: 2px solid black;border-collapse:collapse;text-align:center"></th>
+                <th style="border: 2px solid black;border-collapse:collapse;text-align:center">Nan</th>
+                <th style="border: 2px solid black;border-collapse:collapse;text-align:center"></th>
+                <th style="border: 2px solid black;border-collapse:collapse;text-align:center">Nan</th>
+                <th style="border: 2px solid black;border-collapse:collapse;text-align:center"></th>
+                <th style="border: 2px solid black;border-collapse:collapse;text-align:center">Nan</th>
+                <th style="border: 2px solid black;border-collapse:collapse;text-align:center"></th>
+                <th style="border: 2px solid black;border-collapse:collapse;text-align:center">Nan</th>
+            </tr>
+        </tfoot>
     </table>
 </body>
 </html>
