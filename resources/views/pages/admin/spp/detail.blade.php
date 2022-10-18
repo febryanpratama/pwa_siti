@@ -93,7 +93,7 @@
                                                                 {{ $loop->iteration }}
                                                             </td>
                                                             <td>{{ $item->nama_siswa }}</td>
-                                                            <td>12 bulan</td>
+                                                            <td>6 bulan</td>
                                                             <td>
 
                                                                 @role('Admin')
