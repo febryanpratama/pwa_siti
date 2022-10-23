@@ -6,13 +6,13 @@
             <div class="content-wrapper-before"></div>
             <div class="content-header row">
                 <div class="content-header-left col-md-4 col-12 mb-2">
-                    <h3 class="content-header-title">{{ $title }} DataTable</h3>
+                    <h3 class="content-header-title">Data {{ $title }}</h3>
                 </div>
                 <div class="content-header-right col-md-8 col-12">
                     <div class="breadcrumbs-top float-md-right">
                         <div class="breadcrumb-wrapper mr-1">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item active">{{ $title }} DataTable
+                                <li class="breadcrumb-item active">Data {{ $title }}
                                 </li>
                             </ol>
                         </div>
@@ -47,7 +47,7 @@
                                                     <tr>
                                                         <th>#</th>
                                                         <th>Nama Siswa</th>
-                                                        <th>Telpon Sis wa</th>
+                                                        <th>Telpon Siswa</th>
                                                         <th>Jenis Kelamin</th>
                                                         <th>Alamat</th>
                                                         {{-- <th>Status Siswa</th> --}}
@@ -205,6 +205,7 @@
                                                         <th>Telpon Siswa</th>
                                                         <th>Jenis Kelamin</th>
                                                         <th>Alamat</th>
+                                                        <th>Kekurangan Pembayaran <br> Spp x Bulan</th>
                                                         <th>Aksi</th>
                                                     </tr>
                                                 </tfoot>

@@ -44,6 +44,7 @@ class BendaharaService
                 'message' => $message,
                 'errors' => $validator->errors()->first()
             ];
+            // dd($validator->errors());
             return $result;
         }
 

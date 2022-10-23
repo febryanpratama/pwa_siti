@@ -6,13 +6,13 @@
             <div class="content-wrapper-before"></div>
             <div class="content-header row">
                 <div class="content-header-left col-md-4 col-12 mb-2">
-                    <h3 class="content-header-title">{{ $title }} DataTable</h3>
+                    <h3 class="content-header-title">Data {{ $title }}</h3>
                 </div>
                 <div class="content-header-right col-md-8 col-12">
                     <div class="breadcrumbs-top float-md-right">
                         <div class="breadcrumb-wrapper mr-1">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item active">{{ $title }} DataTable
+                                <li class="breadcrumb-item active">Data {{ $title }}
                                 </li>
                             </ol>
                         </div>
@@ -54,6 +54,7 @@
                                                 </thead>
                                                 <tbody>
                                                     @foreach ($data as $key=>$item)
+                                                    {{-- {{ dd($item->kelas) }} --}}
                                                     <tr>
                                                         <td>{{ $key+1 }}</td>
                                                         <td>{{ $item->guru->nama_guru }}</td>
@@ -120,7 +121,7 @@
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
                                                                     <h4 class="modal-title" id="myModalLabel17">
-                                                                        Add {{ $title }}
+                                                                        Ubah {{ $title }}
                                                                     </h4>
                                                                     <button type="button" class="close"
                                                                         data-dismiss="modal" aria-label="Close">
@@ -137,8 +138,8 @@
                                                                                     <label for="" class="label-control">Wali Kelas</label>
                                                                                     <select name="guru_id" class="form-control">
                                                                                         <option value="" selected disabled> == Pilih == </option>
-                                                                                        @foreach ($guru as $item)
-                                                                                            <option value="{{ $item->id }}" {{ $item->guru_id ? 'selected' : ''}}>{{ $item->nama_guru }}</option>
+                                                                                        @foreach ($guru as $gr)
+                                                                                            <option value="{{ $gr->id }}" {{ $gr->guru_id ? 'selected' : ''}}>{{ $gr->nama_guru }}</option>
                                                                                         @endforeach
                                                                                     </select>
                                                                                 </div>

@@ -119,6 +119,7 @@ class SiswaController extends Controller
 
     public function delete(Request $request)
     {
+        // dd($request->all());
         $validator = Validator::make($request->all(), [
             'siswa_id' => 'required|numeric|',
         ]);
@@ -128,6 +129,7 @@ class SiswaController extends Controller
         }
         // dd($request->all());
         siswa::where('id', $request->siswa_id)->delete();
+
         return back()->with('success', 'Berhasil Menghapus Data');
     }
 }

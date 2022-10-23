@@ -6,13 +6,13 @@
             <div class="content-wrapper-before"></div>
             <div class="content-header row">
                 <div class="content-header-left col-md-4 col-12 mb-2">
-                    <h3 class="content-header-title">{{ $title }} DataTable</h3>
+                    <h3 class="content-header-title">Data {{ $title }}</h3>
                 </div>
                 <div class="content-header-right col-md-8 col-12">
                     <div class="breadcrumbs-top float-md-right">
                         <div class="breadcrumb-wrapper mr-1">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item active">{{ $title }} DataTable
+                                <li class="breadcrumb-item active">Data {{ $title }}
                                 </li>
                             </ol>
                         </div>
@@ -92,13 +92,13 @@
                                                                         <span aria-hidden="true">&times;</span>
                                                                     </button>
                                                                 </div>
-                                                                <form action="{{ url('admin/kelas/destroy') }}" method="POST">
+                                                                <form action="{{ url('admin/bendahara/destroy') }}" method="POST">
                                                                     @csrf
-                                                                    <input type="hidden" name="kelas_id" value="{{ $item->id }}" id="">
+                                                                    <input type="hidden" name="bendahara_id" value="{{ $item->id }}" id="">
                                                                     <div class="modal-body">
                                                                         <div class="row">
                                                                             <div class="col-md-12">
-                                                                                <p> Apakah Anda yakin akan menghapus data {{ $item->kelas }}/{{ $item->nama_kelas }}</p>
+                                                                                <p> Apakah Anda yakin akan menghapus data {{ $item->user->name }}</p>
                                                                             </div>
                                                                         </div>  
                                                                     </div>
@@ -186,9 +186,10 @@
                                                 <tfoot>
                                                     <tr>
                                                         <th>#</th>
-                                                        <th>Nama Wali Kelas</th>
-                                                        <th>Kelas</th>
-                                                        <th>Nominal Spp</th>
+                                                        <th>Nama Bendahara</th>
+                                                        <th>NIP</th>
+                                                        <th>Email</th>
+                                                        <th>Nomor Telpon</th>
                                                         <th>Aksi</th>
                                                     </tr>
                                                 </tfoot>

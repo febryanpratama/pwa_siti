@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Guru;
 use App\Services\GuruService;
 use Illuminate\Http\Request;
 
@@ -37,5 +38,12 @@ class GuruController extends Controller
         $result = $this->guruService->update($request->all());
 
         return back()->withSuccess($result['message']);
+    }
+
+    public function destroy(Request $request)
+    {
+        Guru::where('id', $request->guru_id)->delete();
+
+        return back()->withSuccess('Data berhasil dihapus');
     }
 }

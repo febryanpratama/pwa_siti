@@ -88,7 +88,7 @@
                 </li> --}}
                 <li class=" nav-item {{ request()->is('admin/spp') ? 'open' : '' }}">
                     <a href="{{ url('admin/spp') }}">
-                        <i class="ft-file-text"></i>
+                        <i class="ft-plus-square"></i>
                         Pembayaran SPP
                         {{-- <span class="menu-title"></span> --}}
                     </a>

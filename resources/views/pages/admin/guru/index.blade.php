@@ -6,13 +6,13 @@
             <div class="content-wrapper-before"></div>
             <div class="content-header row">
                 <div class="content-header-left col-md-4 col-12 mb-2">
-                    <h3 class="content-header-title">{{ $title }} DataTable</h3>
+                    <h3 class="content-header-title">Data {{ $title }} </h3>
                 </div>
                 <div class="content-header-right col-md-8 col-12">
                     <div class="breadcrumbs-top float-md-right">
                         <div class="breadcrumb-wrapper mr-1">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item active">{{ $title }} DataTable
+                                <li class="breadcrumb-item active">{{ $title }}
                                 </li>
                             </ol>
                         </div>
@@ -31,7 +31,7 @@
                                     <div class="heading-elements">
                                         <button type="button" class="btn btn-info " data-toggle="modal"
                                             data-target="#large">
-                                            Add {{ $title }}
+                                            + Add {{ $title }}
                                         </button>
                                         {{-- <a href="{{ url('admin/siswa/form-siswa') }}">
                                             <button class="btn btn-info">Add {{ $title }}</button>
@@ -79,7 +79,7 @@
                                                                 </svg>
                                                             </button>
                                                             <button type="button" class="btn btn-sm btn-danger " data-toggle="modal" title="Hapus Data"
-                                                                data-target="#destroy{{ $item->id }}">
+                                                                data-target="#hapus{{ $item->id }}">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" style="width: 29px;height: 20px" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                                                     <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                                                                 </svg>
@@ -100,8 +100,9 @@
                                                                         <span aria-hidden="true">&times;</span>
                                                                     </button>
                                                                 </div>
-                                                                <form action="{{ url('admin/guru') }}" method="POST">
+                                                                <form action="{{ url('admin/guru/edit') }}" method="POST">
                                                                     @csrf
+                                                                    <input type="hidden" name="guru_id" value="{{ $item->id }}">
                                                                     <div class="modal-body">
                                                                         <div class="row">
                                                                             <div class="col-md-4">
@@ -127,6 +128,41 @@
                                                                                     <label for="" class="label-control">Alamat</label>
                                                                                     <textarea name="alamat" class="form-control" cols="30" rows="5">{{ $item->alamat }}</textarea>
                                                                                 </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn grey btn-secondary"
+                                                                        data-dismiss="modal">Close</button>
+                                                                        <button type="submit"
+                                                                        class="btn btn-danger">Simpan</button>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="modal fade text-left" id="hapus{{ $item->id }}" tabindex="-1"
+                                                        role="dialog" aria-labelledby="myModalLabel17"
+                                                        aria-hidden="true">
+                                                        <div class="modal-dialog" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h4 class="modal-title" id="myModalLabel17">
+                                                                        Hapus {{ $title }}
+                                                                    </h4>
+                                                                    <button type="button" class="close"
+                                                                        data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <form action="{{ url('admin/guru/destroy') }}" method="POST">
+                                                                    @csrf
+                                                                    <input type="hidden" name="guru_id" value="{{ $item->id }}">
+                                                                    <div class="modal-body">
+                                                                        <div class="row">
+                                                                            <div class="col-md-12">
+                                                                                <p>Apakah Anda yakin ingin menghapus data {{ $item->nama_guru }}</p>
                                                                             </div>
                                                                         </div>
                                                                     </div>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\bendahara;
 use App\Models\Guru;
 use App\Models\siswa;
 use App\Models\Spp;
@@ -52,14 +53,32 @@ class BendaharaController extends Controller
         $result = $this->bendaharaService->store($request->all());
 
         // dd($result);
-        return back()->with($result['status'], $result['message']);
+        if ($result['status'] == true) {
+            return back()->withSuccess($result['message']);
+        } else {
+            return back()->withError($result['message']);
+        }
     }
 
     public function update(Request $request)
     {
         // dd($request->all());
         $result = $this->bendaharaService->update($request->except('_token'));
-        return back()->with($result['status'], $result['message']);
+
+        if ($result['status'] == true) {
+            return back()->withSuccess($result['message']);
+        } else {
+            return back()->withError($result['message']);
+        }
+        // return back()->with($result['status'], $result['message']);
+    }
+
+    public function destroy(Request $request)
+    {
+
+        bendahara::where('id', $request->bendahara_id)->delete();
+
+        return back()->withSuccess('Data berhasil dihapus');
     }
 
 

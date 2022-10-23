@@ -51,7 +51,7 @@
             </tr>
             <tr></tr>
             <tr>
-                <th colspan="2">KELAS : {{ $data[0]->kelas->kelas }} {{ $data[0]->kelas->nama_kelas }}/th>
+                <th colspan="2">KELAS : {{ $data[0]->kelas->kelas }} {{ $data[0]->kelas->nama_kelas }}</th>
             </tr>
             <tr>
                 <th rowspan="2" style="text-align: center;font-family: Arial;border: 2px solid black;border-collapse: collapse">NO</th>

@@ -43,4 +43,18 @@ class GuruService
         ];
         return $result;
     }
+
+    public function update($data)
+    {
+        // dd($data);
+
+        Guru::firstWhere('id', $data['guru_id'])->update($data);
+
+        $result = [
+            'status' => true,
+            'message' => "Success Update Data Guru"
+        ];
+
+        return $result;
+    }
 }

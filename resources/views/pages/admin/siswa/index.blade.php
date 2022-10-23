@@ -6,13 +6,13 @@
             <div class="content-wrapper-before"></div>
             <div class="content-header row">
                 <div class="content-header-left col-md-4 col-12 mb-2">
-                    <h3 class="content-header-title">{{ $title }} DataTable</h3>
+                    <h3 class="content-header-title">Data {{ $title }}</h3>
                 </div>
                 <div class="content-header-right col-md-8 col-12">
                     <div class="breadcrumbs-top float-md-right">
                         <div class="breadcrumb-wrapper mr-1">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item active">{{ $title }} DataTable
+                                <li class="breadcrumb-item active">Data {{ $title }}
                                 </li>
                             </ol>
                         </div>
@@ -101,24 +101,23 @@
                                                                             <span aria-hidden="true">×</span>
                                                                         </button>
                                                                         </div>
-                                                                        <div class="modal-body">
-                                                                            <form method="POST" action="{{ route('Formsiswa.delete') }}" enctype="multipart/form-data">
-                                                                                <input type="hidden" value="{{ $key->id }}" name="siswa_id">
-                                                                                @csrf
-
-                                                                                <div class="form-group row">
+                                                                        <form action="{{ url('admin/siswa/delete') }}" method="POST">
+                                                                            @csrf
+                                                                            <input type="hidden" name="siswa_id" value="{{ $key->id }}" id="">
+                                                                            <div class="modal-body">
+                                                                                <div class="row">
                                                                                     <div class="col-md-12">
-                                                                                        Apakah Anda yakin ingin menghapus data siswa {{ $key->nama_siswa}}
+                                                                                        <p> Apakah Anda yakin akan menghapus data {{ $key->nama_siswa }}</p>
                                                                                     </div>
-                                                                                </div>
-                                                                                <div class="form-group row">
-                                                                                    <label class="col-sm-2 col-form-label"></label>
-                                                                                    <div class="col-sm-10">
-                                                                                        <button type="submit" class="btn btn-success  px-5 float-right "><i class="icon"></i>+ Hapus Data</button>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </form>
-                                                                        </div>
+                                                                                </div>  
+                                                                            </div>
+                                                                            <div class="modal-footer">
+                                                                                <button type="button" class="btn grey btn-secondary"
+                                                                                data-dismiss="modal">Close</button>
+                                                                                <button type="submit"
+                                                                                class="btn btn-danger">Hapus</button>
+                                                                            </div>
+                                                                        </form>
                                                                     </div>
                                                                     </div>
                                                                 </div>

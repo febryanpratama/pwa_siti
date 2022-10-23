@@ -101,6 +101,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:Admin']], func
     ], function () {
         Route::get('/', [GuruController::class, 'index']);
         Route::post('/', [GuruController::class, 'store']);
+        Route::post('/edit', [GuruController::class, 'update']);
+        Route::post('/destroy', [GuruController::class, 'destroy']);
     });
 
 
@@ -128,6 +130,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:Admin']], func
         Route::get('/', [BendaharaController::class, 'index']);
         Route::post('/', [BendaharaController::class, 'store']);
         Route::post('/update', [BendaharaController::class, 'update']);
+        Route::post('/destroy', [BendaharaController::class, 'destroy']);
     });
 
     // manajemen Kepala Sekolah

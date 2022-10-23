@@ -10,7 +10,7 @@
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- Title  -->
-    <title>sApp | SMA - TUNAS MULIA</title>
+    <title>sApp | SMA - TAMAN MULIA</title>
 
     <!-- Favicon  -->
     <link rel="icon" href="https://theme-land.com/sapp/demo/assets/img/favicon.png">
