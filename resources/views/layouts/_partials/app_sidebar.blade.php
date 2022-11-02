@@ -25,7 +25,7 @@
                     <ul class="menu-content" style="">
                         <li class="navigation-divider is-shown"></li>
                         <li class="is-shown {{ request()->is('admin/guru') ? 'open active' : '' }}">
-                            <a class="menu-item" href="{{ url('admin/guru') }}">Guru</a>
+                            <a class="menu-item" href="{{ url('admin/guru') }}">Wali Kelas</a>
                         </li>
                         <li class="is-shown {{ request()->is('admin/bendahara') ? 'open active' : '' }}">
                             <a class="menu-item" href="{{ url('admin/bendahara') }}">Bendahara</a>

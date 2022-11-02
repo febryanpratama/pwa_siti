@@ -33,30 +33,30 @@ class SiswaController extends Controller
             'nis' => 'required',
             'nama_siswa' => 'required',
             'jenis_kelamin' => 'required',
-            'nik_siswa' => 'required',
-            'nokk_siswa' => 'required',
+            // 'nik_siswa' => 'required',
+            // 'nokk_siswa' => 'required',
             'tempat_lahir' => 'required',
             'tanggal_lahir' => 'required',
             'agama' => 'required',
-            'anak_ke' => 'required',
+            // 'anak_ke' => 'required',
             'alamat' => 'required',
             'asal_sekolah' => 'required',
-            'nomor_ujian_smp' => 'required',
+            // 'nomor_ujian_smp' => 'required',
             'nomor_ijazah' => 'required',
-            'nomor_skhun' => 'required',
+            // 'nomor_skhun' => 'required',
             'nama_ortu' => 'required',
             'telpon_siswa' => 'required',
             'telpon_ortu_siswa' => 'required',
-            'bahasa_indonesia' => 'required',
-            'bahasa_inggris' => 'required',
-            'matematika' => 'required',
-            'ipa' => 'required',
+            // 'bahasa_indonesia' => 'required',
+            // 'bahasa_inggris' => 'required',
+            // 'matematika' => 'required',
+            // 'ipa' => 'required',
         ]);
 
         if ($validator->fails()) {
             // dd($validator->errors());
             // dd('false');
-            return back()->withErrors($validator->errors())->with('error', 'Gagal Menambahkan Data');
+            return back()->withErrors($validator->errors())->with('error', $validator->errors()->first());
         }
         // dd($request->all());
 

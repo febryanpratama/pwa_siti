@@ -9,7 +9,7 @@ class GuruService
 {
     public function getGuru()
     {
-        $title = "Guru";
+        $title = "Wali Kelas";
 
         $data = Guru::with('kelas')->get();
 

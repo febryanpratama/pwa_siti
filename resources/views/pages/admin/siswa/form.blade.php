@@ -8,7 +8,7 @@
         <div class="content-wrapper-before"></div>
         <div class="content-header row">
             <div class="content-header-left col-md-4 col-12 mb-2">
-                <h3 class="content-header-title">{{ $title }} Forms</h3>
+                <h3 class="content-header-title">Form Tambah Data Siswa</h3>
             </div>
             {{-- {{ dd($) }} --}}
             <div class="content-header-right col-md-8 col-12">
@@ -17,9 +17,8 @@
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="index.html">Home</a>
                             </li>
-                            <li class="breadcrumb-item"><a href="#">Form Layouts</a>
+                            <li class="breadcrumb-item"><a href="#">Form Data Siswa</a>
                             </li>
-                            <li class="breadcrumb-item active"><a href="#">Services Forms</a>
                             </li>
                         </ol>
                     </div>
@@ -201,9 +200,11 @@
                                         </div>
 
                                         <div class="form-actions right">
-                                            <button type="button" class="btn btn-danger mr-1">
-                                                <i class="ft-x"></i> Cancel
-                                            </button>
+                                            <a href="{{ URL::previous() }}">
+                                                <button type="button" class="btn btn-danger mr-1">
+                                                    <i class="ft-x"></i> Cancel
+                                                </button>
+                                            </a>
                                             <button type="submit" class="btn btn-primary">
                                                 <i class="la la-check-square-o"></i> Save
                                             </button>

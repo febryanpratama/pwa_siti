@@ -26,31 +26,29 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title">List Data</h4>
-                                    <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
-                                    <div class="heading-elements">
-
-                                        <a href="" class="">
-                                            <button class="btn btn-success"> Lunas </button>
-                                        </a>
-                                        <a href="" class="">
-                                            <button class="btn btn-danger"> Belum Lunas </button>
-                                        </a>
-                                        
-                                        <button type="button" class="btn btn-primary " data-toggle="modal"
-                                            data-target="#pindah">
-                                            Pindah Kelas
-                                        </button>
-                                        
-                                        <button type="button" class="btn btn-info " data-toggle="modal"
-                                            data-target="#large">
-                                            Add {{ $title }}
-                                        </button>
-                                        {{-- <a href="{{ url('admin/siswa/form-siswa') }}">
-                                            <button class="btn btn-info">Add {{ $title }}</button>
-                                        </a> --}}
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-6">
+                                            <h4 class="card-title">List Data</h4>
+                                        </div>
+                                        <div class="col-sm-12 col-md-6">
+                                            <button type="button" class="btn btn-primary mt-1 float-right mr-1" data-toggle="modal"
+                                                data-target="#pindah">
+                                                Pindah Kelas
+                                            </button>
+                                            <button type="button" class="btn btn-info mt-1 float-right mr-1" data-toggle="modal"
+                                                data-target="#large">
+                                                Add {{ $title }}
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                
                                 <div class="card-content collapse show">
                                     <div class="card-body card-dashboard">
                                         {{-- <p class="card-text">The DataTables default style file has a number of features which can be enabled based on the class name of the table. These features are.</p> --}}
