@@ -45,7 +45,7 @@
                                             <table class="table table-striped table-bordered base-style text-center">
                                                 <thead>
                                                     <tr>
-                                                        <th>#</th>
+                                                        <th>No</th>
                                                         <th>Nama Guru</th>
                                                         <th>NIP</th>
                                                         <th>Kelas</th>
@@ -180,7 +180,7 @@
                                                 </tbody>
                                                 <tfoot>
                                                     <tr>
-                                                        <th>#</th>
+                                                        <th>No</th>
                                                         <th>Nama Guru</th>
                                                         <th>NIP</th>
                                                         <th>Kelas</th>

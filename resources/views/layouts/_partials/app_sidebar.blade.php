@@ -2,10 +2,20 @@
         data-img="{{ asset('') }}admin/app-assets/images/backgrounds/02.jpg">
     <div class="navbar-header">
         <ul class="nav navbar-nav flex-row">
-            <li class="nav-item mr-auto"><a class="navbar-brand" href="index.html"><img class="brand-logo"
-                        alt="Chameleon admin logo" src="{{ asset('') }}assets/tunasmulya.png" />
-                    <h3 class="brand-text">SMA Taman Mulia</h3>
-                </a></li>
+            <li class="nav-item mr-auto">
+                <a class="navbar-brand d-flex justify-content-end" href="index.html">
+                    <img class="brand-logo" alt="Chameleon admin logo" src="{{ asset('') }}assets/logouser.jpeg" />
+                    <span class="ml-2">
+                        <h5><b>Welcome, <br> {{ Auth::user()->name }}</b></h5>
+                    </span>
+                    {{-- <div class="row">
+                        <div class="col-md-2">
+                        </div>
+                        <div class="col-md-10">
+                        </div>
+                    </div> --}}
+                </a>
+            </li>
             <li class="nav-item d-md-none"><a class="nav-link close-navbar"><i class="ft-x"></i></a></li>
         </ul>
     </div>
@@ -110,7 +120,7 @@
                 </li>
                 <li class=" nav-item {{ request()->is('bendahara/spp') ? 'open' : '' }}">
                     <a href="{{ url('bendahara/spp') }}">
-                        <i class="ft-file-text"></i>
+                        <i class="ft-plus-square"></i>
                         <span class="menu-title" data-i18n="">Pembayaran SPP</span>
                     </a>
                 </li>

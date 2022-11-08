@@ -6,13 +6,13 @@
             <div class="content-wrapper-before"></div>
             <div class="content-header row">
                 <div class="content-header-left col-md-4 col-12 mb-2">
-                    <h3 class="content-header-title">Data {{ $title }}</h3>
+                    <h3 class="content-header-title">{{ $title }}</h3>
                 </div>
                 <div class="content-header-right col-md-8 col-12">
                     <div class="breadcrumbs-top float-md-right">
                         <div class="breadcrumb-wrapper mr-1">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item active">Data {{ $title }}
+                                <li class="breadcrumb-item active">{{ $title }}
                                 </li>
                             </ol>
                         </div>
@@ -45,7 +45,7 @@
                                             <table class="table table-striped table-bordered base-style text-center">
                                                 <thead>
                                                     <tr>
-                                                        <th>#</th>
+                                                        <th>No</th>
                                                         <th>Nama Siswa</th>
                                                         <th>Telpon Siswa</th>
                                                         <th>Jenis Kelamin</th>
@@ -95,11 +95,11 @@
                                                                     </button>
                                                                 @endif
 
-                                                                <a href="/admin/siswa/form-edit/{{ $key->id }}" class="btn btn-sm btn-outline-info mr-1">
+                                                                {{-- <a href="/admin/siswa/form-edit/{{ $key->id }}" class="btn btn-sm btn-outline-info mr-1">
                                                                     <svg xmlns="http://www.w3.org/2000/svg" style="width: 20px;height: 20px" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                                                         <path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                                                                     </svg>
-                                                                </a>
+                                                                </a> --}}
 
                                                                 <div class="modal fade" id="tambahIjazah{{ $key->id }}">
                                                                     <div class="modal-dialog ">
@@ -157,7 +157,7 @@
                                                                     </div>
                                                                     </div>
                                                                 </div>
-                                                                <button class="btn btn-sm btn-outline-danger mr-1" data-toggle="modal" data-target="#hapusmodal{{ $key->id }}">
+                                                                {{-- <button class="btn btn-sm btn-outline-danger mr-1" data-toggle="modal" data-target="#hapusmodal{{ $key->id }}">
                                                                     <svg xmlns="http://www.w3.org/2000/svg" style="width: 20px; height: 20px;" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                                                         <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                                                                     </svg>
@@ -191,16 +191,16 @@
                                                                         </div>
                                                                     </div>
                                                                     </div>
-                                                                </div>
+                                                                </div> --}}
 
 
-                                                            </td>
+                                                            </td>image.png
                                                         </tr>
                                                     @endforeach
                                                 </tbody>
                                                 <tfoot>
                                                     <tr>
-                                                        <th>#</th>
+                                                        <th>No</th>
                                                         <th>Nama Siswa</th>
                                                         <th>Telpon Siswa</th>
                                                         <th>Jenis Kelamin</th>

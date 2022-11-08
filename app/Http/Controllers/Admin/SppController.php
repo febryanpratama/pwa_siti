@@ -95,6 +95,11 @@ class SppController extends Controller
         }
     }
 
+    public function updateSpp(Request $request)
+    {
+        dd($request->all());
+    }
+
     public function Export(Request $request)
     {
         $result = $this->sppService->exportExcel($request->all());

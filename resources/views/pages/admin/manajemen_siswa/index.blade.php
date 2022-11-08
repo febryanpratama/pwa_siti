@@ -28,7 +28,7 @@
             <table id="example" class="table table-bordered">
                 <thead>
                     <tr>
-                        <th>#</th>
+                        <th>No</th>
                         <th>Nama Siswa</th>
                         <th>Telpon Siswa</th>
                         <th>Jenis Kelamin</th>
@@ -117,7 +117,7 @@
                 </tbody>
                 <tfoot>
                     <tr>
-                        <th>#</th>
+                        <th>No</th>
                         <th>Nama Siswa</th>
                         <th>Telpon Siswa</th>
                         <th>Jenis Kelamin</th>

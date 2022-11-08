@@ -28,6 +28,7 @@
                     <div class="card-body">
                     <div class="card-title text-dark">Data Siswa</div>
                     <hr />
+                    {{-- {{ dd($data) }} --}}
                     <form method="POST" action="{{ url ('admin/siswa/update') }} ">
                         <input type="hidden" name="siswa_id" id="" value="{{ $data->id }}">
                         @csrf

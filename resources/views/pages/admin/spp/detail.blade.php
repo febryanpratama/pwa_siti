@@ -51,7 +51,7 @@
                                         {{-- <div class="col-md-8"> --}}
                                             <div class="row">
                                                 <div class="col-md-12">
-                                                    <a href="{{ url("admin/spp/kelas/".$kelas_id."/lunas") }}" class="m-1">
+                                                    <a href="{{ url("admin/spp/kelas/".$kelas_id."/lunas") }}" class="mb-2">
                                                         <button class="btn btn-success"> Lunas </button>
                                                     </a>
                                                     <a href="{{ url("admin/spp/kelas/".$kelas_id."/belum-lunas") }}" class="mb-2">
@@ -79,7 +79,7 @@
                                                 <table class="table table-striped table-bordered base-style text-center">
                                                     <thead>
                                                         <tr>
-                                                            <th>#</th>
+                                                            <th>No</th>
                                                             <th>Nama Siswa</th>
                                                             <th>Spp Dibayar x bulan</th>
                                                             <th>Aksi</th>
@@ -131,7 +131,7 @@
                                                     </tbody>
                                                     <tfoot>
                                                         <tr>
-                                                            <th>#</th>
+                                                            <th>No</th>
                                                             <th>Nama Siswa</th>
                                                             <th>Spp Dibayar x bulan</th>
                                                             <th>Aksi</th>

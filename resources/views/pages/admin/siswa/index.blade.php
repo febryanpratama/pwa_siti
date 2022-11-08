@@ -30,7 +30,7 @@
                                     <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
                                     <div class="heading-elements">
                                         <a href="{{ url('admin/siswa/form-siswa') }}">
-                                            <button class="btn btn-info">Add {{ $title }}</button>
+                                            <button class="btn btn-info">+ Add {{ $title }}</button>
                                         </a>
                                     </div>
                                 </div>
@@ -41,7 +41,7 @@
                                             <table class="table table-striped table-bordered base-style text-center">
                                                 <thead>
                                                     <tr>
-                                                        <th>#</th>
+                                                        <th>No</th>
                                                         <th>Nama Siswa</th>
                                                         <th>Telpon Siswa</th>
                                                         <th>Jenis Kelamin</th>
@@ -129,7 +129,7 @@
                                                 </tbody>
                                                 <tfoot>
                                                     <tr>
-                                                        <th>#</th>
+                                                        <th>No</th>
                                                         <th>Nama Siswa</th>
                                                         <th>Telpon Siswa</th>
                                                         <th>Jenis Kelamin</th>

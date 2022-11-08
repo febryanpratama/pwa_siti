@@ -45,7 +45,7 @@
                                             <table class="table table-striped table-bordered base-style text-center">
                                                 <thead>
                                                     <tr>
-                                                        <th>#</th>
+                                                        <th>No</th>
                                                         <th>Nama Siswa</th>
                                                         <th>Pembayaran</th>
                                                         <th>Aksi</th>
@@ -85,7 +85,7 @@
                                                 </tbody>
                                                 <tfoot>
                                                     <tr>
-                                                        <th>#</th>
+                                                        <th>No</th>
                                                         <th>Nama Siswa</th>
                                                         <th>Bendahara</th>
                                                         <th>Aksi</th>

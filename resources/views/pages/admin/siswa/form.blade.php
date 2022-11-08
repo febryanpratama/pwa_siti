@@ -25,6 +25,7 @@
                 </div>
             </div>
         </div>
+        {{-- {{ dd($data) }} --}}
         <div class="content-body">
             <!-- Basic form layout section start -->
             <section id="basic-form-layouts">
@@ -82,17 +83,17 @@
                                                 <i class="ft-briefcase"></i>{{ $title }} Forms</h4>
                                             <div class="form-group">
                                                 <label for="contactinput5">NISN</label>
-                                                <input type="number" class="form-control @error('nisn') is-invalid @enderror" required name="nisn" placeholder="Masukkan No NISN" />
+                                                <input type="number" class="form-control @error('nisn') is-invalid @enderror" required name="nisn" value="{{ $data->nisn }}" placeholder="Masukkan No NISN" />
                                             </div>
 
                                             <div class="form-group">
                                                 <label for="contactinput5">NIS</label>
-                                                <input type="number" class="form-control @error('nis') is-invalid @enderror" required name="nis" placeholder="Masukkan No NIS" />
+                                                <input type="number" class="form-control @error('nis') is-invalid @enderror" required name="nis" value="{{ $data->nis }}" placeholder="Masukkan No NIS" />
                                             </div>
 
                                             <div class="form-group">
                                                 <label for="contactinput5">Nama Siswa</label>
-                                                <input type="text" class="form-control @error('nama_siswa') is-invalid @enderror" required name="nama_siswa" placeholder="Masukkan Nama Siswa">
+                                                <input type="text" class="form-control @error('nama_siswa') is-invalid @enderror" required name="nama_siswa" value="{{ $data->nama_siswa }}" placeholder="Masukkan Nama Siswa">
                                             </div>
                                             
                                             <div class="form-group">
@@ -124,7 +125,7 @@
                                             
                                             <div class="form-group">
                                                 <label for="contactinput5">Tempat Lahir</label>
-                                                <input type="text" class="form-control @error('tempat_lahir') is-invalid @enderror" required name="tempat_lahir" placeholder="Masukkan Tempat Lahir">
+                                                <input type="text" class="form-control @error('tempat_lahir') is-invalid @enderror" required name="tempat_lahir" value="{{ $data->tempat_lahir }}" placeholder="Masukkan Tempat Lahir">
                                             </div>
                                             <div class="form-group">
                                                 <label for="contactinput5">Tanggal Lahir</label>
@@ -150,7 +151,7 @@
                                             </div> --}}
                                             <div class="form-group">
                                                 <label for="contactinput5">Asal Sekolah</label>
-                                                <input type="text" class="form-control @error('asal_sekolah') is-invalid @enderror" required name="asal_sekolah" placeholder="Masukkan Asal Sekolah">
+                                                <input type="text" class="form-control @error('asal_sekolah') is-invalid @enderror" required name="asal_sekolah" value="{{ $data->asal_sekolah }}" placeholder="Masukkan Asal Sekolah">
                                             </div>
                                             {{-- <div class="form-group">
                                                 <label for="contactinput5">Nomor Ujian SMP</label>
@@ -158,7 +159,7 @@
                                             </div> --}}
                                             <div class="form-group">
                                                 <label for="contactinput5">Nomor Ijazah</label>
-                                                <input type="number" class="form-control @error('nomor_ijazah') is-invalid @enderror" required name="nomor_ijazah" placeholder="Masukkan Nomor Ijazah">
+                                                <input type="number" class="form-control @error('nomor_ijazah') is-invalid @enderror" required name="nomor_ijazah" value="{{ $data->nomor_ijazah }}" placeholder="Masukkan Nomor Ijazah">
                                             </div>
                                             {{-- <div class="form-group">
                                                 <label for="contactinput5">Nomor SKHUN</label>
@@ -166,15 +167,15 @@
                                             </div> --}}
                                             <div class="form-group">
                                                 <label for="contactinput5">Telpon Siswa</label>
-                                                <input type="number" class="form-control @error('telpon_siswa') is-invalid @enderror" required name="telpon_siswa" placeholder="Masukkan Nomor Telpon Siswa">
+                                                <input type="number" class="form-control @error('telpon_siswa') is-invalid @enderror" required name="telpon_siswa" value="{{ $data->telpon_siswa }}" placeholder="Masukkan Nomor Telpon Siswa">
                                             </div>
                                             <div class="form-group">
                                                 <label for="contactinput5">Nama Orang Tua Siswa</label>
-                                                <input type="text" class="form-control @error('nama_ortu') is-invalid @enderror" required name="nama_ortu" placeholder="Masukkan Nama Orang Tua Siswa">
+                                                <input type="text" class="form-control @error('nama_ortu') is-invalid @enderror" required name="nama_ortu" value="{{ $data->nama_ortu }}" placeholder="Masukkan Nama Orang Tua Siswa">
                                             </div>
                                             <div class="form-group">
                                                 <label for="contactinput5">Nomor Telpon Orang Tua Siswa</label>
-                                                <input type="number" class="form-control @error('telpon_ortu_siswa') is-invalid @enderror" required name="telpon_ortu_siswa" placeholder="Masukkan Nomor Telpon Orang Tua Siswa">
+                                                <input type="number" class="form-control @error('telpon_ortu_siswa') is-invalid @enderror" required name="telpon_ortu_siswa" value="{{ $data->telpon_ortu_siswa }}" placeholder="Masukkan Nomor Telpon Orang Tua Siswa">
                                             </div>
                                             {{-- <div class="form-group">
                                                 <label for="contactinput5">Nilai Ujian Bahasa Indonesia</label>
@@ -194,7 +195,7 @@
                                             </div> --}}
                                             <div class="form-group">
                                                 <label for="contactinput5">Alamat Siswa</label>
-                                                <textarea name="alamat" class="form-control @error('alamat') is-invalid @enderror" required cols="30" rows="5"></textarea>
+                                                <textarea name="alamat" class="form-control @error('alamat') is-invalid @enderror" required cols="30" rows="5">{{ $data->alamat }}</textarea>
                                             </div>
 
                                         </div>

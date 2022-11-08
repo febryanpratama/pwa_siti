@@ -41,15 +41,15 @@
                                                 <form action="{{ url('bendahara/laporan-spp/excel') }}" method="POST">
                                                     @endrole
                                                     @csrf
-                                                <div class="row">
-                                                    <div class="col-sm-4 col-md-3 col-sm-12">
+                                                <div class="row d-flex justify-content-end">
+                                                    {{-- <div class="col-sm-4 col-md-3 col-sm-12">
                                                         <label for="" class="control-label">Tanggal Mulai</label>
                                                         <input type="date" class="form-control" name="tanggal_mulai" required>
                                                     </div>
                                                     <div class="col-sm-4 col-md-3 col-sm-12">
                                                         <label for="" class="control-label">Tanggal Selesai</label>
                                                         <input type="date" class="form-control" name="tanggal_selesai" required>
-                                                    </div>
+                                                    </div> --}}
                                                     <div class="col-md-3 col-sm-12">
                                                         <label for="" class="control-label">Kelas</label>
                                                         <select name="kelas_id" class="form-control" id="" required>
@@ -61,8 +61,8 @@
                                                         </select>
                                                     </div>
                                                     <div class="col-md-3 col-sm-12">
-                                                        <label for="" class="control-label" style="color: white"> Submit </label>
-                                                        <button type="submit" class="form-control btn btn-info">Submit</button>
+                                                        <label for="" class="control-label" style="color: white"> Cetak </label>
+                                                        <button type="submit" class="form-control btn btn-info">Cetak</button>
                                                     </div>
                                                 </div>
                                             </form>
@@ -76,7 +76,7 @@
                                             <table class="table table-striped table-bordered base-style text-center">
                                                 <thead>
                                                     <tr>
-                                                        <th>#</th>
+                                                        <th>No</th>
                                                         <th>Nama Siswa</th>
                                                         <th>Nama Bendahara</th>
                                                         <th>Nominal Pembayaran</th>
@@ -108,7 +108,7 @@
                                                 </tbody>
                                                 <tfoot>
                                                     <tr>
-                                                        <th>#</th>
+                                                        <th>No</th>
                                                         <th>Nama Siswa</th>
                                                         <th>Nama Bendahara</th>
                                                         <th>Nominal Pembayaran</th>

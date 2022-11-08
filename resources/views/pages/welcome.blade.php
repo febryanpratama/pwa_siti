@@ -206,6 +206,7 @@
                                     </thead>
                                     <tbody>
                                         @if ($spp != null)
+                                        {{-- {{ dd($spp) }} --}}
                                             @foreach ($spp as $item => $spp)
                                                 <tr>
                                                     <td>{{ $item+1 }} {{ $spp->id }}</td>
@@ -213,7 +214,8 @@
                                                     <td>{{ $spp->kelas->kelas }} {{ $spp->kelas->nama_kelas }}</td>
                                                     <td>Rp. {{ number_format($spp->total_pembayaran,0) }}</td>
                                                     <td>
-                                                        @switch($spp->status)
+                                                        {{-- {{ $spp->status }} --}}
+                                                        @switch($spp->status_pembayaran)
                                                             @case('Lunas')
                                                                 <div class="badge badge-success">Lunas</div>
                                                                 @break

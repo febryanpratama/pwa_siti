@@ -87,6 +87,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:Admin']], func
         Route::get('generate/{kelas_id}', [SppController::class, 'generate']);
         Route::post('/', [SppController::class, 'store']);
         Route::post('/add', [SppController::class, 'addSpp']);
+        Route::post('/update', [SppController::class, 'updateSpp']);
     });
 
     Route::prefix('/tahun-ajaran')->group(function () {
