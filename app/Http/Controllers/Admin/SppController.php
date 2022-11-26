@@ -97,13 +97,22 @@ class SppController extends Controller
 
     public function updateSpp(Request $request)
     {
-        dd($request->all());
+        // dd($request->all());
+        $result = $this->sppService->updateSpp($request->all());
+
+        // dd($result);
+        if ($result['status'] == true) {
+            # code...
+            return back()->withSuccess($result['message']);
+        } else {
+            return back()->withError($result['message']);
+        }
     }
 
     public function Export(Request $request)
     {
-        $result = $this->sppService->exportExcel($request->all());
-        return $result;
+        // $result = $this->sppService->exportExcel($request->all());
+        // return $result;
     }
 
     // API SPP

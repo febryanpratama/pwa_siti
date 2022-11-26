@@ -72,6 +72,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:Admin']], func
     ], function () {
         // 
         Route::get('/', [AlumniController::class, 'index']);
+        Route::get('/get', [AlumniController::class, 'getAlumni']);
         Route::post('/store-ijazah', [AlumniController::class, 'storeIjazah']);
     });
 

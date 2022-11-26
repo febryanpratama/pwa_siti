@@ -76,7 +76,7 @@
                                                                 <div class="badge badge-danger">Belum Lunas</div>
                                                                 @break
 
-                                                            @default
+                                                            @case('Cicilan')
                                                             <div class="badge badge-warning">Cicilan</div>
                                                                 @break
 
@@ -109,7 +109,7 @@
                                                             </button> --}}
                                                         </td>
                                                     </tr>
-                                                    <div class="modal fade text-left" id="destroy{{ $item->id }}" tabindex="-1"
+                                                    {{-- <div class="modal fade text-left" id="destroy{{ $item->id }}" tabindex="-1"
                                                         role="dialog" aria-labelledby="myModalLabel17"
                                                         aria-hidden="true">
                                                         <div class="modal-dialog" role="document">
@@ -142,7 +142,7 @@
                                                                 </form>
                                                             </div>
                                                         </div>
-                                                    </div>
+                                                    </div> --}}
 
                                                     <div class="modal fade text-left" id="cicilan{{ $item->id }}" tabindex="-1"
                                                         role="dialog" aria-labelledby="myModalLabel17"
@@ -166,8 +166,8 @@
                                                                 <form action="{{ url('bendahara/spp/update') }}" method="POST">
                                                                     @endrole
                                                                     @csrf
-                                                                    <input type="hidden" name="spp_id" class="spp_id" value="{{ $item }}">
-                                                                    <input type="hidden" name="siswa_id" class="siswa_id" value="">
+                                                                    <input type="hidden" name="spp_id" class="spp_id" value="{{ $item->id }}">
+                                                                    <input type="hidden" name="siswa_id" class="siswa_id" value="{{ $item->siswa_id }}">
                                                                     <div class="modal-body">
                                                                         <div class="row">
                                                                             <div class="col-md-6">
@@ -202,21 +202,21 @@
                                                                                 <div class="form-group">
                                                                                     <label for="" class="label-control">Nominal Telah Dibayar</label>
 
-                                                                                    <input type="text" name="nama_siswa" class="form-control" value="{{ $item->total_pembayaran }}" readonly id="siswa_nama">
+                                                                                    <input type="text" name="nama_siswa" class="form-control" value="{{ $item->total_pembayaran }}" readonly >
                                                                                 </div>
                                                                             </div>
-                                                                            <div class="col-md-6">
+                                                                            <div class="col-md-12">
                                                                                 <div class="form-group">
                                                                                     <label for="" class="label-control">Nominal Sisa Pembayaran</label>
-                                                                                    <input type="number" name="nominal_sisa" class="form-control sisa_spp" value="{{ $item->sisa_bayar }}" readonly required>
+                                                                                    <input type="number" name="nominal_sisa" class="form-control " value="{{ $item->sisa_bayar }}" readonly required>
                                                                                 </div>
                                                                             </div>
-                                                                            <div class="col-md-6">
+                                                                            {{-- <div class="col-md-6">
                                                                                 <div class="form-group">
                                                                                     <label for="" class="label-control">Nominal yang dibayar</label>
-                                                                                    <input type="number" name="nominal_dibayar" class="form-control nominal_pembayaran" value="" required>
+                                                                                    <input type="number" name="nominal_dibayar" class="form-control" value="" required>
                                                                                 </div>
-                                                                            </div>
+                                                                            </div> --}}
                                                                             <div class="col-md-12">
                                                                                 <div class="form-group">
                                                                                     <label for="" class="label-control">Keterangan</label>
@@ -365,7 +365,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title" id="myModalLabel17">
-                        Edit {{ $title }}
+                        Add {{ $title }}
                     </h4>
                     <button type="button" class="close"
                         data-dismiss="modal" aria-label="Close">
@@ -442,7 +442,7 @@
                         <button type="button" class="btn grey btn-secondary"
                         data-dismiss="modal">Close</button>
                         <button type="submit"
-                        class="btn btn-danger">Edit</button>
+                        class="btn btn-success">Add</button>
                     </div>
                 </form>
             </div>
@@ -472,7 +472,7 @@
                 success: (result)=>{
 
 
-                    // console.log(result.data.siswa.id);
+                    // console.log(result.data.siswa.nama_siswa);
                     if(result.status == true){
 
                         $('#siswa_nama').val(result.data.siswa.nama_siswa);
@@ -496,11 +496,21 @@
         $('.nominal_pembayaran').on('keyup', function(){
             // console.log("ok");
             let nominal_spp = $('.nominal_spp').val();
-            let nominal_pembayaran = $('.nominal_pembayaran').val();
+            let nominal_pembayaran = $(this).val()
+            // console.log(nominal_pembayaran);
             let sisa_spp = nominal_spp - nominal_pembayaran;
+            // console.log(nominal_spp+"/"+nominal_pembayaran+"/"+sisa_spp);
             $('.sisa_spp').val(sisa_spp);
         })
 
+        // $('.nominal_pembayaran_sisa').on('keyup', function(){
+        //     let sisa_spp = $(this).val();
+        //     let nominal_pembayaran = $('.nominal_pembayaran_sisa').val();
+
+        //     let nominal = sisa_spp - nominal_pembayaran;
+        //     console.log(nominal);
+        //     $('.sisa_spp').val(nominal);
+        // })
     
 
         // $(document).ready(function(){

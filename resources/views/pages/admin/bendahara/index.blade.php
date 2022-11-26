@@ -251,7 +251,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="" class="label-control">Re-Password</label>
+                                    <label for="" class="label-control">Password</label>
                                     <input type="password" class="form-control" name="password" required>
                                 </div>
                             </div>

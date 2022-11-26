@@ -31,7 +31,7 @@
                                     <div class="heading-elements">
                                         <button type="button" class="btn btn-info " data-toggle="modal"
                                             data-target="#large">
-                                            Add {{ $title }}
+                                            + Add {{ $title }}
                                         </button>
                                         {{-- <a href="{{ url('admin/siswa/form-siswa') }}">
                                             <button class="btn btn-info">Add {{ $title }}</button>

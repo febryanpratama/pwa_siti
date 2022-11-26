@@ -88,7 +88,7 @@ class Format
 
     static function getCountSiswaKelas($kelas_id)
     {
-        $data = DetailKelas::where('kelas_id', $kelas_id)->count();
+        $data = DetailKelas::with('siswa')->whereRelation('siswa', 'status_siswa', 'Aktif')->where('kelas_id', $kelas_id)->count();
 
         return $data;
     }

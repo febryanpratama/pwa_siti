@@ -74,7 +74,7 @@
                                                                     <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
                                                                 </svg>
                                                             </button>
-                                                            <button type="button" class="btn btn-sm btn-info " data-toggle="modal"
+                                                            {{-- <button type="button" class="btn btn-sm btn-info " data-toggle="modal"
                                                                 data-target="#edit{{ $item->id }}">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" style="width: 20px;height: 20px" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                                                     <path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
@@ -85,7 +85,7 @@
                                                                 <svg xmlns="http://www.w3.org/2000/svg" style="width: 29px;height: 20px" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                                                     <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                                                                 </svg>
-                                                            </button>
+                                                            </button> --}}
                                                         </td>
                                                     </tr>
                                                     <div class="modal fade text-left" id="pindah{{ $item->id }}"

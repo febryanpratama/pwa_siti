@@ -42,14 +42,6 @@
                                                     @endrole
                                                     @csrf
                                                 <div class="row d-flex justify-content-end">
-                                                    {{-- <div class="col-sm-4 col-md-3 col-sm-12">
-                                                        <label for="" class="control-label">Tanggal Mulai</label>
-                                                        <input type="date" class="form-control" name="tanggal_mulai" required>
-                                                    </div>
-                                                    <div class="col-sm-4 col-md-3 col-sm-12">
-                                                        <label for="" class="control-label">Tanggal Selesai</label>
-                                                        <input type="date" class="form-control" name="tanggal_selesai" required>
-                                                    </div> --}}
                                                     <div class="col-md-3 col-sm-12">
                                                         <label for="" class="control-label">Kelas</label>
                                                         <select name="kelas_id" class="form-control" id="" required>
@@ -60,6 +52,24 @@
                                                             @endforeach
                                                         </select>
                                                     </div>
+                                                    <div class="col-sm-4 col-md-3 col-sm-12">
+                                                        <label for="" class="control-label">Semester</label>
+                                                        <select name="semester" class="form-control" id="" required>
+                                                            <option value="" selected disabled> == PILIH == </option>
+                                                            <option value="GANJIL">GANJIL</option>
+                                                            <option value="GENAP">GENAP</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-sm-4 col-md-3 col-sm-12">
+                                                        <label for="" class="control-label">Tahun</label>
+                                                        <select name="semester" class="form-control" id="" required>
+                                                            <option value="" selected disabled> == PILIH == </option>
+                                                            @for ($i = 2021; $i < 2030; $i++)
+                                                                <option value="{{ $i }}" @if ($i == date('Y')) selected @endif>{{ $i }}</option>
+                                                            @endfor
+                                                        </select>
+                                                    </div>
+                                                    
                                                     <div class="col-md-3 col-sm-12">
                                                         <label for="" class="control-label" style="color: white"> Cetak </label>
                                                         <button type="submit" class="form-control btn btn-info">Cetak</button>

@@ -66,7 +66,7 @@ class SppService
 
     public function detailKelas($data)
     {
-        $siswa = Siswa::with('kelasDetail')->whereRelation('kelasDetail', 'kelas_id', $data)->get();
+        $siswa = Siswa::with('kelasDetail')->whereRelation('kelasDetail', 'kelas_id', $data)->where('status_siswa', 'Aktif')->get();
 
         $status = true;
         $message = 'Data siswa berhasil diambil';
@@ -108,7 +108,7 @@ class SppService
         $month = Carbon::now()->format('m');
         $year = Carbon::now()->format('Y');
         // $month = 3;
-        $siswa = Siswa::with('kelasDetail', 'kelasDetail.kelas')->whereRelation('kelasDetail', 'kelas_id', $kelas_id)->get();
+        $siswa = Siswa::with('kelasDetail', 'kelasDetail.kelas')->whereRelation('kelasDetail', 'kelas_id', $kelas_id)->where('status_siswa', 'Aktif')->get();
         // dd($siswa);
         DB::beginTransaction();
         try {
@@ -384,6 +384,38 @@ class SppService
         } catch (\Throwable $th) {
             //throw $th;
         }
+    }
+
+    static function updateSpp($data)
+    {
+        $validator = Validator::make($data, [
+            'spp_id' => 'required|exists:spps,id',
+            'guru_penerima_id' => 'required',
+            'guru_piket_id' => 'required',
+            'siswa_id' => 'required|exists:siswas,id',
+            'nominal_sisa' => 'required',
+            // 'keterangan' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return [
+                'status' => false,
+                'message' => $validator->errors()->first(),
+            ];
+        }
+
+        $findSpp = Spp::firstWhere('id', $data['spp_id']);
+
+        // dd($findSpp);
+        $findSpp->update([
+            'sisa_bayar' => 0,
+            'status_pembayaran' => 'Lunas',
+        ]);
+
+        return [
+            'status' => true,
+            'message' => 'Berhasil Melakukan Pelunasan',
+        ];
     }
 
     static function dataSiswa($data)

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Guru;
 use App\Models\Ijazah;
 use App\Models\siswa;
+use App\Models\Spp;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -25,6 +26,30 @@ class AlumniController extends Controller
             'alumni' => $alumni,
             'guru' => $guru
         ]);
+    }
+
+    public function getAlumni()
+    {
+        $siswa = Siswa::get();
+
+        $spp = [];
+        foreach ($siswa as $key) {
+            $data = Spp::where('siswa_id', $key->id)->count();
+
+            if ($data >= 18) {
+                $dataSiswa = Spp::firstWhere('siswa_id', $key->id);
+                $spp[] = $dataSiswa->siswa_id;
+            }
+        }
+
+        foreach ($spp as $item) {
+            $data = Siswa::find($item);
+            $data->status_siswa = 'Alumni';
+            $data->save();
+        }
+
+        return redirect('admin/alumni')->with('success', 'Data berhasil diupdate');
+        // dd($spp);
     }
 
     public function storeIjazah(Request $request)

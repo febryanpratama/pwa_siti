@@ -41,7 +41,7 @@
 </head>
 <body>
     <table style="border: 2px solid black;width: 100%;margin: auto">
-        {{-- {{ dd($data) }} --}}
+        {{-- {{ dd(@$data) }} --}}
         <thead>
             <tr>
                 <th colspan="19" style="text-align: center;font-family: Arial;">DAFTAR PEMBAYARAN KOMITE SISWA SMA TAMAN MULIA SEMESTER GANJIL</th>
@@ -51,7 +51,7 @@
             </tr>
             <tr></tr>
             <tr>
-                <th colspan="2">KELAS : {{ $data[0]->kelas->kelas }} {{ $data[0]->kelas->nama_kelas }}</th>
+                <th colspan="2">KELAS : {{ @$data[0]->kelas->kelas }} {{ @$data[0]->kelas->nama_kelas }}</th>
             </tr>
             <tr>
                 <th rowspan="2" style="text-align: center;font-family: Arial;border: 2px solid black;border-collapse: collapse">NO</th>
@@ -72,8 +72,8 @@
         </thead>
         <tbody>
 
-            {{-- {{ dd($data) }} --}}
-            @foreach ($data as $item=>$value)
+            {{-- {{ dd(@$data) }} --}}
+            @foreach (@$data as $item=>$value)
                 <tr>
                     <td style="border: 2px solid black;border-collapse: collapse">{{ $item+1 }}</td>
                     <td style="border: 2px solid black;border-collapse: collapse">{{ $value->siswa->nama_siswa }}</td>
@@ -111,7 +111,7 @@
             <tr>
                 <th style="border: 2px solid black;border-collapse:collapse;text-align:center" colspan="4">Total</th>
                 <th style="border: 2px solid black;border-collapse:collapse;text-align:center"></th>
-                <th style="border: 2px solid black;border-collapse:collapse;text-align:center">0</th>
+                <th style="border: 2px solid black;border-collapse:collapse;text-align:center">{{ @App\Helpers\Format::getSumDataSpp($data[0]->kelas_id, $semester ,$tahun) }}</th>
                 <th style="border: 2px solid black;border-collapse:collapse;text-align:center"></th>
                 <th style="border: 2px solid black;border-collapse:collapse;text-align:center">0</th>
                 <th style="border: 2px solid black;border-collapse:collapse;text-align:center"></th>
