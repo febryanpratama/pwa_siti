@@ -78,4 +78,22 @@ class AlumniController extends Controller
 
         return back()->with('success', 'Data berhasil disimpan');
     }
+
+    public function pelunasan(Request $request)
+    {
+        // dd($request->all());
+        $data = Spp::where('siswa_id', $request->siswa_id)->get();
+
+        foreach ($data as $item) {
+            $firstSpp = Spp::firstWhere('id', $item->id)->update([
+                'tanggal_pembayaran' => date('Y-m-d'),
+                'total_pembayaran' => $item->nominal_bayar,
+                'sisa_bayar' => 0,
+                'keterangan' => 'Pelunasan',
+                'status_pembayaran' => 'Lunas',
+            ]);
+        }
+
+        return back()->with('success', 'Berhasil Melakukan Pelunasan');
+    }
 }

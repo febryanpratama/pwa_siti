@@ -116,4 +116,25 @@ class Format
 
         return $data;
     }
+
+    static function getAllSisaSpp($siswa_id)
+    {
+        $total = [];
+        $data = Spp::where('siswa_id', $siswa_id)->whereIn('status_pembayaran', ['Belum Lunas', 'Cicilan'])->get();
+
+        foreach ($data as $key => $value) {
+            # code...
+            $dataSpp = Spp::firstWhere('id', $value->id);
+            // dd($dataSpp);
+            if ($value->sisa_bayar == 0) {
+                # code...
+                $total[] = $dataSpp->nominal_bayar;
+            } else {
+                $total[] = $dataSpp->sisa_bayar;
+            }
+            // $total[] = $value->sisa_pembayaran;
+        }
+
+        return array_sum($total);
+    }
 }

@@ -193,4 +193,6 @@ Route::group(['prefix' => 'user', 'middleware' => ['role:User']], function () {
     });
 });
 
+Route::post('admin/alumni/pelunasan', [AlumniController::class, 'pelunasan'])->name('alumni.pelunasan');
+
 \PWA::routes();
