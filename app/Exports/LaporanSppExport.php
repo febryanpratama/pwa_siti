@@ -23,7 +23,6 @@ class LaporanSppExport implements FromView, WithColumnFormatting
     {
         return view('pages.admin.laporan.excel', [
             'data'  => $this->data,
-            // 'bulan' => $this->bulan,
             // 'tahun' => $this->tahun
         ]);
     }

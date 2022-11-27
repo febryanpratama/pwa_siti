@@ -51,10 +51,10 @@ class Format
         }
     }
 
-    static function getTanggal($siswa_id, $kelas_id, $bulan)
+    static function getTanggal($siswa_id, $kelas_id, $tahun, $bulan)
     {
         // $data = Spp::where('id', $spp_id)->()
-        $data = Spp::where('siswa_id', $siswa_id)->where('kelas_id', $kelas_id)->whereMonth('tanggal', $bulan)->first();
+        $data = Spp::where('siswa_id', $siswa_id)->where('kelas_id', $kelas_id)->whereMonth('tanggal', $bulan)->whereYear('tanggal', $tahun)->first();
 
         // dd($data);
 
@@ -73,17 +73,42 @@ class Format
             return 0;
         }
     }
-    static function getDataSpp($siswa_id, $kelas_id, $bulan)
+    static function getDataSpp($siswa_id, $kelas_id, $tahun, $bulan)
     {
         // $data = Spp::()
-        $data = Spp::where('siswa_id', $siswa_id)->where('kelas_id', $kelas_id)->whereMonth('tanggal', $bulan)->first();
-
+        $data = Spp::where('siswa_id', $siswa_id)->where('kelas_id', $kelas_id)->whereMonth('tanggal', $bulanbulan)->first();
         // dd($data);
         if ($data != NULL) {
             return @$data->total_pembayaran;
         } else {
             return 0;
         }
+    }
+    static function getSumDataSpp($kelas_id, $bulan, $tahun)
+    {
+        $total = [];
+        $data = Spp::where('kelas_id', $kelas_id)->whereMonth('tanggal', $bulan)->get();
+
+        // dd($data);
+        foreach ($data as $key => $value) {
+            # code...
+            // dd($value->status_pembayaran);
+
+            switch ($value->status_pembayaran) {
+                case 'Lunas':
+                    $total[] = $value->total_pembayaran;
+                    break;
+                case 'Cicilan':
+                    $total[] = $value->total_pembayaran;
+                    break;
+                case 'Belum Lunas':
+                    $total[] = 0;
+                    break;
+            }
+            // $total[] = $value->total_pembayaran;
+        }
+
+        return array_sum($total);
     }
 
     static function getCountSiswaKelas($kelas_id)

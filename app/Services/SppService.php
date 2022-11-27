@@ -365,6 +365,7 @@ class SppService
                 'total_pembayaran' => $data['nominal_dibayar'],
                 'sisa_bayar' => $data['nominal_sisa'],
                 'keterangan' => $data['keterangan'],
+                'tanggal_pembayaran' => Date('Y-m-d'),
                 'status_pembayaran' => $data['nominal_sisa'] == 0 ? 'Lunas' : 'Cicilan',
             ]);
 
