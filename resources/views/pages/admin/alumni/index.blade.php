@@ -91,101 +91,109 @@
                                                                             <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m3.75 9v6m3-3H9m1.5-12H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
                                                                         </svg>
                                                                     </button>
-                                                                    
+                                                                    <div class="modal fade text-left" id="pelunasan{{ $key->id }}" tabindex="-1"
+                                                            role="dialog" aria-labelledby="myModalLabel18"
+                                                            aria-hidden="true">
+                                                            <div class="modal-dialog" role="document">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h4 class="modal-title" id="myModalLabel17">
+                                                                            Add  Ijazah
+                                                                        </h4>
+                                                                        <button type="button" class="close"
+                                                                            data-dismiss="modal" aria-label="Close">
+                                                                            <span aria-hidden="true">&times;</span>
+                                                                        </button>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        <form method="POST" action="{{ url("admin/alumni/pelunasan") }}" enctype="multipart/form-data">
+                                                                            <input type="hidden" value="{{ $key->id }}" name="siswa_id">
+                                                                            @csrf
+                                                                            <div class="row">
+                                                                                <div class="col-md-12">
+                                                                                    <div class="form-group">
+                                                                                        <label for="" class="control-label">Sisa Pembayaran SPP</label>
+                                                                                        <input type="text" name="nomor_ijazah" class="form-control" value="{{ number_format(App\Helpers\Format::getAllSisaSpp($key->id), 0) }}" placeholder="Masukkan Nomor Ijazah" readonly>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group row">
+                                                                                <label class="col-sm-2 col-form-label"></label>
+                                                                                <div class="col-sm-10">
+                                                                                    <button type="submit" class="btn btn-primary  px-5 float-right "><i class="icon"></i>+ Pelunasan</button>
+                                                                                </div>
+                                                                            </div>
+                                                                        </form>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                                 @endif
 
                                                             </td>
-                                                            <div class="modal fade" id="tambahIjazah{{ $key->id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel17"
-                                                                aria-hidden="true">
-                                                                <div class="modal-dialog " role="document">
-                                                                    <div class="modal-content">
-                                                                        <div class="modal-header">
-                                                                        <h5 class="modal-title">Ambil Ijazah</h5>
-                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                            <span aria-hidden="true">×</span>
-                                                                        </button>
-                                                                        </div>
-                                                                        <div class="modal-body text-left">
-                                                                            <form method="POST" action="{{ url("admin/alumni/store-ijazah") }}" enctype="multipart/form-data">
-                                                                                <input type="hidden" value="{{ $key->id }}" name="siswa_id">
-                                                                                @csrf
-                                                                                <div class="row">
-                                                                                    <div class="col-md-12">
-                                                                                        <div class="form-group">
-                                                                                            <label for="" class="control-label">Add Nomor Ijazah</label>
-                                                                                            <input type="text" name="nomor_ijazah" class="form-control" placeholder="Masukkan Nomor Ijazah">
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="col-md-12">
-                                                                                        <div class="form-group">
-                                                                                            <label for="" class="control-label">Add Nomor SKHUN</label>
-                                                                                            <input type="text" name="nomor_skhun" class="form-control" placeholder="Masukkan Nomor SKHUN">
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="col-md-12">
-                                                                                        <div class="form-group">
-                                                                                            <label for="" class="control-label">Guru Yang Menyerahkan</label>
-                                                                                            <select name="guru_id" id="" class="form-control">
-                                                                                                <option value="" selected disabled> == Pilih == </option>
-                                                                                                @foreach ($guru as $item=>$key)
-                                                                                                    <option value="{{ $key->id }}">{{ $key->nama_guru }}</option>
-                                                                                                @endforeach
-                                                                                            </select>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="col-md-12">
-                                                                                        <div class="form-group">
-                                                                                            <label for="" class="control-label">Tanggal Penyerahan</label>
-                                                                                            <input type="date" name="tanggal_penyerahan" class="form-control">
-                                                                                        </div>
-                                                                                    </div>
-        
-                                                                                </div>
-                                                                                <div class="form-group row">
-                                                                                    <label class="col-sm-2 col-form-label"></label>
-                                                                                    <div class="col-sm-10">
-                                                                                        <button type="submit" class="btn btn-success  px-5 float-right "><i class="icon"></i>+ Tambah Data</button>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </form>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="modal fade" id="pelunasan{{ $key->id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel17"
-                                                        aria-hidden="true">
-                                                                <div class="modal-dialog " role="document">
-                                                                    <div class="modal-content">
-                                                                        <div class="modal-header">
-                                                                        <h5 class="modal-title">Pelunasan</h5>
-                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                            <span aria-hidden="true">×</span>
-                                                                        </button>
-                                                                        </div>
-                                                                        <div class="modal-body text-left">
-                                                                            <form method="POST" action="{{ url("admin/alumni/pelunasan") }}" enctype="multipart/form-data">
-                                                                                <input type="hidden" value="{{ $key->id }}" name="siswa_id">
-                                                                                @csrf
-                                                                                <div class="row">
-                                                                                    <div class="col-md-12">
-                                                                                        <div class="form-group">
-                                                                                            <label for="" class="control-label">Sisa Pembayaran SPP</label>
-                                                                                            <input type="text" name="nomor_ijazah" class="form-control" value="{{ number_format(App\Helpers\Format::getAllSisaSpp($key->id), 0) }}" placeholder="Masukkan Nomor Ijazah" readonly>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="form-group row">
-                                                                                    <label class="col-sm-2 col-form-label"></label>
-                                                                                    <div class="col-sm-10">
-                                                                                        <button type="submit" class="btn btn-primary  px-5 float-right "><i class="icon"></i>+ Pelunasan</button>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </form>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
                                                         </tr>
+                                                        <div class="modal fade text-left" id="tambahIjazah{{ $key->id }}" tabindex="-1"
+                                                            role="dialog" aria-labelledby="myModalLabel17"
+                                                            aria-hidden="true">
+                                                            <div class="modal-dialog" role="document">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h4 class="modal-title" id="myModalLabel17">
+                                                                            Add  Ijazah
+                                                                        </h4>
+                                                                        <button type="button" class="close"
+                                                                            data-dismiss="modal" aria-label="Close">
+                                                                            <span aria-hidden="true">&times;</span>
+                                                                        </button>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        <form method="POST" action="{{ url("admin/alumni/store-ijazah") }}" enctype="multipart/form-data">
+                                                                            <input type="hidden" value="{{ $key->id }}" name="siswa_id">
+                                                                            @csrf
+                                                                            <div class="row">
+                                                                                <div class="col-md-12">
+                                                                                    <div class="form-group">
+                                                                                        <label for="" class="control-label">Add Nomor Ijazah</label>
+                                                                                        <input type="text" name="nomor_ijazah" class="form-control" placeholder="Masukkan Nomor Ijazah">
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-md-12">
+                                                                                    <div class="form-group">
+                                                                                        <label for="" class="control-label">Add Nomor SKHUN</label>
+                                                                                        <input type="text" name="nomor_skhun" class="form-control" placeholder="Masukkan Nomor SKHUN">
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-md-12">
+                                                                                    <div class="form-group">
+                                                                                        <label for="" class="control-label">Guru Yang Menyerahkan</label>
+                                                                                        <select name="guru_id" id="" class="form-control">
+                                                                                            <option value="" selected disabled> == Pilih == </option>
+                                                                                            @foreach ($guru as $item=>$key)
+                                                                                                <option value="{{ $key->id }}">{{ $key->nama_guru }}</option>
+                                                                                            @endforeach
+                                                                                        </select>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-md-12">
+                                                                                    <div class="form-group">
+                                                                                        <label for="" class="control-label">Tanggal Penyerahan</label>
+                                                                                        <input type="date" name="tanggal_penyerahan" class="form-control">
+                                                                                    </div>
+                                                                                </div>
+    
+                                                                            </div>
+                                                                            <div class="form-group row">
+                                                                                <label class="col-sm-2 col-form-label"></label>
+                                                                                <div class="col-sm-10">
+                                                                                    <button type="submit" class="btn btn-success  px-5 float-right "><i class="icon"></i>+ Tambah Data</button>
+                                                                                </div>
+                                                                            </div>
+                                                                        </form>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        
                                                     @endforeach
                                                 </tbody>
                                                 <tfoot>
