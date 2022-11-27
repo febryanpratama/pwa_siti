@@ -76,7 +76,7 @@ class Format
     static function getDataSpp($siswa_id, $kelas_id, $tahun, $bulan)
     {
         // $data = Spp::()
-        $data = Spp::where('siswa_id', $siswa_id)->where('kelas_id', $kelas_id)->whereMonth('tanggal', $bulanbulan)->first();
+        $data = Spp::where('siswa_id', $siswa_id)->where('kelas_id', $kelas_id)->whereMonth('tanggal', $bulan)->first();
         // dd($data);
         if ($data != NULL) {
             return @$data->total_pembayaran;
