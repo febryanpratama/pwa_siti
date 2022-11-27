@@ -70,9 +70,10 @@
                                             <code>border-*</code> class.</p>
                                     </div> --}}
 
-                                    @if (@@$data->id)
-                                    <form class="form" action="{{ url('portfolio/'. @@$data->id.'/update') }}" method="POST" enctype="multipart/form-data">
-                                        @method('PUT')
+                                    @if (@$data->id)
+                                    <form class="form" action="{{ url('admin/siswa/update') }}" method="POST" enctype="multipart/form-data">
+                                        {{-- @method('PUT') --}}
+                                        <input type="hidden" name="siswa_id" value="{{ @$data->id }}">
                                     @else
                                     <form class="form" method="POST" action="{{ url('admin/siswa') }}" enctype="multipart/form-data">
                                     @endif
