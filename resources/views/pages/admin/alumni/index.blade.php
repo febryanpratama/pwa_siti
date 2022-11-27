@@ -95,7 +95,7 @@
                                                                 @endif
 
                                                             </td>
-                                                            <div class="modal fade" id="tambahIjazah{{ $key->id }}">
+                                                            <div class="modal fade" id="tambahIjazah{{ $key->id }}" tabindex="-1">
                                                                 <div class="modal-dialog ">
                                                                 <div class="modal-content">
                                                                     <div class="modal-header">
@@ -151,7 +151,7 @@
                                                                 </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="modal fade" id="pelunasan{{ $key->id }}">
+                                                            <div class="modal fade" id="pelunasan{{ $key->id }}" tabindex="-1">
                                                                 <div class="modal-dialog ">
                                                                     <div class="modal-content">
                                                                         <div class="modal-header">
