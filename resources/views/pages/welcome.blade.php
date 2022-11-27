@@ -193,45 +193,46 @@
                                 <h3 class="card-title">Data SPP</h3>
                             </div>
                             <div class="card-body">
-                                <table class="table table-bordered text-center">
-                                    <thead>
-                                        <tr>
-                                            <th width="10%">Nomor</th>
-                                            {{-- <th>Nama Siswa</th> --}}
-                                            <th>Bulan</th>
-                                            <th>Kelas </th>
-                                            <th>Nominal Dibayar</th>
-                                            <th>Status</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @if ($spp != null)
-                                        {{-- {{ dd($spp) }} --}}
-                                            @foreach ($spp as $item => $spp)
-                                                <tr>
-                                                    <td>{{ $item+1 }} {{ $spp->id }}</td>
-                                                    <td>{{ \Carbon\Carbon::parse($spp->tanggal)->format('M Y')}}</td>
-                                                    <td>{{ $spp->kelas->kelas }} {{ $spp->kelas->nama_kelas }}</td>
-                                                    <td>Rp. {{ number_format($spp->total_pembayaran,0) }}</td>
-                                                    <td>
-                                                        {{-- {{ $spp->status }} --}}
-                                                        @switch($spp->status_pembayaran)
-                                                            @case('Lunas')
-                                                                <div class="badge badge-success">Lunas</div>
-                                                                @break
-                                                            @case('Belum Lunas')
-                                                                <div class="badge badge-danger">Belum Lunas</div>
-                                                                @break
-                                                            @default
-                                                                <div class="badge badge-warning">Cicilan</div>
-                                                                
-                                                        @endswitch
-                                                    </td>
-                                                </tr>
-                            -                @endforeach
-                                        @endif
-                                    </tbody>
-                                </table>
+                                <div class="table table-responsive">
+                                    <table class="table table-bordered text-center">
+                                        <thead>
+                                            <tr>
+                                                <th width="10%">Nomor</th>
+                                                {{-- <th>Nama Siswa</th> --}}
+                                                <th>Bulan</th>
+                                                <th>Kelas </th>
+                                                <th>Nominal Dibayar</th>
+                                                <th>Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @if ($spp != null)
+                                                @foreach ($spp as $item => $spp)
+                                                    <tr>
+                                                        <td>{{ $item+1 }} {{ $spp->id }}</td>
+                                                        <td>{{ \Carbon\Carbon::parse($spp->tanggal)->format('M Y')}}</td>
+                                                        <td>{{ $spp->kelas->kelas }} {{ $spp->kelas->nama_kelas }}</td>
+                                                        <td>Rp. {{ number_format($spp->total_pembayaran,0) }}</td>
+                                                        <td>
+                                                            {{-- {{ $spp->status }} --}}
+                                                            @switch($spp->status_pembayaran)
+                                                                @case('Lunas')
+                                                                    <div class="badge badge-success">Lunas</div>
+                                                                    @break
+                                                                @case('Belum Lunas')
+                                                                    <div class="badge badge-danger">Belum Lunas</div>
+                                                                    @break
+                                                                @default
+                                                                    <div class="badge badge-warning">Cicilan</div>
+                                                                    
+                                                            @endswitch
+                                                        </td>
+                                                    </tr>
+                                -                @endforeach
+                                            @endif
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -242,7 +243,7 @@
 
         <!--====== Map Area Start ======-->
         <section class="section map-area">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2485.596666220624!2d-0.16124461362595294!3d51.46556134684942!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487605a25375dfb7%3A0xe0d9fa09dcf932a8!2s15%20Theatre%20St%2C%20Battersea%2C%20London%20SW11%205ND%2C%20UK!5e0!3m2!1sen!2sbd!4v1567427969685!5m2!1sen!2sbd" width="100" height="100" style="border:0;" allowfullscreen=""></iframe>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.808869183005!2d109.40005869999999!3d-0.1247107!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x84371fbbdd0b27aa!2zMMKwMDcnMjkuMCJTIDEwOcKwMjQnMDAuMiJF!5e0!3m2!1sid!2sid!4v1669528251938!5m2!1sid!2sid" width="100" height="1--" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </section>
         <!--====== Map Area End ======-->
 
