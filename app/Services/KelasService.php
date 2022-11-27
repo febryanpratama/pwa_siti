@@ -103,6 +103,8 @@ class KelasService
         $validator = Validator::make($data, [
             'siswa_id' => 'required|numeric|unique:detail_kelas,siswa_id',
             // 'kelas_id' => 'required',
+        ], [
+            'siswa_id.unique' => 'Siswa Sudah Ada',
         ]);
 
         if ($validator->fails()) {

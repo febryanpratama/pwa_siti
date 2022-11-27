@@ -141,7 +141,7 @@ class SppService
 
 
                 if ($month >= 2 && $month <= 7) {
-                    for ($i = 2; $i <= 7; $i++) {
+                    for ($i = 1; $i <= 7; $i++) {
                         # code...
                         $date = Carbon::now()->month($i)->day(1);
                         foreach ($siswa as $key => $value) {
@@ -167,35 +167,35 @@ class SppService
                     ];
                     return $result;
                 } else {
-                    for ($i = 8; $i <= 13; $i++) {
+                    for ($i = 7; $i <= 12; $i++) {
                         # code...
-                        if ($i <= 12) {
-                            # code...
-                            $date = Carbon::now()->month($i)->day(1);
-                            foreach ($siswa as $key => $value) {
-                                // 
-                                Spp::create([
-                                    'kelas_id'          => $kelas_id,
-                                    'siswa_id'          => $value->id,
-                                    'tanggal'           => $date,
-                                    'semester'          => $count == null ? 1 : ($count->semester + 1),
-                                    'nominal_bayar'     => $value->kelasDetail->kelas->nominal,
-                                ]);
-                            }
-                        } else {
-                            $date = Carbon::now()->month(1)->day(1)->addYear(1);
-                            // dd($date);
-                            foreach ($siswa as $key => $value) {
-                                // 
-                                Spp::create([
-                                    'kelas_id'          => $kelas_id,
-                                    'siswa_id'          => $value->id,
-                                    'tanggal'           => $date,
-                                    'semester'          => $count == null ? 1 : ($count->semester + 1),
-                                    'nominal_bayar'     => $value->kelasDetail->kelas->nominal,
-                                ]);
-                            }
+                        $date = Carbon::now()->month($i)->day(1);
+                        foreach ($siswa as $key => $value) {
+                            // 
+                            Spp::create([
+                                'kelas_id'          => $kelas_id,
+                                'siswa_id'          => $value->id,
+                                'tanggal'           => $date,
+                                'semester'          => $count == null ? 1 : ($count->semester + 1),
+                                'nominal_bayar'     => $value->kelasDetail->kelas->nominal,
+                            ]);
                         }
+                        // if ($i <= 12) {
+                        //     # code...
+                        // } else {
+                        //     $date = Carbon::now()->month(1)->day(1)->addYear(1);
+                        //     // dd($date);
+                        //     foreach ($siswa as $key => $value) {
+                        //         // 
+                        //         Spp::create([
+                        //             'kelas_id'          => $kelas_id,
+                        //             'siswa_id'          => $value->id,
+                        //             'tanggal'           => $date,
+                        //             'semester'          => $count == null ? 1 : ($count->semester + 1),
+                        //             'nominal_bayar'     => $value->kelasDetail->kelas->nominal,
+                        //         ]);
+                        //     }
+                        // }
                     }
                 }
 
