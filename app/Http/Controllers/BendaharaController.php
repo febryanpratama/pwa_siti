@@ -36,7 +36,7 @@ class BendaharaController extends Controller
 
         return view('pages.admin.bendahara.index', [
             'data' => $result['data'],
-            'title' => $result['title'],
+            'title' => 'Bendahara',
             'status' => $result['status'],
             'message' => $result['message'],
             'spplunas' => $sppLunas,
@@ -96,7 +96,7 @@ class BendaharaController extends Controller
             ->whereIn('status_pembayaran', ['Lunas', 'Cicilan'])
             ->orderBy('updated_at', 'DESC')->limit(5)->get();
 
-        $countSiswa = siswa::count('id');
+        $countSiswa = siswa::where('status_siswa', 'Aktif')->count('id');
         $countGuru = Guru::count('id');
 
         return view('pages.bendahara.index', [
@@ -106,6 +106,7 @@ class BendaharaController extends Controller
             'listspp' => $listSpp,
             'countsiswa' => $countSiswa,
             'countguru' => $countGuru,
+            'title' => 'Dashboard'
         ]);
     }
 }

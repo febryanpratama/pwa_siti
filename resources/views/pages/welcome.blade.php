@@ -209,7 +209,7 @@
                                             @if ($spp != null)
                                                 @foreach ($spp as $item => $spp)
                                                     <tr>
-                                                        <td>{{ $item+1 }} {{ $spp->id }}</td>
+                                                        <td>{{ $item+1 }}</td>
                                                         <td>{{ \Carbon\Carbon::parse($spp->tanggal)->format('M Y')}}</td>
                                                         <td>{{ $spp->kelas->kelas }} {{ $spp->kelas->nama_kelas }}</td>
                                                         <td>Rp. {{ number_format($spp->total_pembayaran,0) }}</td>

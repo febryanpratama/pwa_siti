@@ -28,7 +28,7 @@ class KepsekController extends Controller
             ->whereIn('status_pembayaran', ['Lunas', 'Cicilan'])
             ->orderBy('updated_at', 'DESC')->limit(5)->get();
 
-        $countSiswa = siswa::count('id');
+        $countSiswa = siswa::where('status_siswa', 'Aktif')->count('id');
         $countGuru = Guru::count('id');
         // dd($sppLunas);
 

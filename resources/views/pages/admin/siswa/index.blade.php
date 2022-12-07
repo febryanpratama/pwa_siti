@@ -43,9 +43,10 @@
                                                     <tr>
                                                         <th>No</th>
                                                         <th>Nama Siswa</th>
-                                                        <th>Telpon Siswa</th>
+                                                        <th>NISN</th>
                                                         <th>Jenis Kelamin</th>
-                                                        <th>Alamat</th>
+                                                        <th>Dob</th>
+                                                        {{-- <th>Alamat</th> --}}
                                                         <th>Status Siswa</th>
                                                         <th>Nama Ortu</th>
                                                         <th>Telpon Ortu</th>
@@ -57,9 +58,10 @@
                                                         <tr>
                                                             <td>{{ $item+1 }}</td>
                                                             <td>{{ $key->nama_siswa }}</td>
-                                                            <td>{{ $key->telpon_siswa }}</td>
+                                                            <td>{{ $key->nisn }}</td>
                                                             <td>{{ $key->jenis_kelamin }}</td>
-                                                            <td>{{ $key->alamat }}</td>
+                                                            <td>{{ \Carbon\Carbon::parse($key->tanggal_lahir)->format('d M Y') }}</td>
+                                                            {{-- <td>{{ $key->alamat }}</td> --}}
                                                             <td>
                                                                 @switch($key->status)
                                                                     @case('Gratis')
@@ -131,9 +133,10 @@
                                                     <tr>
                                                         <th>No</th>
                                                         <th>Nama Siswa</th>
-                                                        <th>Telpon Siswa</th>
+                                                        <th>NISN</th>
                                                         <th>Jenis Kelamin</th>
-                                                        <th>Alamat</th>
+                                                        <th>Dob</th>
+                                                        {{-- <th>Alamat</th> --}}
                                                         <th>Status Siswa</th>
                                                         <th>Nama Ortu</th>
                                                         <th>Telpon Ortu</th>

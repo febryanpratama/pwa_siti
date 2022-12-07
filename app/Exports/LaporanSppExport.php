@@ -12,19 +12,32 @@ class LaporanSppExport implements FromView, WithColumnFormatting
     /**
      * @return \Illuminate\Support\Collection
      */
-    public function __construct($data)
+    public function __construct($data, $semester, $tahun)
     {
         $this->data = $data;
+        $this->semester = $semester;
+        $this->tahun = $tahun;
         // $this->bulan = $bulan;
         // $this->tahun = $tahun;
     }
 
     public function view(): View
     {
-        return view('pages.admin.laporan.excel', [
-            'data'  => $this->data,
-            // 'tahun' => $this->tahun
-        ]);
+        if ($this->semester == "GENAP") {
+            # code...
+            return view('pages.admin.laporan.excel', [
+                'data'  => $this->data,
+                'semester' => $this->semester,
+                'tahun' => $this->tahun
+                // 'tahun' => $this->tahun
+            ]);
+        } else {
+            return view('pages.admin.laporan.excelGanjil', [
+                'data'  => $this->data,
+                'semester' => $this->semester,
+                'tahun' => $this->tahun
+            ]);
+        }
     }
 
     public function columnFormats(): array

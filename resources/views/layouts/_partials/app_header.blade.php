@@ -330,13 +330,16 @@
                                 <div class="arrow_box_right">
                                     <a class="dropdown-item" href="#">
                                         <span class="avatar avatar-online">
-                                            <img src="{{ asset('') }}admin/app-assets/images/portrait/small/avatar-s-19.png" alt="avatar">
-                                            <span class="user-name text-bold-700 ml-1">
+                                            <img src="{{ asset('') }}admin/app-assets/images/portrait/small/avatar-s-19.png" alt="avatar" class="d-flex justify-content-center">
+                                            {{-- <span class="user-name text-bold-700 ml-1">
                                                 {{ auth()->user()->name }}
-                                                {{-- {{ auth()->user()->name }} --}}
-                                            </span>
+                                            </span> --}}
                                         </span>
                                     </a>
+                                    <a class="dropdown-item" href="{{ url('logout') }}">
+                                        <b>{{ auth()->user()->name }}</b>
+                                    </a>
+
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="{{ url('logout') }}">
                                         <i class="ft-power"></i> Logout</a>
