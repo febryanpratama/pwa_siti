@@ -107,9 +107,11 @@ class SppService
         // dd($kelas_id);
         $month = Carbon::now()->format('m');
         $year = Carbon::now()->format('Y');
-        // $month = 3;
+        // $month = '07';
+        // $year = '2023';
         $siswa = Siswa::with('kelasDetail', 'kelasDetail.kelas')->whereRelation('kelasDetail', 'kelas_id', $kelas_id)->where('status_siswa', 'Aktif')->get();
         // dd($siswa);
+        // dd($month . " " . $year);
         DB::beginTransaction();
         try {
 
@@ -140,8 +142,8 @@ class SppService
             if ($spp->isEmpty()) {
 
 
-                if ($month >= 2 && $month <= 7) {
-                    for ($i = 1; $i <= 7; $i++) {
+                if ($month >= 1 && $month < 7) {
+                    for ($i = 1; $i < 7; $i++) {
                         # code...
                         $date = Carbon::now()->month($i)->day(1);
                         foreach ($siswa as $key => $value) {
@@ -292,8 +294,10 @@ class SppService
             Spp::create([
                 'siswa_id'          => $data['siswa_id'],
                 'guru_id'           => Auth::user()->id,
-                'guru_piket_id'     => $data['guru_piket_id'],
-                'guru_penerima_id'  => $data['guru_penerima_id'],
+                'guru_piket_id'     => 1,
+                'guru_penerima_id'  => 1,
+                'guru_penerima'     => $data['guru_penerima'],
+                'guru_piket'        => $data['guru_piket'],
                 'bendahara_id'      => Auth::user()->id, // Bendahara ID
                 'tanggal'           => Carbon::now(),
                 'nominal_bayar'     => $data['nominal_spp'],
@@ -337,6 +341,11 @@ class SppService
         // dd($spp);
         if ($spp != null) {
             $status = true;
+
+            if ($spp->siswa->status == 'Potongan') {
+                $spp['kelas']['nominal'] = ($spp->kelas->nominal / 100) * 50;
+            }
+
             $message = 'Data spp ditemukan';
             # code...
             return [
@@ -361,8 +370,8 @@ class SppService
         // dd($data);
         $validator = Validator::make($data, [
             'spp_id' => 'required',
-            'guru_penerima_id' => 'required',
-            'guru_piket_id' => 'required',
+            // 'guru_penerima_id' => 'required',
+            // 'guru_piket_id' => 'required',
             'siswa_id' => 'required',
             'nominal_spp' => 'required',
             'nominal_dibayar' => 'required',
@@ -371,6 +380,7 @@ class SppService
         ]);
 
         if ($validator->fails()) {
+            // dd($validator->errors()->first());
             return [
                 'status' => false,
                 'message' => $validator->errors()->first(),
@@ -383,9 +393,13 @@ class SppService
             //code...
             Spp::where('id', $data['spp_id'])->update([
                 'siswa_id' => $data['siswa_id'],
-                'guru_penerima_id' => $data['guru_penerima_id'],
+                // 'guru_penerima_id' => $data['guru_penerima_id'],
+                // 'guru_piket_id' => $data['guru_piket_id'],
+                'guru_piket_id'     => 1,
+                'guru_penerima_id'  => 1,
+                'guru_penerima'     => $data['guru_penerima'],
+                'guru_piket'        => $data['guru_piket'],
                 'bendahara_id' => Auth::user()->id,
-                'guru_piket_id' => $data['guru_piket_id'],
                 'total_pembayaran' => $data['nominal_dibayar'],
                 'sisa_bayar' => $data['nominal_sisa'],
                 'keterangan' => $data['keterangan'],
@@ -402,12 +416,22 @@ class SppService
 
             DB::commit();
 
+            // dd("berhasil");
+
             return [
                 'status' => true,
                 'message' => 'Data spp berhasil ditambahkan',
             ];
         } catch (\Throwable $th) {
             //throw $th;
+            DB::rollback();
+
+            return [
+                'status' => false,
+                'message' => $th->getMessage(),
+            ];
+
+            // dd($th->getMessage());
         }
     }
 
@@ -415,8 +439,8 @@ class SppService
     {
         $validator = Validator::make($data, [
             'spp_id' => 'required|exists:spps,id',
-            'guru_penerima_id' => 'required',
-            'guru_piket_id' => 'required',
+            // 'guru_penerima_id' => 'required',
+            // 'guru_piket_id' => 'required',
             'siswa_id' => 'required|exists:siswas,id',
             'nominal_sisa' => 'required',
             // 'keterangan' => 'required',
@@ -433,6 +457,7 @@ class SppService
 
         // dd($findSpp);
         $findSpp->update([
+            'total_pembayaran' => $findSpp->nominal_bayar,
             'sisa_bayar' => 0,
             'status_pembayaran' => 'Lunas',
         ]);

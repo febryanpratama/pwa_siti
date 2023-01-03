@@ -173,23 +173,27 @@
                                                                             <div class="col-md-6">
                                                                                 <div class="form-group">
                                                                                     <label for="" class="label-control">Guru Penerima</label>
-                                                                                    <select name="guru_penerima_id" class="form-control select2" required>
+                                                                                    <input type="text" class="form-control" name="guru_penerima" placeholder="Guru Penerima" required>
+
+                                                                                    {{-- <select name="guru_penerima_id" class="form-control select2" required>
                                                                                         <option value="" selected disabled> == Pilih == </option>
                                                                                         @foreach ($guru as $grp)
                                                                                             <option value="{{ $grp->id }}">{{ $grp->nama_guru }}</option>
                                                                                         @endforeach
-                                                                                    </select>
+                                                                                    </select> --}}
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-md-6">
                                                                                 <div class="form-group">
                                                                                     <label for="" class="label-control">Guru Piket</label>
-                                                                                    <select name="guru_piket_id" class="form-control select2" required>
+                                                                                    <input type="text" class="form-control" name="guru_piket" placeholder="Guru Piket" required>
+
+                                                                                    {{-- <select name="guru_piket_id" class="form-control select2" required>
                                                                                         <option value="" selected disabled> == Pilih == </option>
                                                                                         @foreach ($guru as $gr)
                                                                                             <option value="{{ $gr->id }}">{{ $gr->nama_guru }}</option>
                                                                                         @endforeach
-                                                                                    </select>
+                                                                                    </select> --}}
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-md-6">
@@ -386,23 +390,26 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="" class="label-control">Guru Penerima</label>
-                                    <select name="guru_penerima_id" class="form-control select2" required>
+                                    <input type="text" class="form-control" name="guru_penerima" placeholder="Guru Penerima" required>
+                                    {{-- <select name="guru_penerima_id" class="form-control select2" required>
                                         <option value="" selected disabled> == Pilih == </option>
                                         @foreach ($guru as $grp)
                                             <option value="{{ $grp->id }}">{{ $grp->nama_guru }}</option>
                                         @endforeach
-                                    </select>
+                                    </select> --}}
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="" class="label-control">Guru Piket</label>
-                                    <select name="guru_piket_id" class="form-control select2" required>
+                                    <input type="text" class="form-control" name="guru_piket" placeholder="Guru Piket" required>
+
+                                    {{-- <select name="guru_piket_id" class="form-control select2" required>
                                         <option value="" selected disabled> == Pilih == </option>
                                         @foreach ($guru as $gr)
                                             <option value="{{ $gr->id }}">{{ $gr->nama_guru }}</option>
                                         @endforeach
-                                    </select>
+                                    </select> --}}
                                 </div>
                             </div>
                             <div class="col-md-6">

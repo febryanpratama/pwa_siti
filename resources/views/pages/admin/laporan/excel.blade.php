@@ -44,10 +44,10 @@
         {{-- {{ dd(@$data) }} --}}
         <thead>
             <tr>
-                <th colspan="28" style="text-align: center;font-family: Arial;">DAFTAR PEMBAYARAN KOMITE SISWA SMA TAMAN MULIA</th>
+                <th colspan="15" style="text-align: center;font-family: Arial;">DAFTAR PEMBAYARAN KOMITE SISWA SMA TAMAN MULIA</th>
             </tr> 
             <tr>
-                <th colspan="28" style="text-align: center;font-family: Arial;">SEMESTER GENAP TAHUN {{ $tahun }}</th>
+                <th colspan="15" style="text-align: center;font-family: Arial;">SEMESTER GENAP TAHUN {{ $tahun }}</th>
             </tr>
             <tr></tr>
             <tr>
@@ -59,7 +59,7 @@
                 <th rowspan="2" style="text-align: center;font-family: Arial;border: 2px solid black;border-collapse: collapse; width: 100px">L/P</th>
                 {{-- <th rowspan="2" style="text-align: center;font-family: Arial;border: 2px solid black;border-collapse: collapse; width: 250px">TUNG KLS SBLMNYA</th> --}}
                 {{-- <th rowspan="2" style="text-align: center;font-family: Arial;border: 2px solid black;border-collapse: collapse; width: 250px">DAF ULANG / PINDAHAN</th> --}}
-                <th colspan="24" style="text-align: center;font-family: Arial;border: 2px solid black;border-collapse: collapse">BULAN</th>
+                <th colspan="12" style="text-align: center;font-family: Arial;border: 2px solid black;border-collapse: collapse">BULAN</th>
             </tr>
             <tr>
                 <th colspan="2" style="text-align: center;font-family: Arial;border: 2px solid black;border-collapse: collapse; width: 100px">JULI</th>
