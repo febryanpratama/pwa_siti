@@ -134,7 +134,7 @@ class SppService
                     return $result;
                 }
 
-                if (!$spp) {
+                if ($spp == NULL) {
                     if ($month >= 1 && $month < 7) {
                         for ($i = 1; $i < 7; $i++) {
                             # code...
