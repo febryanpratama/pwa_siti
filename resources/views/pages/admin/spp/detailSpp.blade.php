@@ -62,7 +62,7 @@
                                                     <tr>
                                                         <td>{{ $key+1 }}</td>
                                                         <td>{{ @$item->siswa->nama_siswa }}</td>
-                                                        <td>{{ @$item->user->name }}</td>
+                                                        <td>{{ @$item->guru_penerima }}</td>
                                                         <td>{{ $item->tanggal }}</td>
                                                         <td>{{ number_format($item->nominal_bayar) }}</td>
                                                         <td>{{ number_format($item->total_pembayaran) }}</td>

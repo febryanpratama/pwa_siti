@@ -51,15 +51,15 @@
                                         {{-- <div class="col-md-8"> --}}
                                             <div class="row">
                                                 <div class="col-md-12">
-                                                    <a href="{{ url("admin/spp/kelas/".$kelas_id."/lunas") }}" class="mb-2">
-                                                        <button class="btn btn-success"> Lunas </button>
+                                                    <a href="{{ url("admin/spp/kelas/".$kelas_id."/lunas") }}" class="mt-1">
+                                                        <button class="btn btn-success mr-2 mt-1"> Lunas </button>
                                                     </a>
-                                                    <a href="{{ url("admin/spp/kelas/".$kelas_id."/belum-lunas") }}" class="mb-2">
-                                                        <button class="btn btn-danger"> Belum Lunas </button>
+                                                    <a href="{{ url("admin/spp/kelas/".$kelas_id."/belum-lunas") }}" class="mt-1">
+                                                        <button class="btn btn-danger mr-2 mt-1"> Belum Lunas </button>
                                                     </a>
                                                 
-                                                    <a href="{{ url('admin/spp/generate/'.$kelas_id) }}" class="mb-2">
-                                                        <button class="btn btn-info">Generate SPP</button>
+                                                    <a href="{{ url('admin/spp/generate/'.$kelas_id) }}" class="mt-1">
+                                                        <button class="btn btn-info mr-2 mt-1">Generate SPP</button>
                                                     </a>
                                                 </div>
                                             </div>

@@ -45,7 +45,7 @@
                                                         <th>Nama Siswa</th>
                                                         <th>NISN</th>
                                                         <th>Jenis Kelamin</th>
-                                                        <th>Dob</th>
+                                                        <th>Tanggal Lahir</th>
                                                         {{-- <th>Alamat</th> --}}
                                                         <th>Status Siswa</th>
                                                         <th>Nama Ortu</th>

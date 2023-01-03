@@ -34,23 +34,23 @@
                 <li class="nav-item has-sub"><a href="#"><i class="ft-layout"></i><span class="menu-title" data-i18n="">Manajemen Data</span></a>
                     <ul class="menu-content" style="">
                         <li class="navigation-divider is-shown"></li>
-                        <li class="is-shown {{ request()->is('admin/guru') ? 'open active' : '' }}">
-                            <a class="menu-item" href="{{ url('admin/guru') }}">Wali Kelas</a>
-                        </li>
                         <li class="is-shown {{ request()->is('admin/bendahara') ? 'open active' : '' }}">
                             <a class="menu-item" href="{{ url('admin/bendahara') }}">Bendahara</a>
                         </li>
+                        <li class="is-shown {{ request()->is('admin/guru') ? 'open active' : '' }}">
+                            <a class="menu-item" href="{{ url('admin/guru') }}">Wali Kelas</a>
+                        </li>
                         <li class="is-shown {{ request()->is('admin/siswa') ? 'open active' : '' }}">
                             <a class="menu-item" href="{{ url('admin/siswa') }}">Siswa</a>
-                        </li>
-                        <li class="is-shown {{ request()->is('admin/alumni') ? 'open active' : '' }}">
-                            <a class="menu-item" href="{{ url('admin/alumni') }}">Alumni</a>
                         </li>
                         <li class="is-shown {{ request()->is('admin/kelas') ? 'open active' : '' }}">
                             <a class="menu-item" href="{{ url('admin/kelas') }}">Kelas</a>
                         </li>
                         <li class="is-shown {{ request()->is('admin/tahun-ajaran') ? 'open active' : '' }}">
                             <a class="menu-item" href="{{ url('admin/tahun-ajaran') }}">Tahun Ajaran</a>
+                        </li>
+                        <li class="is-shown {{ request()->is('admin/alumni') ? 'open active' : '' }}">
+                            <a class="menu-item" href="{{ url('admin/alumni') }}">Alumni</a>
                         </li>
                     </ul>
                 </li>

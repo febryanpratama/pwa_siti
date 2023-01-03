@@ -22,7 +22,7 @@
         <i class="zmdi zmdi-view-dashboard"></i> <span>Master Data</span> <i class="fa fa-angle-left pull-right"></i>
         </a>
         <ul class="sidebar-submenu">
-        <li><a href="{{ url('admin/siswa') }}"><i class="zmdi zmdi-star-outline"></i> Data Siswax</a></li>
+        <li><a href="{{ url('admin/siswa') }}"><i class="zmdi zmdi-star-outline"></i> Data Siswa</a></li>
         <li><a href="{{ route('tahunajaran.index') }}"><i class="zmdi zmdi-star-outline"></i> Data Tahun Ajaran</a></li>
         <li><a href="{{ url('admin/spp') }}"><i class="zmdi zmdi-star-outline"></i> Data SPP</a></li>
         {{-- <li><a href="index3.html"><i class="zmdi zmdi-star-outline"></i> Dashboard v3</a></li> --}}
