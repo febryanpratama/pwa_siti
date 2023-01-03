@@ -104,55 +104,45 @@ class SppService
 
     public function generate($kelas_id)
     {
-        // dd($kelas_id);
         $month = Carbon::now()->format('m');
         $year = Carbon::now()->format('Y');
         // $month = '07';
         // $year = '2023';
         $siswa = Siswa::with('kelasDetail', 'kelasDetail.kelas')->whereRelation('kelasDetail', 'kelas_id', $kelas_id)->where('status_siswa', 'Aktif')->get();
-        // dd($siswa);
-        // dd($month . " " . $year);
+
         DB::beginTransaction();
         try {
 
-            $spp = Spp::where('siswa_id', $siswa[0]->id)->where('kelas_id', $kelas_id)->whereMonth('tanggal', $month)->whereYear('tanggal', $year)->get();
-            $count = Spp::where('siswa_id', $siswa[0]->id)->where('kelas_id', $kelas_id)->orderBy('created_at', 'DESC')->first();
+            foreach ($siswa as $sis => $student) {
 
-            // dd($count);
+                $spp = Spp::where('siswa_id', $student->id)->where('kelas_id', $kelas_id)->whereMonth('tanggal', $month)->whereYear('tanggal', $year)->first();
 
-            // dd($count == null ? 1 : $count->semester + 1);
-            // $count == null ? dd("satu") : dd($count->semester + 1);
+                $count = Spp::where('siswa_id', $siswa[0]->id)->where('kelas_id', $kelas_id)->orderBy('created_at', 'DESC')->first();
 
-            // dd($count);
-            if ($count != NULL && $count->semester >= 8) {
-                siswa::where('id', $siswa[0]->id)->update([
-                    'status_siswa' => 'Alumni',
-                ]);
-                DB::commit();
-                $status = true;
-                $message = 'Status siswa telah diubah menjadi Alumni';
+                if ($count != NULL && $count->semester >= 8) {
+                    siswa::where('id', $siswa[0]->id)->update([
+                        'status_siswa' => 'Alumni',
+                    ]);
+                    DB::commit();
+                    $status = true;
+                    $message = 'Status siswa telah diubah menjadi Alumni';
 
-                $result = [
-                    'status' => $status,
-                    'message' => $message,
-                ];
-                return $result;
-            }
+                    $result = [
+                        'status' => $status,
+                        'message' => $message,
+                    ];
+                    return $result;
+                }
 
-            if ($spp->isEmpty()) {
+                if (!$spp) {
+                    if ($month >= 1 && $month < 7) {
+                        for ($i = 1; $i < 7; $i++) {
+                            # code...
+                            $date = Carbon::now()->month($i)->day(1);
+                            foreach ($siswa as $key => $value) {
+                                // 
 
 
-                if ($month >= 1 && $month < 7) {
-                    for ($i = 1; $i < 7; $i++) {
-                        # code...
-                        $date = Carbon::now()->month($i)->day(1);
-                        foreach ($siswa as $key => $value) {
-                            // 
-
-                            $check = Spp::where('siswa_id', $value->id)->where('kelas_id', $kelas_id)->whereMonth('tanggal', $i)->whereYear('tanggal', $year)->first();
-
-                            if (!$check) {
-                                # code...
                                 if ($value->status == 'Potongan') {
                                     Spp::create([
                                         'kelas_id'          => $kelas_id,
@@ -173,7 +163,62 @@ class SppService
                                 }
                             }
                         }
+
+                        DB::commit();
+
+                        $status = true;
+                        $message = 'Data spp berhasil ditambahkan';
+
+                        $result = [
+                            'status' => $status,
+                            'message' => $message,
+                        ];
+                        return $result;
+                    } else {
+                        for ($i = 7; $i <= 12; $i++) {
+                            # code...
+                            $date = Carbon::now()->month($i)->day(1);
+                            foreach ($siswa as $key => $value) {
+                                // 
+
+                                if ($value->status == 'Potongan') {
+
+                                    Spp::create([
+                                        'kelas_id'          => $kelas_id,
+                                        'siswa_id'          => $value->id,
+                                        'tanggal'           => $date,
+                                        'semester'          => $count == null ? 1 : ($count->semester + 1),
+                                        'nominal_bayar'     => ($value->kelasDetail->kelas->nominal / 100) * 50,
+                                    ]);
+                                } else {
+                                    Spp::create([
+                                        'kelas_id'          => $kelas_id,
+                                        'siswa_id'          => $value->id,
+                                        'tanggal'           => $date,
+                                        'semester'          => $count == null ? 1 : ($count->semester + 1),
+                                        'nominal_bayar'     => $value->kelasDetail->kelas->nominal,
+                                    ]);
+                                }
+                            }
+                            // if ($i <= 12) {
+                            //     # code...
+                            // } else {
+                            //     $date = Carbon::now()->month(1)->day(1)->addYear(1);
+                            //     // dd($date);
+                            //     foreach ($siswa as $key => $value) {
+                            //         // 
+                            //         Spp::create([
+                            //             'kelas_id'          => $kelas_id,
+                            //             'siswa_id'          => $value->id,
+                            //             'tanggal'           => $date,
+                            //             'semester'          => $count == null ? 1 : ($count->semester + 1),
+                            //             'nominal_bayar'     => $value->kelasDetail->kelas->nominal,
+                            //         ]);
+                            //     }
+                            // }
+                        }
                     }
+
 
                     DB::commit();
 
@@ -186,76 +231,17 @@ class SppService
                     ];
                     return $result;
                 } else {
-                    for ($i = 7; $i <= 12; $i++) {
-                        # code...
-                        $date = Carbon::now()->month($i)->day(1);
-                        foreach ($siswa as $key => $value) {
-                            // 
+                    $status = false;
+                    $message = 'Data spp sudah ada';
 
-                            $check = Spp::where('siswa_id', $value->id)->where('kelas_id', $kelas_id)->whereMonth('tanggal', $i)->whereYear('tanggal', $year)->first();
-
-                            if (!$check) {
-
-                                if ($value->status == 'Potongan') {
-
-                                    Spp::create([
-                                        'kelas_id'          => $kelas_id,
-                                        'siswa_id'          => $value->id,
-                                        'tanggal'           => $date,
-                                        'semester'          => $count == null ? 1 : ($count->semester + 1),
-                                        'nominal_bayar'     => ($value->kelasDetail->kelas->nominal / 100) * 50,
-                                    ]);
-                                } else {
-                                    Spp::create([
-                                        'kelas_id'          => $kelas_id,
-                                        'siswa_id'          => $value->id,
-                                        'tanggal'           => $date,
-                                        'semester'          => $count == null ? 1 : ($count->semester + 1),
-                                        'nominal_bayar'     => $value->kelasDetail->kelas->nominal,
-                                    ]);
-                                }
-                            }
-                        }
-                        // if ($i <= 12) {
-                        //     # code...
-                        // } else {
-                        //     $date = Carbon::now()->month(1)->day(1)->addYear(1);
-                        //     // dd($date);
-                        //     foreach ($siswa as $key => $value) {
-                        //         // 
-                        //         Spp::create([
-                        //             'kelas_id'          => $kelas_id,
-                        //             'siswa_id'          => $value->id,
-                        //             'tanggal'           => $date,
-                        //             'semester'          => $count == null ? 1 : ($count->semester + 1),
-                        //             'nominal_bayar'     => $value->kelasDetail->kelas->nominal,
-                        //         ]);
-                        //     }
-                        // }
-                    }
+                    $result = [
+                        'status' => $status,
+                        'message' => $message,
+                    ];
+                    return $result;
                 }
-
-
-                DB::commit();
-
-                $status = true;
-                $message = 'Data spp berhasil ditambahkan';
-
-                $result = [
-                    'status' => $status,
-                    'message' => $message,
-                ];
-                return $result;
-            } else {
-                $status = false;
-                $message = 'Seluruh Siswa telah mempunyai Data SPP';
-
-                $result = [
-                    'status' => $status,
-                    'message' => $message,
-                ];
-                return $result;
             }
+
 
 
             //code...
@@ -265,7 +251,7 @@ class SppService
             $status = false;
             $message = 'Data spp gagal ditambahkan';
 
-            // dd($th);
+            dd($th);
             return [
                 'status' => $status,
                 'message' => $message,
