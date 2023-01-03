@@ -17,7 +17,7 @@ class DetailKelas extends Model
     }
     public function siswa()
     {
-        return $this->belongsTo(siswa::class, 'siswa_id', 'id')->orderBy('nama_siswa');
+        return $this->belongsTo(siswa::class, 'siswa_id', 'id');
     }
 
     public function allsiswa()
