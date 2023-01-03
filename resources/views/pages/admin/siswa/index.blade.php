@@ -76,7 +76,9 @@
 
                                                                         @break
                                                                     @default
-
+                                                                    <div class="badge badge-primary">
+                                                                            {{ $key->status }}
+                                                                    </div>
                                                                 @endswitch
                                                             </td>
                                                             <td>{{ $key->nama_ortu }}</td>

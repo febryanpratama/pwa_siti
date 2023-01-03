@@ -146,13 +146,25 @@ class SppService
                         $date = Carbon::now()->month($i)->day(1);
                         foreach ($siswa as $key => $value) {
                             // 
-                            Spp::create([
-                                'kelas_id'          => $kelas_id,
-                                'siswa_id'          => $value->id,
-                                'tanggal'           => $date,
-                                'semester'          => $count == null ? 1 : ($count->semester + 1),
-                                'nominal_bayar'     => $value->kelasDetail->kelas->nominal,
-                            ]);
+                            if ($value->status == 'Potongan') {
+
+                                Spp::create([
+                                    'kelas_id'          => $kelas_id,
+                                    'siswa_id'          => $value->id,
+                                    'tanggal'           => $date,
+                                    'semester'          => $count == null ? 1 : ($count->semester + 1),
+                                    'nominal_bayar'     => ($value->kelasDetail->kelas->nominal / 100) * 50,
+                                ]);
+                            } else {
+
+                                Spp::create([
+                                    'kelas_id'          => $kelas_id,
+                                    'siswa_id'          => $value->id,
+                                    'tanggal'           => $date,
+                                    'semester'          => $count == null ? 1 : ($count->semester + 1),
+                                    'nominal_bayar'     => $value->kelasDetail->kelas->nominal,
+                                ]);
+                            }
                         }
                     }
 
@@ -172,13 +184,25 @@ class SppService
                         $date = Carbon::now()->month($i)->day(1);
                         foreach ($siswa as $key => $value) {
                             // 
-                            Spp::create([
-                                'kelas_id'          => $kelas_id,
-                                'siswa_id'          => $value->id,
-                                'tanggal'           => $date,
-                                'semester'          => $count == null ? 1 : ($count->semester + 1),
-                                'nominal_bayar'     => $value->kelasDetail->kelas->nominal,
-                            ]);
+
+                            if ($value->status == 'Potongan') {
+
+                                Spp::create([
+                                    'kelas_id'          => $kelas_id,
+                                    'siswa_id'          => $value->id,
+                                    'tanggal'           => $date,
+                                    'semester'          => $count == null ? 1 : ($count->semester + 1),
+                                    'nominal_bayar'     => ($value->kelasDetail->kelas->nominal / 100) * 50,
+                                ]);
+                            } else {
+                                Spp::create([
+                                    'kelas_id'          => $kelas_id,
+                                    'siswa_id'          => $value->id,
+                                    'tanggal'           => $date,
+                                    'semester'          => $count == null ? 1 : ($count->semester + 1),
+                                    'nominal_bayar'     => $value->kelasDetail->kelas->nominal,
+                                ]);
+                            }
                         }
                         // if ($i <= 12) {
                         //     # code...

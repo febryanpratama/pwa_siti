@@ -121,6 +121,7 @@
                                                     <option value="" selected="" disabled=""> == PILIH == </option>
                                                     <option value="Gratis">Gratis</option>
                                                     <option value="Tidak Gratis">Tidak Gratis</option>
+                                                    <option value="Potongan">Potongan</option>
                                                 </select>
                                             </div>
                                             
