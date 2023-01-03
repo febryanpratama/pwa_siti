@@ -148,24 +148,29 @@ class SppService
                         $date = Carbon::now()->month($i)->day(1);
                         foreach ($siswa as $key => $value) {
                             // 
-                            if ($value->status == 'Potongan') {
 
-                                Spp::create([
-                                    'kelas_id'          => $kelas_id,
-                                    'siswa_id'          => $value->id,
-                                    'tanggal'           => $date,
-                                    'semester'          => $count == null ? 1 : ($count->semester + 1),
-                                    'nominal_bayar'     => ($value->kelasDetail->kelas->nominal / 100) * 50,
-                                ]);
-                            } else {
+                            $check = Spp::where('siswa_id', $value->id)->where('kelas_id', $kelas_id)->whereMonth('tanggal', $i)->whereYear('tanggal', $year)->first();
 
-                                Spp::create([
-                                    'kelas_id'          => $kelas_id,
-                                    'siswa_id'          => $value->id,
-                                    'tanggal'           => $date,
-                                    'semester'          => $count == null ? 1 : ($count->semester + 1),
-                                    'nominal_bayar'     => $value->kelasDetail->kelas->nominal,
-                                ]);
+                            if (!$check) {
+                                # code...
+                                if ($value->status == 'Potongan') {
+                                    Spp::create([
+                                        'kelas_id'          => $kelas_id,
+                                        'siswa_id'          => $value->id,
+                                        'tanggal'           => $date,
+                                        'semester'          => $count == null ? 1 : ($count->semester + 1),
+                                        'nominal_bayar'     => ($value->kelasDetail->kelas->nominal / 100) * 50,
+                                    ]);
+                                } else {
+
+                                    Spp::create([
+                                        'kelas_id'          => $kelas_id,
+                                        'siswa_id'          => $value->id,
+                                        'tanggal'           => $date,
+                                        'semester'          => $count == null ? 1 : ($count->semester + 1),
+                                        'nominal_bayar'     => $value->kelasDetail->kelas->nominal,
+                                    ]);
+                                }
                             }
                         }
                     }
@@ -187,23 +192,28 @@ class SppService
                         foreach ($siswa as $key => $value) {
                             // 
 
-                            if ($value->status == 'Potongan') {
+                            $check = Spp::where('siswa_id', $value->id)->where('kelas_id', $kelas_id)->whereMonth('tanggal', $i)->whereYear('tanggal', $year)->first();
 
-                                Spp::create([
-                                    'kelas_id'          => $kelas_id,
-                                    'siswa_id'          => $value->id,
-                                    'tanggal'           => $date,
-                                    'semester'          => $count == null ? 1 : ($count->semester + 1),
-                                    'nominal_bayar'     => ($value->kelasDetail->kelas->nominal / 100) * 50,
-                                ]);
-                            } else {
-                                Spp::create([
-                                    'kelas_id'          => $kelas_id,
-                                    'siswa_id'          => $value->id,
-                                    'tanggal'           => $date,
-                                    'semester'          => $count == null ? 1 : ($count->semester + 1),
-                                    'nominal_bayar'     => $value->kelasDetail->kelas->nominal,
-                                ]);
+                            if (!$check) {
+
+                                if ($value->status == 'Potongan') {
+
+                                    Spp::create([
+                                        'kelas_id'          => $kelas_id,
+                                        'siswa_id'          => $value->id,
+                                        'tanggal'           => $date,
+                                        'semester'          => $count == null ? 1 : ($count->semester + 1),
+                                        'nominal_bayar'     => ($value->kelasDetail->kelas->nominal / 100) * 50,
+                                    ]);
+                                } else {
+                                    Spp::create([
+                                        'kelas_id'          => $kelas_id,
+                                        'siswa_id'          => $value->id,
+                                        'tanggal'           => $date,
+                                        'semester'          => $count == null ? 1 : ($count->semester + 1),
+                                        'nominal_bayar'     => $value->kelasDetail->kelas->nominal,
+                                    ]);
+                                }
                             }
                         }
                         // if ($i <= 12) {
@@ -238,7 +248,7 @@ class SppService
                 return $result;
             } else {
                 $status = false;
-                $message = 'Data spp sudah ada';
+                $message = 'Seluruh Siswa telah mempunyai Data SPP';
 
                 $result = [
                     'status' => $status,
@@ -255,7 +265,7 @@ class SppService
             $status = false;
             $message = 'Data spp gagal ditambahkan';
 
-            dd($th);
+            // dd($th);
             return [
                 'status' => $status,
                 'message' => $message,
