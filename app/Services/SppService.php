@@ -164,16 +164,16 @@ class SppService
                             }
                         }
 
-                        DB::commit();
+                        // DB::commit();
 
-                        $status = true;
-                        $message = 'Data spp berhasil ditambahkan';
+                        // $status = true;
+                        // $message = 'Data spp berhasil ditambahkan';
 
-                        $result = [
-                            'status' => $status,
-                            'message' => $message,
-                        ];
-                        return $result;
+                        // $result = [
+                        //     'status' => $status,
+                        //     'message' => $message,
+                        // ];
+                        // return $result;
                     } else {
                         for ($i = 7; $i <= 12; $i++) {
                             # code...
@@ -220,27 +220,29 @@ class SppService
                     }
 
 
-                    DB::commit();
+                    // DB::commit();
 
-                    $status = true;
-                    $message = 'Data spp berhasil ditambahkan';
+                    // $status = true;
+                    // $message = 'Data spp berhasil ditambahkan';
 
-                    $result = [
-                        'status' => $status,
-                        'message' => $message,
-                    ];
-                    return $result;
-                } else {
-                    $status = false;
-                    $message = 'Data spp sudah ada';
-
-                    $result = [
-                        'status' => $status,
-                        'message' => $message,
-                    ];
-                    return $result;
+                    // $result = [
+                    //     'status' => $status,
+                    //     'message' => $message,
+                    // ];
+                    // return $result;
                 }
             }
+
+            DB::commit();
+
+            $status = true;
+            $message = 'Data spp siswa berhasil diupdate';
+
+            $result = [
+                'status' => $status,
+                'message' => $message,
+            ];
+            return $result;
 
 
 
