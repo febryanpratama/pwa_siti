@@ -12,6 +12,10 @@ class LaporanSppExport implements FromView, WithColumnFormatting
     /**
      * @return \Illuminate\Support\Collection
      */
+    // protected $this->data;
+    protected $data;
+    protected $semester;
+    protected $tahun;
     public function __construct($data, $semester, $tahun)
     {
         $this->data = $data;
