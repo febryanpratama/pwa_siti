@@ -120,7 +120,7 @@
                                                     <tr>
                                                         <th>No</th>
                                                         <th>Nama Siswa</th>
-                                                        <th>Nama Bendahara</th>
+                                                        <th>Guru Penerima</th>
                                                         <th>Nominal Pembayaran</th>
                                                         <th>Status Pembayaran</th>
                                                     </tr>
