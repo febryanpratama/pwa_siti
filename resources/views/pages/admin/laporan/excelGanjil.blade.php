@@ -72,9 +72,12 @@
         </thead>
         <tbody>
 
+            @php
+                $no = 1;
+            @endphp
             @foreach (@$data as $item=>$value)
                 <tr>
-                    <td style="border: 2px solid black;border-collapse: collapse">{{ $item+1 }}</td>
+                    <td style="border: 2px solid black;border-collapse: collapse">{{ $no++ }}</td>
                     <td style="border: 2px solid black;border-collapse: collapse">{{ $value->siswa->nama_siswa }}</td>
                     {{-- <td>{{ @$value->guru->nama_guru }}</td> --}}
                     <td style="text-align: center;border: 2px solid black;border-collapse: collapse">

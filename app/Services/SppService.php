@@ -153,13 +153,28 @@ class SppService
                                     ]);
                                 } else {
 
-                                    Spp::create([
-                                        'kelas_id'          => $kelas_id,
-                                        'siswa_id'          => $value->id,
-                                        'tanggal'           => $date,
-                                        'semester'          => $count == null ? 1 : ($count->semester + 1),
-                                        'nominal_bayar'     => $value->kelasDetail->kelas->nominal,
-                                    ]);
+                                    if ($value->status == 'Gratis') {
+                                        Spp::create([
+                                            'kelas_id'          => $kelas_id,
+                                            'siswa_id'          => $value->id,
+                                            'tanggal'           => $date,
+                                            'semester'          => $count == null ? 1 : ($count->semester + 1),
+                                            'nominal_bayar'     => $value->kelasDetail->kelas->nominal,
+                                            'total_pembayaran'  => $value->kelasDetail->kelas->nominal,
+                                            'sisa_bayar'        => 0,
+                                            'status_pembayaran' => 'Lunas'
+                                        ]);
+                                        # code...
+                                    } else {
+
+                                        Spp::create([
+                                            'kelas_id'          => $kelas_id,
+                                            'siswa_id'          => $value->id,
+                                            'tanggal'           => $date,
+                                            'semester'          => $count == null ? 1 : ($count->semester + 1),
+                                            'nominal_bayar'     => $value->kelasDetail->kelas->nominal,
+                                        ]);
+                                    }
                                 }
                             }
                         }
@@ -191,13 +206,27 @@ class SppService
                                         'nominal_bayar'     => ($value->kelasDetail->kelas->nominal / 100) * 50,
                                     ]);
                                 } else {
-                                    Spp::create([
-                                        'kelas_id'          => $kelas_id,
-                                        'siswa_id'          => $value->id,
-                                        'tanggal'           => $date,
-                                        'semester'          => $count == null ? 1 : ($count->semester + 1),
-                                        'nominal_bayar'     => $value->kelasDetail->kelas->nominal,
-                                    ]);
+
+                                    if ($value->status == 'Gratis') {
+                                        Spp::create([
+                                            'kelas_id'          => $kelas_id,
+                                            'siswa_id'          => $value->id,
+                                            'tanggal'           => $date,
+                                            'semester'          => $count == null ? 1 : ($count->semester + 1),
+                                            'nominal_bayar'     => $value->kelasDetail->kelas->nominal,
+                                            'total_pembayaran'  => $value->kelasDetail->kelas->nominal,
+                                            'sisa_bayar'        => 0,
+                                            'status_pembayaran' => 'Lunas'
+                                        ]);
+                                    } else {
+                                        Spp::create([
+                                            'kelas_id'          => $kelas_id,
+                                            'siswa_id'          => $value->id,
+                                            'tanggal'           => $date,
+                                            'semester'          => $count == null ? 1 : ($count->semester + 1),
+                                            'nominal_bayar'     => $value->kelasDetail->kelas->nominal,
+                                        ]);
+                                    }
                                 }
                             }
                             // if ($i <= 12) {
