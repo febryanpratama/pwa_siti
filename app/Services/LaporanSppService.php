@@ -33,7 +33,7 @@ class LaporanSppService
     static function exportExcel($data)
     {
 
-        $data = DetailKelas::with('kelas', 'siswa')->where('kelas_id', $data['kelas_id'])->get()->sortBy('siswa.nama_siswa', false);
+        $data = DetailKelas::with('kelas', 'siswa')->where('kelas_id', $data['kelas_id'])->whereRelation('siswa', 'status_siswa', 'Aktif')->get()->sortBy('siswa.nama_siswa', false);
 
         // dd($data);
 
