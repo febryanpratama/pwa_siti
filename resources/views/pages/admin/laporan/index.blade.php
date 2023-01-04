@@ -98,11 +98,11 @@
                                                     @foreach ($data as $item=>$key)
                                                     <tr>
                                                         <td>{{ $item+1 }}</td>
-                                                        <td>{{ $key->siswa->nama_siswa }}</td>
-                                                        <td>{{ $key->bendahara_id }}</td>
-                                                        <td>{{ $key->total_pembayaran }}</td>
+                                                        <td>{{ @$key->siswa->nama_siswa }}</td>
+                                                        <td>{{ @$key->bendahara_id }}</td>
+                                                        <td>{{ @$key->total_pembayaran }}</td>
                                                         <td>
-                                                            @switch($key->status_pembayaran)
+                                                            @switch(@$key->status_pembayaran)
                                                                 @case('Lunas')
                                                                     <div class="badge badge-success">Lunas</div>
                                                                     @break
