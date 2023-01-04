@@ -88,7 +88,7 @@
                                                     <tr>
                                                         <th>No</th>
                                                         <th>Nama Siswa</th>
-                                                        <th>Nama Bendahara</th>
+                                                        <th>Guru Penerima</th>
                                                         <th>Nominal Pembayaran</th>
                                                         <th>Status Pembayaran</th>
                                                     </tr>
@@ -99,7 +99,7 @@
                                                     <tr>
                                                         <td>{{ $item+1 }}</td>
                                                         <td>{{ @$key->siswa->nama_siswa }}</td>
-                                                        <td>{{ @$key->bendahara_id }}</td>
+                                                        <td>{{ @$key->guru_penerima }}</td>
                                                         <td>{{ @$key->total_pembayaran }}</td>
                                                         <td>
                                                             @switch(@$key->status_pembayaran)
