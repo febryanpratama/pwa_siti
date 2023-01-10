@@ -33,7 +33,7 @@ Route::get('/', function () {
         'siswa' => NULL,
         'kelas' => NULL,
         'title' => "SMA - TUNAS MULIA",
-        'status' => "",
+        'status' => false,
     ]);
     // return redirect('/login');
 });

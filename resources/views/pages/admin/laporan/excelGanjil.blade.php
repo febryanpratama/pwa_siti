@@ -47,7 +47,7 @@
                 <th colspan="14" style="text-align: center;font-family: Arial;">DAFTAR PEMBAYARAN KOMITE SISWA SMA TAMAN MULIA</th>
             </tr> 
             <tr>
-                <th colspan="14" style="text-align: center;font-family: Arial;">SEMESTER GANJIL TAHUN {{ $tahun }}</th>
+                <th colspan="14" style="text-align: center;font-family: Arial;">SEMESTER GENAP TAHUN {{ $tahun }}</th>
             </tr>
             <tr></tr>
             <tr>

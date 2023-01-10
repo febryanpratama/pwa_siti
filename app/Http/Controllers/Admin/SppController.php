@@ -139,6 +139,7 @@ class SppController extends Controller
         } else {
             // dd("false");
             return view('pages.welcome', [
+                'ack' => true,
                 'status' => $result['status'],
                 'message' => $result['message'],
                 'spp' => null,
