@@ -66,7 +66,7 @@ class SppService
 
     public function detailKelas($data)
     {
-        $siswa = Siswa::with('kelasDetail')->whereRelation('kelasDetail', 'kelas_id', $data)->where('status_siswa', 'Aktif')->get();
+        $siswa = Siswa::with('kelasDetail')->whereRelation('kelasDetail', 'kelas_id', $data)->where('status_siswa', 'Aktif')->orderBy('nama_siswa', 'ASC')->get();
 
         $status = true;
         $message = 'Data siswa berhasil diambil';
