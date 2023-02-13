@@ -84,6 +84,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:Admin']], func
         Route::get('/kelas/{kelas_id}', [SppController::class, 'detailKelas']);
         Route::get('/kelas/{kelas_id}/lunas', [SppController::class, 'detailKelasLunas']);
         Route::get('/kelas/{kelas_id}/belum-lunas', [SppController::class, 'detailKelasBelumLunas']);
+        Route::post('/kelas/{kelas_id}/filter', [SppController::class, 'filterKelas']);
         Route::get('/kelas/{kelas_id}/siswa/{siswa_id}', [SppController::class, 'detailSiswa']);
         Route::get('generate/{kelas_id}', [SppController::class, 'generate']);
         Route::post('/', [SppController::class, 'store']);

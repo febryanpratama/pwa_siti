@@ -173,4 +173,22 @@ class SppController extends Controller
             'kelas_id' => encrypt($kelas_id),
         ]);
     }
+
+    public function filterKelas(Request $request, $kelas_id)
+    {
+        $id_kelas = decrypt($kelas_id);
+        // dd(decrypt($id_kelas));
+        $result = $this->sppService->filterKelas($request->all(), $id_kelas);
+
+        // dd($result['data']);
+        if ($result['status'] == true && $result['data'] != null) {
+            return view('pages.admin.spp.filter', [
+                'data' => $result['data'],
+                'title' => 'Data Siswa',
+                'kelas_id' => encrypt($kelas_id),
+            ]);
+        } else {
+            return redirect('admin/spp')->with('error', $result['message']);
+        }
+    }
 }

@@ -33,9 +33,32 @@
                                             data-target="#large">
                                             Add {{ $title }}
                                         </button> --}}
-                                        {{-- <a href="{{ url('admin/siswa/form-siswa') }}">
-                                            <button class="btn btn-info">Add {{ $title }}</button>
-                                        </a> --}}
+                                        <form action="{{ url('admin/spp/kelas/'.$kelas_id.'/filter') }}" method="POST" enctype="multipart/form-data">
+                                            @csrf
+                                            <div class="d-flex d-inline">
+                                                <div class="mr-2">
+                                                    <div class="label-control"><b>Semester</b></div>
+                                                    <select name="semester" class="form-control" id="">
+                                                        <option value="" selected disabled> == Semester == </option>
+                                                        <option value="Ganjil">Ganjil</option>
+                                                        <option value="Genap">Genap</option>
+                                                    </select>
+                                                </div>
+                                                <div class="mr-2">
+                                                    <div class="label-control"><b>Periode</b></div>
+                                                    <select name="periode" class="form-control" id="">
+                                                        <option value="" selected disabled> == Periode == </option>
+                                                        @for ($i = 2020; $i < 2030; $i++)
+                                                            <option value="{{ $i }}/{{ $i+1 }}">{{ $i }}/{{ $i+1 }}</option>
+                                                        @endfor
+                                                    </select>
+                                                </div>
+                                                <div class="mr-2">
+                                                    <div class="label-control text-white">Cari</div>
+                                                    <button class="btn btn-outline-primary"> Cari </button>
+                                                </div>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
                                 <div class="card-content collapse show">

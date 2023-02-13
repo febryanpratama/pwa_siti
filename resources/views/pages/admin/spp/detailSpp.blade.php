@@ -53,6 +53,7 @@
                                                         <th>Nominal Bayar</th>
                                                         <th>Sisa Bayar</th>
                                                         <th>Status Pembayaran</th>
+                                                        <th>Tanggal Pembayaran</th>
                                                         <th>Aksi</th>
                                                     </tr>
                                                 </thead>
@@ -82,6 +83,7 @@
 
                                                         @endswitch
                                                         </td>
+                                                        <td>{{ $item->tanggal_pembayaran }}</td>
                                                         <td>
                                                             @if($item->status_pembayaran == 'Belum Lunas')
                                                             <button type="button" class="btn btn-sm btn-info edit" data-toggle="modal"

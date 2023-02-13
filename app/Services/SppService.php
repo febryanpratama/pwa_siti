@@ -617,4 +617,40 @@ class SppService
             'data' => $spp,
         ];
     }
+
+    public function filterKelas($data, $kelas_id)
+    {
+        // dd(decrypt($kelas_id));
+        // dd($data);
+
+        $kelas = DetailKelas::with('siswa')->where('kelas_id', decrypt($kelas_id))->get();
+
+        // dd($kelas);
+        $spp = [];
+        foreach ($kelas as $k) {
+
+            // dd($data['semester']);
+            if ($data['semester'] == 'Ganjil') {
+                $kls = Spp::with('siswa', 'guru', 'kelas')->whereIn('semester', [1, 3, 5, 7, 9])->where('siswa_id', $k->siswa_id)->where('kelas_id', $k->kelas_id)->whereIn('status_pembayaran', ['Belum Lunas', 'Cicilan'])->get();
+
+                // dd(count($kls));
+                foreach ($kls as $key) {
+                    $spp[] = $key;
+                }
+            } else {
+                $kls = Spp::with('siswa', 'guru', 'kelas')->whereIn('semester', [2, 4, 6, 8, 10])->where('siswa_id', $k->siswa_id)->where('kelas_id', $k->kelas_id)->whereIn('status_pembayaran', ['Belum Lunas', 'Cicilan'])->get();
+
+                // dd(count($kls));
+                foreach ($kls as $key) {
+                    $spp[] = $key;
+                }
+            }
+        }
+
+        return [
+            'data' => $spp,
+            'message' => 'Data spp ditemukan',
+            'status' => true,
+        ];
+    }
 }

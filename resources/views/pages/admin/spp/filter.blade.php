@@ -73,7 +73,7 @@
                                                     <tr>
                                                         <th>No</th>
                                                         <th>Nama Siswa</th>
-                                                        <th>Pembayaran</th>
+                                                        <th>Tanggal Bayar</th>
                                                         <th>Aksi</th>
                                                     </tr>
                                                 </thead>
@@ -82,12 +82,11 @@
                                                     {{-- {{ dd($data[0]) }} --}}
                                                     @if ($data[0] != NULL)
                                                         @foreach ($data as $key=>$item)
-                                                        {{-- {{ dd($item[0]) }} --}}
-                                                        {{-- {{ dd($item[0]) }} --}}
                                                         <tr>
+                                                            {{-- {{ dd($item) }} --}}
                                                             <td>{{ $key+1 }}</td>
-                                                            <td>{{ @$item[0]->siswa->nama_siswa }}</td>
-                                                            <td>{{ App\Helpers\Format::countSiswa(@$item[0]->siswa_id, @$item[0]->kelas_id) }} bulan Pembayaran</td>
+                                                            <td>{{ @$item->siswa->nama_siswa }}</td>
+                                                            <td>{{ $item->tanggal }} </td>
                                                             {{-- <td>{{ @$item->user->name }}</td> --}}
                                                             <td>
                                                                 <div class="badge badge-danger">Belum Lunas</div>
