@@ -138,7 +138,7 @@
                                         <div class="social-icon mr-3">
                                             <i class="fas fa-home"></i>
                                         </div>
-                                        <span class="media-body align-self-center">Vestibulum nulla libero, convallis, tincidunt suscipit diam, DC 2002</span>
+                                        <span class="media-body align-self-center">Jl. Sukarno Hatra, Arang Limbung, Kec. Sungai Raya, Kab. Kuburaya Prov. Kalimantan Barat</span>
                                     </a>
                                 </li>
                                 <li class="py-2">
@@ -146,7 +146,7 @@
                                         <div class="social-icon mr-3">
                                             <i class="fas fa-phone-alt"></i>
                                         </div>
-                                        <span class="media-body align-self-center">+1 230 xxx xxx</span>
+                                        <span class="media-body align-self-center">+62 561 xxx xxx</span>
                                     </a>
                                 </li>
                                 <li class="py-2">
@@ -176,6 +176,26 @@
                                             <label for="" class="label-control">Nomor NISN</label>
                                             <input type="number" class="form-control" name="nisn" placeholder="NISN" required="required">
                                         </div>
+                                        
+                                        <div class="form-group">
+                                            <label for="" class="label-control">Semester</label>
+                                            <select name="semester" class="form-control" id="">
+                                                <option value="" selected disabled> == Pilih == </option>
+                                                <option value="Ganjil">Ganjil</option>
+                                                <option value="Genap">Genap</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="" class="label-control">Periode</label>
+                                            <select name="periode" class="form-control" id="">
+                                                <option value="" selected disabled> == Periode == </option>
+                                                @for ($i = 2020; $i < 2030; $i++)
+                                                    <option value="{{ $i }}/{{ $i+1 }}">{{ $i }}/{{ $i+1 }}</option>
+                                                @endfor
+                                            </select>
+                                        </div>
+
                                     </div>
                                     <div class="col-12">
                                         <button type="submit" class="btn btn-lg btn-block mt-3"><span class="text-white pr-3"><i class="fas fa-paper-plane"></i></span>Check Data</button>
@@ -194,6 +214,15 @@
                             </div>
                             <div class="card-body">
                                 <div class="table table-responsive">
+                                    {{-- <h1>OKOKOKOK</h1> --}}
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <h5>Total Tunggakan : Rp. {{ number_format(@App\Helpers\Format::getTunggakan($spp[0]->siswa_id), 0) }}</h5>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <h5>Nama Siswa : {{ @App\Helpers\Format::getNameSiswa($spp[0]->siswa_id) }}</h5>
+                                        </div>
+                                    </div>
                                     <table class="table table-bordered text-center">
                                         <thead>
                                             <tr>
@@ -202,6 +231,7 @@
                                                 <th>Bulan</th>
                                                 <th>Kelas </th>
                                                 <th>Nominal Dibayar</th>
+                                                <th>Tanggal Bayar</th>
                                                 <th>Status</th>
                                             </tr>
                                         </thead>
@@ -213,6 +243,7 @@
                                                         <td>{{ \Carbon\Carbon::parse($spp->tanggal)->format('M Y')}}</td>
                                                         <td>{{ $spp->kelas->kelas }} {{ $spp->kelas->nama_kelas }}</td>
                                                         <td>Rp. {{ number_format($spp->total_pembayaran,0) }}</td>
+                                                        <td>{{ $spp->tanggal_pembayaran }}</td>
                                                         <td>
                                                             {{-- {{ $spp->status }} --}}
                                                             @switch($spp->status_pembayaran)

@@ -16,10 +16,16 @@ class LaporanSppController extends Controller
     {
         $this->laporanSpp = $laporanSpp;
     }
-    public function index()
+    public function index(Request $request)
     {
-        // dd("ok");
-        $result = $this->laporanSpp->getLaporanSpp();
+        // dd($request->all());
+
+        if ($request['semester'] != null || $request['tahun'] != null) {
+            # code...
+            $result = $this->laporanSpp->getLaporanSppFilter($request->all());
+        } else {
+            $result = $this->laporanSpp->getLaporanSpp();
+        }
 
         return view('pages.admin.laporan.index', [
             'data' => $result['data'],

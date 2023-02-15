@@ -113,10 +113,13 @@ class SppService
         DB::beginTransaction();
         try {
 
+
+            // dd($siswa[0]->id);
             foreach ($siswa as $sis => $student) {
 
                 $spp = Spp::where('siswa_id', $student->id)->where('kelas_id', $kelas_id)->whereMonth('tanggal', $month)->whereYear('tanggal', $year)->first();
 
+                // dd($spp);
                 $count = Spp::where('siswa_id', $siswa[0]->id)->where('kelas_id', $kelas_id)->orderBy('created_at', 'DESC')->first();
 
                 if ($count != NULL && $count->semester >= 8) {
@@ -134,12 +137,16 @@ class SppService
                     return $result;
                 }
 
+                // dd($spp);
                 if ($spp == NULL) {
+                    // dd("NULL");
                     if ($month >= 1 && $month < 7) {
                         for ($i = 1; $i < 7; $i++) {
                             # code...
+                            $detailSiswa = Siswa::with('kelasDetail', 'kelasDetail.kelas')->whereRelation('kelasDetail', 'kelas_id', $kelas_id)->where('id', $student->id)->where('status_siswa', 'Aktif')->get();
+
                             $date = Carbon::now()->month($i)->day(1);
-                            foreach ($siswa as $key => $value) {
+                            foreach ($detailSiswa as $key => $value) {
                                 // 
 
 
@@ -192,8 +199,11 @@ class SppService
                     } else {
                         for ($i = 7; $i <= 12; $i++) {
                             # code...
+                            $detailSiswa = Siswa::with('kelasDetail', 'kelasDetail.kelas')->whereRelation('kelasDetail', 'kelas_id', $kelas_id)->where('id', $student->id)->where('status_siswa', 'Aktif')->get();
+
+
                             $date = Carbon::now()->month($i)->day(1);
-                            foreach ($siswa as $key => $value) {
+                            foreach ($detailSiswa as $key => $value) {
                                 // 
 
                                 if ($value->status == 'Potongan') {
@@ -499,6 +509,14 @@ class SppService
     {
         // dd($data);
 
+        $periode = $data['periode'];
+        $explode = explode(
+            '/',
+            $periode
+        );
+
+        // dd($data);
+
 
         $siswa = Siswa::whereDate('tanggal_lahir', $data['tanggal_lahir'])->where('nisn', $data['nisn'])->first();
         // dd($siswa);
@@ -514,29 +532,69 @@ class SppService
             ];
         }
 
-        $spp = Spp::with('siswa', 'guru', 'kelas')->where('siswa_id', $siswa->id)->get();
+        $spp = [];
+        if ($data['semester'] == 'Ganjil') {
 
-        if ($spp == null) {
-            # code...
-            $status = false;
-            $message = 'Data spp tidak ditemukan';
+            $periode = $explode = $explode[0];
+            $spp = Spp::with('siswa', 'guru', 'kelas')->whereIn('semester', [1, 3, 5, 7, 9])->where('siswa_id', $siswa->id)->whereYear('tanggal', $periode)->get();
+
+            // dd(count($kls));
+
+            if ($spp == null) {
+                # code...
+                $status = false;
+                $message = 'Data spp tidak ditemukan';
+                return [
+                    'status' => $status,
+                    'message' => $message,
+                    'data' => null,
+                ];
+            }
+
+            $status = true;
+            $message = 'Data siswa dan Spp ditemukan';
+
             return [
                 'status' => $status,
                 'message' => $message,
-                'data' => null,
+                'spp' => $spp,
+                'siswa' => $siswa,
+            ];
+        } else {
+            $periode = $explode = $explode[1];
+
+            // dd($periode);
+            $spp = Spp::with('siswa', 'guru', 'kelas')->whereIn('semester', [1, 2, 4, 6, 8, 10])->where('siswa_id', $siswa->id)->whereYear('tanggal', $periode)->get();
+
+            // dd(count($kls));
+
+            if ($spp == null) {
+                # code...
+                $status = false;
+                $message = 'Data spp tidak ditemukan';
+                return [
+                    'status' => $status,
+                    'message' => $message,
+                    'data' => null,
+                ];
+            }
+
+            $status = true;
+            $message = 'Data siswa dan Spp ditemukan';
+
+            return [
+                'status' => $status,
+                'message' => $message,
+                'spp' => $spp,
+                'siswa' => $siswa,
             ];
         }
 
-        // dd($spp);
-        $status = true;
-        $message = 'Data siswa dan Spp ditemukan';
+        // $spp = Spp::with('siswa', 'guru', 'kelas')->where('siswa_id', $siswa->id)->get();
 
-        return [
-            'status' => $status,
-            'message' => $message,
-            'spp' => $spp,
-            'siswa' => $siswa,
-        ];
+
+        // dd($spp);
+
     }
 
     static function detailKelasLunas($kelas_id)
@@ -587,7 +645,7 @@ class SppService
         // dd($kelas);
         $spp = [];
         foreach ($kelas as $k) {
-            $data = Spp::with('siswa', 'guru', 'kelas')->where('siswa_id', $k->siswa_id)->where('kelas_id', $k->kelas_id)->where('status_pembayaran', 'Belum Lunas')->get();
+            $data = Spp::with('siswa', 'guru', 'kelas')->where('siswa_id', $k->siswa_id)->where('kelas_id', $k->kelas_id)->whereIn('status_pembayaran', ['Belum Lunas', 'Cicilan'])->get();
 
             // dd(count($data));
             if (count($data) <= 6) {
@@ -626,26 +684,35 @@ class SppService
         $kelas = DetailKelas::with('siswa')->where('kelas_id', decrypt($kelas_id))->get();
 
         // dd($kelas);
+
+        $periode = $data['periode'];
+        $explode = explode('/', $periode);
+
+
+        // dd($explode);
         $spp = [];
-        foreach ($kelas as $k) {
+        if ($data['semester'] == 'Ganjil') {
 
-            // dd($data['semester']);
-            if ($data['semester'] == 'Ganjil') {
-                $kls = Spp::with('siswa', 'guru', 'kelas')->whereIn('semester', [1, 3, 5, 7, 9])->where('siswa_id', $k->siswa_id)->where('kelas_id', $k->kelas_id)->whereIn('status_pembayaran', ['Belum Lunas', 'Cicilan'])->get();
+            $periode = $explode = $explode[0];
+            $kls = Spp::with('siswa', 'guru', 'kelas')->whereIn('semester', [1, 3, 5, 7, 9])->where('kelas_id', decrypt($kelas_id))->whereYear('tanggal', $periode)->whereIn('status_pembayaran', ['Belum Lunas', 'Cicilan'])->get()->groupBy('siswa_id');
 
-                // dd(count($kls));
-                foreach ($kls as $key) {
-                    $spp[] = $key;
-                }
-            } else {
-                $kls = Spp::with('siswa', 'guru', 'kelas')->whereIn('semester', [2, 4, 6, 8, 10])->where('siswa_id', $k->siswa_id)->where('kelas_id', $k->kelas_id)->whereIn('status_pembayaran', ['Belum Lunas', 'Cicilan'])->get();
+            // dd(count($kls));
+            foreach ($kls as $key) {
+                $spp[] = $key;
+            }
+        } else {
+            $periode = $explode = $explode[1];
 
-                // dd(count($kls));
-                foreach ($kls as $key) {
-                    $spp[] = $key;
-                }
+            // dd($periode);
+            $kls = Spp::with('siswa', 'guru', 'kelas')->whereIn('semester', [1, 2, 4, 6, 8, 10])->where('kelas_id', decrypt($kelas_id))->whereYear('tanggal', $periode)->whereIn('status_pembayaran', ['Belum Lunas', 'Cicilan'])->get()->groupBy('siswa_id');
+
+            // dd(count($kls));
+            foreach ($kls as $key) {
+                $spp[] = $key;
             }
         }
+
+        // dd($spp);
 
         return [
             'data' => $spp,

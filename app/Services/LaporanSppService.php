@@ -13,12 +13,18 @@ class LaporanSppService
     static function getLaporanSpp()
     {
         $title = "Laporan SPP";
-        $data = Spp::with('siswa', 'kelas', 'guru', 'user')->whereIn('status_pembayaran', ['Lunas', 'Cicilan'])->orderBy('updated_at', 'DESC')->get();
+        $data = Spp::with('siswa', 'kelas', 'guru', 'user')->get()->groupBy('siswa_id');
         $kelas = Kelas::get();
         $status = true;
         $message = "Success Ambil Data Laporan SPP";
 
         // dd($data);
+        // foreach ($data as $key) {
+        //     dd($key);
+        //     // foreach ($key as $item) {
+        //     //     dd($item);
+        //     // }
+        // }
         $result = [
             'status' => $status,
             'message' => $message,
@@ -28,6 +34,37 @@ class LaporanSppService
         ];
 
         return $result;
+    }
+
+    static function getLaporanSppFilter($data)
+    {
+
+        if ($data['semester'] == 'GANJIL') {
+            $data = Spp::with('siswa', 'kelas', 'guru', 'user')->whereIn('semester', [1, 3, 5, 7, 9])->whereYear('tanggal', $data['tahun'])->get()->groupBy('siswa_id');
+        } else {
+            $data = Spp::with('siswa', 'kelas', 'guru', 'user')->whereIn('semester', [1, 2, 4, 6, 8, 10])->whereYear('tanggal', $data['tahun'])->get()->groupBy('siswa_id');
+        }
+
+        dd($data);
+        $title = "Laporan SPP";
+        $kelas = Kelas::get();
+        $status = true;
+        $message = "Success Ambil Data Laporan SPP";
+
+        // dd($data);
+        // foreach ($data as $key) {
+        //     dd($key);
+        //     // foreach ($key as $item) {
+        //     //     dd($item);
+        //     // }
+        // }
+        $result = [
+            'status' => $status,
+            'message' => $message,
+            'data' => $data,
+            'kelas' => $kelas,
+            'title' => $title
+        ];
     }
 
     static function exportExcel($data)

@@ -16,9 +16,23 @@
                                     <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
                                     <div class="heading-elements">
                                         <ul class="list-inline mb-0">
-                                            <li><button type="button"
-                                                    class="btn btn-glow btn-round btn-bg-gradient-x-red-pink">More</button>
-                                            </li>
+                                            <form action="">
+                                                @csrf
+                                                <select name="tahun" class="btn btn-glow btn-round btn-bg-gradient-x-red-pink form-control" id="tahun" >
+                                                    <option value="">Pilih Tahun</option>
+                                                    <option value="2022">2022</option>
+                                                    <option value="2022">2022</option>
+                                                    <option value="2022">2022</option>
+                                                    <option value="2022">2022</option>
+                                                    <option value="2022">2022</option>
+                                                    {{-- @foreach ($tahun as $item)
+                                                        <option value="{{ $item->tahun }}">{{ $item->tahun }}</option>
+                                                    @endforeach --}}
+                                                </select>
+                                            </form>
+                                            {{-- <li><button type="button"
+                                                    class="">Pilih Tahun</button>
+                                            </li> --}}
                                         </ul>
                                     </div>
                                 </div>

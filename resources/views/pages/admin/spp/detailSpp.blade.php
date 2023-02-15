@@ -254,6 +254,7 @@
                                                         <th>Nominal Bayar</th>
                                                         <th>Sisa Bayar</th>
                                                         <th>Status Pembayaran</th>
+                                                        <th>Tanggal Pembayaran</th>
                                                         <th>Aksi</th>
                                                     </tr>
                                                 </tfoot>

@@ -42,9 +42,9 @@
                                                     @endrole
                                                     @csrf
                                                 <div class="row d-flex justify-content-end">
-                                                    <div class="col-md-3 col-sm-12">
+                                                    <div class="col-md-2 col-sm-12">
                                                         <label for="" class="control-label">Kelas</label>
-                                                        <select name="kelas_id" class="form-control" id="" required>
+                                                        <select name="kelas_id" class="form-control" id="kelas" required>
                                                             <option value="" selected disabled> == PILIH == </option>
                                                             
                                                             @foreach ($kelas as $kelas=>$k)
@@ -54,7 +54,7 @@
                                                     </div>
                                                     <div class="col-sm-4 col-md-3 col-sm-12">
                                                         <label for="" class="control-label">Semester</label>
-                                                        <select name="semester" class="form-control" id="" required>
+                                                        <select name="semester" class="form-control" id="semester" required>
                                                             <option value="" selected disabled> == PILIH == </option>
                                                             <option value="GANJIL">GANJIL</option>
                                                             <option value="GENAP">GENAP</option>
@@ -62,7 +62,7 @@
                                                     </div>
                                                     <div class="col-sm-4 col-md-3 col-sm-12">
                                                         <label for="" class="control-label">Tahun</label>
-                                                        <select name="tahun" class="form-control" id="" required>
+                                                        <select name="tahun" class="form-control" id="tahun" required>
                                                             <option value="" selected disabled> == PILIH == </option>
                                                             @for ($i = 2021; $i < 2030; $i++)
                                                                 <option value="{{ $i }}" @if ($i == date('Y')) selected @endif>{{ $i }}</option>
@@ -70,9 +70,13 @@
                                                         </select>
                                                     </div>
                                                     
-                                                    <div class="col-md-3 col-sm-12">
+                                                    <div class="col-md-2 col-sm-12">
                                                         <label for="" class="control-label" style="color: white"> Cetak </label>
                                                         <button type="submit" class="form-control btn btn-info">Cetak</button>
+                                                    </div>
+                                                    <div class="col-md-2 col-sm-12">
+                                                        <label for="" class="control-label" style="color: white"> Cari </label>
+                                                        <button type="button" class="form-control btn btn-danger" id="cari">Cari</button>
                                                     </div>
                                                 </div>
                                             </form>
@@ -88,41 +92,35 @@
                                                     <tr>
                                                         <th>No</th>
                                                         <th>Nama Siswa</th>
-                                                        <th>Guru Penerima</th>
-                                                        <th>Nominal Pembayaran</th>
-                                                        <th>Status Pembayaran</th>
+                                                        <th>Jumlah SPP Lunas</th>
+                                                        <th>Jumlah SPP Belum Lunas</th>
+                                                        <th>Jumlah SPP Cicilan</th>
+                                                        <th>Nominal Harus Dibayar</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     {{-- {{ dd($data) }} --}}
                                                     @foreach ($data as $item=>$key)
-                                                    <tr>
-                                                        <td>{{ $item+1 }}</td>
-                                                        <td>{{ @$key->siswa->nama_siswa }}</td>
-                                                        <td>{{ @$key->guru_penerima }}</td>
-                                                        <td>{{ @$key->total_pembayaran }}</td>
-                                                        <td>
-                                                            @switch(@$key->status_pembayaran)
-                                                                @case('Lunas')
-                                                                    <div class="badge badge-success">Lunas</div>
-                                                                    @break
-                                                                @case('Cicilan')
-                                                                    <div class="badge badge-warning">Cicilan</div>
-                                                                    @break
-                                                                @default
-                                                                    
-                                                            @endswitch
-                                                        </td>
-                                                    </tr>
+                                                    {{-- {{ dd($key[0]->siswa->nama_siswa) }} --}}
+                                                        <tr>
+                                                            <td>{{ $item+1 }}</td>
+                                                            <td>{{ @$key[0]->siswa->nama_siswa}}</td>
+                                                            <td>{{ App\Helpers\Format::GetDetail(@$key[0]->siswa_id, 'Lunas') }}</td>
+                                                            <td>{{ App\Helpers\Format::GetDetail(@$key[0]->siswa_id, 'Belum Lunas') }}</td>
+                                                            <td>{{ App\Helpers\Format::GetDetail(@$key[0]->siswa_id, 'Cicilan') }}</td>
+                                                            <td>{{ number_format(App\Helpers\Format::Unpaid(@$key[0]->siswa_id)) }}</td>
+                                                        </tr>
+                                                            
                                                     @endforeach
                                                 </tbody>
                                                 <tfoot>
                                                     <tr>
                                                         <th>No</th>
                                                         <th>Nama Siswa</th>
-                                                        <th>Guru Penerima</th>
-                                                        <th>Nominal Pembayaran</th>
-                                                        <th>Status Pembayaran</th>
+                                                        <th>Jumlah SPP Lunas</th>
+                                                        <th>Jumlah SPP Belum Lunas</th>
+                                                        <th>Jumlah SPP Cicilan</th>
+                                                        <th>Nominal Harus Dibayar</th>
                                                     </tr>
                                                 </tfoot>
                                             </table>
@@ -137,4 +135,25 @@
             </div>
         </div>
     </div>
+@endsection
+
+
+@section('scripts')
+    <script>
+        $(document).ready(function(){
+            $('#cari').click(function(){
+                var kelas = $('#kelas').val();
+                var semester = $('#semester').val();
+                var tahun = $('#tahun').val();
+
+                console.log(kelas, semester, tahun)
+                if (semester == null || tahun == null) {
+                    console.log('Semua data harus diisi');
+                }else{
+                    console.log("kelas");
+                    window.location.href = "{{ url('admin/laporan-spp') }}?kelas="+kelas+"&semester="+semester+"&tahun="+tahun;
+                }
+            })
+        })
+    </script>
 @endsection

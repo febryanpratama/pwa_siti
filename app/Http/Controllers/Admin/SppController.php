@@ -182,7 +182,7 @@ class SppController extends Controller
 
         // dd($result['data']);
         if ($result['status'] == true && $result['data'] != null) {
-            return view('pages.admin.spp.filter', [
+            return view('pages.admin.spp.detailBelumLunas', [
                 'data' => $result['data'],
                 'title' => 'Data Siswa',
                 'kelas_id' => encrypt($kelas_id),

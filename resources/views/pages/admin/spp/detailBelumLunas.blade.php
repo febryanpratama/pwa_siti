@@ -74,7 +74,8 @@
                                                         <th>No</th>
                                                         <th>Nama Siswa</th>
                                                         <th>Pembayaran</th>
-                                                        <th>Aksi</th>
+                                                        <th>Jumlah yang harus Dibayar</th>
+                                                        <th>Keterangan</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -87,8 +88,8 @@
                                                         <tr>
                                                             <td>{{ $key+1 }}</td>
                                                             <td>{{ @$item[0]->siswa->nama_siswa }}</td>
-                                                            <td>{{ App\Helpers\Format::countSiswa(@$item[0]->siswa_id, @$item[0]->kelas_id) }} bulan Pembayaran</td>
-                                                            {{-- <td>{{ @$item->user->name }}</td> --}}
+                                                            <td>{{ App\Helpers\Format::countSiswaNotPaid(@$item[0]->siswa_id, @$item[0]->kelas_id) }} bulan Pembayaran</td>
+                                                            <td>Rp. {{ number_format(App\Helpers\Format::sumNotPaid(@$item[0]->siswa_id, @$item[0]->kelas_id), '0') }}</td>
                                                             <td>
                                                                 <div class="badge badge-danger">Belum Lunas</div>
                                                                 {{-- <button type="button" class="btn btn-sm btn-danger " data-toggle="modal"
@@ -113,8 +114,9 @@
                                                     <tr>
                                                         <th>No</th>
                                                         <th>Nama Siswa</th>
-                                                        <th>Bendahara</th>
-                                                        <th>Aksi</th>
+                                                        <th>Pembayaran</th>
+                                                        <th>Jumlah yang harus Dibayar</th>
+                                                        <th>Keterangan</th>
                                                     </tr>
                                                 </tfoot>
                                             </table>

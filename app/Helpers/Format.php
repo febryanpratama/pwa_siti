@@ -4,6 +4,7 @@ namespace App\Helpers;
 
 use App\Models\DetailKelas;
 use App\Models\Ijazah;
+use App\Models\siswa;
 use App\Models\Spp;
 
 class Format
@@ -126,6 +127,32 @@ class Format
         return $data;
     }
 
+    static function countSiswaNotPaid($siswa_id, $kelas_id)
+    {
+        // 
+        $data = Spp::where('siswa_id', $siswa_id)->where('kelas_id', $kelas_id)->whereIn('status_pembayaran', ['Belum Lunas', 'Cicilan'])->count();
+
+        return $data;
+    }
+
+    static function sumNotPaid($siswa_id, $kelas_id)
+    {
+        $data = Spp::where('siswa_id', $siswa_id)->where('kelas_id', $kelas_id)->whereIn('status_pembayaran', ['Belum Lunas', 'Cicilan'])->get();
+
+        $total = [];
+
+        foreach ($data as $key => $value) {
+            # code...
+            if ($value->status_pembayaran == 'Belum Lunas') {
+                $total[] = $value->nominal_bayar;
+            } else {
+                $total[] = $value->sisa_bayar;
+            }
+        }
+
+        return array_sum($total);
+    }
+
     static function checkIjazah($siswa_id)
     {
         // 
@@ -158,6 +185,67 @@ class Format
                 $total[] = $dataSpp->sisa_bayar;
             }
             // $total[] = $value->sisa_pembayaran;
+        }
+
+        return array_sum($total);
+    }
+
+    static function getTunggakan($siswa_id)
+    {
+        // dd($siswa_id);
+
+        $total = [];
+
+        // Spp::where('siswa_id', $siswa_id)
+        $spp = Spp::with('siswa', 'guru', 'kelas')->where('siswa_id', $siswa_id)->get();
+
+        foreach ($spp as $key => $value) {
+            # code...
+            if ($value->status_pembayaran == 'Belum Lunas') {
+                $total[] = $value->nominal_bayar;
+            } else if ($value->status_pembayaran == 'Cicilan') {
+                $total[] = $value->sisa_bayar;
+            }
+        }
+
+        return array_sum($total);
+    }
+
+    static function getNameSiswa($siswa_id)
+    {
+        $data = siswa::where('id', $siswa_id)->first();
+
+        // dd($data);
+        return $data->nama_siswa;
+    }
+
+    static function GetDetail($siswa_id, $status)
+    {
+        if ($status == 'Lunas') {
+            # code...
+            $count = Spp::where('siswa_id', $siswa_id)->where('status_pembayaran', 'Lunas')->count();
+        } else if ($status == 'Belum Lunas') {
+            $count = Spp::where('siswa_id', $siswa_id)->where('status_pembayaran', 'Belum Lunas')->count();
+        } else {
+            $count = Spp::where('siswa_id', $siswa_id)->where('status_pembayaran', 'Cicilan')->count();
+        }
+
+        return $count;
+    }
+
+    static function Unpaid($siswa_id)
+    {
+        $data = Spp::where('siswa_id', $siswa_id)->whereIn('status_pembayaran', ['Belum Lunas', 'Cicilan'])->get();
+
+        $total = [];
+
+        foreach ($data as $key => $value) {
+            # code...
+            if ($value->status_pembayaran == 'Belum Lunas') {
+                $total[] = $value->nominal_bayar;
+            } else {
+                $total[] = $value->sisa_bayar;
+            }
         }
 
         return array_sum($total);
