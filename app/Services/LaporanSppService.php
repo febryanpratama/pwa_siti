@@ -40,9 +40,9 @@ class LaporanSppService
     {
 
         if ($data['semester'] == 'GANJIL') {
-            $data = Spp::with('siswa', 'kelas', 'guru', 'user')->whereIn('semester', [1, 3, 5, 7, 9])->whereYear('tanggal', $data['tahun'])->get()->groupBy('siswa_id');
+            $data = Spp::with('siswa', 'kelas', 'guru', 'user')->whereIn('semester', [1, 3, 5, 7, 9])->whereYear('tanggal', $data['tahun'])->whereRelation('siswa', 'deleted_at', null)->get()->groupBy('siswa_id');
         } else {
-            $data = Spp::with('siswa', 'kelas', 'guru', 'user')->whereIn('semester', [1, 2, 4, 6, 8, 10])->whereYear('tanggal', $data['tahun'])->get()->groupBy('siswa_id');
+            $data = Spp::with('siswa', 'kelas', 'guru', 'user')->whereIn('semester', [1, 2, 4, 6, 8, 10])->whereYear('tanggal', $data['tahun'])->whereRelation('siswa', 'deleted_at', null)->get()->groupBy('siswa_id');
         }
 
         // dd($data);
@@ -65,6 +65,8 @@ class LaporanSppService
             'kelas' => $kelas,
             'title' => $title
         ];
+
+        return $result;
     }
 
     static function exportExcel($data)

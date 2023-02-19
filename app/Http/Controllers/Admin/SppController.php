@@ -127,6 +127,8 @@ class SppController extends Controller
 
     public function dataSiswa(Request $request)
     {
+
+
         $result = $this->sppService->dataSiswa($request->all());
 
         if ($result['status'] == true) {
@@ -135,7 +137,7 @@ class SppController extends Controller
                 'siswa' => $result['siswa'],
                 'message' => $result['message'],
                 'status' => true,
-            ]);
+            ])->with('success', $result['message']);
         } else {
             // dd("false");
             return view('pages.welcome', [
@@ -144,7 +146,7 @@ class SppController extends Controller
                 'message' => $result['message'],
                 'spp' => null,
                 'siswa' => null,
-            ])->with('success', $result['message']);
+            ])->with('error', $result['message']);
         }
         // dd($result);
     }

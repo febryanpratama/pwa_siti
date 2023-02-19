@@ -163,6 +163,8 @@ Route::group(['prefix' => 'bendahara', 'middleware' => ['role:Bendahara']], func
         Route::get('/', [SppController::class, 'index']);
         Route::get('/kelas/{kelas_id}', [SppController::class, 'detailKelas']);
         Route::get('/kelas/{kelas_id}/siswa/{siswa_id}', [SppController::class, 'detailSiswa']);
+        Route::get('/kelas/{kelas_id}/lunas', [SppController::class, 'detailKelasLunas']);
+        Route::get('/kelas/{kelas_id}/belum-lunas', [SppController::class, 'detailKelasBelumLunas']);
         Route::get('generate/{kelas_id}', [SppController::class, 'generate']);
         Route::get('/export', [SppController::class, 'Export']);
         Route::post('/', [SppController::class, 'store']);
@@ -172,13 +174,13 @@ Route::group(['prefix' => 'bendahara', 'middleware' => ['role:Bendahara']], func
     Route::group([
         'prefix' => 'laporan-spp'
     ], function () {
-        Route::get('/', [\App\Http\Controllers\LaporanSppController::class, 'index']);
+        Route::get('/', [LaporanSppController::class, 'index']);
         Route::post('/excel', [LaporanSppController::class, 'exportExcel']);
     });
     //
 });
-Route::group(['prefix' => 'kepsek', 'middleware' => ['role:Kepsek']], function () {
 
+Route::group(['prefix' => 'kepsek', 'middleware' => ['role:Kepsek']], function () {
     Route::get('/', [KepsekController::class, 'index']);
     Route::group([
         'prefix' => 'laporan-spp',
@@ -188,6 +190,7 @@ Route::group(['prefix' => 'kepsek', 'middleware' => ['role:Kepsek']], function (
         Route::post('/excel', [LaporanSppController::class, 'exportExcel']);
     });
 });
+
 Route::group(['prefix' => 'user', 'middleware' => ['role:User']], function () {
     Route::get('/', function () {
         return "User";

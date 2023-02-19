@@ -65,7 +65,7 @@
                                                     
                                                     @foreach ($data->detail as $x=>$item)
                                                     {{-- {{ dd($item->siswa->status_siswa) }} --}}
-                                                    @if ($item->siswa->status_siswa != 'Alumni')
+                                                    @if (@$item->siswa->status_siswa == 'Aktif')
                                                         <tr>
                                                             <td>{{ $x+1 }}</td>
                                                             <td>{{ $item->siswa->nama_siswa }}</td>

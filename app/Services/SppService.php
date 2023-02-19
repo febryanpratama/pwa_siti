@@ -261,7 +261,7 @@ class SppService
 
                     // DB::commit();
 
-                    // $status = true;
+                    // $status = truep;
                     // $message = 'Data spp berhasil ditambahkan';
 
                     // $result = [
@@ -509,6 +509,26 @@ class SppService
     {
         // dd($data);
 
+        $validator = Validator::make($data, [
+            'nisn' => 'required',
+            'tanggal_lahir' => 'required',
+            'periode' => 'required',
+            'semester' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            # code...
+            $status = false;
+            $message = $validator->errors()->first();
+
+
+            return [
+                'status' => $status,
+                'message' => $message,
+                'data' => null,
+            ];
+        }
+
         $periode = $data['periode'];
         $explode = explode(
             '/',
@@ -628,6 +648,7 @@ class SppService
         }
 
         // dd($spp);
+        // dd($spp);
         $status = true;
         $message = 'Data spp ditemukan';
 
@@ -645,7 +666,7 @@ class SppService
         // dd($kelas);
         $spp = [];
         foreach ($kelas as $k) {
-            $data = Spp::with('siswa', 'guru', 'kelas')->where('siswa_id', $k->siswa_id)->where('kelas_id', $k->kelas_id)->whereIn('status_pembayaran', ['Belum Lunas', 'Cicilan'])->get();
+            $data = Spp::with('siswa', 'guru', 'kelas')->where('siswa_id', $k->siswa_id)->where('kelas_id', $k->kelas_id)->whereIn('status_pembayaran', ['Belum Lunas', 'Cicilan'])->whereRelation('siswa', 'deleted_at', null)->get();
 
             // dd(count($data));
             if (count($data) <= 6) {
@@ -665,7 +686,7 @@ class SppService
             ];
         }
 
-        // dd($spp);
+        // dd($spp[5]);
         $status = true;
         $message = 'Data spp ditemukan';
 

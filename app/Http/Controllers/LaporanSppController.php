@@ -22,15 +22,21 @@ class LaporanSppController extends Controller
 
         if ($request['semester'] != null || $request['tahun'] != null) {
             # code...
+            // dd("ok");
             $result = $this->laporanSpp->getLaporanSppFilter($request->all());
         } else {
             $result = $this->laporanSpp->getLaporanSpp();
         }
 
+        // dd($result);
+
+        // if($result == null){
+        //     return back()->with('error')
+        // }
         return view('pages.admin.laporan.index', [
-            'data' => $result['data'],
-            'kelas' => $result['kelas'],
-            'title' => $result['title'],
+            'data' => $result['data'] ?? null,
+            'kelas' => $result['kelas'] ?? null,
+            'title' => $result['title'] ?? null,
         ]);
     }
 

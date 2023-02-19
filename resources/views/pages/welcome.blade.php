@@ -154,7 +154,7 @@
                                         <div class="social-icon mr-3">
                                             <i class="fas fa-envelope"></i>
                                         </div>
-                                        <span class="media-body align-self-center">admin@sppsmatamanmulia.live</span>
+                                        <span class="media-body align-self-center">admin@sppsmatamanmulia</span>
                                     </a>
                                 </li>
                             </ul>
@@ -179,7 +179,7 @@
                                         
                                         <div class="form-group">
                                             <label for="" class="label-control">Semester</label>
-                                            <select name="semester" class="form-control" id="">
+                                            <select name="semester" class="form-control" id="" required>
                                                 <option value="" selected disabled> == Pilih == </option>
                                                 <option value="Ganjil">Ganjil</option>
                                                 <option value="Genap">Genap</option>
@@ -188,7 +188,7 @@
 
                                         <div class="form-group">
                                             <label for="" class="label-control">Periode</label>
-                                            <select name="periode" class="form-control" id="">
+                                            <select name="periode" class="form-control" id="" required>
                                                 <option value="" selected disabled> == Periode == </option>
                                                 @for ($i = 2020; $i < 2030; $i++)
                                                     <option value="{{ $i }}/{{ $i+1 }}">{{ $i }}/{{ $i+1 }}</option>

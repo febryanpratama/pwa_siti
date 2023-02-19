@@ -78,12 +78,13 @@ class KelasService
     {
         // dd($id);
         $title = "Siswa Kelas";
-        $data = Kelas::with('detail', 'detail.siswa')->where('id', $id)->firstOrFail();
+        $data = Kelas::with('detail', 'detail.siswa')->where('id', $id)->whereRelation('detail.siswa', 'deleted_at', null)->firstOrFail();
         $siswa = siswa::get();
 
         $kelas = Kelas::get();
 
         $status = true;
+        // dd($data);
         $message = "Success Ambil Data Detail Kelas";
         $result = [
             'status' => $status,
