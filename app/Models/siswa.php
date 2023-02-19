@@ -40,7 +40,7 @@ class siswa extends Model
 
     public function detail()
     {
-        return $this->belongsTo(detail_siswa::class, 'siswa_id');
+        return $this->belongsTo(detail_siswa::class, 'siswa_id')->orderBy('nama_siswa', 'ASC');
     }
 
     public function detailKelas()

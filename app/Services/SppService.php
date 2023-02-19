@@ -212,7 +212,7 @@ class SppService
                                         'kelas_id'          => $kelas_id,
                                         'siswa_id'          => $value->id,
                                         'tanggal'           => $date,
-                                        'semester'          => $count == null ? 1 : ($count->semester + 1),
+                                        'semester'          => $count == null ? 2 : ($count->semester + 1),
                                         'nominal_bayar'     => ($value->kelasDetail->kelas->nominal / 100) * 50,
                                     ]);
                                 } else {
@@ -222,7 +222,7 @@ class SppService
                                             'kelas_id'          => $kelas_id,
                                             'siswa_id'          => $value->id,
                                             'tanggal'           => $date,
-                                            'semester'          => $count == null ? 1 : ($count->semester + 1),
+                                            'semester'          => $count == null ? 2 : ($count->semester + 1),
                                             'nominal_bayar'     => $value->kelasDetail->kelas->nominal,
                                             'total_pembayaran'  => $value->kelasDetail->kelas->nominal,
                                             'sisa_bayar'        => 0,
@@ -233,7 +233,7 @@ class SppService
                                             'kelas_id'          => $kelas_id,
                                             'siswa_id'          => $value->id,
                                             'tanggal'           => $date,
-                                            'semester'          => $count == null ? 1 : ($count->semester + 1),
+                                            'semester'          => $count == null ? 2 : ($count->semester + 1),
                                             'nominal_bayar'     => $value->kelasDetail->kelas->nominal,
                                         ]);
                                     }

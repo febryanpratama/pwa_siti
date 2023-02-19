@@ -20,11 +20,9 @@
                                                 @csrf
                                                 <select name="tahun" class="btn btn-glow btn-round btn-bg-gradient-x-red-pink form-control" id="tahun" >
                                                     <option value="">Pilih Tahun</option>
-                                                    <option value="2022">2022</option>
-                                                    <option value="2022">2022</option>
-                                                    <option value="2022">2022</option>
-                                                    <option value="2022">2022</option>
-                                                    <option value="2022">2022</option>
+                                                    @for ($i = 2020; $i < 2025; $i++)
+                                                        <option value="{{ $i }}">{{ $i }}</option>
+                                                    @endfor
                                                     {{-- @foreach ($tahun as $item)
                                                         <option value="{{ $item->tahun }}">{{ $item->tahun }}</option>
                                                     @endforeach --}}

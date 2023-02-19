@@ -11,7 +11,7 @@ class GuruService
     {
         $title = "Wali Kelas";
 
-        $data = Guru::with('kelas')->get();
+        $data = Guru::with('kelas')->orderBy('nama_guru', 'ASC')->get();
 
         // dd($data);
 

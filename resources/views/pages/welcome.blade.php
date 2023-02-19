@@ -154,7 +154,7 @@
                                         <div class="social-icon mr-3">
                                             <i class="fas fa-envelope"></i>
                                         </div>
-                                        <span class="media-body align-self-center">admin@starlabsys.tech</span>
+                                        <span class="media-body align-self-center">admin@sppsmatamanmulia.live</span>
                                     </a>
                                 </li>
                             </ul>

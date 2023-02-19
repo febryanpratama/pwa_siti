@@ -42,7 +42,7 @@
                                                     @endrole
                                                     @csrf
                                                 <div class="row d-flex justify-content-end">
-                                                    <div class="col-md-2 col-sm-12">
+                                                    <div class="col-sm-6 col-md-2">
                                                         <label for="" class="control-label">Kelas</label>
                                                         <select name="kelas_id" class="form-control" id="kelas" required>
                                                             <option value="" selected disabled> == PILIH == </option>
@@ -52,7 +52,7 @@
                                                             @endforeach
                                                         </select>
                                                     </div>
-                                                    <div class="col-sm-4 col-md-3 col-sm-12">
+                                                    <div class="col-sm-6 col-md-3">
                                                         <label for="" class="control-label">Semester</label>
                                                         <select name="semester" class="form-control" id="semester" required>
                                                             <option value="" selected disabled> == PILIH == </option>
@@ -60,7 +60,7 @@
                                                             <option value="GENAP">GENAP</option>
                                                         </select>
                                                     </div>
-                                                    <div class="col-sm-4 col-md-3 col-sm-12">
+                                                    <div class="col-sm-6 col-md-3">
                                                         <label for="" class="control-label">Tahun</label>
                                                         <select name="tahun" class="form-control" id="tahun" required>
                                                             <option value="" selected disabled> == PILIH == </option>
@@ -70,13 +70,13 @@
                                                         </select>
                                                     </div>
                                                     
-                                                    <div class="col-md-2 col-sm-12">
+                                                    <div class="col-sm-6 col-md-2">
                                                         <label for="" class="control-label" style="color: white"> Cetak </label>
-                                                        <button type="submit" class="form-control btn btn-info">Cetak</button>
+                                                        <button type="submit" class="form-control btn btn-info btn-block btn-wrap-text" style="">Cetak</button>
                                                     </div>
-                                                    <div class="col-md-2 col-sm-12">
+                                                    <div class="col-sm-6 col-md-2 ">
                                                         <label for="" class="control-label" style="color: white"> Cari </label>
-                                                        <button type="button" class="form-control btn btn-danger" id="cari">Cari</button>
+                                                        <button type="button" class="form-control btn btn-danger btn-block btn-wrap-text" style="" id="cari">Cari</button>
                                                     </div>
                                                 </div>
                                             </form>

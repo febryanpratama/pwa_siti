@@ -53,7 +53,7 @@
                                     <div class="card-body card-dashboard">
                                         {{-- <p class="card-text">The DataTables default style file has a number of features which can be enabled based on the class name of the table. These features are.</p> --}}
                                         <div class="table-responsive">
-                                            <table class="table table-striped table-bordered base-style text-center">
+                                            <table class="table table-striped table-bordered base-style text-center datatable">
                                                 <thead>
                                                     <tr>
                                                         <th>#</th>
@@ -300,6 +300,13 @@
             </div>
         </div>
     </div>
+    {{-- <script>
+        $(document).ready(function() {
+            $('.datatable').DataTable({
+                order: [[ 1, "desc" ]]
+            });
+        } );
+    </script> --}}
 @endsection
 
 @section('script')
