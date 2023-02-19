@@ -17,9 +17,18 @@
                                 <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
                                 <div class="heading-elements">
                                     <ul class="list-inline mb-0">
-                                        <li><button type="button"
-                                                class="btn btn-glow btn-round btn-bg-gradient-x-red-pink">More</button>
-                                        </li>
+                                        <form action="">
+                                            @csrf
+                                            <select name="tahun" class="btn btn-glow btn-round btn-bg-gradient-x-red-pink form-control" id="tahun" >
+                                                <option value="">Pilih Tahun</option>
+                                                @for ($i = 2020; $i < 2025; $i++)
+                                                    <option value="{{ $i }}">{{ $i }}</option>
+                                                @endfor
+                                                {{-- @foreach ($tahun as $item)
+                                                    <option value="{{ $item->tahun }}">{{ $item->tahun }}</option>
+                                                @endforeach --}}
+                                            </select>
+                                        </form>
                                     </ul>
                                 </div>
                             </div>

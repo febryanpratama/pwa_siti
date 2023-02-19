@@ -45,7 +45,7 @@ class LaporanSppService
             $data = Spp::with('siswa', 'kelas', 'guru', 'user')->whereIn('semester', [1, 2, 4, 6, 8, 10])->whereYear('tanggal', $data['tahun'])->get()->groupBy('siswa_id');
         }
 
-        dd($data);
+        // dd($data);
         $title = "Laporan SPP";
         $kelas = Kelas::get();
         $status = true;

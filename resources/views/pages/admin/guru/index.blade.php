@@ -172,7 +172,7 @@
                                                                         <button type="button" class="btn grey btn-secondary"
                                                                         data-dismiss="modal">Close</button>
                                                                         <button type="submit"
-                                                                        class="btn btn-danger">Simpan</button>
+                                                                        class="btn btn-danger">Hapus</button>
                                                                     </div>
                                                                 </form>
                                                             </div>
