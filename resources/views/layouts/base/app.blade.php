@@ -25,8 +25,8 @@
 
     <!-- BEGIN: Vendor CSS-->
     <link rel="stylesheet" type="text/css" href="{{ asset('') }}admin/app-assets/vendors/css/vendors.min.css">
-    {{-- <link rel="stylesheet" type="text/css" href="{{ asset('') }}admin/app-assets/vendors/css/charts/chartist.css">
-    <link rel="stylesheet" type="text/css" href="{{ asset('') }}admin/app-assets/vendors/css/charts/chartist-plugin-tooltip.css"> --}}
+    <link rel="stylesheet" type="text/css" href="{{ asset('') }}admin/app-assets/vendors/css/charts/chartist.css">
+    {{-- <link rel="stylesheet" type="text/css" href="{{ asset('') }}admin/app-assets/vendors/css/charts/chartist-plugin-tooltip.css"> --}}
     <link rel="stylesheet" type="text/css" href="{{ asset('') }}admin/app-assets/vendors/css/tables/datatable/datatables.min.css">
     <!-- END: Vendor CSS-->
 
@@ -97,8 +97,8 @@
     <!-- BEGIN Vendor JS-->
 
     <!-- BEGIN: Page Vendor JS-->
-    {{-- <script src="{{ asset('') }}admin/app-assets/vendors/js/charts/chartist.min.js" type="text/javascript"></script>
-    <script src="{{ asset('') }}admin/app-assets/vendors/js/charts/chartist-plugin-tooltip.min.js" --}}
+    <script src="{{ asset('') }}admin/app-assets/vendors/js/charts/chartist.min.js" type="text/javascript"></script>
+    {{-- <script src="{{ asset('') }}admin/app-assets/vendors/js/charts/chartist-plugin-tooltip.min.js" --}}
         {{-- type="text/javascript"></script> --}}
     <!-- END: Page Vendor JS-->
 
