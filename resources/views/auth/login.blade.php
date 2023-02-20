@@ -42,7 +42,7 @@
             <div class="login-card">
                <div>
                   <div>
-                     <a class="logo" href="index.html"><img class="img-fluid for-light" src="{{ asset('assets/images/logo-remove.png') }}" width="100" height="200" alt="looginpage"><img class="img-fluid for-dark" src="../assets/images/logo/logo_dark.png" alt="looginpage"></a>
+                     <a class="logo" href="index.html"><img class="img-fluid for-light" src="{{ asset('assets/images/logo-remove.png') }}" width="100" height="200" alt="looginpage"><img class="img-fluid for-dark" src="#" alt="looginpage"></a>
                   </div>
                   <div class="login-main">
                      <form class="theme-form" action="{{ route('login') }}" method="POST">
