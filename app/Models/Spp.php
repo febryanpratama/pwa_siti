@@ -13,7 +13,7 @@ class Spp extends Model
 
     public function siswa()
     {
-        return $this->belongsTo(siswa::class, 'siswa_id');
+        return $this->belongsTo(siswa::class, 'siswa_id')->withTrashed();
     }
 
     public function guru()
