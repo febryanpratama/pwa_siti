@@ -101,9 +101,12 @@
                                                 <tbody>
                                                     {{-- {{ dd($data) }} --}}
                                                     @foreach ($data as $item=>$key)
+                                                    @php
+                                                        $a = 1
+                                                    @endphp
                                                     {{-- {{ dd($key[0]->siswa->nama_siswa) }} --}}
                                                         <tr>
-                                                            <td>{{ $item+1 }}</td>
+                                                            <td>{{ $a+1 }}</td>
                                                             <td>{{ @$key[0]->siswa->nama_siswa}}</td>
                                                             <td>{{ App\Helpers\Format::GetDetail(@$key[0]->siswa_id, 'Lunas') }}</td>
                                                             <td>{{ App\Helpers\Format::GetDetail(@$key[0]->siswa_id, 'Belum Lunas') }}</td>

@@ -81,7 +81,7 @@
                                                 <tbody>
                                                     
                                                     {{-- {{ dd($data[0]) }} --}}
-                                                    @if ($data[0] != NULL)
+                                                    @if (@$data[0] != NULL)
                                                         @php
                                                             $a = 1;
                                                         @endphp

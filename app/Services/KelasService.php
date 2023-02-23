@@ -78,7 +78,7 @@ class KelasService
     {
         // dd($id);
         $title = "Siswa Kelas";
-        $data = Kelas::with('detail', 'detail.siswa')->where('id', $id)->whereRelation('detail.siswa', 'deleted_at', null)->firstOrFail();
+        $data = Kelas::with('detail', 'detail.siswa')->where('id', $id)->whereRelation('detail.siswa', 'deleted_at', null)->get();
         $siswa = siswa::get();
 
         $kelas = Kelas::get();
@@ -90,6 +90,7 @@ class KelasService
             'status' => $status,
             'message' => $message,
             'data' => $data,
+            // 'id' => $id,
             'siswa' => $siswa,
             'title' => $title,
             'kelas' => $kelas,
