@@ -14,7 +14,7 @@ class KelasService
     {
 
         $title = "Kelas";
-        $data = Kelas::with('guru')->orderBy('kelas', 'ASC')->get();
+        $data = Kelas::with('guru')->whereRelation('guru', 'deleted_at', null)->orderBy('kelas', 'ASC')->get();
         $guru = Guru::get();
 
         $status = true;
