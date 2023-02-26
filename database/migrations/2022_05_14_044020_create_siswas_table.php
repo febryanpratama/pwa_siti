@@ -19,24 +19,24 @@ class CreateSiswasTable extends Migration
             $table->integer('nisn');
             $table->integer('nis');
             $table->string('nama_siswa');
-            $table->enum('jenis_kelamin',['Laki-Laki', 'Perempuan']);
-            $table->string('nik_siswa');
-            $table->string('nokk_siswa');
+            $table->enum('jenis_kelamin', ['Laki-Laki', 'Perempuan']);
+            $table->string('nik_siswa')->nullable();
+            $table->string('nokk_siswa')->nullable();
             $table->string('tempat_lahir');
             $table->string('tanggal_lahir');
             $table->string('agama');
-            $table->integer('anak_ke'); 
+            $table->integer('anak_ke')->nullable();
 
             $table->string('alamat');
-            $table->string('asal_sekolah');
-            $table->string('nomor_ujian_smp');
+            $table->string('asal_sekolah')->nullable();
+            $table->string('nomor_ujian_smp')->nullable();
             $table->string('nomor_ijazah');
-            $table->string('nomor_skhun');
+            $table->string('nomor_skhun')->nullable();
 
-            $table->double('bahasa_indonesia');
-            $table->double('bahasa_inggris');
-            $table->double('matematika');
-            $table->double('ipa');
+            $table->double('bahasa_indonesia')->nullable();
+            $table->double('bahasa_inggris')->nullable();
+            $table->double('matematika')->nullable();
+            $table->double('ipa')->nullable();
 
             $table->string('telpon_siswa');
             $table->string('nama_ortu');
