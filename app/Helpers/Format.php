@@ -250,4 +250,15 @@ class Format
 
         return array_sum($total);
     }
+
+    static function getSiswa($kelas_id)
+    {
+        // 
+        $siswa =  DetailKelas::with('siswa')->whereRelation('siswa', 'status_siswa', 'Aktif')->where('kelas_id', $kelas_id)->whereRelation('siswa', 'deleted_at', NULL)->get();
+        // return null;
+
+        // dd($siswa);
+
+        return $siswa;
+    }
 }

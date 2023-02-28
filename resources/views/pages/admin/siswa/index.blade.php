@@ -103,32 +103,32 @@
                                                                     </svg>
                                                                 </button>
                                                                 <div class="modal fade" id="hapusmodal{{ $key->id }}">
-                                                                    <div class="modal-dialog ">
-                                                                    <div class="modal-content">
-                                                                        <div class="modal-header">
-                                                                        <h5 class="modal-title">Hapus Data</h5>
-                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                            <span aria-hidden="true">×</span>
-                                                                        </button>
+                                                                    <div class="modal-dialog modal-dialog-centered">
+                                                                        <div class="modal-content">
+                                                                            <div class="modal-header">
+                                                                            <h5 class="modal-title">Hapus Data</h5>
+                                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                <span aria-hidden="true">×</span>
+                                                                            </button>
+                                                                            </div>
+                                                                            <form action="{{ url('admin/siswa/delete') }}" method="POST">
+                                                                                @csrf
+                                                                                <input type="hidden" name="siswa_id" value="{{ $key->id }}" id="">
+                                                                                <div class="modal-body">
+                                                                                    <div class="row">
+                                                                                        <div class="col-md-12">
+                                                                                            <p> Apakah Anda yakin akan menghapus data {{ $key->nama_siswa }}</p>
+                                                                                        </div>
+                                                                                    </div>  
+                                                                                </div>
+                                                                                <div class="modal-footer">
+                                                                                    <button type="button" class="btn grey btn-secondary"
+                                                                                    data-dismiss="modal">Close</button>
+                                                                                    <button type="submit"
+                                                                                    class="btn btn-danger">Hapus</button>
+                                                                                </div>
+                                                                            </form>
                                                                         </div>
-                                                                        <form action="{{ url('admin/siswa/delete') }}" method="POST">
-                                                                            @csrf
-                                                                            <input type="hidden" name="siswa_id" value="{{ $key->id }}" id="">
-                                                                            <div class="modal-body">
-                                                                                <div class="row">
-                                                                                    <div class="col-md-12">
-                                                                                        <p> Apakah Anda yakin akan menghapus data {{ $key->nama_siswa }}</p>
-                                                                                    </div>
-                                                                                </div>  
-                                                                            </div>
-                                                                            <div class="modal-footer">
-                                                                                <button type="button" class="btn grey btn-secondary"
-                                                                                data-dismiss="modal">Close</button>
-                                                                                <button type="submit"
-                                                                                class="btn btn-danger">Hapus</button>
-                                                                            </div>
-                                                                        </form>
-                                                                    </div>
                                                                     </div>
                                                                 </div>
 

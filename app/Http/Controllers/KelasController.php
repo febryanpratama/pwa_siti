@@ -55,10 +55,11 @@ class KelasController extends Controller
         // dd($id);
         $result = $this->kelasService->getDetail($request->all(), $id);
 
+        // dd($result['data']);
         return view('pages.admin.kelas.detail', [
             'data' => $result['data'],
             'title' => $result['title'],
-            'data' => $result['data'],
+            // 'data' => $result['data'],
             'siswa' => $result['siswa'],
             'kelas' => $result['kelas'],
         ]);
