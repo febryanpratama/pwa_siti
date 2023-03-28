@@ -16,9 +16,18 @@
                                     <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
                                     <div class="heading-elements">
                                         <ul class="list-inline mb-0">
-                                            <li><button type="button"
-                                                    class="btn btn-glow btn-round btn-bg-gradient-x-red-pink">More</button>
-                                            </li>
+                                            <form action="">
+                                                @csrf
+                                                <select name="tahun" class="btn btn-glow btn-round btn-bg-gradient-x-red-pink form-control" id="tahun" >
+                                                    <option value="">Pilih Tahun</option>
+                                                    @for ($i = 2020; $i < 2025; $i++)
+                                                        <option value="{{ $i }}">{{ $i }}</option>
+                                                    @endfor
+                                                    {{-- @foreach ($tahun as $item)
+                                                        <option value="{{ $item->tahun }}">{{ $item->tahun }}</option>
+                                                    @endforeach --}}
+                                                </select>
+                                            </form>
                                         </ul>
                                     </div>
                                 </div>
@@ -82,8 +91,7 @@
                                                 </h4>
                                             </div>
                                             <div class="card-footer p-1">
-                                                <span class="text-muted"><i class="la la-arrow-circle-o-up info"></i> 23.67%
-                                                    increase</span>
+                                                <span class="text-muted"><i class="la la-arrow-circle-o-up info"></i> Data Widget</span>
                                             </div>
                                         </div>
                                     </div>
@@ -106,15 +114,14 @@
                                         </h4>
                                     </div>
                                     <div class="card-footer p-1">
-                                        <span class="text-muted"><i class="la la-arrow-circle-o-up info"></i> 23.67%
-                                            increase</span>
+                                        <span class="text-muted"><i class="la la-arrow-circle-o-up info"></i> Data Widget</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-12 col-lg-4">
                             <div class="card pull-up border-top-info border-top-3 rounded-0">
-                                <div class="card-header">
+                            <div class="card-header">
                                     <h4 class="card-title">Spp Belum Lunas <span
                                             class="badge badge-pill badge-info float-right m-0">5+</span></h4>
                                 </div>
@@ -124,8 +131,7 @@
                                         </h4>
                                     </div>
                                     <div class="card-footer p-1">
-                                        <span class="text-muted"><i class="la la-arrow-circle-o-up info"></i> 23.67%
-                                            increase</span>
+                                        <span class="text-muted"><i class="la la-arrow-circle-o-up info"></i> Data Widget</span>
                                     </div>
                                 </div>
                             </div>
@@ -142,8 +148,7 @@
                                         </h4>
                                     </div>
                                     <div class="card-footer p-1">
-                                        <span class="text-muted"><i class="la la-arrow-circle-o-up info"></i> 23.67%
-                                            increase</span>
+                                        <span class="text-muted"><i class="la la-arrow-circle-o-up info"></i> Data Widget</span>
                                     </div>
                                 </div>
                             </div>

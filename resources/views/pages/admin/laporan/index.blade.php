@@ -53,20 +53,12 @@
                                                         </select>
                                                     </div>
                                                     <div class="col-sm-6 col-md-3">
-                                                        <label for="" class="control-label">Semester</label>
+                                                        <label for="" class="control-label">Periode</label>
                                                         <select name="semester" class="form-control" id="semester" required>
                                                             <option value="" selected disabled> == PILIH == </option>
-                                                            <option value="GANJIL">GANJIL</option>
-                                                            <option value="GENAP">GENAP</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="col-sm-6 col-md-3">
-                                                        <label for="" class="control-label">Tahun</label>
-                                                        <select name="tahun" class="form-control" id="tahun" required>
-                                                            <option value="" selected disabled> == PILIH == </option>
-                                                            @for ($i = 2021; $i < 2030; $i++)
-                                                                <option value="{{ $i }}" @if ($i == date('Y')) selected @endif>{{ $i }}</option>
-                                                            @endfor
+                                                            @foreach ($ta as $t)
+                                                            <option value="{{ $t->id }}">{{ $t->semester }}, {{ $t->tahun_ajaran }}</option>
+                                                            @endforeach
                                                         </select>
                                                     </div>
                                                     
@@ -100,13 +92,13 @@
                                                 </thead>
                                                 <tbody>
                                                     {{-- {{ dd($data) }} --}}
-                                                    @foreach ($data as $item=>$key)
                                                     @php
                                                         $a = 1
                                                     @endphp
+                                                    @foreach ($data as $item=>$key)
                                                     {{-- {{ dd($key[0]->siswa->nama_siswa) }} --}}
                                                         <tr>
-                                                            <td>{{ $a+1 }}</td>
+                                                            <td>{{ $a++ }}</td>
                                                             <td>{{ @$key[0]->siswa->nama_siswa}}</td>
                                                             <td>{{ App\Helpers\Format::GetDetail(@$key[0]->siswa_id, 'Lunas') }}</td>
                                                             <td>{{ App\Helpers\Format::GetDetail(@$key[0]->siswa_id, 'Belum Lunas') }}</td>
@@ -117,6 +109,7 @@
                                                     @endforeach
                                                 </tbody>
                                                 <tfoot>
+                                                    {{-- {{ dd( Auth::user()->roles->pluck('name')[0]) }} --}}
                                                     <tr>
                                                         <th>No</th>
                                                         <th>Nama Siswa</th>
@@ -147,14 +140,24 @@
             $('#cari').click(function(){
                 var kelas = $('#kelas').val();
                 var semester = $('#semester').val();
-                var tahun = $('#tahun').val();
+                // var tahun = $('#tahun').val();
 
-                console.log(kelas, semester, tahun)
-                if (semester == null || tahun == null) {
+                const role = `{{ Auth::user()->roles->pluck('name')[0] }}`
+
+                // console.log(kelas, semester, tahun)
+                if (semester == null) {
                     console.log('Semua data harus diisi');
                 }else{
-                    console.log("kelas");
-                    window.location.href = "{{ url('admin/laporan-spp') }}?kelas="+kelas+"&semester="+semester+"&tahun="+tahun;
+                    console.log(semester);
+                    if (role == 'Admin') {
+                        window.location.href = "{{ url('admin/laporan-spp') }}?kelas="+kelas+"&semester_id="+semester;
+                        
+                    }else if (role == 'Bendahara'){
+                        
+                        window.location.href = "{{ url('bendahara/laporan-spp') }}?kelas="+kelas+"&semester_id="+semester;
+                    }else{
+                        window.location.href = "{{ url('kepsek/laporan-spp') }}?kelas="+kelas+"&semester_id="+semester;
+                    }
                 }
             })
         })

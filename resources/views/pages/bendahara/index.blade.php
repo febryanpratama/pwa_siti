@@ -92,8 +92,7 @@
                                             </h4>
                                         </div>
                                         <div class="card-footer p-1">
-                                            <span class="text-muted"><i class="la la-arrow-circle-o-up info"></i> 23.67%
-                                                increase</span>
+                                            <span class="text-muted"><i class="la la-arrow-circle-o-up info"></i> Data Widget</span>
                                         </div>
                                     </div>
                                 </div>
@@ -116,8 +115,7 @@
                                     </h4>
                                 </div>
                                 <div class="card-footer p-1">
-                                    <span class="text-muted"><i class="la la-arrow-circle-o-up info"></i> 23.67%
-                                        increase</span>
+                                    <span class="text-muted"><i class="la la-arrow-circle-o-up info"></i> Data Widget</span>
                                 </div>
                             </div>
                         </div>
@@ -134,8 +132,7 @@
                                     </h4>
                                 </div>
                                 <div class="card-footer p-1">
-                                    <span class="text-muted"><i class="la la-arrow-circle-o-up info"></i> 23.67%
-                                        increase</span>
+                                    <span class="text-muted"><i class="la la-arrow-circle-o-up info"></i> Data Widget</span>
                                 </div>
                             </div>
                         </div>
@@ -152,8 +149,7 @@
                                     </h4>
                                 </div>
                                 <div class="card-footer p-1">
-                                    <span class="text-muted"><i class="la la-arrow-circle-o-up info"></i> 23.67%
-                                        increase</span>
+                                    <span class="text-muted"><i class="la la-arrow-circle-o-up info"></i> Data Widget</span>
                                 </div>
                             </div>
                         </div>

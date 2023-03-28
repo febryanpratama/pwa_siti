@@ -62,7 +62,12 @@ class KelasService
 
     public function destroy($data)
     {
-        Kelas::firstWhere('id', $data['kelas_id'])->delete();
+        $kelasDetail = Kelas::firstWhere('id', $data['kelas_id']);
+
+        $detailKelas = DetailKelas::where('kelas_id', $kelasDetail->id)->forceDelete();
+
+        $kelasDetail->delete();
+
 
         $status = true;
         $message = "Success Delete Data Kelas";

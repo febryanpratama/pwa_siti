@@ -111,6 +111,7 @@
         </tbody>
         <tfoot>
             <tr>
+                {{-- {{ dd($tahun) }} --}}
                 <th style="border: 2px solid black;border-collapse:collapse;text-align:center" colspan="3">Total</th>
                 <th style="border: 2px solid black;border-collapse:collapse;text-align:center"></th>
                 <th style="border: 2px solid black;border-collapse:collapse;text-align:center">{{ @App\Helpers\Format::getSumDataSpp($data[0]->kelas_id, 1, $tahun) }}</th>

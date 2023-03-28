@@ -21,8 +21,8 @@ class KepsekController extends Controller
     {
 
         $sppLunas = Spp::where('status_pembayaran', 'Lunas')->sum('total_pembayaran');
-        $sppBelumLunas = Spp::where('status_pembayaran', 'Belum Lunas')->sum('total_pembayaran');
-        $sppCicilan = Spp::where('status_pembayaran', 'Cicilan')->sum('total_pembayaran');
+        $sppBelumLunas = Spp::where('status_pembayaran', 'Belum Lunas')->sum('nominal_bayar');
+        $sppCicilan = Spp::where('status_pembayaran', 'Cicilan')->sum('sisa_bayar');
 
         $listSpp = Spp::with('siswa', 'kelas', 'guru')
             ->whereIn('status_pembayaran', ['Lunas', 'Cicilan'])

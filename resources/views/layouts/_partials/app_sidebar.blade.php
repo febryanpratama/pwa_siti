@@ -3,7 +3,7 @@
     <div class="navbar-header">
         <ul class="nav navbar-nav flex-row">
             <li class="nav-item mr-auto">
-                <a class="navbar-brand d-flex justify-content-end" href="index.html">
+                <a class="navbar-brand d-flex justify-content-end" href="#">
                     <img class="brand-logo" alt="Chameleon admin logo" src="{{ asset('') }}assets/logouser.jpeg" />
                     <span class="ml-2">
                         <h5><b>Welcome, <br> {{ Auth::user()->name }}</b></h5>

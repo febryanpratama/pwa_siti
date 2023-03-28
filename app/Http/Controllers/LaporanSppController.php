@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Exports\LaporanSppExport;
+use App\Models\tahun_ajaran;
 use App\Services\LaporanSppService;
 use Illuminate\Http\Request;
 
@@ -19,8 +20,10 @@ class LaporanSppController extends Controller
     public function index(Request $request)
     {
         // dd($request->all());
+        $ta = tahun_ajaran::get();
 
-        if ($request['semester'] != null || $request['tahun'] != null) {
+        // dd($request->all());
+        if ($request['semester_id'] != null) {
             # code...
             // dd("ok");
             $result = $this->laporanSpp->getLaporanSppFilter($request->all());
@@ -34,6 +37,7 @@ class LaporanSppController extends Controller
         //     return back()->with('error')
         // }
         return view('pages.admin.laporan.index', [
+            'ta' => $ta,
             'data' => $result['data'] ?? null,
             'kelas' => $result['kelas'] ?? null,
             'title' => $result['title'] ?? null,
@@ -48,6 +52,6 @@ class LaporanSppController extends Controller
         $result = $this->laporanSpp->exportExcel($request->all());
 
         // dd($result);
-        return \Excel::download(new LaporanSppExport($result['data'], $request->semester, $request->tahun), 'Laporan Excel.xlsx');
+        return \Excel::download(new LaporanSppExport($result['data'], $request['semester'], $request['tahun']), 'Laporan Excel.xlsx');
     }
 }

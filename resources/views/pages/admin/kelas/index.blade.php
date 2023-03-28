@@ -80,7 +80,35 @@
                                                             </button>
                                                         </td>
                                                     </tr>
-                                                    <div class="modal fade text-left" id="destroy{{ $item->id }}" tabindex="-1"
+                                                    
+                                                    @endforeach
+                                                </tbody>
+                                                {{-- <tfoot>
+                                                    <tr>
+                                                        <th>No</th>
+                                                        <th>Nama Wali Kelas</th>
+                                                        <th>Kelas</th>
+                                                        <th>Nominal Spp</th>
+                                                        <th>Aksi</th>
+                                                    </tr>
+                                                </tfoot> --}}
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!--/ Base style table -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+
+    @foreach ($data as $key=>$item)
+        <div class="modal fade text-left" data-backdrop="false" id="destroy{{ $item->id }}" tabindex="-1"
                                                         role="dialog" aria-labelledby="myModalLabel17"
                                                         aria-hidden="true">
                                                         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -114,7 +142,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="modal fade text-left" id="edit{{ $item->id }}" tabindex="-1"
+                                                    <div class="modal fade text-left" data-backdrop="false" id="edit{{ $item->id }}" tabindex="-1"
                                                         role="dialog" aria-labelledby="myModalLabel17"
                                                         aria-hidden="true">
                                                         <div class="modal-dialog" role="document">
@@ -176,31 +204,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    @endforeach
-                                                </tbody>
-                                                <tfoot>
-                                                    <tr>
-                                                        <th>No</th>
-                                                        <th>Nama Wali Kelas</th>
-                                                        <th>Kelas</th>
-                                                        <th>Nominal Spp</th>
-                                                        <th>Aksi</th>
-                                                    </tr>
-                                                </tfoot>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <!--/ Base style table -->
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal -->
+    @endforeach
     <div class="modal fade text-left" id="large" tabindex="-1"
         role="dialog" aria-labelledby="myModalLabel17"
         aria-hidden="true">

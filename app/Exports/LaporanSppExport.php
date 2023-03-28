@@ -29,17 +29,17 @@ class LaporanSppExport implements FromView, WithColumnFormatting
     {
         if ($this->semester == "GENAP") {
             # code...
+            return view('pages.admin.laporan.excelGanjil', [
+                'data'  => $this->data,
+                'semester' => $this->semester,
+                'tahun' => $this->tahun
+            ]);
+        } else {
             return view('pages.admin.laporan.excel', [
                 'data'  => $this->data,
                 'semester' => $this->semester,
                 'tahun' => $this->tahun
                 // 'tahun' => $this->tahun
-            ]);
-        } else {
-            return view('pages.admin.laporan.excelGanjil', [
-                'data'  => $this->data,
-                'semester' => $this->semester,
-                'tahun' => $this->tahun
             ]);
         }
     }

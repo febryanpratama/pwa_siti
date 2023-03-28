@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Guru;
+use App\Models\Kelas;
 use App\Services\GuruService;
 use Illuminate\Http\Request;
 
@@ -42,8 +43,19 @@ class GuruController extends Controller
 
     public function destroy(Request $request)
     {
-        Guru::where('id', $request->guru_id)->delete();
+        $dataGuru = Guru::where('id', $request->guru_id)->first();
 
-        return back()->withSuccess('Data berhasil dihapus');
+        // dd($dataGuru);
+
+        $dataKelas = Kelas::where('guru_id', $dataGuru->id)->get();
+
+        if ($dataKelas->isNotEmpty()) {
+            return back()->with('error', 'Data tidak bisa dihapus karena masih ada kelas yang terkait dengan guru ' . $dataGuru->nama_guru);
+        } else {
+            Guru::where('id', $request->guru_id)->delete();
+            return back()->withSuccess('Data berhasil dihapus');
+        }
+        // dd($dataKelas);
+
     }
 }

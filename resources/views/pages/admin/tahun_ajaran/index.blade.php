@@ -83,7 +83,35 @@
                                                                     </svg>
                                                                 </button>
                                                             </td>
-                                                            <div class="modal fade" id="hapusmodal{{ $key->id }}">
+                                                            
+                                                    
+                                                        </tr>
+                                                    @endforeach
+                                                </tbody>
+                                                <tfoot>
+                                                    <tr>
+                                                        <th>#</th>
+                                                        <th>Tahun Ajaran</th>
+                                                        <th>Semester</th>
+                                                        <th>Aksi</th>
+
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!--/ Base style table -->
+            </div>
+        </div>
+    </div>
+
+    @foreach ($data as $item=>$key)
+        <div class="modal fade" id="hapusmodal{{ $key->id }}">
                                                                 <div class="modal-dialog ">
                                                                 <div class="modal-content">
                                                                     <div class="modal-header">
@@ -151,31 +179,7 @@
                                                                 </div>
                                                                 </div>
                                                             </div>
-                                                    
-                                                        </tr>
-                                                    @endforeach
-                                                </tbody>
-                                                <tfoot>
-                                                    <tr>
-                                                        <th>#</th>
-                                                        <th>Tahun Ajaran</th>
-                                                        <th>Semester</th>
-                                                        <th>Aksi</th>
-
-                                                    </tr>
-                                                </tfoot>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <!--/ Base style table -->
-            </div>
-        </div>
-    </div>
+    @endforeach
 
     <!-- Modal -->
     <div class="modal fade text-left" id="large" tabindex="-1"

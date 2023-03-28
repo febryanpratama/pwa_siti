@@ -13,6 +13,7 @@ use App\Http\Controllers\GuruController;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\KepsekController;
 use App\Http\Controllers\LaporanSppController;
+use App\Models\tahun_ajaran;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -28,7 +29,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+    $ta = tahun_ajaran::get();
     return view('pages.welcome', [
+        'ta' => $ta,
         'spp' => NULL,
         'siswa' => NULL,
         'kelas' => NULL,
@@ -85,8 +88,11 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:Admin']], func
         Route::get('/kelas/{kelas_id}/lunas', [SppController::class, 'detailKelasLunas']);
         Route::get('/kelas/{kelas_id}/belum-lunas', [SppController::class, 'detailKelasBelumLunas']);
         Route::post('/kelas/{kelas_id}/filter', [SppController::class, 'filterKelas']);
+        Route::post('/kelas/{kelas_id}/filterLunas', [SppController::class, 'filterLunas']);
         Route::get('/kelas/{kelas_id}/siswa/{siswa_id}', [SppController::class, 'detailSiswa']);
         Route::get('generate/{kelas_id}', [SppController::class, 'generate']);
+
+        Route::post("generate", [SppController::class, 'generateSpp']);
         Route::post('/', [SppController::class, 'store']);
         Route::post('/add', [SppController::class, 'addSpp']);
         Route::post('/update', [SppController::class, 'updateSpp']);
@@ -165,6 +171,8 @@ Route::group(['prefix' => 'bendahara', 'middleware' => ['role:Bendahara']], func
         Route::get('/kelas/{kelas_id}/siswa/{siswa_id}', [SppController::class, 'detailSiswa']);
         Route::get('/kelas/{kelas_id}/lunas', [SppController::class, 'detailKelasLunas']);
         Route::get('/kelas/{kelas_id}/belum-lunas', [SppController::class, 'detailKelasBelumLunas']);
+        Route::post('/kelas/{kelas_id}/filter', [SppController::class, 'filterKelas']);
+        Route::post('/kelas/{kelas_id}/filterLunas', [SppController::class, 'filterLunas']);
         Route::get('generate/{kelas_id}', [SppController::class, 'generate']);
         Route::get('/export', [SppController::class, 'Export']);
         Route::post('/', [SppController::class, 'store']);

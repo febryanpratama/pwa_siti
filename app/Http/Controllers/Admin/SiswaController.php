@@ -29,7 +29,7 @@ class SiswaController extends Controller
     {
         $validator = Validator::make($request->all(), [
             // 'user_id' => 'required',
-            'nisn' => 'required',
+            'nisn' => 'required|unique:siswas,nisn',
             'nis' => 'required',
             'nama_siswa' => 'required',
             'jenis_kelamin' => 'required',

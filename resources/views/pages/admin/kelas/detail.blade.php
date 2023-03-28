@@ -46,17 +46,17 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-12">
+                        <div class="col-md-12 col-sm-12">
                             <div class="card">
                                 
                                 <div class="card-content collapse show">
                                     <div class="card-body card-dashboard">
                                         {{-- <p class="card-text">The DataTables default style file has a number of features which can be enabled based on the class name of the table. These features are.</p> --}}
                                         <div class="table-responsive">
-                                            <table class="table table-striped table-bordered base-style text-center datatable">
+                                            <table class="table table-striped table-bordered styleordering text-center" id="datatablle">
                                                 <thead>
                                                     <tr>
-                                                        <th>#</th>
+                                                        <th>NISN</th>
                                                         <th>Nama Siswa</th>
                                                         <th>Aksi</th>
                                                     </tr>
@@ -68,7 +68,7 @@
                                                     {{-- {{ dd($data->id) }} --}}
                                                         @foreach (App\Helpers\Format::getSiswa($data->id) as $key => $item)
                                                             <tr>
-                                                                <td>{{ $key+1 }}</td>
+                                                                <td>{{ $item->siswa->nisn }}</td>
                                                                 <td>{{ $item->siswa->nama_siswa }}</td>
                                                                 <td>
                                                                     <button type="button" class="btn btn-sm btn-primary " data-toggle="modal"
@@ -91,111 +91,13 @@
                                                                     </button> --}}
                                                                 </td>
                                                             </tr>
-                                                            <div class="modal fade text-left" id="pindah{{ $item->id }}"
-                                                                role="dialog" aria-labelledby="myModalLabel17"
-                                                                aria-hidden="true">
-                                                                <div class="modal-dialog" role="document">
-                                                                    <div class="modal-content">
-                                                                        <div class="modal-header">
-                                                                            <h4 class="modal-title" >
-                                                                                Pindah Kelas Siswa {{ $item->siswa->nama_siswa }}
-                                                                            </h4>
-                                                                            <button type="button" class="close"
-                                                                                data-dismiss="modal" aria-label="Close">
-                                                                                <span aria-hidden="true">&times;</span>
-                                                                            </button>
-                                                                        </div>
-                                                                        <form action="{{ url('admin/kelas/pindah') }}" method="POST">
-                                                                            @csrf
-                                                                            <input type="hidden" name="before_kelas_id" value="{{ $data->id }}">
-                                                                            <input type="hidden" name="siswa_id" value="{{ $item->siswa_id }}">
-                                                                            <div class="modal-body">
-                                                                                <div class="row">
-                                                                                    <div class="col-md-12">
-                                                                                        <div class="form-group">
-                                                                                            <label for="" class="label-control">Kelas</label>
-                                                                                            <select name="kelas_id" class="form-control select2">
-                                                                                                <option value="" selected disabled> == PILIH == </option>
-
-                                                                                                @foreach ($kelas as $item)
-                                                                                                    <option value="{{ $item->id }}">{{ $item->kelas }} {{ $item->nama_kelas }}</option>
-                                                                                                @endforeach
-                                                                                            </select>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="modal-footer">
-                                                                                <button type="button" class="btn grey btn-secondary"
-                                                                                data-dismiss="modal">Close</button>
-                                                                                <button type="submit"
-                                                                                class="btn btn-danger">Tambah</button>
-                                                                            </div>
-                                                                        </form>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="modal fade text-left" id="edit{{ $item->id }}" tabindex="-1"
-                                                                role="dialog" aria-labelledby="myModalLabel17"
-                                                                aria-hidden="true">
-                                                                <div class="modal-dialog modal-lg" role="document">
-                                                                    <div class="modal-content">
-                                                                        <div class="modal-header">
-                                                                            <h4 class="modal-title" id="myModalLabel17">
-                                                                                Add {{ $title }}
-                                                                            </h4>
-                                                                            <button type="button" class="close"
-                                                                                data-dismiss="modal" aria-label="Close">
-                                                                                <span aria-hidden="true">&times;</span>
-                                                                            </button>
-                                                                        </div>
-                                                                        <form action="{{ url('admin/guru') }}" method="POST">
-                                                                            @csrf
-                                                                            <div class="modal-body">
-                                                                                <div class="row">
-                                                                                    <div class="col-md-4">
-                                                                                        <div class="form-group">
-                                                                                            <label for="" class="label-control">Nama Guru</label>
-                                                                                            <input type="text" class="form-control" name="nama_guru" value="{{ $item->nama_guru }}" placeholder="Febryan Pratama" required>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="col-md-4">
-                                                                                        <div class="form-group">
-                                                                                            <label for="" class="label-control">NIP</label>
-                                                                                            <input type="number" class="form-control" name="nip" value="{{ $item->nip }}" placeholder="ex: 12767126" required>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="col-md-4">
-                                                                                        <div class="form-group">
-                                                                                            <label for="" class="label-control">Nomor HP</label>
-                                                                                            <input type="number" class="form-control" name="no_hp" value="{{ $item->no_hp }}" placeholder="ex: 62871288827" required>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="col-md-12">
-                                                                                        <div class="form-group">
-                                                                                            <label for="" class="label-control">Alamat</label>
-                                                                                            <textarea name="alamat" class="form-control" cols="30" rows="5">{{ $item->alamat }}</textarea>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="modal-footer">
-                                                                                <button type="button" class="btn grey btn-secondary"
-                                                                                data-dismiss="modal">Close</button>
-                                                                                <button type="submit"
-                                                                                class="btn btn-danger">Tambah</button>
-                                                                            </div>
-                                                                        </form>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            
+                                                           
                                                         @endforeach
                                                     @endif
                                                 </tbody>
                                                 <tfoot>
                                                     <tr>
-                                                        <th>#</th>
+                                                        <th>NISN</th>
                                                         <th>Nama Siswa</th>
                                                         <th>Aksi</th>
                                                     </tr>
@@ -213,8 +115,111 @@
         </div>
     </div>
 
+    @if ($data != NULL)
+        @foreach (App\Helpers\Format::getSiswa($data->id) as $key => $item)
+            <div class="modal fade text-left" id="pindah{{ $item->id }}"
+                role="dialog" aria-labelledby="myModalLabel17"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" >
+                                Pindah Kelas Siswa {{ $item->siswa->nama_siswa }}
+                            </h4>
+                            <button type="button" class="close"
+                                data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <form action="{{ url('admin/kelas/pindah') }}" method="POST">
+                            @csrf
+                            <input type="hidden" name="before_kelas_id" value="{{ $data->id }}">
+                            <input type="hidden" name="siswa_id" value="{{ $item->siswa_id }}">
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="" class="label-control">Kelas</label>
+                                            <select name="kelas_id" class="form-control select2">
+                                                <option value="" selected disabled> == PILIH == </option>
+
+                                                @foreach ($kelas as $item)
+                                                    <option value="{{ $item->id }}">{{ $item->kelas }} {{ $item->nama_kelas }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn grey btn-secondary"
+                                data-dismiss="modal">Close</button>
+                                <button type="submit"
+                                class="btn btn-danger">Tambah</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade text-left" id="edit{{ $item->id }}" tabindex="-1"
+                role="dialog" aria-labelledby="myModalLabel17"
+                aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="myModalLabel17">
+                                Add {{ $title }}
+                            </h4>
+                            <button type="button" class="close"
+                                data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <form action="{{ url('admin/guru') }}" method="POST">
+                            @csrf
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="" class="label-control">Nama Guru</label>
+                                            <input type="text" class="form-control" name="nama_guru" value="{{ $item->nama_guru }}" placeholder="Febryan Pratama" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="" class="label-control">NIP</label>
+                                            <input type="number" class="form-control" name="nip" value="{{ $item->nip }}" placeholder="ex: 12767126" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="" class="label-control">Nomor HP</label>
+                                            <input type="number" class="form-control" name="no_hp" value="{{ $item->no_hp }}" placeholder="ex: 62871288827" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="" class="label-control">Alamat</label>
+                                            <textarea name="alamat" class="form-control" cols="30" rows="5">{{ $item->alamat }}</textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn grey btn-secondary"
+                                data-dismiss="modal">Close</button>
+                                <button type="submit"
+                                class="btn btn-danger">Tambah</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        @endforeach
+    @endif
+
     <!-- Modal -->
-    <div class="modal fade text-left" id="pindah"
+    <div class="modal fade text-left" data-backdrop="false" id="pindah"
         role="dialog" aria-labelledby="myModalLabel17"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -315,6 +320,11 @@
     <script>
         $(document).ready(function() {
             $('.select2').select2();
+            $('#styleordering').DataTable(
+                {
+                    order: [[2, 'desc']],
+                }
+            )
         } );
     </script>
 @endsection

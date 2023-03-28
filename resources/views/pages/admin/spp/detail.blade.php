@@ -51,6 +51,7 @@
                                         {{-- <div class="col-md-8"> --}}
                                             <div class="row">
                                                 <div class="col-md-12">
+                                                    @role('Admin')
                                                     <a href="{{ url("admin/spp/kelas/".$kelas_id."/lunas") }}" class="mt-1">
                                                         <button class="btn btn-success mr-2 mt-1"> Lunas </button>
                                                     </a>
@@ -58,9 +59,27 @@
                                                         <button class="btn btn-danger mr-2 mt-1"> Belum Lunas </button>
                                                     </a>
                                                 
-                                                    <a href="{{ url('admin/spp/generate/'.$kelas_id) }}" class="mt-1">
-                                                        <button class="btn btn-info mr-2 mt-1">Generate SPP</button>
+                                                    <button type="button" class="btn btn-primary mr-2 mt-1" data-toggle="modal" data-target="#exampleModal">
+                                                        Generate SPP
+                                                    </button>
+                                                    @endrole
+                                                    @role('Bendahara')
+                                                    <a href="{{ url("bendahara/spp/kelas/".$kelas_id."/lunas") }}" class="mt-1">
+                                                        <button class="btn btn-success mr-2 mt-1"> Lunas </button>
                                                     </a>
+                                                    <a href="{{ url("bendahara/spp/kelas/".$kelas_id."/belum-lunas") }}" class="mt-1">
+                                                        <button class="btn btn-danger mr-2 mt-1"> Belum Lunas </button>
+                                                    </a>
+                                                
+
+                                                    <button type="button" class="btn btn-primary mr-2 mt-1" data-toggle="modal" data-target="#exampleModal">
+                                                        Generate SPP
+                                                    </button>
+
+                                                    {{-- <a href="{{ url('bendahara/spp/generate/'.$kelas_id) }}" class="mt-1">
+                                                        <button class="btn btn-info mr-2 mt-1">Generate SPP</button>
+                                                    </a> --}}
+                                                    @endrole
                                                 </div>
                                             </div>
                                         {{-- </div> --}}
@@ -152,6 +171,40 @@
     </div>
 
 
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header" style="border-bottom: 1px solid black">
+                <h3 class="modal-title" id="exampleModalLabel">Generate Data SPP</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            {{-- <hr> --}}
+            <form action="{{ url('admin/spp/generate') }}" method="POST" enctype="multipart/form-data">
+            <div class="modal-body">
+                    @csrf
+                    <input type="hidden" name="kelas_id" value="{{ $kelas_id }}">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="" class="control-label"><h5>Semester / Tahun Ajaran</h5></label>
+                            <select name="semester_id" class="form-control" id="">
+                                <option value="" selected disabled> == PILIH == </option>
+                                @foreach ($tahun as $item=>$t)
+                                    <option value="{{ $t->id }}">{{ $t->semester }}, T.A {{ $t->tahun_ajaran }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+            </form>
+        </div>
+    </div>
 @endsection
 
 @section('scripts')

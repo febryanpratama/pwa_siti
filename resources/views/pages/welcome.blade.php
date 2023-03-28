@@ -177,22 +177,22 @@
                                             <input type="number" class="form-control" name="nisn" placeholder="NISN" required="required">
                                         </div>
                                         
-                                        <div class="form-group">
+                                        {{-- <div class="form-group">
                                             <label for="" class="label-control">Semester</label>
                                             <select name="semester" class="form-control" id="" required>
                                                 <option value="" selected disabled> == Pilih == </option>
                                                 <option value="Ganjil">Ganjil</option>
                                                 <option value="Genap">Genap</option>
                                             </select>
-                                        </div>
+                                        </div> --}}
 
                                         <div class="form-group">
                                             <label for="" class="label-control">Periode</label>
                                             <select name="periode" class="form-control" id="" required>
                                                 <option value="" selected disabled> == Periode == </option>
-                                                @for ($i = 2020; $i < 2030; $i++)
-                                                    <option value="{{ $i }}/{{ $i+1 }}">{{ $i }}/{{ $i+1 }}</option>
-                                                @endfor
+                                                @foreach ($ta as $item)
+                                                    <option value="{{ $item->id }}">{{ $item->semester }}, {{ $item->tahun_ajaran }}</option>
+                                                @endforeach
                                             </select>
                                         </div>
 

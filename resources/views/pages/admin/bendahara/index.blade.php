@@ -78,7 +78,33 @@
                                                             </button>
                                                         </td>
                                                     </tr>
-                                                    <div class="modal fade text-left" id="destroy{{ $item->id }}" tabindex="-1"
+                                                   
+                                                    @endforeach
+                                                </tbody>
+                                                <tfoot>
+                                                    <tr>
+                                                        <th>No</th>
+                                                        <th>Nama Bendahara</th>
+                                                        <th>NIP</th>
+                                                        <th>Email</th>
+                                                        <th>Nomor Telpon</th>
+                                                        <th>Aksi</th>
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!--/ Base style table -->
+            </div>
+        </div>
+    </div>
+    @foreach ($data as $item)
+         <div class="modal fade text-left" id="destroy{{ $item->id }}" tabindex="-1"
                                                         role="dialog" aria-labelledby="myModalLabel17"
                                                         aria-hidden="true">
                                                         <div class="modal-dialog" role="document">
@@ -181,30 +207,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    @endforeach
-                                                </tbody>
-                                                <tfoot>
-                                                    <tr>
-                                                        <th>No</th>
-                                                        <th>Nama Bendahara</th>
-                                                        <th>NIP</th>
-                                                        <th>Email</th>
-                                                        <th>Nomor Telpon</th>
-                                                        <th>Aksi</th>
-                                                    </tr>
-                                                </tfoot>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <!--/ Base style table -->
-            </div>
-        </div>
-    </div>
+    @endforeach
 
     <!-- Modal -->
     <div class="modal fade text-left" id="large" tabindex="-1"

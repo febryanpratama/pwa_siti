@@ -15,8 +15,8 @@ class AdminControlller extends Controller
     public function index()
     {
         $sppLunas = Spp::where('status_pembayaran', 'Lunas')->sum('total_pembayaran');
-        $sppBelumLunas = Spp::where('status_pembayaran', 'Belum Lunas')->sum('total_pembayaran');
-        $sppCicilan = Spp::where('status_pembayaran', 'Cicilan')->sum('total_pembayaran');
+        $sppBelumLunas = Spp::where('status_pembayaran', 'Belum Lunas')->sum('nominal_bayar');
+        $sppCicilan = Spp::where('status_pembayaran', 'Cicilan')->sum('sisa_bayar');
 
         $listSpp = Spp::with('siswa', 'kelas', 'guru')
             ->whereIn('status_pembayaran', ['Lunas', 'Cicilan'])
@@ -24,7 +24,7 @@ class AdminControlller extends Controller
 
         $countSiswa = siswa::where('status_siswa', 'Aktif')->count('id');
         $countGuru = Guru::count('id');
-        // dd($sppLunas);
+        // dd($sppBelumLunas);
 
         return view('pages.admin.dashboard', [
             'spplunas' => $sppLunas,

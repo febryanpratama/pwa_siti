@@ -33,24 +33,29 @@
                                             data-target="#large">
                                             Add {{ $title }}
                                         </button> --}}
+                                        @role("Admin")
                                         <form action="{{ url('admin/spp/kelas/'.$kelas_id.'/filter') }}" method="POST" enctype="multipart/form-data">
+                                        @endrole
+                                        @role("Bendahara")
+                                        <form action="{{ url('bendahara/spp/kelas/'.$kelas_id.'/filter') }}" method="POST" enctype="multipart/form-data">
+                                        @endrole
                                             @csrf
                                             <div class="d-flex d-inline">
-                                                <div class="mr-2">
+                                                {{-- <div class="mr-2">
                                                     <div class="label-control"><b>Semester</b></div>
-                                                    <select name="semester" class="form-control" id="">
+                                                    <select name="semester" class="form-control" id="" required>
                                                         <option value="" selected disabled> == Semester == </option>
                                                         <option value="Ganjil">Ganjil</option>
                                                         <option value="Genap">Genap</option>
                                                     </select>
-                                                </div>
+                                                </div> --}}
                                                 <div class="mr-2">
                                                     <div class="label-control"><b>Periode</b></div>
-                                                    <select name="periode" class="form-control" id="">
+                                                    <select name="periode" class="form-control" id="" required>
                                                         <option value="" selected disabled> == Periode == </option>
-                                                        @for ($i = 2020; $i < 2030; $i++)
-                                                            <option value="{{ $i }}/{{ $i+1 }}">{{ $i }}/{{ $i+1 }}</option>
-                                                        @endfor
+                                                        @foreach ($ta as $item)
+                                                            <option value="{{ $item->id }}">{{ $item->semester }}, {{ $item->tahun_ajaran }}</option>
+                                                        @endforeach
                                                     </select>
                                                 </div>
                                                 <div class="mr-2">
