@@ -73,10 +73,10 @@
                                     <div class="card-body card-dashboard">
                                         {{-- <p class="card-text">The DataTables default style file has a number of features which can be enabled based on the class name of the table. These features are.</p> --}}
                                         <div class="table-responsive">
-                                            <table class="table table-striped table-bordered base-style text-center">
+                                            <table class="table table-striped table-bordered text-center styleordering" id="datatablle">
                                                 <thead>
                                                     <tr>
-                                                        <th>No</th>
+                                                        <th>NISN</th>
                                                         <th>Nama Siswa</th>
                                                         <th>Pembayaran</th>
                                                         <th>Jumlah yang harus Dibayar</th>
@@ -95,7 +95,7 @@
                                                         @if ($item->isNotEmpty())
                                                             
                                                             <tr>
-                                                                <td>{{ $a++ }}</td>
+                                                                <td>{{ @$item[0]->siswa->nisn }}</td>
                                                                 <td>{{ @$item[0]->siswa->nama_siswa }}</td>
                                                                 <td>{{ App\Helpers\Format::countSiswaNotPaid(@$item[0]->siswa_id, @$item[0]->kelas_id) }} bulan Pembayaran</td>
                                                                 <td>Rp. {{ number_format(App\Helpers\Format::sumNotPaid(@$item[0]->siswa_id, @$item[0]->kelas_id), '0') }}</td>
@@ -124,7 +124,7 @@
                                                 </tbody>
                                                 <tfoot>
                                                     <tr>
-                                                        <th>No</th>
+                                                        <th>NISN</th>
                                                         <th>Nama Siswa</th>
                                                         <th>Pembayaran</th>
                                                         <th>Jumlah yang harus Dibayar</th>

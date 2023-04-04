@@ -70,10 +70,10 @@
                                     <div class="card-body card-dashboard">
                                         {{-- <p class="card-text">The DataTables default style file has a number of features which can be enabled based on the class name of the table. These features are.</p> --}}
                                         <div class="table-responsive">
-                                            <table class="table table-striped table-bordered base-style text-center">
+                                            <table class="table table-striped table-bordered styleordering text-center" id="datatablle">
                                                 <thead>
                                                     <tr>
-                                                        <th>No</th>
+                                                        <th>NISN</th>
                                                         <th>Nama Siswa</th>
                                                         <th>Pembayaran</th>
                                                         <th>Aksi</th>
@@ -83,7 +83,7 @@
                                                     @if ($data !== null)
                                                         @foreach ($data as $key=>$item)
                                                         <tr>
-                                                            <td>{{ $key+1 }}</td>
+                                                            <td>{{ @$item[0]->siswa->nisn }}</td>
                                                             <td>{{ @$item[0]->siswa->nama_siswa }}</td>
                                                             <td>6 Bulan Pembayaran</td>
                                                             {{-- <td>{{ @$item->user->name }}</td> --}}
@@ -104,7 +104,7 @@
                                                 </tbody>
                                                 <tfoot>
                                                     <tr>
-                                                        <th>No</th>
+                                                        <th>NISN</th>
                                                         <th>Nama Siswa</th>
                                                         <th>Bendahara</th>
                                                         <th>Aksi</th>

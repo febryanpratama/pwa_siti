@@ -802,13 +802,14 @@ class SppService
         // dd($kelas_id);
         // $spp = Spp::with('siswa', 'guru', 'kelas')->where('kelas_id', decrypt($kelas_id))->where('status_pembayaran', 'Lunas')->get()->groupBy('siswa_id');
 
+        $setting = ModelsSetting::first();
         $kelas = DetailKelas::with('siswa')->where('kelas_id', decrypt($kelas_id))->get();
 
         // dd($kelas);
         $ta = tahun_ajaran::get();
         $spp = [];
         foreach ($kelas as $k) {
-            $data = Spp::with('siswa', 'guru', 'kelas')->where('siswa_id', $k->siswa_id)->where('kelas_id', $k->kelas_id)->where('status_pembayaran', 'Lunas')->get();
+            $data = Spp::with('siswa', 'guru', 'kelas')->where('siswa_id', $k->siswa_id)->where('kelas_id', $k->kelas_id)->where('semester_id', $setting->tahun_ajaran_id)->where('status_pembayaran', 'Lunas')->get()->sortBy('siswa.nama_siswa');
 
             // dd(count($data));
             if (count($data) >= 6) {
@@ -844,12 +845,14 @@ class SppService
     static function detailKelasBelumLunas($kelas_id)
     {
         $ta = tahun_ajaran::get();
+
+        $setting = ModelsSetting::first();
         $kelas = DetailKelas::with('siswa')->where('kelas_id', decrypt($kelas_id))->get();
 
         // dd($kelas);
         $spp = [];
         foreach ($kelas as $k) {
-            $data = Spp::with('siswa', 'guru', 'kelas')->where('siswa_id', $k->siswa_id)->where('kelas_id', $k->kelas_id)->whereIn('status_pembayaran', ['Belum Lunas', 'Cicilan'])->whereRelation('siswa', 'deleted_at', null)->get();
+            $data = Spp::with('siswa', 'guru', 'kelas')->where('siswa_id', $k->siswa_id)->where('kelas_id', $k->kelas_id)->whereIn('status_pembayaran', ['Belum Lunas', 'Cicilan'])->where('semester_id', $setting->tahun_ajaran_id)->whereRelation('siswa', 'deleted_at', null)->get()->sortBy('siswa.nama_siswa');
 
             // dd(count($data));
             if (count($data) <= 6) {
@@ -857,7 +860,10 @@ class SppService
             }
         }
 
-        // dd($spp);
+        // dd($x);
+
+        // dd($data[3]);
+        // dd($data->sortBy('siswa.nama_siswa'));
         if ($kelas->isEmpty()) {
             # code...
             $status = false;
