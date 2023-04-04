@@ -339,9 +339,11 @@
                                     <a class="dropdown-item" href="{{ url('logout') }}">
                                         <b>{{ auth()->user()->name }}</b>
                                     </a>
+                                    @role('Admin')
                                     <a class="dropdown-item" href="#" data-toggle="modal" data-target="#exampleModalLong">
                                         Setting Semester
                                     </a>
+                                    @endrole
 
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="{{ url('logout') }}">
