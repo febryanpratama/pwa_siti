@@ -140,6 +140,7 @@
             @if (session('errors'))
             swal("Oh No !", "{{ session('errors') }}", "errors");
             @endif ()
+
         });
     </script>
 

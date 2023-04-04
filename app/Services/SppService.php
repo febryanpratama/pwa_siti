@@ -7,10 +7,12 @@ use App\Models\DetailKelas;
 use App\Models\Guru;
 use App\Models\Kelas;
 use App\Models\KelasDetail;
+use App\Models\Setting as ModelsSetting;
 use App\Models\siswa;
 use App\Models\Spp;
 use App\Models\tahun_ajaran;
 use Carbon\Carbon;
+use CodexShaper\PWA\Model\Setting;
 use DateTime;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Date;
@@ -87,7 +89,12 @@ class SppService
 
     public function detailSiswa($kelas_id, $siswa_id)
     {
-        $spp = Spp::with('siswa', 'guru', 'user')->where('kelas_id', $kelas_id)->where('siswa_id', $siswa_id)->get();
+
+        $setting = ModelsSetting::first();
+
+        // dd($setting);
+
+        $spp = Spp::with('siswa', 'guru', 'user')->where('kelas_id', $kelas_id)->where('siswa_id', $siswa_id)->where('semester_id', $setting->tahun_ajaran_id)->get();
 
         // dd($spp);
         $siswa = siswa::get();
@@ -400,7 +407,7 @@ class SppService
                             }
                         }
                     } else {
-                        dd('ganjil');
+                        // dd('ganjil');
                         for ($i = 7; $i <= 12; $i++) {
                             # code...
                             $detailSiswa = Siswa::with('kelasDetail', 'kelasDetail.kelas')->whereRelation('kelasDetail', 'kelas_id', $kelas_id)->where('id', $student->id)->where('status_siswa', 'Aktif')->get();
@@ -712,13 +719,13 @@ class SppService
             ];
         }
 
-        $periode = $data['periode'];
-        $explode = explode(
-            '/',
-            $periode
-        );
+        // $periode = $data['periode'];
+        // $explode = explode(
+        //     '/',
+        //     $periode
+        // );
 
-        // dd($data);
+        // dd($explode);
 
 
         $siswa = Siswa::whereDate('tanggal_lahir', $data['tanggal_lahir'])->where('nisn', $data['nisn'])->first();
@@ -737,11 +744,13 @@ class SppService
 
         $tahun_ajaran = tahun_ajaran::where('id', $data['periode'])->first();
 
+        // dd($tahun_ajaran->tahun_ajaran);
         $explode = explode(
             '/',
-            $tahun_ajaran->periode
+            $tahun_ajaran->tahun_ajaran
         );
 
+        // dd($explode);
         if ($tahun_ajaran->semester == 'Genap') {
             $year = $explode[1];
         } else {
@@ -749,7 +758,10 @@ class SppService
         }
         // $spp = [];
 
-        $spp = Spp::with('siswa', 'guru', 'kelas')->where('semester_id', $data['semester_id'])->where('siswa_id', $siswa->id)->whereYear('tanggal', $year)->get();
+        $spp = Spp::with('siswa', 'guru', 'kelas')->where('semester_id', $data['periode'])->where('siswa_id', $siswa->id)->whereYear('tanggal', $year)->get();
+
+
+        // dd($spp);
 
         if ($spp->isEmpty()) {
             # code...
@@ -955,6 +967,7 @@ class SppService
         // $periode = $data['periode'];
         // $explode = explode('/', $periode);
 
+        // dd($explode);
         if ($tahun_ajaran->semester == "Genap") {
             $year = $explode[1];
         } else {

@@ -130,6 +130,28 @@
 
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
+        $(document).ready(function() {
+            // $('.select2').select2();
+           
+            $.ajax({
+                url: "{{ url('api/get-semester') }}",
+                type: "GET",
+                dataType: "json",
+                success: function (data) {
+
+                    if (data.status == true) {
+                        // console.log(data)
+                        $.each(data.data, function (i, item) {
+                            // console.log(item.id)
+                            $("select#dataset").append('<option value="'+item.id+'">'+item.semester+', '+item.tahun_ajaran+'</option>');
+                        })
+                    }
+                }
+            })
+
+        });
+    </script>
+    <script>
         $(document).ready(function(){
             $('.dropify').dropify();
 

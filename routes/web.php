@@ -13,6 +13,7 @@ use App\Http\Controllers\GuruController;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\KepsekController;
 use App\Http\Controllers\LaporanSppController;
+use App\Http\Controllers\SettingController;
 use App\Models\tahun_ajaran;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -30,6 +31,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     $ta = tahun_ajaran::get();
+
     return view('pages.welcome', [
         'ta' => $ta,
         'spp' => NULL,
@@ -154,6 +156,13 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:Admin']], func
     ], function () {
         Route::get('/', [LaporanSppController::class, 'index']);
         Route::post('/excel', [LaporanSppController::class, 'exportExcel']);
+    });
+
+    Route::group([
+        'prefix' => 'setting'
+    ], function () {
+        // Route::get('/', [SettingController::class, 'index']);
+        Route::post('/', [SettingController::class, 'update']);
     });
 });
 

@@ -339,6 +339,9 @@
                                     <a class="dropdown-item" href="{{ url('logout') }}">
                                         <b>{{ auth()->user()->name }}</b>
                                     </a>
+                                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#exampleModalLong">
+                                        Setting Semester
+                                    </a>
 
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="{{ url('logout') }}">
@@ -351,3 +354,64 @@
             </div>
         </div>
     </nav>
+
+    <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="{{ url("admin/setting") }}" method="POST">
+            
+                <div class="modal-body">
+                    @csrf
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label for="" class="control-label">Setting Semester</label>
+                            <select name="tahun_ajaran_id" id="dataset" class="form-control">
+                                <option value="" selected disabled> == Pilih == </option>
+                                {{-- <div class="data-set" id="dataset">
+
+                                </div> --}}
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
+
+
+    @section('scripts')
+        <script>
+            $(document).ready(function(){
+                // alert("test")
+
+
+            $.ajax({
+                url: "{{ url('api/get-semester') }}",
+                type: "GET",
+                dataType: "json",
+                success: function (data) {
+
+                    if (data.status == true) {
+                        // console.log(data)
+                        $.each(data.data, function (i, item) {
+                            // console.log(item.id)
+                            $("select#dataset").append('<option value="'+item.id+'">'+item.semester+', '+item.tahun_ajaran+'</option>');
+                        })
+                    }
+                }
+            })
+            })
+        </script>
+    @endsection

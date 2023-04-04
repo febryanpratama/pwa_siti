@@ -258,4 +258,23 @@ class SppController extends Controller
             // return redirect('admin/spp')->with('error', $result['message']);
         }
     }
+
+    public function getSemester()
+    {
+        $data = tahun_ajaran::get();
+
+        if ($data->isNotEmpty()) {
+            # code...
+
+            return response()->json([
+                'status' => true,
+                'data' => $data,
+            ]);
+        } else {
+            return response()->json([
+                'status' => false,
+                'data' => null,
+            ]);
+        }
+    }
 }
