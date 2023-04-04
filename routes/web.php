@@ -186,6 +186,7 @@ Route::group(['prefix' => 'bendahara', 'middleware' => ['role:Bendahara']], func
         Route::get('/export', [SppController::class, 'Export']);
         Route::post('/', [SppController::class, 'store']);
         Route::post('/add', [SppController::class, 'addSpp']);
+        Route::post("generate", [SppController::class, 'generateSpp']);
     });
 
     Route::group([

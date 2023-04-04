@@ -181,7 +181,16 @@
                 </button>
             </div>
             {{-- <hr> --}}
+            @role('Admin')
             <form action="{{ url('admin/spp/generate') }}" method="POST" enctype="multipart/form-data">
+                
+                @endrole
+                @role('Bendahara')
+                <form action="{{ url('bendahara/spp/generate') }}" method="POST" enctype="multipart/form-data">
+                    @endrole
+                    @role('Kepsek')
+                    <form action="{{ url('kepsek/spp/generate') }}" method="POST" enctype="multipart/form-data">
+                    @endrole
             <div class="modal-body">
                     @csrf
                     <input type="hidden" name="kelas_id" value="{{ $kelas_id }}">
