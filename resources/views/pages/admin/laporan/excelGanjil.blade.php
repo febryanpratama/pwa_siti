@@ -76,6 +76,7 @@
                 $no = 1;
             @endphp
             @foreach (@$data as $item=>$value)
+            {{-- {{ dd($data) }} --}}
                 <tr>
                     <td style="border: 2px solid black;border-collapse: collapse">{{ $no++ }}</td>
                     <td style="border: 2px solid black;border-collapse: collapse">{{ $value->siswa->nama_siswa }}</td>
@@ -94,7 +95,7 @@
                     {{-- <td style="text-align: right;border: 2px solid black;border-collapse: collapse">{{ $value->sisa_bayar }}</td> --}}
                     {{-- <td style="border: 2px solid black;border-collapse: collapse">0</td> --}}
                     {{-- {{ dd(@App\Helpers\Format::getTanggal($value->siswa_id,$value->kelas_id, $tahun, 7)) }} --}}
-                    <td style="border: 2px solid black;border-collapse: collapse;text-align:center">{{  @App\Helpers\Format::getTanggal($value->siswa_id,$value->kelas_id, $tahun, 1) == null ? '' : \Carbon\Carbon::parse(@App\Helpers\Format::getTanggal($value->siswa_id,$value->kelas_id, $tahun, 1))->format('d/m/y') }}</td>
+                    {{-- <td style="border: 2px solid black;border-collapse: collapse;text-align:center">{{  @App\Helpers\Format::getTanggal($value->siswa_id,$value->kelas_id, $tahun, 1) == null ? '' : \Carbon\Carbon::parse(@App\Helpers\Format::getTanggal($value->siswa_id,$value->kelas_id, $tahun, 1))->format('d/m/y') }}</td>
                     <td style="border: 2px solid black;border-collapse: collapse;width: 100px;text-align:center">{{ @App\Helpers\Format::getDataSpp($value->siswa_id,$value->kelas_id, $tahun, 1) }}</td>
                     <td style="border: 2px solid black;border-collapse: collapse;text-align:center">{{  @App\Helpers\Format::getTanggal($value->siswa_id,$value->kelas_id, $tahun, 2) == null ? '' : \Carbon\Carbon::parse(@App\Helpers\Format::getTanggal($value->siswa_id,$value->kelas_id, $tahun, 2))->format('d/m/y') }}</td>
                     <td style="border: 2px solid black;border-collapse: collapse;width: 100px;text-align:center">{{ @App\Helpers\Format::getDataSpp($value->siswa_id,$value->kelas_id, $tahun, 2) }}</td>
@@ -105,7 +106,21 @@
                     <td style="border: 2px solid black;border-collapse: collapse;text-align:center">{{  @App\Helpers\Format::getTanggal($value->siswa_id,$value->kelas_id, $tahun, 5) == null ? '' : \Carbon\Carbon::parse(@App\Helpers\Format::getTanggal($value->siswa_id,$value->kelas_id, $tahun, 5))->format('d/m/y') }}</td>
                     <td style="border: 2px solid black;border-collapse: collapse;width: 100px;text-align:center">{{ @App\Helpers\Format::getDataSpp($value->siswa_id,$value->kelas_id, $tahun, 5) }}</td>
                     <td style="border: 2px solid black;border-collapse: collapse;text-align:center">{{  @App\Helpers\Format::getTanggal($value->siswa_id,$value->kelas_id, $tahun, 6) == null ? '' : \Carbon\Carbon::parse(@App\Helpers\Format::getTanggal($value->siswa_id,$value->kelas_id, $tahun, 6))->format('d/m/y') }}</td>
-                    <td style="border: 2px solid black;border-collapse: collapse;width: 100px;text-align:center">{{ @App\Helpers\Format::getDataSpp($value->siswa_id,$value->kelas_id, $tahun, 6) }}</td>
+                    <td style="border: 2px solid black;border-collapse: collapse;width: 100px;text-align:center">{{ @App\Helpers\Format::getDataSpp($value->siswa_id,$value->kelas_id, $tahun, 6) }}</td> --}}
+                    
+                    
+                    <td style="border: 2px solid black;border-collapse: collapse;text-align:center">{{  @App\Helpers\Format::getTanggal($value->siswa_id,$value->kelas_id, $tahun, 1) == null ? '' : \Carbon\Carbon::parse(@App\Helpers\Format::getTanggal($value->siswa_id,$value->kelas_id, $tahun, 1))->format('d/m/y') }}</td>
+                    <td style="border: 2px solid black;border-collapse: collapse;width: 100px;text-align:center">{{ @App\Helpers\Format::getDataNewSpp($value->siswa_id,$value->kelas_id, $tahun, 1, $semester) }}</td>
+                    <td style="border: 2px solid black;border-collapse: collapse;text-align:center">{{  @App\Helpers\Format::getTanggal($value->siswa_id,$value->kelas_id, $tahun, 2) == null ? '' : \Carbon\Carbon::parse(@App\Helpers\Format::getTanggal($value->siswa_id,$value->kelas_id, $tahun, 2))->format('d/m/y') }}</td>
+                    <td style="border: 2px solid black;border-collapse: collapse;width: 100px;text-align:center">{{ @App\Helpers\Format::getDataNewSpp($value->siswa_id,$value->kelas_id, $tahun, 2, $semester) }}</td>
+                    <td style="border: 2px solid black;border-collapse: collapse;text-align:center">{{  @App\Helpers\Format::getTanggal($value->siswa_id,$value->kelas_id, $tahun, 3) == null ? '' : \Carbon\Carbon::parse(@App\Helpers\Format::getTanggal($value->siswa_id,$value->kelas_id, $tahun, 3))->format('d/m/y') }}</td>
+                    <td style="border: 2px solid black;border-collapse: collapse;width: 100px;text-align:center">{{ @App\Helpers\Format::getDataNewSpp($value->siswa_id,$value->kelas_id, $tahun, 3, $semester) }}</td>
+                    <td style="border: 2px solid black;border-collapse: collapse;text-align:center">{{  @App\Helpers\Format::getTanggal($value->siswa_id,$value->kelas_id, $tahun, 4) == null ? '' : \Carbon\Carbon::parse(@App\Helpers\Format::getTanggal($value->siswa_id,$value->kelas_id, $tahun, 4))->format('d/m/y') }}</td>
+                    <td style="border: 2px solid black;border-collapse: collapse;width: 100px;text-align:center">{{ @App\Helpers\Format::getDataNewSpp($value->siswa_id,$value->kelas_id, $tahun, 4, $semester) }}</td>
+                    <td style="border: 2px solid black;border-collapse: collapse;text-align:center">{{  @App\Helpers\Format::getTanggal($value->siswa_id,$value->kelas_id, $tahun, 5) == null ? '' : \Carbon\Carbon::parse(@App\Helpers\Format::getTanggal($value->siswa_id,$value->kelas_id, $tahun, 5))->format('d/m/y') }}</td>
+                    <td style="border: 2px solid black;border-collapse: collapse;width: 100px;text-align:center">{{ @App\Helpers\Format::getDataNewSpp($value->siswa_id,$value->kelas_id, $tahun, 5, $semester) }}</td>
+                    <td style="border: 2px solid black;border-collapse: collapse;text-align:center">{{  @App\Helpers\Format::getTanggal($value->siswa_id,$value->kelas_id, $tahun, 6) == null ? '' : \Carbon\Carbon::parse(@App\Helpers\Format::getTanggal($value->siswa_id,$value->kelas_id, $tahun, 6))->format('d/m/y') }}</td>
+                    <td style="border: 2px solid black;border-collapse: collapse;width: 100px;text-align:center">{{ @App\Helpers\Format::getDataNewSpp($value->siswa_id,$value->kelas_id, $tahun, 6, $semester) }}</td>
                 </tr>
             @endforeach
         </tbody>
@@ -114,17 +129,17 @@
                 {{-- {{ dd($tahun) }} --}}
                 <th style="border: 2px solid black;border-collapse:collapse;text-align:center" colspan="3">Total</th>
                 <th style="border: 2px solid black;border-collapse:collapse;text-align:center"></th>
-                <th style="border: 2px solid black;border-collapse:collapse;text-align:center">{{ @App\Helpers\Format::getSumDataSpp($data[0]->kelas_id, 1, $tahun) }}</th>
+                <th style="border: 2px solid black;border-collapse:collapse;text-align:center">{{ @App\Helpers\Format::getSumDataSppNew($data[0]->kelas_id, 1, $tahun, $semester) }}</th>
                 <th style="border: 2px solid black;border-collapse:collapse;text-align:center"></th>
-                <th style="border: 2px solid black;border-collapse:collapse;text-align:center">{{ @App\Helpers\Format::getSumDataSpp($data[0]->kelas_id, 2, $tahun) }}</th>
+                <th style="border: 2px solid black;border-collapse:collapse;text-align:center">{{ @App\Helpers\Format::getSumDataSppNew($data[0]->kelas_id, 2, $tahun, $semester) }}</th>
                 <th style="border: 2px solid black;border-collapse:collapse;text-align:center"></th>
-                <th style="border: 2px solid black;border-collapse:collapse;text-align:center">{{ @App\Helpers\Format::getSumDataSpp($data[0]->kelas_id, 3, $tahun) }}</th>
+                <th style="border: 2px solid black;border-collapse:collapse;text-align:center">{{ @App\Helpers\Format::getSumDataSppNew($data[0]->kelas_id, 3, $tahun, $semester) }}</th>
                 <th style="border: 2px solid black;border-collapse:collapse;text-align:center"></th>
-                <th style="border: 2px solid black;border-collapse:collapse;text-align:center">{{ @App\Helpers\Format::getSumDataSpp($data[0]->kelas_id, 4, $tahun) }}</th>
+                <th style="border: 2px solid black;border-collapse:collapse;text-align:center">{{ @App\Helpers\Format::getSumDataSppNew($data[0]->kelas_id, 4, $tahun, $semester) }}</th>
                 <th style="border: 2px solid black;border-collapse:collapse;text-align:center"></th>
-                <th style="border: 2px solid black;border-collapse:collapse;text-align:center">{{ @App\Helpers\Format::getSumDataSpp($data[0]->kelas_id, 5, $tahun) }}</th>
+                <th style="border: 2px solid black;border-collapse:collapse;text-align:center">{{ @App\Helpers\Format::getSumDataSppNew($data[0]->kelas_id, 5, $tahun, $semester) }}</th>
                 <th style="border: 2px solid black;border-collapse:collapse;text-align:center"></th>
-                <th style="border: 2px solid black;border-collapse:collapse;text-align:center">{{ @App\Helpers\Format::getSumDataSpp($data[0]->kelas_id, 6, $tahun) }}</th>
+                <th style="border: 2px solid black;border-collapse:collapse;text-align:center">{{ @App\Helpers\Format::getSumDataSppNew($data[0]->kelas_id, 6, $tahun, $semester) }}</th>
             </tr>
         </tfoot>
     </table>

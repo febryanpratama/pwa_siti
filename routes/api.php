@@ -25,5 +25,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('data-siswa', [KelasController::class, 'apiKelas']);
 Route::post('data-spp', [SppController::class, 'apiSpp']);
 
+Route::post('dashboard', [SppController::class, 'apiDashboard']);
+
 Route::get('get-semester', [SppController::class, 'getSemester']);
 // Route::post('data-siswa', [KelasController::class, 'apiSiswa']);

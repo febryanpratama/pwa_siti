@@ -535,7 +535,7 @@ class SppService
             ]);
 
             $this->smsService->sendSms(
-                'Kepada b4p4k/1bu siswa ' . $siswa->siswa->nama_siswa . ', p3mbyr44n SPP pada bulan Aug telah kami terima pada t4ngg4l ' . Carbon::now()->format('d') . '' . Format::formatBulan(Carbon::now()->format('m')) . '' . Carbon::now()->format('Y') . ', Terima kasih',
+                'Kepada b4p4k/1bu siswa ' . $siswa->siswa->nama_siswa . ', p3mbyr44n SPP pada bulan ' . Carbon::parse($dataSpp['tanggal'])->format('M') . ' telah kami terima pada t4ngg4l ' . Carbon::now()->format('d') . '' . Format::formatBulan(Carbon::now()->format('m')) . '' . Carbon::now()->format('Y') . ', Terima kasih',
                 $siswa->siswa->telpon_ortu_siswa
             );
 
@@ -618,7 +618,8 @@ class SppService
 
         try {
             //code...
-            Spp::where('id', $data['spp_id'])->update([
+            $dataSpp = Spp::where('id', $data['spp_id'])->first();
+            $dataSpp->update([
                 'siswa_id' => $data['siswa_id'],
                 // 'guru_penerima_id' => $data['guru_penerima_id'],
                 // 'guru_piket_id' => $data['guru_piket_id'],
@@ -634,16 +635,18 @@ class SppService
                 'status_pembayaran' => $data['nominal_sisa'] == 0 ? 'Lunas' : 'Cicilan',
             ]);
 
-            $siswa = siswa::where('id', $data['siswa_id'])->first();
+            // dd($dataSpp);
+            $siswa = siswa::where('id', $dataSpp['siswa_id'])->first();
 
+            // dd($siswa);
             $this->smsService->sendSms(
-                'Kepada b4p4k/1bu siswa ' . $siswa->nama_siswa . ', p3mbyr44n SPP pada bulan Aug telah kami terima pada t4ngg4l ' . Carbon::now()->format('d') . '' . Format::formatBulan(Carbon::now()->format('m')) . '' . Carbon::now()->format('Y') . ', Terima kasih',
+                'Kepada b4p4k/1bu siswa ' . $siswa->nama_siswa . ', p3mbyr44n SPP pada bulan ' . Carbon::parse($dataSpp['tanggal'])->format('M') . ' telah kami terima pada t4ngg4l ' . Carbon::now()->format('d') . '' . Format::formatBulan(Carbon::now()->format('m')) . '' . Carbon::now()->format('Y') . ', Terima kasih',
                 $siswa->telpon_ortu_siswa
             );
 
+            // dd("berhasil");
             DB::commit();
 
-            // dd("berhasil");
 
             return [
                 'status' => true,
@@ -651,6 +654,7 @@ class SppService
             ];
         } catch (\Throwable $th) {
             //throw $th;
+            // dd("gagal");
             DB::rollback();
 
             return [
@@ -781,7 +785,7 @@ class SppService
         $message = 'Data siswa dan Spp ditemukan';
 
         return [
-            'ta' => $ta,
+            // 'ta' => $ta,
             'status' => $status,
             'message' => $message,
             'spp' => $spp,

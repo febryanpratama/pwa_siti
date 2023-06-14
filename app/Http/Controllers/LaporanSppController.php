@@ -52,6 +52,6 @@ class LaporanSppController extends Controller
         $result = $this->laporanSpp->exportExcel($request->all());
 
         // dd($result);
-        return \Excel::download(new LaporanSppExport($result['data'], $request['semester'], $request['tahun']), 'Laporan Excel.xlsx');
+        return \Excel::download(new LaporanSppExport($result['data'], $request['semester'], $result['year'], $result['semester']), 'Laporan Excel.xlsx');
     }
 }

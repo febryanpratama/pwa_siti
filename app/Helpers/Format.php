@@ -85,28 +85,118 @@ class Format
             return 0;
         }
     }
+
+    static function getDataNewSpp($siswa_id, $kelas_id, $tahun, $bulan, $semester)
+    {
+        $data = Spp::with('siswa')->where('siswa_id', $siswa_id)->where('kelas_id', $kelas_id)->where('semester_id', $semester)->whereMonth('tanggal', $bulan)->whereYear('tanggal', $tahun)->first();
+        // dd($data['total_pembayaran']);
+        // dd($data->siswa->status);
+        if ($data != '') {
+            if ($data->siswa->status == 'Gratis') {
+                return 0;
+            } else if ($data->siswa->status == 'Potongan') {
+                return @$data->total_pembayaran;
+            } else {
+                return @$data->total_pembayaran;
+            }
+        } else {
+            return 0;
+        }
+    }
     static function getSumDataSpp($kelas_id, $bulan, $tahun)
     {
         $total = [];
-        $data = Spp::where('kelas_id', $kelas_id)->whereMonth('tanggal', $bulan)->get();
+        $data = Spp::with('siswa')->where('kelas_id', $kelas_id)->whereMonth('tanggal', $bulan)->get();
+
+        // dd($data);
+        foreach ($data as $key => $value) {
+            # code...
+            // dd($value->status_pembayaran);
+            if ($value->siswa->status == 'Gratis') {
+                $total[] = 0;
+            } else if ($value->siswa->status == 'Potongan') {
+
+                switch ($value->status_pembayaran) {
+                    case 'Lunas':
+                        $total[] = $value->total_pembayaran;
+                        break;
+                    case 'Cicilan':
+                        $total[] = $value->total_pembayaran;
+                        break;
+                    case 'Belum Lunas':
+                        $total[] = 0;
+                        break;
+                }
+            } else {
+                switch ($value->status_pembayaran) {
+                    case 'Lunas':
+                        $total[] = $value->total_pembayaran;
+                        break;
+                    case 'Cicilan':
+                        $total[] = $value->total_pembayaran;
+                        break;
+                    case 'Belum Lunas':
+                        $total[] = 0;
+                        break;
+                }
+            }
+
+            // $total[] = $value->total_pembayaran;
+        }
+
+        return array_sum($total);
+    }
+    static function getSumDataSppNew($kelas_id, $bulan, $tahun, $semester)
+    {
+        $total = [];
+        $data = Spp::with('siswa')->where('kelas_id', $kelas_id)->where('semester_id', $semester)->whereMonth('tanggal', $bulan)->get();
 
         // dd($data);
         foreach ($data as $key => $value) {
             # code...
             // dd($value->status_pembayaran);
 
-            switch ($value->status_pembayaran) {
-                case 'Lunas':
-                    $total[] = $value->total_pembayaran;
-                    break;
-                case 'Cicilan':
-                    $total[] = $value->total_pembayaran;
-                    break;
-                case 'Belum Lunas':
-                    $total[] = 0;
-                    break;
-            }
+            // switch ($value->status_pembayaran) {
+            //     case 'Lunas':
+            //         $total[] = $value->total_pembayaran;
+            //         break;
+            //     case 'Cicilan':
+            //         $total[] = $value->total_pembayaran;
+            //         break;
+            //     case 'Belum Lunas':
+            //         $total[] = 0;
+            //         break;
+            // }
             // $total[] = $value->total_pembayaran;
+
+            if ($value->siswa->status == 'Gratis') {
+                $total[] = 0;
+            } else if ($value->siswa->status == 'Potongan') {
+
+                switch ($value->status_pembayaran) {
+                    case 'Lunas':
+                        $total[] = $value->total_pembayaran;
+                        break;
+                    case 'Cicilan':
+                        $total[] = $value->total_pembayaran;
+                        break;
+                    case 'Belum Lunas':
+                        $total[] = 0;
+                        break;
+                }
+            } else {
+                switch ($value->status_pembayaran) {
+                    case 'Lunas':
+                        $total[] = $value->total_pembayaran;
+                        break;
+                    case 'Cicilan':
+                        $total[] = $value->total_pembayaran;
+                        break;
+                    case 'Belum Lunas':
+                        $total[] = 0;
+                        break;
+                }
+            }
         }
 
         return array_sum($total);

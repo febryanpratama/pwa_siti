@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\DetailKelas;
 use App\Models\Kelas;
+use App\Models\Setting;
 use App\Models\siswa;
 use App\Models\Spp;
 use App\Models\tahun_ajaran;
@@ -52,7 +53,10 @@ class LaporanSppService
             $year = $explode[0];
         }
 
-        $data = Spp::with('siswa', 'kelas', 'guru', 'user')->where('semester_id', $data['semester_id'])->whereYear('tanggal', $year)->whereRelation('siswa', 'deleted_at', null)->get()->sortBy('siswa.nama_siswa')->groupBy('siswa_id');
+        $data = Spp::with('siswa', 'kelas', 'guru', 'user')->whereRelation('kelas', 'id', $data['kelas'])->where('semester_id', $data['semester_id'])->whereYear('tanggal', $year)->whereRelation('siswa', 'deleted_at', null)->get()->sortBy('siswa.nama_siswa')->groupBy('siswa_id');
+
+        // dd($data);
+
         // if ($data['semester'] == 'GANJIL') {
         //     // dd('ganjil');
         // } else {
@@ -89,10 +93,23 @@ class LaporanSppService
 
         // dd($data);
 
+        $tahun_ajaran = tahun_ajaran::where('id', $data['semester'])->first();
+
+        $explode = explode('/', $tahun_ajaran->tahun_ajaran);
+
+        // dd($explode);
+        if ($tahun_ajaran['semester'] == 'Genap') {
+            # code...
+
+            $year = $explode[1];
+        } else {
+            $year = $explode[0];
+        }
+
         $data = DetailKelas::with('kelas', 'siswa')->where('kelas_id', $data['kelas_id'])->whereRelation('siswa', 'status_siswa', 'Aktif')->get()->sortBy('siswa.nama_siswa', false);
 
 
-        // dd($data);
+        // dd($year);
 
         $status = true;
         $message = "Success Ambil Data Laporan SPP";
@@ -100,6 +117,8 @@ class LaporanSppService
             'status' => $status,
             'message' => $message,
             'data' => $data,
+            'year' => $year,
+            'semester' => $tahun_ajaran['semester']
         ];
 
         return $result;

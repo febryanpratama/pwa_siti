@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Spp;
 use App\Models\tahun_ajaran;
 use App\Services\SppService as ServicesSppService;
 use Illuminate\Http\Request;
@@ -261,8 +262,9 @@ class SppController extends Controller
 
     public function getSemester()
     {
-        $data = tahun_ajaran::get();
+        $data = tahun_ajaran::where('deleted_at', null)->get();
 
+        // dd($data);
         if ($data->isNotEmpty()) {
             # code...
 
@@ -276,5 +278,22 @@ class SppController extends Controller
                 'data' => null,
             ]);
         }
+    }
+
+    public function apiDashboard(Request $request)
+    {
+        // $data = Spp::
+        $arrData = [];
+        for ($i = 0; $i <= 12; $i++) {
+            # code...
+            $dataSpp = Spp::whereMonth('tanggal', $i)->whereYear('tanggal', $request->tahun)->sum('total_pembayaran');
+
+            $arrData[] = $dataSpp;
+        }
+
+        return response()->json([
+            'status' => true,
+            'data' => $arrData,
+        ]);
     }
 }
