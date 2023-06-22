@@ -93,6 +93,39 @@
     <!-- END: Footer-->
 
 
+    <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="{{ url("admin/setting") }}" method="POST">
+            
+                <div class="modal-body">
+                    @csrf
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label for="" class="control-label">Setting Semester</label>
+                            <select name="tahun_ajaran_id" id='semesterlist'  class="form-control semesterlist">
+                                <option value="" selected disabled> == Pilih == </option>
+                                
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- BEGIN: Vendor JS-->
     <script src="{{ asset('') }}admin/app-assets/vendors/js/vendors.min.js" type="text/javascript"></script>
@@ -167,6 +200,38 @@
             @endif ()
         });
     </script>
+    <script>
+                
+            $(document).ready(function(){
+
+                
+                $.ajax({
+                    url: "{{ url('api/get-semester') }}",
+                    type: "GET",
+                        dataType: "json",
+                        success: function (data) {
+                            
+                            // console.log(data.data)
+                            if (data.status == true) {
+                                // console.log(data)
+                                var listData = data.data;
+                                // console.log(listData.length)
+                                for (let index = 0; index < listData.length; index++) {
+                                    // console.log(listData[index])
+                                    $("select#semesterlist").html('')
+                                    // const element = array[index];
+                                    // console.log(listData[index].tahun_ajaran)
+                                    setTimeout(() => {
+                                        $("select#semesterlist").append('<option value="'+listData[index].id+'">'+listData[index].semester+', '+listData[index].tahun_ajaran+'</option>');
+                                    }, 1000);
+                                }
+                            }
+                        }
+                    })
+                    
+
+            })
+        </script>
 
     @yield('scripts')
 

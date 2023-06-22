@@ -146,101 +146,7 @@
                                                         </div>
                                                     </div> --}}
 
-                                                    <div class="modal fade text-left" id="cicilan{{ $item->id }}" tabindex="-1"
-                                                        role="dialog" aria-labelledby="myModalLabel17"
-                                                        aria-hidden="true">
-                                                        <div class="modal-dialog modal-lg" role="document">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <h4 class="modal-title" id="myModalLabel17">
-                                                                        Edit {{ $title }}
-                                                                    </h4>
-                                                                    <button type="button" class="close"
-                                                                        data-dismiss="modal" aria-label="Close">
-                                                                        <span aria-hidden="true">&times;</span>
-                                                                    </button>
-                                                                </div>
-                                                                @role('Admin')
-                                                                <form action="{{ url('admin/spp/update') }}" method="POST">
-                                                                    @endrole
-                                                                @role('Bendahara')
-                                                                {{-- <form action="{{ url('bendahara/spp/add') }}" method="POST"> --}}
-                                                                <form action="{{ url('bendahara/spp/update') }}" method="POST">
-                                                                    @endrole
-                                                                    @csrf
-                                                                    <input type="hidden" name="spp_id" class="spp_id" value="{{ $item->id }}">
-                                                                    <input type="hidden" name="siswa_id" class="siswa_id" value="{{ $item->siswa_id }}">
-                                                                    <div class="modal-body">
-                                                                        <div class="row">
-                                                                            <div class="col-md-6">
-                                                                                <div class="form-group">
-                                                                                    <label for="" class="label-control">Guru Penerima</label>
-                                                                                    <input type="text" class="form-control" name="guru_penerima" placeholder="Guru Penerima" required>
-
-                                                                                    {{-- <select name="guru_penerima_id" class="form-control select2" required>
-                                                                                        <option value="" selected disabled> == Pilih == </option>
-                                                                                        @foreach ($guru as $grp)
-                                                                                            <option value="{{ $grp->id }}">{{ $grp->nama_guru }}</option>
-                                                                                        @endforeach
-                                                                                    </select> --}}
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-md-6">
-                                                                                <div class="form-group">
-                                                                                    <label for="" class="label-control">Guru Piket</label>
-                                                                                    <input type="text" class="form-control" name="guru_piket" placeholder="Guru Piket" required>
-
-                                                                                    {{-- <select name="guru_piket_id" class="form-control select2" required>
-                                                                                        <option value="" selected disabled> == Pilih == </option>
-                                                                                        @foreach ($guru as $gr)
-                                                                                            <option value="{{ $gr->id }}">{{ $gr->nama_guru }}</option>
-                                                                                        @endforeach
-                                                                                    </select> --}}
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-md-6">
-                                                                                <div class="form-group">
-                                                                                    <label for="" class="label-control">Nominal SPP</label>
-                                                                                    <input type="number" name="nominal_spp" class="form-control nominal_spp" value="{{ $item->nominal_bayar }}" id="" readonly required>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-md-6">
-                                                                                <div class="form-group">
-                                                                                    <label for="" class="label-control">Nominal Telah Dibayar</label>
-
-                                                                                    <input type="text" name="nama_siswa" class="form-control" value="{{ $item->total_pembayaran }}" readonly >
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-md-12">
-                                                                                <div class="form-group">
-                                                                                    <label for="" class="label-control">Nominal Sisa Pembayaran</label>
-                                                                                    <input type="number" name="nominal_sisa" class="form-control " value="{{ $item->sisa_bayar }}" readonly required>
-                                                                                </div>
-                                                                            </div>
-                                                                            {{-- <div class="col-md-6">
-                                                                                <div class="form-group">
-                                                                                    <label for="" class="label-control">Nominal yang dibayar</label>
-                                                                                    <input type="number" name="nominal_dibayar" class="form-control" value="" required>
-                                                                                </div>
-                                                                            </div> --}}
-                                                                            <div class="col-md-12">
-                                                                                <div class="form-group">
-                                                                                    <label for="" class="label-control">Keterangan</label>
-                                                                                    <textarea name="keterangan" class="form-control" id="" cols="30" rows="5"></textarea>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="modal-footer">
-                                                                        <button type="button" class="btn grey btn-secondary"
-                                                                        data-dismiss="modal">Close</button>
-                                                                        <button type="submit"
-                                                                        class="btn btn-danger">Edit</button>
-                                                                    </div>
-                                                                </form>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                                    
                                                     
                                                     @endforeach
                                                 </tbody>
@@ -365,6 +271,103 @@
         </div>
     </div> --}}
 
+    @foreach ($data as $k=>$i)
+        <div class="modal fade text-left" id="cicilan{{ $i->id }}" tabindex="-1"
+            role="dialog" aria-labelledby="myModalLabel17"
+            aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="myModalLabel17">
+                            Edit {{ $title }}
+                        </h4>
+                        <button type="button" class="close"
+                            data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    @role('Admin')
+                    <form action="{{ url('admin/spp/update') }}" method="POST">
+                        @endrole
+                    @role('Bendahara')
+                    {{-- <form action="{{ url('bendahara/spp/add') }}" method="POST"> --}}
+                    <form action="{{ url('bendahara/spp/update') }}" method="POST">
+                        @endrole
+                        @csrf
+                        <input type="hidden" name="spp_id" class="spp_id" value="{{ $i->id }}">
+                        <input type="hidden" name="siswa_id" class="siswa_id" value="{{ $i->siswa_id }}">
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="" class="label-control">Guru Penerima</label>
+                                        <input type="text" class="form-control" name="guru_penerima" placeholder="Guru Penerima" required>
+
+                                        {{-- <select name="guru_penerima_id" class="form-control select2" required>
+                                            <option value="" selected disabled> == Pilih == </option>
+                                            @foreach ($guru as $grp)
+                                                <option value="{{ $grp->id }}">{{ $grp->nama_guru }}</option>
+                                            @endforeach
+                                        </select> --}}
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="" class="label-control">Guru Piket</label>
+                                        <input type="text" class="form-control" name="guru_piket" placeholder="Guru Piket" required>
+
+                                        {{-- <select name="guru_piket_id" class="form-control select2" required>
+                                            <option value="" selected disabled> == Pilih == </option>
+                                            @foreach ($guru as $gr)
+                                                <option value="{{ $gr->id }}">{{ $gr->nama_guru }}</option>
+                                            @endforeach
+                                        </select> --}}
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="" class="label-control">Nominal SPP</label>
+                                        <input type="number" name="nominal_spp" class="form-control nominal_spp" value="{{ $i->nominal_bayar }}" id="" readonly required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="" class="label-control">Nominal Telah Dibayar</label>
+
+                                        <input type="text" name="nama_siswa" class="form-control" value="{{ $i->total_pembayaran }}" readonly >
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="" class="label-control">Nominal Sisa Pembayaran</label>
+                                        <input type="number" name="nominal_sisa" class="form-control " value="{{ $i->sisa_bayar }}" readonly required>
+                                    </div>
+                                </div>
+                                {{-- <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="" class="label-control">Nominal yang dibayar</label>
+                                        <input type="number" name="nominal_dibayar" class="form-control" value="" required>
+                                    </div>
+                                </div> --}}
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="" class="label-control">Keterangan</label>
+                                        <textarea name="keterangan" class="form-control" id="" cols="30" rows="5"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn grey btn-secondary"
+                            data-dismiss="modal">Close</button>
+                            <button type="submit"
+                            class="btn btn-danger">Edit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    @endforeach
     <div class="modal fade text-left" id="edit" tabindex="-1"
         role="dialog" aria-labelledby="myModalLabel17"
         aria-hidden="true">

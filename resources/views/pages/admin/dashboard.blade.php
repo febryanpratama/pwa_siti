@@ -36,8 +36,8 @@
                                     </div>
                                 </div>
                                 <div class="card-content collapse show">
-                                    <div class="card-body p-1 pb-0">
-                                        <div class="chartist">
+                                    <div class="card-body pb-0">
+                                        <div class="chartist ">
                                             <div id="project-stats" class="height-350 areaGradientShadow1"></div>
                                         </div>
                                     </div>
@@ -278,7 +278,7 @@
                 ],
                 series: [
                     val,
-                    // [75, 120, 50, 80, 130, 60, 120, 50, 80, 130, 60, 120],
+                    [75, 120, 50, 80, 130, 60, 120, 50, 80, 130, 60, 120],
                     // [110, 50, 70, 20, 90, 150, 0, 50, 70, 20, 90, 150],
                 ],
             },
@@ -290,6 +290,7 @@
                 showArea: true,
                 chartPadding: {
                     right: 35,
+                    left: 50
                 },
 
                 axisX: {
@@ -335,37 +336,38 @@
 
                 return defs;
             })
-            .on("draw", function (data) {
-                var circleRadius = 9;
-                if (data.type === "point") {
-                    var circle = new Chartist.Svg("circle", {
-                        cx: data.x,
-                        cy: data.y,
-                        "ct:value": data.y,
-                        r: circleRadius,
-                        class:
-                            data.value.y === 180 || data.value.y === 150
-                                ? "ct-point-circle ct-point"
-                                : "ct-point ct-point-circle-transperent",
-                    });
-                    data.element.replace(circle);
-                }
-                if (data.type === "line" || data.type == "area") {
-                    data.element.animate({
-                        d: {
-                            begin: 1000,
-                            dur: 1000,
-                            from: data.path
-                                .clone()
-                                .scale(1, 0)
-                                .translate(0, data.chartRect.height())
-                                .stringify(),
-                            to: data.path.clone().stringify(),
-                            easing: Chartist.Svg.Easing.easeOutQuint,
-                        },
-                    });
-                }
-            });
+            // .on("draw", function (data) {
+            //     // console.log(data);
+            //     var circleRadius = 9;
+            //     if (data.type === "point") {
+            //         var circle = new Chartist.Svg("circle", {
+            //             cx: data.x,
+            //             cy: data.y,
+            //             "ct:value": data.y,
+            //             r: circleRadius,
+            //             class:
+            //                 data.value.y === 180 || data.value.y === 150
+            //                     ? "ct-point-circle ct-point"
+            //                     : "ct-point ct-point-circle-transperent",
+            //         });
+            //         data.element.replace(circle);
+            //     }
+            //     if (data.type === "line" || data.type == "area") {
+            //         data.element.animate({
+            //             d: {
+            //                 begin: 1000,
+            //                 dur: 1000,
+            //                 from: data.path
+            //                     .clone()
+            //                     .scale(1, 0)
+            //                     .translate(0, data.chartRect.height())
+            //                     .stringify(),
+            //                 to: data.path.clone().stringify(),
+            //                 easing: Chartist.Svg.Easing.easeOutQuint,
+            //             },
+            //         });
+            //     }
+            // });
         }
 
     // })

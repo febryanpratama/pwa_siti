@@ -6,8 +6,6 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="description"
         content="Chameleon Admin is a modern Bootstrap 4 webapp &amp; admin dashboard html template with a large number of components, elegant design, clean and organized code.">
     <meta name="keywords"
@@ -41,32 +39,32 @@
 
     <!-- BEGIN: Page CSS-->
     <link rel="stylesheet" type="text/css"
-        href="{{ asset('') }}admin/app-assets/css/core/menu/menu-types/vertical-menu.css">
-    <link rel="stylesheet" type="text/css" href="{{ asset('') }}admin/app-assets/css/core/colors/palette-gradient.css">
+    href="{{ asset('') }}admin/app-assets/css/core/menu/menu-types/vertical-menu.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('') }}admin/app-assets/css/core/colors/palette-gradient.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('') }}admin/app-assets/css/pages/chat-application.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('') }}admin/app-assets/css/pages/dashboard-analytics.css">
-
-    <link rel="stylesheet" type="text/css" href="https://jeremyfagis.github.io/dropify/dist/css/dropify.min.css">
+    
     <!-- END: Page CSS-->
-
+    
+    
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.10/select2-bootstrap.min.css" integrity="sha512-kq3FES+RuuGoBW3a9R2ELYKRywUEQv0wvPTItv3DSGqjpbNtGWVdvT8qwdKkqvPzT93jp8tSF4+oN4IeTEIlQA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" type="text/css" href="https://jeremyfagis.github.io/dropify/dist/css/dropify.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.10/select2-bootstrap.css" integrity="sha512-CbQfNVBSMAYmnzP3IC+mZZmYMP2HUnVkV4+PwuhpiMUmITtSpS7Prr3fNncV1RBOnWxzz4pYQ5EAGG4ck46Oig==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- BEGIN: Custom CSS-->
     <link rel="stylesheet" type="text/css" href="{{ asset('') }}admin/assets/css/style.css">
     <!-- END: Custom CSS-->
-
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-
+    
     <style>
-        .btn-wrap-text {
-  overflow: hidden;
-  white-space: nowrap;
-  display: inline-block;
-  text-overflow: ellipsis;
-}
+        .btn-wrap-text{
+            overflow: hidden;
+            white-space: nowrap;
+            display: inline-block;
+            text-overflow: ellipsis;
+        }
     </style>
 
-    @PWA
+    {{ pwa_meta() }}
 </head>
 <!-- END: Head-->
 
@@ -86,6 +84,7 @@
 
     <!-- BEGIN: Content-->
     @yield('content')
+
     <!-- END: Content-->
 
 
@@ -94,6 +93,40 @@
     <!-- END: Footer-->
 
 
+    <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="{{ url("admin/setting") }}" method="POST">
+            
+                <div class="modal-body">
+                    @csrf
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label for="" class="control-label">Setting Semester</label>
+                            <select name="tahun_ajaran_id" id='semesterlist'  class="form-control semesterlist">
+                                <option value="" selected disabled> == Pilih == </option>
+                                
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- BEGIN: Vendor JS-->
     <script src="{{ asset('') }}admin/app-assets/vendors/js/vendors.min.js" type="text/javascript"></script>
     <!-- BEGIN Vendor JS-->
@@ -117,7 +150,7 @@
     <!-- BEGIN: Page Vendor JS-->
     <script src="{{ asset('') }}admin/app-assets/vendors/js/tables/datatable/datatables.min.js" type="text/javascript"></script>
     <!-- END: Page Vendor JS-->
-
+    
     <!-- BEGIN: Page JS-->
     <script src="{{ asset('') }}admin/app-assets/js/scripts/tables/datatables/datatable-styling.js" type="text/javascript"></script>
     <!-- END: Page JS-->
@@ -127,22 +160,78 @@
     {{-- Dropify --}}
     <script type="text/javascript" src="https://jeremyfagis.github.io/dropify/dist/js/dropify.min.js"></script>
     {{-- End Dropify --}}
+
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // $('.select2').select2();
+           
+            $.ajax({
+                url: "{{ url('api/get-semester') }}",
+                type: "GET",
+                dataType: "json",
+                success: function (data) {
+
+                    if (data.status == true) {
+                        // console.log(data)
+                        $.each(data.data, function (i, item) {
+                            // console.log(item.id)
+                            $("select#dataset").append('<option value="'+item.id+'">'+item.semester+', '+item.tahun_ajaran+'</option>');
+                        })
+                    }
+                }
+            })
+
+        });
+    </script>
     <script>
         $(document).ready(function(){
             $('.dropify').dropify();
 
-            $('.select2').select2();
-
+            $('.select2').select2({
+                theme: 'bootstrap'
+                // dropdownParent: $('#large')
+            });
             @if (session('success'))
             swal("Great !", "{{ session('success') }}", "success");
             @endif ()
-
-            @if (session('errors'))
-            swal("Oh No !", "{{ session('errors') }}", "errors");
+            @if (session('error'))
+            swal("Oh No !", "{{ session('error') }}", "error");
             @endif ()
-
         });
     </script>
+    <script>
+                
+            $(document).ready(function(){
+
+                
+                $.ajax({
+                    url: "{{ url('api/get-semester') }}",
+                    type: "GET",
+                        dataType: "json",
+                        success: function (data) {
+                            
+                            // console.log(data.data)
+                            if (data.status == true) {
+                                // console.log(data)
+                                var listData = data.data;
+                                // console.log(listData.length)
+                                for (let index = 0; index < listData.length; index++) {
+                                    // console.log(listData[index])
+                                    $("select#semesterlist").html('')
+                                    // const element = array[index];
+                                    // console.log(listData[index].tahun_ajaran)
+                                    setTimeout(() => {
+                                        $("select#semesterlist").append('<option value="'+listData[index].id+'">'+listData[index].semester+', '+listData[index].tahun_ajaran+'</option>');
+                                    }, 1000);
+                                }
+                            }
+                        }
+                    })
+                    
+
+            })
+        </script>
 
     @yield('scripts')
 

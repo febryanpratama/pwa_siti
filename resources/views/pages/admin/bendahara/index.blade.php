@@ -46,6 +46,7 @@
                                                 <thead>
                                                     <tr>
                                                         <th>No</th>
+                                                        <th>Bendahara ID</th>
                                                         <th>Nama Bendahara</th>
                                                         <th>NIP</th>
                                                         <th>Email</th>
@@ -58,6 +59,7 @@
                                                     {{-- {{ dd($item) }} --}}
                                                     <tr>
                                                         <td></td>
+                                                        <td>{{ $item->id }}</td>
                                                         <td>{{ $item->user->name }}</td>
                                                         <td>{{ $item->nip }}</td>
                                                         <td>{{ $item->user->email }}</td>

@@ -161,7 +161,7 @@
                             @enderror
                         </div>
 
-                        <div class="form-group row">
+                        {{-- <div class="form-group row">
                             <label for="input-23" class="col-sm-2 col-form-label">Asal Sekolah</label>
                             <div class="col-sm-10">
                                 <input type="text" value="{{ $data->asal_sekolah }}" class="form-control @error('asal_sekolah') is-invalid @enderror" required name="asal_sekolah" placeholder="Masukkan Asal Sekolah">
@@ -169,7 +169,7 @@
                             @error('asal_sekolah')
                                 <div class="text-muted text-danger">{{ $message }}</div>
                             @enderror
-                        </div>
+                        </div> --}}
 
                         <div class="form-group row">
                             <label for="input-21" class="col-sm-2 col-form-label">No Ujian SMP</label>

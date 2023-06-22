@@ -151,10 +151,10 @@
                                                     @endfor
                                                 </select>
                                             </div> --}}
-                                            <div class="form-group">
+                                            {{-- <div class="form-group">
                                                 <label for="contactinput5">Asal Sekolah</label>
                                                 <input type="text" class="form-control @error('asal_sekolah') is-invalid @enderror" required name="asal_sekolah" value="{{ @$data->asal_sekolah }}" placeholder="Masukkan Asal Sekolah">
-                                            </div>
+                                            </div> --}}
                                             {{-- <div class="form-group">
                                                 <label for="contactinput5">Nomor Ujian SMP</label>
                                                 <input type="number" class="form-control @error('nomor_ujian_smp') is-invalid @enderror" required name="nomor_ujian_smp" placeholder="Masukkan Nomor Ujian SMP">
