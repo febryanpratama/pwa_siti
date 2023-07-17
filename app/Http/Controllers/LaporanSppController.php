@@ -86,7 +86,7 @@ class LaporanSppController extends Controller
                 'semester' => $request['semester'],
                 'tahun' => $result['year']
             ])->setPaper('a4', 'landscape');
-            return $dompdf->stream('Laporan.pdf');
+            return $dompdf->download('Laporan.pdf');
 
             // return $pdf->stream("Laporan.pdf", array("Attachment" => false));
         } else {
@@ -100,7 +100,7 @@ class LaporanSppController extends Controller
             ])->setPaper('a4', 'landscape');
 
             // $pdf->download('Laporan.pdf');
-            return $dompdf->stream('Laporan.pdf');
+            return $dompdf->download('Laporan.pdf');
 
             // return $pdf->stream("Laporan.pdf", array("Attachment" => false));
             // return view('pages.admin.laporan.excel', [
@@ -120,6 +120,6 @@ class LaporanSppController extends Controller
 
         // dd($data);
         $pdf = PDF::loadview('pages.admin.laporan.pdf', ['data' => $data, 'bulan' => $request['bulan'], 'status' => $request['status'], 'semester' => $request['periode_id']]);
-        return $pdf->stream("Laporan-" . $request['status'] . ".pdf");
+        return $pdf->download("Laporan-" . $request['status'] . ".pdf");
     }
 }
