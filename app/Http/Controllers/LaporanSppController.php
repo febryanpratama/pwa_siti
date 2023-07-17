@@ -8,7 +8,7 @@ use App\Models\Spp;
 use App\Models\tahun_ajaran;
 use App\Services\LaporanSppService;
 use Illuminate\Http\Request;
-use PDF;
+use Barryvdh\DomPDF\PDF;
 
 class LaporanSppController extends Controller
 {
@@ -84,7 +84,7 @@ class LaporanSppController extends Controller
                 'tahun' => $result['year']
             ])->setPaper('a4', 'landscape');
 
-            return $pdf->stream("", array("Attachment" => false));
+            return $pdf->stream("Laporan.pdf", array("Attachment" => false));
         } else {
             // dd("Ganjil");
 
@@ -95,7 +95,7 @@ class LaporanSppController extends Controller
                 'tahun' => $result['year']
             ])->setPaper('a4', 'landscape');
 
-            return $pdf->stream("", array("Attachment" => false));
+            return $pdf->stream("Laporan.pdf", array("Attachment" => false));
             // return view('pages.admin.laporan.excel', [
             //     'data'  => $result['data'],
             //     'semester' => $result['semester'],
