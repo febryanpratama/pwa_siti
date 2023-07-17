@@ -109,7 +109,7 @@ class LaporanSppService
         return $siswa;
     }
 
-    static function exportExcel($data)
+    public function exportExcel($data)
     {
 
         // dd($data);
