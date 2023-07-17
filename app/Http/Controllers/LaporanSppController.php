@@ -77,19 +77,19 @@ class LaporanSppController extends Controller
             # code...
             // dd("Genap");
             // dd($request->bulan);
-            $pdf = PDF::loadview('pages.admin.laporan.excelGanjil', [
+            $dompdf = PDF::loadview('pages.admin.laporan.laporanpdfganjil', [
                 // 'bulan' => $request['bulan'],
                 'data'  => $result['data'],
                 'semester' => $request['semester'],
                 'tahun' => $result['year']
             ])->setPaper('a4', 'landscape');
-            return $pdf->stream('Laporan.pdf');
+            return $dompdf->stream('Laporan.pdf');
 
             // return $pdf->stream("Laporan.pdf", array("Attachment" => false));
         } else {
             // dd("Ganjil");
 
-            $pdf = PDF::loadview('pages.admin.laporan.excel', [
+            $dompdf = PDF::loadview('pages.admin.laporan.laporanpdf', [
                 // 'bulan' => $request['bulan'],
                 'data'  => $result['data'],
                 'semester' => $request['semester'],
@@ -97,7 +97,7 @@ class LaporanSppController extends Controller
             ])->setPaper('a4', 'landscape');
 
             // $pdf->download('Laporan.pdf');
-            return $pdf->stream('Laporan.pdf');
+            return $dompdf->stream('Laporan.pdf');
 
             // return $pdf->stream("Laporan.pdf", array("Attachment" => false));
             // return view('pages.admin.laporan.excel', [
