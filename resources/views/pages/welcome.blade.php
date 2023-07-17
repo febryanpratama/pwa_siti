@@ -62,7 +62,7 @@
         <!-- ***** Header Start ***** -->
         <header class="navbar navbar-sticky navbar-expand-lg navbar-dark">
             <div class="container position-relative">
-                <a class="navbar-brand" href="index.html">
+                <a class="navbar-brand" href="#">
                     {{-- <img class="navbar-brand-regular" src="https://theme-land.com/sapp/demo/assets/img/logo/logo-white.png" alt="brand-logo"> --}}
                     {{-- <img class="navbar-brand-sticky" src="https://theme-land.com/sapp/demo/assets/img/logo/logo.png" alt="sticky brand-logo"> --}}
                 </a>

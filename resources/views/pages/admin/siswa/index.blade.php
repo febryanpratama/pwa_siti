@@ -48,6 +48,7 @@
                                                         <th>Tanggal Lahir</th>
                                                         {{-- <th>Alamat</th> --}}
                                                         <th>Status Siswa</th>
+                                                        <th>Alamat</th>
                                                         <th>Nama Ortu</th>
                                                         <th>Telpon Ortu</th>
                                                         <th>Aksi</th>
@@ -81,6 +82,7 @@
                                                                     </div>
                                                                 @endswitch
                                                             </td>
+                                                            <td>{{ $key->alamat }}</td>
                                                             <td>{{ $key->nama_ortu }}</td>
                                                             <td>{{ $key->telpon_ortu_siswa }}</td>
                                                             <td class="d-flex"> 
