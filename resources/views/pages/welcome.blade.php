@@ -290,9 +290,9 @@
                                                                 <div class="col-md-12">
                                                                 Anda dapat melakukan pembayaran melalui transfer ke rekening berikut : <br><br>
                                                                     <ul>
-                                                                        <li>Bank BRI : 1234567890 An Tunas Mulya</li>
-                                                                        <li>Bank BNI : 1234567890  An Tunas Mulya</li>
-                                                                        <li>Bank BCA : 1234567890  An Tunas Mulya</li>
+                                                                        <li>Bank BRI : 1234567890 An Taman Mulia</li>
+                                                                        <li>Bank BNI : 1234567890  An Taman Mulia</li>
+                                                                        <li>Bank BCA : 1234567890  An Taman Mulia</li>
                                                                     </ul>
                                                                 </div>
 

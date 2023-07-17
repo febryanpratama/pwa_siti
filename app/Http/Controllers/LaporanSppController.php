@@ -67,7 +67,7 @@ class LaporanSppController extends Controller
 
     public function exportExcel(Request $request)
     {
-        dd($request->all());
+        // dd($request->all());
 
 
         $result = $this->laporanSpp->exportExcel($request->all());

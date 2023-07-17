@@ -159,10 +159,10 @@
                                                 <label for="contactinput5">Nomor Ujian SMP</label>
                                                 <input type="number" class="form-control @error('nomor_ujian_smp') is-invalid @enderror" required name="nomor_ujian_smp" placeholder="Masukkan Nomor Ujian SMP">
                                             </div> --}}
-                                            <div class="form-group">
+                                            {{-- <div class="form-group">
                                                 <label for="contactinput5">Nomor Ijazah</label>
                                                 <input type="number" class="form-control @error('nomor_ijazah') is-invalid @enderror" required name="nomor_ijazah" value="{{ @$data->nomor_ijazah }}" placeholder="Masukkan Nomor Ijazah">
-                                            </div>
+                                            </div> --}}
                                             {{-- <div class="form-group">
                                                 <label for="contactinput5">Nomor SKHUN</label>
                                                 <input type="number" class="form-control @error('nomor_skhun') is-invalid @enderror" required name="nomor_skhun" placeholder="Masukkan Nomor SKHUN">

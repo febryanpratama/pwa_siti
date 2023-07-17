@@ -23,19 +23,19 @@
 <body>
     @if ($status == 'Belum Lunas')
         <div style="text-align: center">
-            <h5>Laporan Tunggakan Siswa Yang Belum Membayar SPP <br> Pada Bulan {{ App\Helpers\Format::formatBulan($bulan) }} Periode {{ App\Helpers\Format::periode($semester) }}</h5>
+            <h5>LAPORAN TUNGGAKAN SISWA YANG BELUM MEMBAYARAN SPP <br> PADA BULAN {{ strtoupper(App\Helpers\Format::formatBulan($bulan)) }} PERIODE {{ App\Helpers\Format::periode($semester) }}</h5>
 
         </div>
     @endif
     @if ($status == 'Cicilan')
         <div style="text-align: center">
-            <h5>Laporan Pembayaran Siswa Yang Telah Membayar SPP secara Cicilan <br> Pada Bulan {{ App\Helpers\Format::formatBulan($bulan) }} Periode {{ App\Helpers\Format::periode($semester) }}</h5>
+            <h5>LAPORAN PEMBAYARAN SISWA YANG MEMBAYAR SPP SECARA CICILAN <br> Pada Bulan {{ strtoupper(App\Helpers\Format::formatBulan($bulan)) }} PERIODE {{ App\Helpers\Format::periode($semester) }}</h5>
 
         </div>
     @endif
     @if ($status == 'Lunas')
         <div style="text-align: center">
-            <h5>Laporan Pembayaran Siswa Yang Telah Membayar SPP <br> Pada Bulan {{ App\Helpers\Format::formatBulan($bulan) }} Periode {{ App\Helpers\Format::periode($semester) }}</h5>
+            <h5>LAPORAN PEMBAYARAN SISWA YANG MEMBAYAR SPP <br> PADA BULAN {{ strtoupper(App\Helpers\Format::formatBulan($bulan)) }} PERIODE {{ App\Helpers\Format::periode($semester) }}</h5>
 
         </div>
     @endif
@@ -45,6 +45,7 @@
             <tr>
                 <th>No</th>
                 <th>Nama</th>
+                <th>Kelas</th>
                 <th>Bulan</th>
                 <th>Rp</th>
                 <th >Ket</th>
@@ -60,7 +61,8 @@
                 <tr style="text-align: center">
                     <td>{{ $total++ }}</td>
                     <td>{{ $item->siswa->nama_siswa }}</td>
-                    <td>{{ Carbon\Carbon::parse($item->tanggal)->format('M') }}</td>
+                    <td>{{ App\Helpers\Format::getKelas($item->kelas_id) }}</td>
+                    <td>{{ strtoupper(Carbon\Carbon::parse($item->tanggal)->format('M')) }}</td>
                     <td>{{ number_format($item->nominal_bayar) }}</td>
                     <td>{{ $item->keterangan }}</td>
                 </tr>
@@ -69,7 +71,7 @@
         </tbody>
         <tfoot>
             <tr style="text-align: center">
-                <td colspan="3">Jumlah</td>
+                <td colspan="4">Jumlah</td>
                 <td>{{ number_format($data->sum('nominal_bayar')) }}</td>
                 <td></td>
             </tr>
