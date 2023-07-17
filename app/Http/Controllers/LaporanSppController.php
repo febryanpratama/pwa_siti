@@ -8,7 +8,10 @@ use App\Models\Spp;
 use App\Models\tahun_ajaran;
 use App\Services\LaporanSppService;
 use Illuminate\Http\Request;
-use Barryvdh\DomPDF\PDF;
+// use Barryvdh\DomPDF\PDF;
+// use Barryvdh\DomPDF\Facade as PDF;
+use PDF;
+
 
 class LaporanSppController extends Controller
 {
