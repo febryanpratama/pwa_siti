@@ -298,7 +298,7 @@
                 },
                 axisY: {
                     labelInterpolationFnc: function (value) {
-                        return value + "k";
+                        return value + ".";
                     },
                     scaleMinSpace: 40,
                     showGrid: false,

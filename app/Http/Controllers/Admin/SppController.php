@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\siswa;
 use App\Models\Spp;
 use App\Models\tahun_ajaran;
 use App\Services\SppService as ServicesSppService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class SppController extends Controller
 {
@@ -295,5 +297,100 @@ class SppController extends Controller
             'status' => true,
             'data' => $arrData,
         ]);
+    }
+
+    public function sms()
+    {
+        $response = $this->sppService->test();
+    }
+
+    public function search(Request $request)
+    {
+        // dd($request->all());
+        $validator = Validator::make($request->all(), [
+            'siswa' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->with('error', 'Nama Siswa Tidak Boleh Kosong');
+        }
+
+        $siswa = siswa::where('nama_siswa', 'LIKE', '%' . $request->siswa . '%')->get();
+
+        // dd($siswa[0]);
+
+        if ($siswa->isNotEmpty()) {
+            # code...
+            return view('pages.admin.spp.search', [
+                'data' => $siswa,
+                'title' => 'Data Siswa',
+            ]);
+        } else {
+            return redirect()->back()->with('error', 'Data Siswa Tidak Ditemukan');
+        }
+    }
+
+    public function detailSppSiswa($siswa_id)
+    {
+        $spp = Spp::with('siswa')->where('siswa_id', $siswa_id)->get();
+        // dd($spp);
+
+        if ($spp->isNotEmpty()) {
+            return view('pages.admin.spp.detailsearch', [
+                'data' => $spp,
+                'title' => 'Data Siswa',
+            ]);
+        }
+
+        return back()->with("error", "Data Spp Siswa Tidak Ditemukan");
+    }
+
+    public function smsTunggakan()
+    {
+        $response = $this->sppService->smsTunggakan();
+
+        return response()->json([
+            "status" => true
+        ]);
+    }
+    public function smsCicilan()
+    {
+        $response = $this->sppService->smsCicilan();
+
+        return response()->json([
+            "status" => true
+        ]);
+    }
+
+    public function unggah(Request $request)
+    {
+        // dd($request->all());
+        $validator = Validator::make($request->all(), [
+            'bukti_pembayaran' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'spp_id' => 'required|exists:spps,id',
+        ]);
+
+        if ($validator->fails()) {
+            // dd($validator->errors()->all());
+            return redirect('/')->withErrors('Bukti Pembayaran Tidak Boleh Kosong dan maksimal 2MB');
+        }
+
+        $spp = Spp::where('id', $request->spp_id)->first();
+
+        // dd($spp);
+
+        if ($request->file('bukti_pembayaran')) {
+            $file = $request->file('bukti_pembayaran');
+            $nama_file = time() . "_" . $file->getClientOriginalName();
+            $tujuan_upload = 'bukti_pembayaran';
+            $file->move($tujuan_upload, $nama_file);
+        }
+
+        $spp->update([
+            'bukti' => $nama_file,
+        ]);
+
+        // dd("ok");
+        return redirect('/')->with('success', 'Bukti Pembayaran Berhasil Diunggah');
     }
 }

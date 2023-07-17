@@ -233,20 +233,21 @@
                                                 <th>Nominal Dibayar</th>
                                                 <th>Tanggal Bayar</th>
                                                 <th>Status</th>
+                                                <th>Upload</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @if ($spp != null)
-                                                @foreach ($spp as $item => $spp)
+                                                @foreach ($spp as $item => $k)
                                                     <tr>
                                                         <td>{{ $item+1 }}</td>
-                                                        <td>{{ \Carbon\Carbon::parse($spp->tanggal)->format('M Y')}}</td>
-                                                        <td>{{ $spp->kelas->kelas }} {{ $spp->kelas->nama_kelas }}</td>
-                                                        <td>Rp. {{ number_format($spp->total_pembayaran,0) }}</td>
-                                                        <td>{{ $spp->tanggal_pembayaran }}</td>
+                                                        <td>{{ \Carbon\Carbon::parse($k->tanggal)->format('M Y')}}</td>
+                                                        <td>{{ $k->kelas->kelas }} {{ $k->kelas->nama_kelas }}</td>
+                                                        <td>Rp. {{ number_format($k->total_pembayaran,0) }}</td>
+                                                        <td>{{ $k->tanggal_pembayaran }}</td>
                                                         <td>
-                                                            {{-- {{ $spp->status }} --}}
-                                                            @switch($spp->status_pembayaran)
+                                                            {{-- {{ $k->status }} --}}
+                                                            @switch($k->status_pembayaran)
                                                                 @case('Lunas')
                                                                     <div class="badge badge-success">Lunas</div>
                                                                     @break
@@ -258,11 +259,62 @@
                                                                     
                                                             @endswitch
                                                         </td>
+                                                        <td>
+                                                            @if ($k->bukti == null)
+                                                            <button type="button" data-toggle="modal" data-target="#md{{ $k->id }}" class="btn btn-outline-info">Transer</button>
+                                                            @else
+                                                            <button type="button" class="btn btn-outline-info">Terima Kasih</button>
+                                                            @endif
+                                                        </td>
                                                     </tr>
                                 -                @endforeach
                                             @endif
                                         </tbody>
                                     </table>
+                                    @if ($spp != null)
+                                        @foreach ($spp as $m=>$md)
+                                            <div class="modal fade" id="md{{ $md->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                    <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form action="{{ url('unggah') }}" method="POST" enctype="multipart/form-data">
+                                                            @csrf
+                                                            <input type="hidden" name="spp_id" value="{{ $md->id }}">
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                Anda dapat melakukan pembayaran melalui transfer ke rekening berikut : <br><br>
+                                                                    <ul>
+                                                                        <li>Bank BRI : 1234567890 An Tunas Mulya</li>
+                                                                        <li>Bank BNI : 1234567890  An Tunas Mulya</li>
+                                                                        <li>Bank BCA : 1234567890  An Tunas Mulya</li>
+                                                                    </ul>
+                                                                </div>
+
+                                                            </div>
+                                                            <hr>
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <label for="" class="control-label">Unggah Bukti Pembayaran</label>
+                                                                    <input type="file" name="bukti_pembayaran" class="form-control">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                            <button type="submit" class="btn btn-primary">Save changes</button>
+                                                    </div>
+                                                </form>
+                                                </div>
+                                                </div>
+                                            </div>        
+                                        @endforeach
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -412,6 +464,13 @@
         swal("Oopss", "Data Anda Tidak Kami Temukan", "error");
             
         @endif
+
+        @if (session('success'))
+        swal("Great !", "{{ session('success') }}", "success");
+        @endif ()
+        @if (session('error'))
+        swal("Oh No !", "{{ session('error') }}", "error");
+        @endif ()
 
     </script>
 </body>

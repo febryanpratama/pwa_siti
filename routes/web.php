@@ -42,6 +42,9 @@ Route::get('/', function () {
     ]);
     // return redirect('/login');
 });
+Route::POST('unggah', [SppController::class, 'unggah']);
+Route::get('search', [SppController::class, 'search']);
+Route::get('search-siswa', [SppController::class, 'search']);
 
 Route::post('siswa-spp', [SppController::class, 'dataSiswa']);
 
@@ -86,6 +89,11 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:Admin']], func
         'prefix' => 'spp'
     ], function () {
         Route::get('/', [SppController::class, 'index']);
+
+        // search
+        Route::get('/siswa/{siswa_id}', [SppController::class, 'detailSppSiswa']);
+        // endsearch
+
         Route::get('/kelas/{kelas_id}', [SppController::class, 'detailKelas']);
         Route::get('/kelas/{kelas_id}/lunas', [SppController::class, 'detailKelasLunas']);
         Route::get('/kelas/{kelas_id}/belum-lunas', [SppController::class, 'detailKelasBelumLunas']);
@@ -156,6 +164,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:Admin']], func
     ], function () {
         Route::get('/', [LaporanSppController::class, 'index']);
         Route::post('/excel', [LaporanSppController::class, 'exportExcel']);
+        Route::post('/pdf', [LaporanSppController::class, 'exportPdf']);
     });
 
     Route::group([
@@ -176,6 +185,7 @@ Route::group(['prefix' => 'bendahara', 'middleware' => ['role:Bendahara']], func
         'prefix' => 'spp',
     ], function () {
         Route::get('/', [SppController::class, 'index']);
+        Route::get('/siswa/{siswa_id}', [SppController::class, 'detailSppSiswa']);
         Route::get('/kelas/{kelas_id}', [SppController::class, 'detailKelas']);
         Route::get('/kelas/{kelas_id}/siswa/{siswa_id}', [SppController::class, 'detailSiswa']);
         Route::get('/kelas/{kelas_id}/lunas', [SppController::class, 'detailKelasLunas']);
@@ -186,6 +196,8 @@ Route::group(['prefix' => 'bendahara', 'middleware' => ['role:Bendahara']], func
         Route::get('/export', [SppController::class, 'Export']);
         Route::post('/', [SppController::class, 'store']);
         Route::post('/add', [SppController::class, 'addSpp']);
+        Route::post('/update', [SppController::class, 'updateSpp']);
+
         Route::post("generate", [SppController::class, 'generateSpp']);
     });
 
@@ -194,6 +206,7 @@ Route::group(['prefix' => 'bendahara', 'middleware' => ['role:Bendahara']], func
     ], function () {
         Route::get('/', [LaporanSppController::class, 'index']);
         Route::post('/excel', [LaporanSppController::class, 'exportExcel']);
+        Route::post('/pdf', [LaporanSppController::class, 'exportPdf']);
     });
     //
 });
@@ -206,6 +219,7 @@ Route::group(['prefix' => 'kepsek', 'middleware' => ['role:Kepsek']], function (
         // 
         Route::get('/', [LaporanSppController::class, 'index']);
         Route::post('/excel', [LaporanSppController::class, 'exportExcel']);
+        Route::post('/pdf', [LaporanSppController::class, 'exportPdf']);
     });
 });
 
@@ -217,4 +231,8 @@ Route::group(['prefix' => 'user', 'middleware' => ['role:User']], function () {
 
 Route::post('admin/alumni/pelunasan', [AlumniController::class, 'pelunasan'])->name('alumni.pelunasan');
 
+Route::get("sms-cicilan", [SppController::class, 'smsCicilan']);
+Route::get("sms-tunggakan", [SppController::class, 'smsTunggakan']);
+
+Route::get('/sms', [SppController::class, 'sms']);
 \PWA::routes();

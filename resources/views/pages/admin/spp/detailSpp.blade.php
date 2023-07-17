@@ -85,6 +85,9 @@
                                                         </td>
                                                         <td>{{ $item->tanggal_pembayaran }}</td>
                                                         <td>
+                                                            @if ($item->bukti)
+                                                                <a href="{{ asset('bukti_pembayaran/'.$item->bukti) }}" target="_blank">Lihat Bukti</a>
+                                                            @endif
                                                             @if($item->status_pembayaran == 'Belum Lunas')
                                                             <button type="button" class="btn btn-sm btn-info edit" data-toggle="modal"
                                                                 onClick="edit({{ $item->id }})">
@@ -467,8 +470,10 @@
 @section('scripts')
     <script>
 
+        
+
         function edit(spp_id){
-            // console.log(spp_id);
+            console.log(spp_id);
             $('#edit').modal('show');
             $('.nominal_spp').val('')
             $('.spp_id').val('')

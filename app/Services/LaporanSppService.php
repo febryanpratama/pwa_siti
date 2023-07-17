@@ -8,6 +8,7 @@ use App\Models\Setting;
 use App\Models\siswa;
 use App\Models\Spp;
 use App\Models\tahun_ajaran;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
 class LaporanSppService
@@ -86,6 +87,26 @@ class LaporanSppService
         ];
 
         return $result;
+    }
+
+    static function getLaporanSppFilterLP($data)
+    {
+        // dd($data);
+
+        // $spp = Spp::where('semester_id', $data['periode_id'])->where('status_pembayaran', $data['status'])->get()->groupBy('siswa_id');
+
+        $siswa = siswa::with(['spp' => function ($q) use ($data) {
+            $q->where('status_pembayaran', $data['status']);
+            $q->where('semester_id', $data['periode_id']);
+        }])->orderBy('nama_siswa')
+            ->get();
+        // $siswa = siswa::with('spp' )
+        //     ->whereRelation('spp', 'status_pembayaran', $data['status'])
+        //     ->whereRelation('spp', 'semester_id', $data['periode_id'])
+        //     ->whereRelation('spp', 'tanggal', ))
+        //     ->get();
+        // dd($siswa[0]);
+        return $siswa;
     }
 
     static function exportExcel($data)

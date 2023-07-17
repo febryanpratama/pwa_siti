@@ -32,7 +32,12 @@ class KelasController extends Controller
     {
         $result = $this->kelasService->store($request->all());
 
-        return back()->withSuccess($result['message']);
+        if ($result['status']) {
+            return back()->withSuccess($result['message']);
+        } else {
+            return back()->withError($result['message']);
+        }
+        // return back()->withSuccess($result['message']);
     }
 
     public function update(Request $request)

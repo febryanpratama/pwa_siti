@@ -32,7 +32,23 @@ class GuruService
     {
 
         // dd($data);
+        $check = Guru::where('nip', $data['nip'])->first();
+
+        if ($check) {
+            $status = false;
+            $message = "NIP sudah terdaftar";
+
+            $result = [
+                'status' => $status,
+                'message' => $message
+            ];
+
+            return $result;
+        }
+
         Guru::create($data);
+
+        // dd($data);
 
         $status = true;
         $message = "Success Tambah Data Guru";

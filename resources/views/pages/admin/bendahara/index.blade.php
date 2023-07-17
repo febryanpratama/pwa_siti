@@ -86,6 +86,7 @@
                                                 <tfoot>
                                                     <tr>
                                                         <th>No</th>
+                                                        <th>Bendahara ID</th>
                                                         <th>Nama Bendahara</th>
                                                         <th>NIP</th>
                                                         <th>Email</th>

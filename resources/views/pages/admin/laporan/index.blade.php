@@ -72,6 +72,72 @@
                                                     </div>
                                                 </div>
                                             </form>
+                                            <hr width="50%">
+                                        </div>
+                                        <div class="col-sm-4 col-md-4">
+                                            {{-- <h2 class="">List Data</h2> --}}
+                                        </div>
+                                        <div class="col-sm-8 col-md-8">
+                                            @role('Admin')
+                                                <form action="{{ url('admin/laporan-spp/pdf') }}" method="POST">
+                                                    @endrole
+                                            @role('Kepsek')
+                                                <form action="{{ url('kepsek/laporan-spp/pdf') }}" method="POST">
+                                                    @endrole
+                                            @role('Bendahara')
+                                                <form action="{{ url('bendahara/laporan-spp/pdf') }}" method="POST">
+                                                    @endrole
+                                                    @csrf
+                                                <div class="row d-flex justify-content-end">
+                                                    <div class="col-sm-6 col-md-2">
+                                                        <label for="" class="control-label">Bulan</label>
+                                                        <select name="bulan" class="form-control" id="bulan" required>
+                                                            <option value="" selected disabled> == PILIH == </option>
+                                                            
+                                                            <option value="1">Januari</option>
+                                                            <option value="2">Februari</option>
+                                                            <option value="3">Maret</option>
+                                                            <option value="4">April</option>
+                                                            <option value="5">Mei</option>
+                                                            <option value="6">Juni</option>
+                                                            <option value="7">Juli</option>
+                                                            <option value="8">Agustus</option>
+                                                            <option value="9">September</option>
+                                                            <option value="10">Oktober</option>
+                                                            <option value="11">November</option>
+                                                            <option value="12">Desember</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-sm-6 col-md-2">
+                                                        <label for="" class="control-label">Status</label>
+                                                        <select name="status" class="form-control" id="status" required>
+                                                            <option value="" selected disabled> == PILIH == </option>
+                                                            
+                                                            <option value="Lunas">Lunas</option>
+                                                            <option value="Cicilan">Cicilan</option>
+                                                            <option value="Belum Lunas">Belum Lunas</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-sm-6 col-md-3">
+                                                        <label for="" class="control-label">Periode</label>
+                                                        <select name="periode_id" class="form-control" id="periode" required>
+                                                            <option value="" selected disabled> == PILIH == </option>
+                                                            @foreach ($ta as $t)
+                                                            <option value="{{ $t->id }}">{{ $t->semester }}, {{ $t->tahun_ajaran }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                    
+                                                    <div class="col-sm-6 col-md-2">
+                                                        <label for="" class="control-label" style="color: white"> Cetak </label>
+                                                        <button type="submit" class="form-control btn btn-info btn-block btn-wrap-text" style="">Cetak</button>
+                                                    </div>
+                                                    <div class="col-sm-6 col-md-2 ">
+                                                        <label for="" class="control-label" style="color: white"> Cari </label>
+                                                        <button type="button" class="form-control btn btn-danger btn-block btn-wrap-text" style="" id="cari-status">Cari</button>
+                                                    </div>
+                                                </div>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
@@ -157,6 +223,29 @@
                         window.location.href = "{{ url('bendahara/laporan-spp') }}?kelas="+kelas+"&semester_id="+semester;
                     }else{
                         window.location.href = "{{ url('kepsek/laporan-spp') }}?kelas="+kelas+"&semester_id="+semester;
+                    }
+                }
+            })
+
+            $('#cari-status').click(function(){
+                var bulan = $('#bulan').val();
+                var status = $('#status').val();
+                var periode = $('#periode').val();
+
+                // console.log(status, periode)
+                const role = `{{ Auth::user()->roles->pluck('name')[0] }}`
+                if (semester == null) {
+                    console.log('Semua data harus diisi');
+                }else{
+                    console.log(semester);
+                    if (role == 'Admin') {
+                        window.location.href = "{{ url('admin/laporan-spp') }}?status="+status+"&periode_id="+periode+"&bulan="+bulan;
+                        
+                    }else if (role == 'Bendahara'){
+                        
+                        window.location.href = "{{ url('bendahara/laporan-spp') }}?status="+status+"&periode_id="+periode+"&bulan="+bulan;
+                    }else{
+                        window.location.href = "{{ url('kepsek/laporan-spp') }}?status="+status+"&periode_id="+periode+"&bulan="+bulan;
                     }
                 }
             })

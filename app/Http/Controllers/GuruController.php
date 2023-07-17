@@ -31,6 +31,9 @@ class GuruController extends Controller
     {
         $result = $this->guruService->store($request->all());
 
+        if ($result['status'] == false) {
+            return back()->with('error', $result['message']);
+        }
         return back()->withSuccess($result['message']);
     }
 

@@ -35,6 +35,18 @@ class KelasService
     {
         // dd($data);
 
+        $check = Kelas::where('guru_id', $data['guru_id'])->get();
+
+        if ($check->isNotEmpty()) {
+            $status = false;
+            $message = "Guru Sudah Memiliki Kelas";
+            $result = [
+                'status' => $status,
+                'message' => $message
+            ];
+            return $result;
+        }
+
         Kelas::create($data);
         $status = true;
         $message = "Success Tambah Data Kelas";

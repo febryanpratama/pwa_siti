@@ -145,11 +145,13 @@
                                 data-toggle="dropdown" href="#"><i class="ficon ft-search"></i></a>
                             <ul class="dropdown-menu">
                                 <li class="arrow_box">
-                                    <form>
+                                    {{-- <form method="GET" action="{{ url("search") }}"> --}}
+                                    <form method="GET" action="{{ url("search-siswa") }}">
+                                        {{-- @csrf --}}
                                         <div class="input-group search-box">
                                             <div class="position-relative has-icon-right full-width">
-                                                <input class="form-control" id="search" type="text"
-                                                    placeholder="Search here...">
+                                                <input class="form-control" id="search" name="siswa" type="text"
+                                                    placeholder="Cari Siswa Disini">
                                                 <div class="form-control-position navbar-search-close"><i
                                                         class="ft-x"></i></div>
                                             </div>

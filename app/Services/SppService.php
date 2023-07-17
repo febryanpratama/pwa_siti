@@ -635,14 +635,22 @@ class SppService
                 'status_pembayaran' => $data['nominal_sisa'] == 0 ? 'Lunas' : 'Cicilan',
             ]);
 
+            if ($data['nominal_sisa'] == 0) {
+                $str = 'Lunas';
+            } else {
+                $str = 'Cicilan';
+            }
             // dd($dataSpp);
             $siswa = siswa::where('id', $dataSpp['siswa_id'])->first();
 
             // dd($siswa);
-            $this->smsService->sendSms(
-                'Kepada b4p4k/1bu siswa ' . $siswa->nama_siswa . ', p3mbyr44n SPP pada bulan ' . Carbon::parse($dataSpp['tanggal'])->format('M') . ' telah kami terima pada t4ngg4l ' . Carbon::now()->format('d') . '' . Format::formatBulan(Carbon::now()->format('m')) . '' . Carbon::now()->format('Y') . ', Terima kasih',
-                $siswa->telpon_ortu_siswa
+            $msg = "Yth. Bapak/Ibu/Wali Siswa, Terimakasih telah melakukan pembayaran SPP Kami informasikan jumlah pembayaran SPP a.n. " . $siswa->nama_siswa . " di bulan " . Carbon::parse($dataSpp['tanggal'])->format('M') . " sebesar Rp" . number_format($data['nominal_dibayar']) . ", telah kami terima secara " . $str . "  Terima kasih. Ttd:Bendahara SMA Taman Mulia Kubu Raya";
+            $respmsg = $this->smsService->sendSms(
+                $msg,
+                $siswa->telpon_ortu_siswa,
             );
+
+            // dd($msg);
 
             // dd("berhasil");
             DB::commit();
@@ -654,7 +662,7 @@ class SppService
             ];
         } catch (\Throwable $th) {
             //throw $th;
-            // dd("gagal");
+            dd($th);
             DB::rollback();
 
             return [
@@ -1034,6 +1042,68 @@ class SppService
                 'message' => 'Data Spp Tidak ditemukan',
                 'status' => false,
             ];
+        }
+    }
+
+    static function test()
+    {
+
+
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => 'https://r5dmy1.api.infobip.com/sms/2/text/advanced',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_POSTFIELDS => '{"messages":[{"destinations":[{"to":"6288744882202"}],"from":"InfoSMS","text":"Yth. Bapak/Ibu/Wali Siswa, Terimakasih telah melakukan pembayaran SPP Kami informasikan jumlah pembayaran SPP a.n. SITY ADHARIA di bulan 07-2023 sebesar Rp310.800, telah kami terima secara lunas  Terima kasih. Ttd:Bendahara SMA Taman Mulia Kubu Raya"}]}',
+            CURLOPT_HTTPHEADER => array(
+                'Authorization: App 343a10195cc913ab6e68327825b878c7-a41b1218-6ff8-401e-bb7e-05444ad0f613',
+                'Content-Type: application/json',
+                'Accept: application/json'
+            ),
+        ));
+
+        $response = curl_exec($curl);
+
+        curl_close($curl);
+        dd($response);
+        // echo $response;
+    }
+
+    public function smsTunggakan()
+    {
+        $spp = Spp::with('siswa')->whereIn('status_pembayaran', ['Belum Lunas'])->whereDate('tanggal', '>=', Carbon::now())->get();
+
+        for ($i = 0; $i < $spp->count(); $i++) {
+            # code...
+            $msg = "Yth. Bapak/Ibu/Wali Siswa, Kami informasikan jumlah tunggakan Anak Anda a.n." . $spp[$i]->siswa->nama_siswa . " di bulan " . Carbon::parse($spp[$i]->tanggal)->format("m-Y") . " sebesar Rp" . number_format($spp[$i]->nominal_bayar) . ", Segera Lakukan pembayaran sebelum tanggal " . Carbon::now()->addDays(2) . " Abaikan informasi ini jika telah melakukan pembayaran. Terima kasih.Ttd:Bendahara SMA Taman Mulia Kubu Raya";
+            $respmsg = $this->smsService->sendSms(
+                $msg,
+                $spp[$i]->siswa->telpon_ortu_siswa,
+            );
+
+            // dd($respmsg);
+        }
+    }
+    public function smsCicilan()
+    {
+        $spp = Spp::with('siswa')->whereIn('status_pembayaran', ['Cicilan'])->whereDate('tanggal', '>=', Carbon::now())->get();
+
+        for ($i = 0; $i < $spp->count(); $i++) {
+            # code...
+
+            $msg = "Yth. Bapak/Ibu/Wali Siswa, Kami informasikan jumlah tunggakan Cicilan Anak Anda a.n." . $spp[$i]->siswa->nama_siswa . " di bulan " . Carbon::parse($spp[$i]->tanggal)->format("m-Y") . " sebesar Rp" . number_format($spp[$i]->nominal_bayar) . " adapun sisa pembayaran di bulan juli sebesar Rp." . number_format($spp[$i]->sisa_bayar) . ", Segera Lakukan pembayaran sebelum tanggal " . Carbon::now()->addDays(2) . " Abaikan informasi ini jika telah melakukan pembayaran. Terima kasih.Ttd:Bendahara SMA Taman Mulia Kubu Raya";
+            $respmsg = $this->smsService->sendSms(
+                $msg,
+                $spp[$i]->siswa->telpon_ortu_siswa,
+            );
+
+            // dd($respmsg);
         }
     }
 }

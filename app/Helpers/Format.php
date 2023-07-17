@@ -4,8 +4,10 @@ namespace App\Helpers;
 
 use App\Models\DetailKelas;
 use App\Models\Ijazah;
+use App\Models\Kelas;
 use App\Models\siswa;
 use App\Models\Spp;
+use App\Models\tahun_ajaran;
 
 class Format
 {
@@ -52,6 +54,13 @@ class Format
         }
     }
 
+    static function getKelas($kelas_id)
+    {
+        $data = Kelas::where('id', $kelas_id)->first();
+
+        return $data->kelas . " " . $data->nama_kelas;
+    }
+
     static function getTanggal($siswa_id, $kelas_id, $tahun, $bulan)
     {
         // $data = Spp::where('id', $spp_id)->()
@@ -88,7 +97,12 @@ class Format
 
     static function getDataNewSpp($siswa_id, $kelas_id, $tahun, $bulan, $semester)
     {
-        $data = Spp::with('siswa')->where('siswa_id', $siswa_id)->where('kelas_id', $kelas_id)->where('semester_id', $semester)->whereMonth('tanggal', $bulan)->whereYear('tanggal', $tahun)->first();
+        $data = Spp::with('siswa')
+            ->where('siswa_id', $siswa_id)
+            ->where('kelas_id', $kelas_id)
+            ->where('semester_id', $semester)
+            ->whereMonth('tanggal', $bulan)
+            ->whereYear('tanggal', $tahun)->first();
         // dd($data['total_pembayaran']);
         // dd($data->siswa->status);
         if ($data != '') {
@@ -350,5 +364,123 @@ class Format
         // dd($siswa);
 
         return $siswa;
+    }
+
+    static function periode($periode_id)
+    {
+        $data = tahun_ajaran::where('id', $periode_id)->first();
+        return $data->tahun_ajaran;
+    }
+
+    static function getNominalBayar($kelas_id)
+    {
+        $data = Kelas::where('id', $kelas_id)->first();
+        // dd($data);
+        return $data->nominal;
+    }
+
+    static function getDataSppBulan($siswa_id, $semester, $bulan)
+    {
+        $data = Spp::where('siswa_id', $siswa_id)->where('semester_id', $semester)->whereMonth('tanggal', $bulan)->first();
+        // dd($data);
+        return $data->total_pembayaran;
+    }
+
+    static function getDataSppBulanTotal($siswa_id, $semester)
+    {
+        $arr = [];
+        for ($i = 1; $i <= 6; $i++) {
+            $data = Spp::where('siswa_id', $siswa_id)->where('semester_id', $semester)->whereMonth('tanggal', $i)->first();
+
+            // if($data)
+            $arr[] = $data->total_pembayaran;
+        }
+
+        return array_sum($arr);
+    }
+    static function getDataSppBulanTotalGanjil($siswa_id, $semester)
+    {
+        $arr = [];
+        for ($i = 7; $i <= 12; $i++) {
+            $data = Spp::where('siswa_id', $siswa_id)->where('semester_id', $semester)->whereMonth('tanggal', $i)->first();
+
+            // if($data)
+            $arr[] = $data->total_pembayaran;
+        }
+
+        return array_sum($arr);
+    }
+    static function getDataSppBulanSisa($siswa_id, $semester)
+    {
+        $arr = [];
+        for ($i = 1; $i <= 6; $i++) {
+            $data = Spp::where('siswa_id', $siswa_id)->where('semester_id', $semester)->whereMonth('tanggal', $i)->first();
+
+            // if($data)
+            // $arr[] = $data->sisa;
+            if ($data->total_pembayaran == 0) {
+                $arr[] = $data->nominal_bayar;
+            } else {
+                $arr[] = $data->sisa_bayar;
+            }
+        }
+
+        return array_sum($arr);
+    }
+    static function getDataSppBulanSisaGanjil($siswa_id, $semester)
+    {
+        $arr = [];
+        for ($i = 7; $i <= 12; $i++) {
+            $data = Spp::where('siswa_id', $siswa_id)->where('semester_id', $semester)->whereMonth('tanggal', $i)->first();
+
+            // if($data)
+            // $arr[] = $data->sisa;
+            if ($data->total_pembayaran == 0) {
+                $arr[] = $data->nominal_bayar;
+            } else {
+                $arr[] = $data->sisa_bayar;
+            }
+        }
+
+        return array_sum($arr);
+    }
+
+    static function getTotalPembayaranAll($kelas_id, $semester_id)
+    {
+
+        $spp = Spp::where('kelas_id', $kelas_id)->where('semester_id', $semester_id)->get();
+
+        $total = [];
+
+        foreach ($spp as $key => $value) {
+            # code...
+            $total[] = $value->total_pembayaran;
+        }
+
+        return array_sum($total);
+    }
+    static function getSisaPembayaranAll($kelas_id, $semester_id)
+    {
+
+        $spp = Spp::where('kelas_id', $kelas_id)->where('semester_id', $semester_id)->get();
+
+        $total = [];
+
+        foreach ($spp as $key => $value) {
+            # code...
+            if ($value->total_pembayaran == 0) {
+                $total[] = $value->nominal_bayar;
+            } else {
+
+                $total[] = $value->sisa_bayar;
+            }
+        }
+        return array_sum($total);
+    }
+
+    static function getgenapganjil($semester_id)
+    {
+        $data = tahun_ajaran::where('id', $semester_id)->first();
+        return $data->semester;
     }
 }

@@ -95,9 +95,9 @@ class SiswaController extends Controller
             'agama' => 'required',
             // 'anak_ke' => 'required',
             'alamat' => 'required',
-            'asal_sekolah' => 'required',
+            // 'asal_sekolah' => 'required',
             // 'nomor_ujian_smp' => 'required',
-            'nomor_ijazah' => 'required',
+            // 'nomor_ijazah' => 'required',
             // 'nomor_skhun' => 'required',
             'nama_ortu' => 'required',
             'telpon_siswa' => 'required',
@@ -110,7 +110,7 @@ class SiswaController extends Controller
         if ($validator->fails()) {
             // dd($validator->errors());
             // dd('false');
-            return back()->withErrors($validator->errors())->with('error', 'Gagal Menambahkan Data');
+            return back()->withErrors($validator->errors());
         }
         siswa::where('id', $request->siswa_id)->update($data);
 
