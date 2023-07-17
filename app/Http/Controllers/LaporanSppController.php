@@ -77,23 +77,25 @@ class LaporanSppController extends Controller
             # code...
             // dd("Genap");
             // dd($request->bulan);
-            $pdf = PDF::loadview('pages.admin.laporan.excelGanjil', [
+            $pdf = \PDF::loadview('pages.admin.laporan.excelGanjil', [
                 // 'bulan' => $request['bulan'],
                 'data'  => $result['data'],
                 'semester' => $request['semester'],
                 'tahun' => $result['year']
             ])->setPaper('a4', 'landscape');
-            return $pdf->stream('laporan.pdf');
+
+            return $pdf->stream("Laporan-" . $result['year'] . ".pdf");
         } else {
             // dd("Ganjil");
 
-            $pdf = PDF::loadview('pages.admin.laporan.excel', [
+            $pdf = \PDF::loadview('pages.admin.laporan.excel', [
                 // 'bulan' => $request['bulan'],
                 'data'  => $result['data'],
                 'semester' => $request['semester'],
                 'tahun' => $result['year']
             ])->setPaper('a4', 'landscape');
-            return $pdf->stream('laporan.pdf');
+
+            return $pdf->stream("Laporan-" . $result['year'] . ".pdf");
             // return view('pages.admin.laporan.excel', [
             //     'data'  => $result['data'],
             //     'semester' => $result['semester'],
@@ -110,7 +112,7 @@ class LaporanSppController extends Controller
         $data = Spp::with('siswa')->where('status_pembayaran', $request->status)->where('semester_id', $request->periode_id)->whereMonth('tanggal', $request->bulan)->get()->sortBy('siswa.nama_siswa', false);;
 
         // dd($data);
-        $pdf = PDF::loadview('pages.admin.laporan.pdf', ['data' => $data, 'bulan' => $request['bulan'], 'status' => $request['status'], 'semester' => $request['periode_id']]);
-        return $pdf->stream('laporan.pdf');
+        $pdf = \PDF::loadview('pages.admin.laporan.pdf', ['data' => $data, 'bulan' => $request['bulan'], 'status' => $request['status'], 'semester' => $request['periode_id']]);
+        return $pdf->stream("Laporan-" . $request['status'] . ".pdf");
     }
 }
