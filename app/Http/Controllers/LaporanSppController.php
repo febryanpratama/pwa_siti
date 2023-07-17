@@ -83,8 +83,9 @@ class LaporanSppController extends Controller
                 'semester' => $request['semester'],
                 'tahun' => $result['year']
             ])->setPaper('a4', 'landscape');
+            return $pdf->download('Laporan.pdf');
 
-            return $pdf->stream("Laporan.pdf", array("Attachment" => false));
+            // return $pdf->stream("Laporan.pdf", array("Attachment" => false));
         } else {
             // dd("Ganjil");
 
@@ -95,7 +96,10 @@ class LaporanSppController extends Controller
                 'tahun' => $result['year']
             ])->setPaper('a4', 'landscape');
 
-            return $pdf->stream("Laporan.pdf", array("Attachment" => false));
+            // $pdf->download('Laporan.pdf');
+            return $pdf->download('Laporan.pdf');
+
+            // return $pdf->stream("Laporan.pdf", array("Attachment" => false));
             // return view('pages.admin.laporan.excel', [
             //     'data'  => $result['data'],
             //     'semester' => $result['semester'],
