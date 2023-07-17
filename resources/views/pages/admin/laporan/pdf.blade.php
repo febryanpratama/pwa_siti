@@ -23,7 +23,19 @@
 <body>
     @if ($status == 'Belum Lunas')
         <div style="text-align: center">
-            <h5>Laporan Tunggakan Siswa Yang Belum Membayar SPP <br> Pada Bulan Jul Periode {{ App\Helpers\Format::periode($semester) }}</h5>
+            <h5>Laporan Tunggakan Siswa Yang Belum Membayar SPP <br> Pada Bulan {{ App\Helpers\Format::formatBulan($bulan) }} Periode {{ App\Helpers\Format::periode($semester) }}</h5>
+
+        </div>
+    @endif
+    @if ($status == 'Cicilan')
+        <div style="text-align: center">
+            <h5>Laporan Pembayaran Siswa Yang Telah Membayar SPP secara Cicilan <br> Pada Bulan {{ App\Helpers\Format::formatBulan($bulan) }} Periode {{ App\Helpers\Format::periode($semester) }}</h5>
+
+        </div>
+    @endif
+    @if ($status == 'Lunas')
+        <div style="text-align: center">
+            <h5>Laporan Pembayaran Siswa Yang Telah Membayar SPP <br> Pada Bulan {{ App\Helpers\Format::formatBulan($bulan) }} Periode {{ App\Helpers\Format::periode($semester) }}</h5>
 
         </div>
     @endif

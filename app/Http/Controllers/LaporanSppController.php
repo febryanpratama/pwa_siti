@@ -67,7 +67,7 @@ class LaporanSppController extends Controller
 
     public function exportExcel(Request $request)
     {
-        // dd($request->all());
+        dd($request->all());
 
 
         $result = $this->laporanSpp->exportExcel($request->all());
@@ -76,7 +76,9 @@ class LaporanSppController extends Controller
         if ($result['semester'] == "Genap") {
             # code...
             // dd("Genap");
+            // dd($request->bulan);
             $pdf = PDF::loadview('pages.admin.laporan.excelGanjil', [
+                // 'bulan' => $request['bulan'],
                 'data'  => $result['data'],
                 'semester' => $request['semester'],
                 'tahun' => $result['year']
@@ -84,7 +86,9 @@ class LaporanSppController extends Controller
             return $pdf->stream();
         } else {
             // dd("Ganjil");
+
             $pdf = PDF::loadview('pages.admin.laporan.excel', [
+                // 'bulan' => $request['bulan'],
                 'data'  => $result['data'],
                 'semester' => $request['semester'],
                 'tahun' => $result['year']
@@ -106,7 +110,7 @@ class LaporanSppController extends Controller
         $data = Spp::with('siswa')->where('status_pembayaran', $request->status)->where('semester_id', $request->periode_id)->whereMonth('tanggal', $request->bulan)->get()->sortBy('siswa.nama_siswa', false);;
 
         // dd($data);
-        $pdf = PDF::loadview('pages.admin.laporan.pdf', ['data' => $data, 'status' => $request['status'], 'semester' => $request['periode_id']]);
+        $pdf = PDF::loadview('pages.admin.laporan.pdf', ['data' => $data, 'bulan' => $request['bulan'], 'status' => $request['status'], 'semester' => $request['periode_id']]);
         return $pdf->stream();
     }
 }
