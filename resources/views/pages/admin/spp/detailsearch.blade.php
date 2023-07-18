@@ -117,7 +117,7 @@
                                                             @endswitch
                                                             </td>
                                                             <td>{{ $item->tanggal_pembayaran }}</td>
-                                                            <td>
+                                                            <td class="d-flex">
                                                                 @if ($item->bukti != null)
                                                                     <a href="{{ asset('bukti_pembayaran/'.$item->bukti) }}" class="btn btn-danger mx-1" target="_blank">Bukti</a>
                                                                 @endif
