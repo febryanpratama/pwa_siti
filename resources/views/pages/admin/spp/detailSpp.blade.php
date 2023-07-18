@@ -60,6 +60,7 @@
                                                 <tbody>
                                                     {{-- {{ dd($data) }} --}}
                                                     @foreach ($data as $key=>$item)
+                                                    {{-- {{ dd($item) }} --}}
                                                     <tr>
                                                         <td>{{ $key+1 }}</td>
                                                         <td>{{ @$item->siswa->nama_siswa }}</td>
@@ -84,9 +85,9 @@
                                                         @endswitch
                                                         </td>
                                                         <td>{{ $item->tanggal_pembayaran }}</td>
-                                                        <td>
-                                                            @if ($item->bukti)
-                                                                <a href="{{ asset('bukti_pembayaran/'.$item->bukti) }}" target="_blank">Lihat Bukti</a>
+                                                        <td class="d-flex">
+                                                            @if ($item->bukti != null)
+                                                                <a href="{{ asset('bukti_pembayaran/'.$item->bukti) }}" class="btn btn-danger mx-1" target="_blank">Bukti</a>
                                                             @endif
                                                             @if($item->status_pembayaran == 'Belum Lunas')
                                                             <button type="button" class="btn btn-sm btn-info edit" data-toggle="modal"
