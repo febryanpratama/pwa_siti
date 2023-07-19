@@ -263,7 +263,7 @@
                                                             @if ($k->bukti == null)
                                                             <button type="button" data-toggle="modal" data-target="#md{{ $k->id }}" class="btn btn-outline-info">Transer</button>
                                                             @else
-                                                            @if ($k->status_pembayaran == "Cicilan" && $k->bukti_cicilan == null)
+                                                            @if ($k->status_pembayaran == "Cicilan")
                                                                 
                                                                 <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#mdc{{ $k->id }}">Cicilan</button>
                                                             @else
