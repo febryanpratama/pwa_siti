@@ -43,6 +43,7 @@ Route::get('/', function () {
     // return redirect('/login');
 });
 Route::POST('unggah', [SppController::class, 'unggah']);
+Route::POST('unggah-cicilan', [SppController::class, 'unggahCicilan']);
 Route::get('search', [SppController::class, 'search']);
 Route::get('search-siswa', [SppController::class, 'search']);
 

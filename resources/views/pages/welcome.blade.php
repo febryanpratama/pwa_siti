@@ -263,7 +263,12 @@
                                                             @if ($k->bukti == null)
                                                             <button type="button" data-toggle="modal" data-target="#md{{ $k->id }}" class="btn btn-outline-info">Transer</button>
                                                             @else
-                                                            <button type="button" class="btn btn-outline-info">Terima Kasih</button>
+                                                            @if ($k->status_pembayaran == "Cicilan" && $k->bukti_cicilan == null)
+                                                                
+                                                                <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#mdc{{ $k->id }}">Cicilan</button>
+                                                            @else
+                                                                <button type="button" class="btn btn-outline-info">Terima Kasih</button>
+                                                            @endif
                                                             @endif
                                                         </td>
                                                     </tr>
@@ -302,6 +307,50 @@
                                                                 <div class="col-md-12">
                                                                     <label for="" class="control-label">Unggah Bukti Pembayaran</label>
                                                                     <input type="file" name="bukti_pembayaran" class="form-control">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                            <button type="submit" class="btn btn-primary">Save changes</button>
+                                                    </div>
+                                                </form>
+                                                </div>
+                                                </div>
+                                            </div>        
+                                        @endforeach
+                                    @endif
+                                    @if ($spp != null)
+                                        @foreach ($spp as $m=>$md)
+                                            <div class="modal fade" id="mdc{{ $md->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                    <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form action="{{ url('unggah-cicilan') }}" method="POST" enctype="multipart/form-data">
+                                                            @csrf
+                                                            <input type="hidden" name="spp_id" value="{{ $md->id }}">
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                Anda dapat melakukan pembayaran melalui transfer ke rekening berikut : <br><br>
+                                                                    <ul>
+                                                                        <li>Bank BRI : 1234567890 An Taman Mulia</li>
+                                                                        <li>Bank BNI : 1234567890  An Taman Mulia</li>
+                                                                        <li>Bank BCA : 1234567890  An Taman Mulia</li>
+                                                                    </ul>
+                                                                </div>
+
+                                                            </div>
+                                                            <hr>
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <label for="" class="control-label">Unggah Bukti Pembayaran</label>
+                                                                    <input type="file" name="bukti_cicilan" class="form-control">
                                                                 </div>
                                                             </div>
                                                         </div>
