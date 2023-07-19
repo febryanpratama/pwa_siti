@@ -301,7 +301,43 @@ class SppController extends Controller
 
     public function sms()
     {
-        $response = $this->sppService->test();
+        $curl = curl_init();
+        $messages = [
+            "messages" => [
+                "destinations" => [
+                    "to" => '6288744882202'
+                ],
+                // "from" => "SMSGATE",
+                "text" => "test message"
+            ]
+        ];
+        // dd($messages);
+
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => 'https://r5dmy1.api.infobip.com/sms/2/text/advanced',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_POSTFIELDS => json_encode($messages),
+            CURLOPT_HTTPHEADER => array(
+                'Authorization: App 343a10195cc913ab6e68327825b878c7-a41b1218-6ff8-401e-bb7e-05444ad0f613',
+                'Content-Type: application/json',
+                'Accept: application/json'
+            ),
+        ));
+        // 'Authorization: Basic 343a10195cc913ab6e68327825b878c7-a41b1218-6ff8-401e-bb7e-05444ad0f613',
+
+        $response = curl_exec($curl);
+
+        curl_close($curl);
+        dd($response);
+
+        // dd($response);
+        return $response;
     }
 
     public function search(Request $request)
@@ -388,6 +424,37 @@ class SppController extends Controller
 
         $spp->update([
             'bukti' => $nama_file,
+        ]);
+
+        // dd("ok");
+        return redirect('/')->with('success', 'Bukti Pembayaran Berhasil Diunggah');
+    }
+    public function unggahCicilan(Request $request)
+    {
+        // dd($request->all());
+        $validator = Validator::make($request->all(), [
+            'bukti_cicilan' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'spp_id' => 'required|exists:spps,id',
+        ]);
+
+        if ($validator->fails()) {
+            // dd($validator->errors()->all());
+            return redirect('/')->withErrors('Bukti Pembayaran Cicilan Tidak Boleh Kosong dan maksimal 2MB');
+        }
+
+        $spp = Spp::where('id', $request->spp_id)->first();
+
+        // dd($spp);
+
+        if ($request->file('bukti_cicilan')) {
+            $file = $request->file('bukti_cicilan');
+            $nama_file = time() . "_" . $file->getClientOriginalName();
+            $tujuan_upload = 'bukti_cicilan';
+            $file->move($tujuan_upload, $nama_file);
+        }
+
+        $spp->update([
+            'bukti_cicilan' => $nama_file,
         ]);
 
         // dd("ok");
