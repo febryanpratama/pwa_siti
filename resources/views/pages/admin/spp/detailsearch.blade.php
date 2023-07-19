@@ -122,7 +122,7 @@
                                                                     <a href="{{ asset('bukti_pembayaran/'.$item->bukti) }}" class="btn btn-danger mx-1" target="_blank">Bukti</a>
                                                                 @endif
                                                                 @if ($item->bukti_cicilan != null)
-                                                                    <a href="{{ asset('bukti_cicilan/'.$item->bukti_cicilan) }}" class="btn btn-danger mx-1" target="_blank">Bukti</a>
+                                                                    <a href="{{ asset('bukti_cicilan/'.$item->bukti_cicilan) }}" class="btn btn-danger mx-1" target="_blank">Bukti Cicilan</a>
                                                                 @endif
                                                                 @if($item->status_pembayaran == 'Belum Lunas')
                                                                     <button type="button" class="btn btn-sm btn-info edit" data-toggle="modal"
