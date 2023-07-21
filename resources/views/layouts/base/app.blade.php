@@ -36,6 +36,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('') }}admin/app-assets/css/colors.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('') }}admin/app-assets/css/components.css">
     <!-- END: Theme CSS-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.41.0/apexcharts.min.css" integrity="sha512-5k2n0KtbytaKmxjJVf3we8oDR34XEaWP2pibUtul47dDvz+BGAhoktxn7SJRQCHNT5aJXlxzVd45BxMDlCgtcA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- BEGIN: Page CSS-->
     <link rel="stylesheet" type="text/css"
@@ -146,6 +147,8 @@
     <script src="{{ asset('') }}admin/app-assets/js/scripts/pages/dashboard-analytics.js"
         type="text/javascript"></script>
     <!-- END: Page JS-->
+
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
     <!-- BEGIN: Page Vendor JS-->
     <script src="{{ asset('') }}admin/app-assets/vendors/js/tables/datatable/datatables.min.js" type="text/javascript"></script>
