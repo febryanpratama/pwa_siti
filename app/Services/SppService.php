@@ -1092,7 +1092,7 @@ class SppService
     }
     public function smsCicilan()
     {
-        $spp = Spp::with('siswa')->whereIn('status_pembayaran', ['Cicilan'])->whereDate('tanggal', '>=', Carbon::now())->get();
+        $spp = Spp::with('siswa')->whereIn('status_pembayaran', ['Cicilan'])->whereDate('tanggal', '<=', Carbon::now())->get();
 
         for ($i = 0; $i < $spp->count(); $i++) {
             # code...

@@ -483,4 +483,23 @@ class Format
         $data = tahun_ajaran::where('id', $semester_id)->first();
         return $data->semester;
     }
+
+    static function getTargetPendapatan($bulan, $semester_id, $status)
+    {
+        // dd($bulan);
+
+        $data = Spp::where('semester_id', $semester_id)->whereMonth('tanggal', $bulan)->get();
+
+        $total = [];
+
+        foreach ($data as $i) {
+            if ($i->status_pembayaran == 'Belum Lunas') {
+                $total[] = $i->nominal_bayar;
+            } else {
+                $total[] = ($i->nominal_bayar - $i->sisa_bayar);
+            }
+        }
+
+        return array_sum($total);
+    }
 }

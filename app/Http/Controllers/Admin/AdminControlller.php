@@ -27,6 +27,9 @@ class AdminControlller extends Controller
 
         $countSiswa = siswa::where('status_siswa', 'Aktif')->count('id');
         $countGuru = Guru::count('id');
+
+        $target = Spp::where('semester_id', $setting->tahun_ajaran_id)->sum('nominal_bayar');
+        $realisasi = Spp::where('semester_id', $setting->tahun_ajaran_id)->sum('total_pembayaran');
         // dd($sppBelumLunas);
 
         return view('pages.admin.dashboard', [
@@ -36,6 +39,8 @@ class AdminControlller extends Controller
             'listspp' => $listSpp,
             'countsiswa' => $countSiswa,
             'countguru' => $countGuru,
+            'target' => $target,
+            'realisasi' => $realisasi,
             'title' => 'Dashboard'
         ]);
     }
