@@ -229,7 +229,14 @@
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-12">
-                                       <div id="chart" style="width: 50vh; height: 50vh;"></div>
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h5>Presentasi Pembayaran</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <div id="chart" ></div>
+                                        </div>
+                                    </div>
 
                                     {{-- <div id="chart" style="height: 50vh"></div> --}}
                                 </div>
@@ -453,15 +460,17 @@
        var options = {
           series: [targetint,jumint],
           chart: {
-          width: 500,
+        //   width: 1000,
+        height: 'auto',
           type: 'pie',
         },
-        labels: ['Realisasi Hibah', 'Total Anggaran'],
+        labels: ['Target Pembayaran', 'Realisasi Pembayaran'],
         responsive: [{
           breakpoint: 480,
           options: {
             chart: {
-              width: 100
+            //   width: 'auto'
+            height: 'auto'
             },
             legend: {
               position: 'top'
