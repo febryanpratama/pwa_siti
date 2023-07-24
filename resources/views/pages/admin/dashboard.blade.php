@@ -156,7 +156,7 @@
                                         </div>
                                         <div class="card-content collapse show">
                                             <div class="card-body p-1">
-                                                <h4 class="font-large-1 text-bold-400"> {{ (($spplunas+$sppcicilan)/($spplunas+$sppbelumlunas+$sppcicilan))*100 }} % <i class="ft-users float-right"></i>
+                                                <h4 class="font-large-1 text-bold-400"> {{ substr((($spplunas+$sppcicilan)/($spplunas+$sppbelumlunas+$sppcicilan))*100,0,5) }} % <i class="ft-users float-right"></i>
                                                 </h4>
                                             </div>
                                             <div class="card-footer p-1">
