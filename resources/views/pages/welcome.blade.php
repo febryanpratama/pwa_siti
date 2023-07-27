@@ -260,16 +260,22 @@
                                                             @endswitch
                                                         </td>
                                                         <td>
-                                                            @if ($k->bukti == null)
-                                                            <button type="button" data-toggle="modal" data-target="#md{{ $k->id }}" class="btn btn-outline-info">Transer</button>
-                                                            @else
-                                                            @if ($k->status_pembayaran == "Cicilan")
-                                                                
-                                                                <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#mdc{{ $k->id }}">Cicilan</button>
-                                                            @else
+                                                            @if ($k->status_pembayaran == "Lunas")
                                                                 <button type="button" class="btn btn-outline-info">Terima Kasih</button>
+                                                                
+                                                            @else
+                                                                @if ($k->bukti == null)
+                                                                <button type="button" data-toggle="modal" data-target="#md{{ $k->id }}" class="btn btn-outline-info">Transer</button>
+                                                                
+                                                                @else
+                                                                @if ($k->status_pembayaran == "Cicilan")
+                                                                    
+                                                                    <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#mdc{{ $k->id }}">Cicilan</button>
+                                                                    
+                                                                @endif
+                                                                @endif
                                                             @endif
-                                                            @endif
+                                                            
                                                         </td>
                                                     </tr>
                                 -                @endforeach
