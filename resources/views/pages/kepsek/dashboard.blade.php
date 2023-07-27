@@ -102,54 +102,137 @@
                     <!--/ Revenue, Hit Rate & Deals -->
                     <!-- Emails Products & Avg Deals -->
                     <div class="row">
-                        <div class="col-md-12 col-lg-4">
-                            <div class="card pull-up border-top-info border-top-3 rounded-0">
-                                <div class="card-header">
-                                    <h4 class="card-title">Spp Lunas <span
-                                            class="badge badge-pill badge-info float-right m-0">5+</span></h4>
-                                </div>
-                                <div class="card-content collapse show">
-                                    <div class="card-body p-1">
-                                        <h4 class="font-large-1 text-bold-400">Rp. {{ number_format($spplunas, '0') }} <i class="ft-users float-right"></i>
-                                        </h4>
+                        <div class="col-md-8">
+                            <div class="row">
+                                <div class="col-md-4 col-lg-4">
+                                    <div class="card pull-up border-top-info border-top-3 rounded-0">
+                                        <div class="card-header">
+                                            <h4 class="card-title">Target Pembayaran <span
+                                                    class="badge badge-pill badge-info float-right m-0">5+</span></h4>
+                                        </div>
+                                        <div class="card-content collapse show">
+                                            <div class="card-body p-1">
+                                                <h4 class="font-large-1 text-bold-400">Rp. {{ number_format($spplunas+$sppbelumlunas+$sppcicilan, '0') }} <i class="ft-users float-right"></i>
+                                                </h4>
+                                            </div>
+                                            <div class="card-footer p-1">
+                                                <span class="text-muted"><i class="la la-arrow-circle-o-up info"></i>
+                                                    Data Widget
+                                                </span>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="card-footer p-1">
-                                        <span class="text-muted"><i class="la la-arrow-circle-o-up info"></i> Data Widget</span>
+                                </div>
+                                <div class="col-md-4 col-lg-4">
+                                    <div class="card pull-up border-top-info border-top-3 rounded-0">
+                                        <div class="card-header">
+                                            <h4 class="card-title">Jumlah Pembayaran <span
+                                                    class="badge badge-pill badge-info float-right m-0">5+</span></h4>
+                                        </div>
+                                        <div class="card-content collapse show">
+                                            <div class="card-body p-1">
+                                                <h4 class="font-large-1 text-bold-400">Rp. {{ number_format($spplunas+$sppcicilan, '0') }} <i class="ft-users float-right"></i>
+                                                </h4>
+                                            </div>
+                                            <div class="card-footer p-1">
+                                                <span class="text-muted"><i class="la la-arrow-circle-o-up info"></i>
+                                                    Data Widget
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-lg-4">
+                                    <div class="card pull-up border-top-info border-top-3 rounded-0">
+                                        <div class="card-header">
+                                            <h4 class="card-title">Persentase Target Pembayaran <span
+                                                    class="badge badge-pill badge-info float-right m-0">5+</span></h4>
+                                        </div>
+                                        <div class="card-content collapse show">
+                                            <div class="card-body p-1">
+                                                <h4 class="font-large-1 text-bold-400"> {{ substr((($spplunas+$sppcicilan)/($spplunas+$sppbelumlunas+$sppcicilan))*100,0,5) }} % <i class="ft-users float-right"></i>
+                                                </h4>
+                                            </div>
+                                            <div class="card-footer p-1">
+                                                <span class="text-muted"><i class="la la-arrow-circle-o-up info"></i>
+                                                    Data Widget
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-lg-4">
+                                    <div class="card pull-up border-top-info border-top-3 rounded-0">
+                                        <div class="card-header">
+                                            <h4 class="card-title">Spp Lunas <span
+                                                    class="badge badge-pill badge-info float-right m-0">5+</span></h4>
+                                        </div>
+                                        <div class="card-content collapse show">
+                                            <div class="card-body p-1">
+                                                <h4 class="font-large-1 text-bold-400">Rp. {{ number_format($spplunas, '0') }} <i class="ft-users float-right"></i>
+                                                </h4>
+                                            </div>
+                                            <div class="card-footer p-1">
+                                                <span class="text-muted"><i class="la la-arrow-circle-o-up info"></i>
+                                                    Data Widget
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-lg-4">
+                                    <div class="card pull-up border-top-info border-top-3 rounded-0">
+                                        <div class="card-header">
+                                            <h4 class="card-title">Spp Belum Lunas <span
+                                                    class="badge badge-pill badge-info float-right m-0">5+</span></h4>
+                                        </div>
+                                        <div class="card-content collapse show">
+                                            <div class="card-body p-1">
+                                                <h4 class="font-large-1 text-bold-400">Rp. {{ number_format($sppbelumlunas, '0') }} <i class="ft-users float-right"></i>
+                                                </h4>
+                                            </div>
+                                            <div class="card-footer p-1">
+                                                <span class="text-muted"><i class="la la-arrow-circle-o-up info"></i>
+                                                    Data Widget
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-lg-4">
+                                    <div class="card pull-up border-top-info border-top-3 rounded-0">
+                                        <div class="card-header">
+                                            <h4 class="card-title">Spp Cicilan <span
+                                                    class="badge badge-pill badge-info float-right m-0">5+</span></h4>
+                                        </div>
+                                        <div class="card-content collapse show">
+                                            <div class="card-body p-1">
+                                                <h4 class="font-large-1 text-bold-400">Rp. {{ number_format($sppcicilan, '0') }} <i class="ft-users float-right"></i>
+                                                </h4>
+                                            </div>
+                                            <div class="card-footer p-1">
+                                                <span class="text-muted"><i class="la la-arrow-circle-o-up info"></i>
+                                                    Data Widget
+                                                </span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-12 col-lg-4">
-                            <div class="card pull-up border-top-info border-top-3 rounded-0">
-                            <div class="card-header">
-                                    <h4 class="card-title">Spp Belum Lunas <span
-                                            class="badge badge-pill badge-info float-right m-0">5+</span></h4>
-                                </div>
-                                <div class="card-content collapse show">
-                                    <div class="card-body p-1">
-                                        <h4 class="font-large-1 text-bold-400">Rp. {{ number_format($sppbelumlunas, '0') }} <i class="ft-users float-right"></i>
-                                        </h4>
+                        <div class="col-md-4">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h5>Presentasi Pembayaran</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <div id="chart" ></div>
+                                        </div>
                                     </div>
-                                    <div class="card-footer p-1">
-                                        <span class="text-muted"><i class="la la-arrow-circle-o-up info"></i> Data Widget</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-12 col-lg-4">
-                            <div class="card pull-up border-top-info border-top-3 rounded-0">
-                                <div class="card-header">
-                                    <h4 class="card-title">Spp Cicilan <span
-                                            class="badge badge-pill badge-info float-right m-0">5+</span></h4>
-                                </div>
-                                <div class="card-content collapse show">
-                                    <div class="card-body p-1">
-                                        <h4 class="font-large-1 text-bold-400">Rp. {{ number_format($sppcicilan, '0') }} <i class="ft-users float-right"></i>
-                                        </h4>
-                                    </div>
-                                    <div class="card-footer p-1">
-                                        <span class="text-muted"><i class="la la-arrow-circle-o-up info"></i> Data Widget</span>
-                                    </div>
+
+                                    {{-- <div id="chart" style="height: 50vh"></div> --}}
                                 </div>
                             </div>
                         </div>
@@ -358,5 +441,39 @@
         }
 
     // })
+</script>
+<script>
+   $(document).ready(function(){
+      var jumlah = "{{ ($spplunas+$sppcicilan) }}"
+      var target = "{{ ($spplunas+$sppbelumlunas+$sppcicilan)-($spplunas+$sppcicilan) }}"
+      var jumint = parseInt(jumlah)
+      var targetint = parseInt(target)
+
+    //   console.log(jumint +"ok"+targetint)
+       var options = {
+          series: [targetint,jumint],
+          chart: {
+        //   width: 1000,
+        height: 'auto',
+          type: 'pie',
+        },
+        labels: ['Target Pembayaran', 'Realisasi Pembayaran'],
+        responsive: [{
+          breakpoint: 480,
+          options: {
+            chart: {
+            //   width: 'auto'
+            height: 'auto'
+            },
+            legend: {
+              position: 'top'
+            }
+          }
+        }]
+        };
+
+        var chart = new ApexCharts(document.querySelector("#chart"), options);
+        chart.render();
+});
 </script>
 @endsection
