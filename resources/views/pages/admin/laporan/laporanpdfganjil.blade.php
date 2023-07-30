@@ -28,7 +28,7 @@
     <h5 style="text-align: center">LAPORAN PEMBAYARAN SPP SISWA/SISWI <br>
 SMA TAMAN MULIA KUBU RAYA <br>
 SEMESTER {{ strtoupper(App\Helpers\Format::getgenapganjil($semester)) }} TAHUN AJARAN {{ strtoupper(App\Helpers\Format::periode($semester)) }}</h5>
-<h5>Kelas : {{ App\Helpers\Format::getKelas($data[0]->kelas_id) }}</h5>
+<h5>Kelas : {{ App\Helpers\Format::getKelas(@$data[0]->kelas_id) }}</h5>
     <table style="border: 2px solid black;width: 100%;margin: auto">
         
         <thead>

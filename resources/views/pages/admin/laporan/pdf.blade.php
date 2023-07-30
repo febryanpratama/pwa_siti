@@ -60,11 +60,11 @@
             @foreach ($data as $key=>$item)
                 <tr style="text-align: center">
                     <td>{{ $total++ }}</td>
-                    <td>{{ $item->siswa->nama_siswa }}</td>
-                    <td>{{ App\Helpers\Format::getKelas($item->kelas_id) }}</td>
-                    <td>{{ strtoupper(Carbon\Carbon::parse($item->tanggal)->format('M')) }}</td>
-                    <td>{{ number_format($item->nominal_bayar) }}</td>
-                    <td>{{ $item->keterangan }}</td>
+                    <td>{{ $item->siswa->nama_siswa ?? '' }}</td>
+                    <td>{{ App\Helpers\Format::getKelas($item->kelas_id) ?? '' }}</td>
+                    <td>{{ strtoupper(Carbon\Carbon::parse($item->tanggal)->format('M')) ?? '' }}</td>
+                    <td>{{ number_format($item->nominal_bayar) ?? '' }}</td>
+                    <td>{{ $item->keterangan ?? '' }}</td>
                 </tr>
             @endforeach
             
@@ -72,17 +72,18 @@
         <tfoot>
             <tr style="text-align: center">
                 <td colspan="4">Jumlah Pembayaran</td>
-                <td>{{ number_format($data->sum('nominal_bayar')) }}</td>
+                <td>{{ number_format($data->sum('nominal_bayar')) ?? '' }}</td>
                 <td></td>
             </tr>
             <tr style="text-align: center">
                 <td colspan="4">Target Pendapatan</td>
-                <td>{{ number_format(App\Helpers\Format::getTargetPendapatan(Carbon\Carbon::parse($item->tanggal)->format('m'), $semester, $status)) }}</td>
+                {{-- {{ dd($data[0]->tanggal) }} --}}
+                <td>{{ number_format(App\Helpers\Format::getTargetPendapatan(Carbon\Carbon::parse($data[0]->tanggal)->format('m'), $semester, $status)) ?? '' }}</td>
                 <td></td>
             </tr>
             <tr style="text-align: center">
                 <td colspan="4">Sisa</td>
-                <td>{{ number_format((App\Helpers\Format::getTargetPendapatan(Carbon\Carbon::parse($item->tanggal)->format('m'), $semester, $status)-$data->sum('nominal_bayar'))) }}</td>
+                <td>{{ number_format((App\Helpers\Format::getTargetPendapatan(Carbon\Carbon::parse($data[0]->tanggal)->format('m'), $semester, $status)-$data->sum('nominal_bayar'))) }}</td>
                 <td></td>
             </tr>
         </tfoot>

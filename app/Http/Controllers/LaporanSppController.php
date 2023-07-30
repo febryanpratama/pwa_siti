@@ -120,6 +120,6 @@ class LaporanSppController extends Controller
 
         // dd($data);
         $pdf = PDF::loadview('pages.admin.laporan.pdf', ['data' => $data, 'bulan' => $request['bulan'], 'status' => $request['status'], 'semester' => $request['periode_id']]);
-        return $pdf->download("Laporan-" . $request['status'] . ".pdf");
+        return $pdf->stream("Laporan-" . $request['status'] . ".pdf");
     }
 }
