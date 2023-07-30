@@ -40,6 +40,7 @@
         </div>
     @endif
     {{-- <h1>{{ dd($status) }}</h1> --}}
+    {{-- {{ dd($data) }} --}}
     <table>
         <thead>
             <tr>

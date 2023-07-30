@@ -25,6 +25,7 @@
     {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous"> --}}
 </head>
 <body>
+    {{-- {{ dd($data) }} --}}
     <h5 style="text-align: center">LAPORAN PEMBAYARAN SPP SISWA/SISWI <br>
 SMA TAMAN MULIA KUBU RAYA <br>
 SEMESTER {{ strtoupper(App\Helpers\Format::getgenapganjil($semester)) }} TAHUN AJARAN {{ strtoupper(App\Helpers\Format::periode($semester)) }}</h5>

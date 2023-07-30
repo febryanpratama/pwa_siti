@@ -76,6 +76,10 @@ class LaporanSppController extends Controller
         $result = $this->laporanSpp->exportExcel($request->all());
 
         // dd($result);
+
+        if ($result['data']->isEmpty()) {
+            return back()->with('error', 'Data Tidak Ditemukan');
+        }
         if ($result['semester'] == "Genap") {
             # code...
             // dd("Genap");
@@ -119,6 +123,10 @@ class LaporanSppController extends Controller
         $data = Spp::with('siswa')->where('status_pembayaran', $request->status)->where('semester_id', $request->periode_id)->whereMonth('tanggal', $request->bulan)->get()->sortBy('siswa.nama_siswa', false);;
 
         // dd($data);
+
+        if ($data->isEmpty()) {
+            return back()->with('error', 'Data Tidak Ditemukan');
+        }
         $pdf = PDF::loadview('pages.admin.laporan.pdf', ['data' => $data, 'bulan' => $request['bulan'], 'status' => $request['status'], 'semester' => $request['periode_id']]);
         return $pdf->stream("Laporan-" . $request['status'] . ".pdf");
     }
